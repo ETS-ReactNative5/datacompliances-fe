@@ -1,5 +1,33 @@
 @import '../../../assets/base/variables.scss';
 
+
+.banner {
+  background-color: $dark_blue;
+  margin-bottom: 100px;
+}
+
+.animate {
+  position: relative;
+  left: -25px;
+  display: inline;
+  width: 60vw;
+}
+
+.video {
+  width: 40vw;
+  position: relative;
+  bottom: -20px;
+}
+
+.pipe__wrapper {
+  border-radius: 100px;
+  box-shadow: 0 0 20px #e5e5e5;
+  // background-color: red;
+  padding: 40px 40px;
+  width: 300%;
+  margin-bottom: 30px;
+}
+
 .about {
   padding: 50px 0;
 }
@@ -23,21 +51,25 @@
     background-repeat: no-repeat;
     background-position: right;
   }
+
   @media screen and (max-width: 1876px) {
     .text-descrip {
       width: 80%;
     }
   }
+
   @media screen and (max-width: 1435px) {
     .text-descrip {
       width: 60%;
     }
   }
+
   @media screen and (max-width: 1150px) {
     .text-descrip {
       width: 40%;
     }
   }
+
   @media screen and (max-width: 991px) {
     .text-descrip {
       width: 100%;

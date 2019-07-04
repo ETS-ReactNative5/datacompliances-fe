@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,600%7cStaatliches');
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap');
 @import '../base/variables.scss';
 
 body {
@@ -12,15 +12,20 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Staatliches', cursive;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
   letter-spacing: 1px;
+  color: #636363;
+}
+
+h3 {
+  font-size: 26px;
 }
 
 .web__wrap {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-image: url('./images/background-lego.png');
   // background-attachment: fixed;
 }
 
@@ -28,7 +33,7 @@ h5 {
   flex: 1;
 }
 
-.btn-primary {
+.btn__primary {
   background-color: $blue;
   border-radius: 0;
   border-color: $blue;

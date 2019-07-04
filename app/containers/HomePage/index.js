@@ -13,39 +13,64 @@ import About from '../About/Loadable';
 import saga from './saga';
 import reducer from './reducer';
 import { loadRepos } from '../App/actions';
-import question from './assets/question.svg';
+import animate from './assets/animated__banner.svg';
+import video from './assets/pc.png';
+import Slider from 'react-slick';
+
 import ImageSlider from '../ImageSlider/Loadable';
 
 export class HomePage extends React.PureComponent {
   componentDidMount() {}
 
   render() {
-    const { contentTemplate } = this.props;
-    const contentHowCanYouHelp = contentTemplate?.toJS()['how-can-you-help'];
+    var settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+    };
     return (
       <React.Fragment>
         <Helmet>
-          <title>The Giving Brick</title>
+          <title>PCSC</title>
           <meta name="description" content="The Giving Brick" />
         </Helmet>
-        <ImageSlider />
-        <About />
-        <div className="block__question">
+        <div className="banner">
+          <div className="d-flex align-items-end">
+            <div className="img__holder">
+              <img className="animate" src={animate} alt="" />
+            </div>
+            <div className="img__holder">
+              <img className="video" src={video} alt="" />
+            </div>
+          </div>
+        </div>
+        <div className="customer">
           <div className="container">
-            <div className="media align-items-center">
-              <div className="img__holder">
-                <img src={question} alt="question" />
-              </div>
-              <div className="media-body col-md-6">
-                <div
-                  className="text-descrip"
-                  dangerouslySetInnerHTML={{
-                    __html: contentHowCanYouHelp?.template_content,
-                  }}
-                />
-                <Link className="text-uppercase" to="/help-us">
-                  Learn More
-                </Link>
+            <div className="pipe__wrapper">
+              <div className="d-flex align-items-center">
+                <h3>Our Customers</h3>
+                <Slider {...settings}>
+                  <div>
+                    <h3>1</h3>
+                  </div>
+                  <div>
+                    <h3>2</h3>
+                  </div>
+                  <div>
+                    <h3>3</h3>
+                  </div>
+                  <div>
+                    <h3>4</h3>
+                  </div>
+                  <div>
+                    <h3>5</h3>
+                  </div>
+                  <div>
+                    <h3>6</h3>
+                  </div>
+                </Slider>
               </div>
             </div>
           </div>
