@@ -1,0 +1,10 @@
+<svg version="1.1" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 x="0px" y="0px" viewBox="0 0 30 30" xml:space="preserve" width="30px" height="30px">
+<g>
+	<path fill="none" d="M0,30V0h30v30H0z"/>
+	<g>
+		<circle fill="#F61C0D" cx="15" cy="15" r="12.5"/>
+	</g>
+</g>
+<path fill="#FFFFFF" d="M10.5,21.1L21.2,15L10.5,8.9V21.1z"/>
+</svg>

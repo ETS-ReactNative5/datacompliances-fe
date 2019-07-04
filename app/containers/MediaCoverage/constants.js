@@ -1,0 +1,8 @@
+export const LOAD_MEDIA_COVERAGE_REQUEST = "app/containers/MediaCoverage/LOAD_PARTENERSHIP_REQUEST";
+export const LOAD_MEDIA_COVERAGE_SUCCESS = "app/containers/MediaCoverage/LOAD_MEDIA_COVERAGE_SUCCESS";
+export const LOAD_MEDIA_COVERAGE_FAILURE = "app/containers/MediaCoverage/LOAD_MEDIA_COVERAGE_FAILURE";
+
+export const LOAD_MEDIA_COVERAGE_BY_SLUG_REQUEST = "app/containers/MediaCoverage/LOAD_MEDIA_COVERAGE_BY_SLUG_REQUEST";
+export const LOAD_MEDIA_COVERAGE_BY_SLUG_SUCCESS = "app/containers/MediaCoverage/LOAD_MEDIA_COVERAGE_BY_SLUG_SUCCESS";
+export const LOAD_MEDIA_COVERAGE_BY_SLUG_FAILURE = "app/containers/MediaCoverage/LOAD_MEDIA_COVERAGE_BY_SLUG_FAILURE";
+

@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,600%7cStaatliches');
+@import '../base/variables.scss';
+
+body {
+  min-width: 320px;
+  font-weight: 400;
+  font: 400 16px 'Poppins', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Staatliches', cursive;
+  letter-spacing: 1px;
+}
+
+.web__wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-image: url('./images/background-lego.png');
+  // background-attachment: fixed;
+}
+
+.web__main {
+  flex: 1;
+}
+
+.btn-primary {
+  background-color: $blue;
+  border-radius: 0;
+  border-color: $blue;
+
+  &:focus,
+  &.focus,
+  &:hover {
+    background-color: darken($blue, 10%);
+    border-color: darken($blue, 10%);
+    box-shadow: none;
+  }
+}
+
+.title__wrap {
+  padding: 1.5rem 0;
+  background-image: url('./images/title.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  z-index: 1;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+  }
+
+  h1 {
+    margin: 0;
+    color: #fff;
+    font-size: 2.4rem;
+    padding-left: 2rem;
+    position: relative;
+
+    &::before {
+      position: absolute;
+      content: '';
+      width: 0;
+      height: 0;
+      left: 0;
+      bottom: 10px;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid $red;
+      transform: rotate(135deg);
+    }
+  }
+}
+
+.content__wrap {
+  padding: 60px 0;
+}
+
+a {
+  color: $red;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.date {
+  font-size: 14px;
+  color: #777;
+}
+
+.events {
+  background-color: #fbf8f6;
+}
+
+.news {
+  padding: 60px 0;
+}
+
+.news__card {
+  border: none;
+  box-shadow: 0 0 10px #e6e6e6;
+
+  &:hover {
+    box-shadow: 0 0 20px #d8d8d8;
+  }
+}
+
+.max__width768 {
+  max-width: 768px !important;
+}
+
+.news {
+  @media screen and (min-width: 992px) {
+    background-image: url('./images/batman.png');
+    background-size: 600px 600px;
+    background-repeat: no-repeat;
+    background-position: 105% 200%;
+  }
+}

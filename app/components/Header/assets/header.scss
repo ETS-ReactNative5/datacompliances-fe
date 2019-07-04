@@ -1,0 +1,52 @@
+@import '../../../assets/base/variables.scss';
+
+#header {
+  box-shadow: 0 2px 5px #b3b3b3;
+  background-color: #fff;
+  position: relative;
+  z-index: 100;
+  .navbar-brand {
+    width: 200px;
+    padding: 0;
+  }
+
+  .navbar {
+    .nav-link {
+      font-weight: 700;
+      color: #333;
+      position: relative;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      &::before {
+        content: '';
+        height: 4px;
+        max-width: 0;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        margin-top: 6px;
+        background-color: $red;
+        @media screen and (max-width: 991px) {
+          margin-top: -4px;
+        }
+      }
+
+      &.active {
+        &::before {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+
+  .top__header {
+    padding: 5px 0;
+    background-color: $blue;
+    color: #fff;
+
+    h5 {
+      margin: 0;
+    }
+  }
+}

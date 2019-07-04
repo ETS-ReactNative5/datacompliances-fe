@@ -1,0 +1,27 @@
+.content__box {
+  min-height: 100%;
+  padding: 1rem;
+  color: #4c4c4c;
+  text-align: center;
+  box-shadow: 0 0 5px #e6e6e6;
+  background-color: #f4fcff;
+
+  &.red {
+    background-color: #fffcfc;
+  }
+
+  &.green {
+    background-color: #f8fff9;
+  }
+
+  img {
+    margin-bottom: 20px;
+  }
+  .link {
+    cursor: pointer;
+    color: #ff5858;
+    &:hover {
+      color: darken($color: #ff5858, $amount: 0.1);
+    }
+  }
+}
