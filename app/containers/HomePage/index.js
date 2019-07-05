@@ -18,6 +18,12 @@ import client3 from './assets/client/client3.png';
 import client4 from './assets/client/client4.png';
 import client5 from './assets/client/client5.png';
 import client6 from './assets/client/client6.png';
+import team1 from './assets/team/team1.png';
+import team2 from './assets/team/team2.png';
+import team3 from './assets/team/team0.png';
+import team4 from './assets/team/team4.png';
+import team5 from './assets/team/team5.png';
+import team6 from './assets/team/team6.png';
 
 import video from './assets/pc.png';
 import Slider from 'react-slick';
@@ -25,8 +31,8 @@ import ImageSlider from '../ImageSlider/Loadable';
 const settings = {
   infinite: true,
   speed: 500,
-  slidesToShow: 5,
-  slidesToScroll: 5,
+  slidesToShow: 4,
+  slidesToScroll: 4,
   initialSlide: 0,
   dots: true,
   arrows: false,
@@ -66,11 +72,76 @@ export class HomePage extends React.PureComponent {
                   ducimus reiciendis repudiandae.
                 </p>
               </div>
-              <div className="col-lg-4">
+              <div className="col-lg-8">
                 <div className="row">
-                  <div className="col-md-">
-                    <img src={client1} alt="" />
+                  <div className="col-md-4">
+                    <img className="mb-1" src={team1} alt="" />
+                    <h5>Shahi Dhungel</h5>
+                    <p>Chief Executive Officer</p>
                   </div>
+                  <div className="col-md-4">
+                    <img className="mb-1" src={team2} alt="" />
+                    <h5>Shahi Dhungel</h5>
+                    <p>Chief Executive Officer</p>
+                  </div>
+                  <div className="col-md-4">
+                    <img className="mb-1" src={team3} alt="" />
+                    <h5>Shahi Dhungel</h5>
+                    <p>Chief Executive Officer</p>
+                  </div>
+                  <div className="col-md-4">
+                    <img className="mb-1" src={team4} alt="" />
+                    <h5>Shahi Dhungel</h5>
+                    <p>Chief Executive Officer</p>
+                  </div>
+                  <div className="col-md-4">
+                    <img className="mb-1" src={team5} alt="" />
+                    <h5>Shahi Dhungel</h5>
+                    <p>Chief Executive Officer</p>
+                  </div>{' '}
+                  <div className="col-md-4">
+                    <img className="mb-1" src={team6} alt="" />
+                    <h5>Shahi Dhungel</h5>
+                    <p>Chief Executive Officer</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="product">
+          <div className="container">
+            <h4>Make smarter decisions using better insights</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div className="row">
+              <div className="col-md-4">
+                <div className="product__card card inverse">
+                  <div className="top__block">
+                    <h5>Cyber Security on Demand</h5>
+                    <p>$1500</p>
+                  </div>
+                  <ul>
+                    <li>Cyber Privacy</li>
+                    <li>Cyber Compliance</li>
+                    <li>Cyber Assessment</li>
+                    <li>Cyber TM</li>
+                  </ul>
+                  <button className="primary__button">View Detail</button>
+                </div>
+              </div>
+              <div className="col-md-4">
+                <div className="product__card card ">
+                  <div className="top__block">
+                    <h5>Adhoc Consulting and design enhancements</h5>
+                    <p>$1500</p>
+                  </div>
+                  <ul>
+                    <li>Cyber Privacy</li>
+                    <li>Cyber Compliance</li>
+                    <li>Cyber Assessment</li>
+                    <li>Cyber TM</li>
+                  </ul>
+                  <button className="primary__button">View Detail</button>
                 </div>
               </div>
             </div>
