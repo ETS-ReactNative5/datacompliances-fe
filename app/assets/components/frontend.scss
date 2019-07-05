@@ -88,12 +88,25 @@ h3 {
   }
 }
 
+h5 {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+
+p {
+  color: #C2C2C2;
+}
+
+.white {
+  color: #fff;
+}
+
 .content__wrap {
   padding: 60px 0;
 }
 
-a {
-  color: $red;
+.text__link {
+  color: $blue;
 
   &:hover {
     text-decoration: none;
@@ -133,4 +146,13 @@ a {
     background-repeat: no-repeat;
     background-position: 105% 200%;
   }
+}
+
+.primary__button {
+  border-radius: 100px;
+  color: #fff;
+  background-color: $blue;
+  padding: 8px 10px;
+  border: none;
+  font-size: 14px;
 }

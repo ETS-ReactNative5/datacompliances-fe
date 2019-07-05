@@ -15,6 +15,8 @@ import HowCanHelp from '../../containers/HowYouCanHelp';
 import Search from '../Search/SearchList';
 import { makeSelectLocation } from './selectors';
 import PrivacyPolicy from '../PrivacyPolicy';
+import Login from '../Login/Loadable';
+import Register from '../Register/Loadable';
 
 const mapStateToProps = createStructuredSelector({
   location: makeSelectLocation(),
@@ -98,6 +100,12 @@ class Routes extends React.Component {
             </HomeLayout>
           )}
         />
+        <Route
+          exact
+          path="/register"
+          render={props => <Register {...props} />}
+        />
+        <Route exact path="/login" render={props => <Login {...props} />} />
 
         <Route
           exact

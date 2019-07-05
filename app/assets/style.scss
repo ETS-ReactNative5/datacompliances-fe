@@ -19,14 +19,16 @@
 .scroll--simple::-webkit-scrollbar-thumb:active {
   background: rgba(0, 0, 0, 0.9);
 }
+
 #wrapper {
   position: relative;
   width: 100%;
   overflow: hidden;
   min-height: 100vh;
 }
+
 @import 'base/variables.scss';
 @import 'base/base.scss';
 @import 'components/fonts.scss';
-@import 'components/frontend.scss';
 @import 'components/slick.scss';
+@import 'components/frontend.scss';
