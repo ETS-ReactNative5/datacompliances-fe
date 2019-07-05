@@ -88,12 +88,20 @@ h3 {
   }
 }
 
+p {
+  color: #C2C2C2;
+}
+
+.white {
+  color: #fff;
+}
+
 .content__wrap {
   padding: 60px 0;
 }
 
-a {
-  color: $red;
+.text__link {
+  color: $blue;
 
   &:hover {
     text-decoration: none;

@@ -6,6 +6,10 @@
   margin-bottom: 100px;
 }
 
+.max1110 {
+  max-width: 1110px;
+}
+
 .animate {
   position: relative;
   left: -25px;
@@ -16,7 +20,7 @@
 .video {
   width: 40vw;
   position: relative;
-  bottom: -20px;
+  bottom: -60px;
 }
 
 .pipe__wrapper {
@@ -28,7 +32,7 @@
   margin-bottom: 30px;
 }
 
-.about {
+.consultant {
   padding: 50px 0;
 }
 
@@ -81,4 +85,16 @@
   .maxwidth50__md {
     width: 50%;
   }
+}
+
+.slick-dots {
+  bottom: 0;
+}
+
+.slick-dots li button {
+  background-color: #D3D6DB;
+}
+
+.slick-dots .slick-active button {
+  background-color: #16C172;
 }

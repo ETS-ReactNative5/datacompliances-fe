@@ -35,10 +35,12 @@ class Header extends React.PureComponent {
             </Navbar.Collapse>
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ml-auto">
-                <NavLink exact className="nav-link" to="/">
+                <NavLink exact className="nav-link" to="/register">
                   Register
                 </NavLink>
-                <Button className="btn__primary">Login</Button>
+                <NavLink className="nav-link" to="/login">
+                  <Button className="btn__primary">Login</Button>
+                </NavLink>
               </Nav>
             </Navbar.Collapse>
           </Container>
