@@ -2,7 +2,7 @@
   "apps": [
     {
       "name": "pcsc-frontend-server",
-      "script": "index.js",
+      "script": "server/index.js",
       "merge_logs": true,
       "watch": true,
       "ignore_watch": [
