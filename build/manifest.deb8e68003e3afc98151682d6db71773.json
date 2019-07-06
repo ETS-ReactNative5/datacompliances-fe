@@ -1,0 +1,67 @@
+{
+  "icons": [
+    {
+      "src": "/icon_180x180.03ee8e56fc21287445e576daaec39bdf.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_167x167.8d95ba5d885ec0ef6e9648cf59f766e8.png",
+      "sizes": "167x167",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_152x152.35abe5b8682a01e90975f61e52206f70.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_120x120.fbaa5116349437a8c1b503e893fdaf3e.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_512x512.9228e26a8f909609bf411a9037a882f6.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_384x384.6103089e12d8c870c7679456a2ad752a.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_192x192.685705c6536b2f9a7b50806e89607b51.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_144x144.f2a3e3e56ced672072e4d807bb0557fd.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_128x128.83e7f56b5d9a9ff17b9fc1dac29ea866.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_96x96.b42bb754169b34e2ea6bf5cf59041ff2.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon_72x72.b8f84a9ef7b2672a327753bbed0042d4.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    }
+  ],
+  "name": "The Giving Brick",
+  "short_name": "TGB",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "description": "A Kansas City-Based, Non-Profit Organization",
+  "background_color": "#fafafa",
+  "theme_color": "#b1624d"
+}
