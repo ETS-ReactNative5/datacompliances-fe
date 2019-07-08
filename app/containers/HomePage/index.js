@@ -18,12 +18,18 @@ import client3 from './assets/client/client3.png';
 import client4 from './assets/client/client4.png';
 import client5 from './assets/client/client5.png';
 import client6 from './assets/client/client6.png';
-import team1 from './assets/team/team1.png';
-import team2 from './assets/team/team2.png';
-import team3 from './assets/team/team0.png';
-import team4 from './assets/team/team4.png';
-import team5 from './assets/team/team5.png';
-import team6 from './assets/team/team6.png';
+// import team1 from './assets/team/team1.png';
+// import team2 from './assets/team/team2.png';
+// import team3 from './assets/team/team0.png';
+// import team4 from './assets/team/team4.png';
+// import team5 from './assets/team/team5.png';
+// import team6 from './assets/team/team6.png';
+import team1 from './assets/team/t1.png';
+import team2 from './assets/team/t2.png';
+import team3 from './assets/team/t3.png';
+import team4 from './assets/team/t4.png';
+import team5 from './assets/team/t5.png';
+import team6 from './assets/team/t6.png';
 
 import video from './assets/pc.png';
 import Slider from 'react-slick';
@@ -59,9 +65,10 @@ export class HomePage extends React.PureComponent {
         </div>
         <div className="consultant">
           <div className="container">
-            <div className="row">
+            <div className="row align-items-center">
               <div className="col-lg-4">
-                <h4>Our Consultants</h4>
+                <h5 className="blue">Ravi Dhungel</h5>
+                <p className="dark__grey">Principal Cyber Security Engineer</p>
                 <p>
                   Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                   Similique mollitia culpa quas quidem ab ex praesentium dicta
@@ -73,36 +80,106 @@ export class HomePage extends React.PureComponent {
                 </p>
               </div>
               <div className="col-lg-8">
+                <h2 className="text-center mb-5">Our Consultants</h2>
+                {/* <div className="row">
+                  <div className="col-md-4 text-center mb-4">
+                    <div className="team__holder mb-3 active">
+                      <img className="mb-2 img-fluid" src={team5} alt="" />
+                    </div>
+                    <h5>Ravi Dhungel </h5>
+                    <p>Principal Cyber Security Engineer</p>
+                  </div>
+                  <div className="col-md-4 text-center mb-4">
+                    <div className="team__holder mb-3">
+                      <img className="mb-2 img-fluid" src={team2} alt="" />
+                    </div>
+                    <h5>David Vesey</h5>
+                    <p>Principal Software Engineer - HIPPA</p>
+                  </div>
+                  <div className="col-md-4 text-center mb-4">
+                    <div className="team__holder mb-3">
+                      <img className="mb-2 img-fluid" src={team3} alt="" />
+                    </div>
+                    <h5>Pratigya Bhattarai</h5>
+                    <p>Privacy - GDPR</p>
+                  </div>
+                  <div className="col-md-4 text-center mb-4">
+                    <div className="team__holder mb-3">
+                      <img className="mb-2 img-fluid" src={team4} alt="" />
+                    </div>
+                    <h5>Justin Kohlbeck</h5>
+                    <p>Legal and Privacy Expert</p>
+                  </div>
+                  <div className="col-md-4 text-center mb-4">
+                    <div className="team__holder mb-3">
+                      <img className="mb-2 img-fluid" src={team1} alt="" />
+                    </div>
+                    <h5>Dinesh</h5>
+                    <p>Chief</p>
+                  </div>
+                  <div className="col-md-4 text-center mb-4">
+                    <div className="team__holder mb-3 ">
+                      <img className="mb-2 img-fluid" src={team6} alt="" />
+                    </div>
+                    <h5>Saroj</h5>
+                    <p>Chief </p>
+                  </div>
+                </div> */}
                 <div className="row">
-                  <div className="col-md-4">
-                    <img className="mb-1" src={team1} alt="" />
-                    <h5>Shahi Dhungel</h5>
-                    <p>Chief Executive Officer</p>
+                  <div className="col-md-4 text-center mb-4">
+                    <img
+                      className="mb-2 img-fluid team__img active"
+                      src={team1}
+                      alt=""
+                    />
+                    <h5>Ravi Dhungel </h5>
+                    <p>Principal Cyber Security Engineer</p>
                   </div>
-                  <div className="col-md-4">
-                    <img className="mb-1" src={team2} alt="" />
-                    <h5>Shahi Dhungel</h5>
-                    <p>Chief Executive Officer</p>
+                  <div className="col-md-4 text-center mb-4">
+                    <img
+                      className="mb-2 img-fluid team__img"
+                      src={team2}
+                      alt=""
+                    />
+                    <h5>David Vesey</h5>
+                    <p>Principal Software Engineer - HIPPA</p>
                   </div>
-                  <div className="col-md-4">
-                    <img className="mb-1" src={team3} alt="" />
-                    <h5>Shahi Dhungel</h5>
-                    <p>Chief Executive Officer</p>
+                  <div className="col-md-4 text-center mb-4">
+                    <img
+                      className="mb-2 img-fluid team__img"
+                      src={team3}
+                      alt=""
+                    />
+                    <h5>Dinesh</h5>
+                    <p>Chief</p>
                   </div>
-                  <div className="col-md-4">
-                    <img className="mb-1" src={team4} alt="" />
-                    <h5>Shahi Dhungel</h5>
-                    <p>Chief Executive Officer</p>
+                  <div className="col-md-4 text-center mb-4">
+                    <img
+                      className="mb-2 img-fluid team__img"
+                      src={team4}
+                      alt=""
+                    />
+                    <h5>Dinesh</h5>
+                    <p>Chief</p>
                   </div>
-                  <div className="col-md-4">
-                    <img className="mb-1" src={team5} alt="" />
-                    <h5>Shahi Dhungel</h5>
-                    <p>Chief Executive Officer</p>
-                  </div>{' '}
-                  <div className="col-md-4">
-                    <img className="mb-1" src={team6} alt="" />
-                    <h5>Shahi Dhungel</h5>
-                    <p>Chief Executive Officer</p>
+                  <div className="col-md-4 text-center mb-4">
+                    <img
+                      className="mb-2 img-fluid team__img "
+                      src={team5}
+                      alt=""
+                    />
+                    <h5>Dinesh</h5>
+                    <p>Chief</p>
+                  </div>
+
+                  <div className="col-md-4 text-center mb-4">
+                    <img
+                      className="mb-2 img-fluid team__img"
+                      src={team6}
+                      alt=""
+                    />
+                    <h5>Dinesh</h5>
+                    <p>Chief</p>
                   </div>
                 </div>
               </div>
