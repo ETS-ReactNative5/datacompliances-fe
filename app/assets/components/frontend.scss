@@ -49,7 +49,7 @@ h3 {
 
 .title__wrap {
   padding: 1.5rem 0;
-  background-image: url('./images/title.jpg');
+  // background-image: url('./images/title.jpg');
   background-size: cover;
   background-attachment: fixed;
   position: relative;
@@ -101,6 +101,14 @@ p {
   color: #fff;
 }
 
+.blue {
+  color: $blue;
+}
+
+.dark__grey {
+  color: #727272;
+}
+
 .content__wrap {
   padding: 60px 0;
 }
@@ -141,7 +149,7 @@ p {
 
 .news {
   @media screen and (min-width: 992px) {
-    background-image: url('./images/batman.png');
+    // background-image: url('./images/batman.png');
     background-size: 600px 600px;
     background-repeat: no-repeat;
     background-position: 105% 200%;

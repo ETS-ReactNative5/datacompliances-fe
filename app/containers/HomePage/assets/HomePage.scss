@@ -1,5 +1,15 @@
 @import '../../../assets/base/variables.scss';
 
+.team__img {
+  height: 150px;
+  cursor: pointer;
+  filter: grayscale(100%);
+  transition: all .2s ease-in-out;
+}
+
+.team__img.active {
+  filter: grayscale(0%);
+}
 
 .banner {
   background-color: $dark_blue;
@@ -37,6 +47,48 @@
   padding: 50px 0;
 }
 
+.product {
+  background-image: url('../assets/animated__banner3.svg');
+  background-repeat: no-repeat;
+  background-position: 300px 0px;
+}
+
+.team__holder {
+  cursor: pointer;
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+  text-align: center;
+  overflow: hidden;
+  border: 2px solid $blue;
+  box-shadow: 0 0 0px 10px rgba(122, 203, 250, 0.5);
+  margin: 0 auto;
+  transition: all .1s ease-in-out;
+
+  img {
+    position: relative;
+    top: 0;
+    left: 0;
+    transition: all .3s ease-in-out;
+  }
+
+  &:hover {
+    box-shadow: 0 0 10px 10px rgba(122, 203, 250, 0.5);
+
+    img {
+      position: relative;
+      top: -6px;
+      left: -6px;
+      max-width: 110%;
+    }
+  }
+
+  &.active {
+    box-shadow: 0 0 0px 5px $blue;
+    border: none;
+  }
+}
+
 .block__question {
   padding: 80px 0;
   background-color: #ececeb;
@@ -50,8 +102,9 @@
     }
   }
 
+
   @media screen and (min-width: 992px) {
-    background-image: url('../../../assets/images/lego2.png');
+    // background-image: url('../../../assets/images/lego2.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: right;
