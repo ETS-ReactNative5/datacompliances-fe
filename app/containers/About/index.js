@@ -9,7 +9,6 @@ import { makeSelectRequesting, makeSelectData } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import TeamMembers from '../TeamMember/Loadable';
-import FinancialStatus from '../Financial/Loadable';
 import Partnership from '../Partnership/Loadable';
 import { loadAboutRequest } from './actions';
 import image1 from './assets/image1.jpg';

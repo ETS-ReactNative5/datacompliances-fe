@@ -1,13 +1,13 @@
 import React from 'react';
 import './assets/header.scss';
-import logo from './assets/logo.png';
+// import logo from './assets/logo.png';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { makeSelectOrgInfo } from '../../containers/App/selectors';
 import Search from 'containers/Search/Loadable';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
-
+import logo from './assets/pcsc__white.svg';
 class Header extends React.PureComponent {
   render() {
     const { orgInfo } = this.props;
@@ -20,10 +20,12 @@ class Header extends React.PureComponent {
           <Container>
             <Link className="navbar-brand" to="/">
               {/* <img className="img-fluid" src={logo} alt="" /> */}
-              <h1 style={{ color: '#fff' }}>PCSC</h1>
+              <div className="logo__holder">
+                <img className="brand__logo" src={logo} alt="PCSC logo" />
+              </div>
             </Link>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
+            {/* <Navbar.Collapse id="basic-navbar-nav">
               <Nav>
                 <NavLink exact className="nav-link" to="/">
                   Services
@@ -32,9 +34,15 @@ class Header extends React.PureComponent {
                   ABOUT US
                 </NavLink>
               </Nav>
-            </Navbar.Collapse>
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="ml-auto">
+            </Navbar.Collapse> */}
+            <Navbar.Collapse id="basic-navbar-nav ">
+              <Nav className="ml-auto align-items-center">
+                <NavLink exact className="nav-link" to="/">
+                  Services
+                </NavLink>
+                <NavLink exact className="nav-link" to="/about-us">
+                  ABOUT US
+                </NavLink>
                 <NavLink exact className="nav-link" to="/register">
                   Register
                 </NavLink>

@@ -33,7 +33,6 @@ import team6 from './assets/team/t6.png';
 
 import video from './assets/pc.png';
 import Slider from 'react-slick';
-import ImageSlider from '../ImageSlider/Loadable';
 const settings = {
   infinite: true,
   speed: 500,
@@ -54,12 +53,30 @@ export class HomePage extends React.PureComponent {
           <meta name="description" content="The Giving Brick" />
         </Helmet>
         <div className="banner">
-          <div className="d-flex align-items-end">
+          {/* <div className="d-flex align-items-end">
             <div className="img__holder">
               <img className="animate" src={animate} alt="" />
             </div>
             <div className="img__holder">
               <img className="video" src={video} alt="" />
+            </div>
+          </div> */}
+          <div className="container">
+            <div className="row justify-content-end banner__row align-items-end ">
+              <div className="col-md-8 ">
+                <div className="video__holder">
+                  <img className="video img-fluid" src={video} alt="" />
+                  <iframe
+                    className="video__screen"
+                    width="70%"
+                    height="82%"
+                    src="https://www.youtube.com/embed/jqIXnyL8B1k"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -13,7 +13,42 @@
 
 .banner {
   background-color: $dark_blue;
-  margin-bottom: 100px;
+  margin-bottom: 60px;
+  position: relative;
+  height: 500px;
+
+  &::before {
+    content: '';
+    background-image: url('./animated__banner2.svg');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+  }
+}
+
+.banner__row {
+  height: 500px;
+}
+
+.video {
+  position: relative;
+  bottom: -40px;
+}
+
+.video__holder {
+  position: relative;
+}
+
+.video__screen {
+  position: absolute;
+  bottom: 10px;
+  left: 15%;
 }
 
 .max1110 {
@@ -27,11 +62,11 @@
   width: 60vw;
 }
 
-.video {
-  width: 40vw;
-  position: relative;
-  bottom: -60px;
-}
+// .video {
+//   width: 40vw;
+//   position: relative;
+//   bottom: -60px;
+// }
 
 .pipe__wrapper {
   border-radius: 100px;
@@ -50,7 +85,8 @@
 .product {
   background-image: url('../assets/animated__banner3.svg');
   background-repeat: no-repeat;
-  background-position: 300px 0px;
+  background-position: right;
+  background-size: contain;
 }
 
 .team__holder {

@@ -42,11 +42,8 @@ class App extends React.Component {
     const { dialog } = this.props;
     return (
       <React.Fragment>
-        <Helmet
-          titleTemplate="%s - The Giving Brick"
-          defaultTitle="The Giving Brick"
-        >
-          <meta name="description" content="The Giving Brick" />
+        <Helmet titleTemplate="%s" defaultTitle="">
+          <meta name="description" content="PCSC" />
         </Helmet>
         {dialog && dialog.size > 0 && dialog.toJS()}
         <Routes location={this.props.location} />
