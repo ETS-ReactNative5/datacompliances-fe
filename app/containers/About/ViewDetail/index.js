@@ -6,7 +6,6 @@ import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import { Helmet } from 'react-helmet';
 import { compose } from 'redux';
-import FinancialStatus from '../../Financial/Loadable';
 import Partnership from '../../Partnership/Loadable';
 import { makeSelectLocale } from 'containers/LanguageProvider/selectors';
 import { DOCUMENT_URL_UPDATE } from 'containers/App/constants';
@@ -110,7 +109,7 @@ export class AboutDetail extends React.Component {
         <div className="mission">
           <div className="container">
             <div className="row row align-items-center">
-              <div className="col-lg-4 col-md-4">
+              <div className="col-lg-4 col-md-6">
                 <div className="img__holder">
                   <img className="img-fluid" src={image1} alt="" />
                 </div>

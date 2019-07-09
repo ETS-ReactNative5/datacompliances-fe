@@ -11,7 +11,6 @@ import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import HomeLayout from 'containers/HomeLayout';
 import AboutDetail from '../About/ViewDetail/Loadable';
 // import ImageGallery from '../ImageGallery/Loadable';
-import HowCanHelp from '../../containers/HowYouCanHelp';
 import Search from '../Search/SearchList';
 import { makeSelectLocation } from './selectors';
 import PrivacyPolicy from '../PrivacyPolicy';
@@ -81,15 +80,7 @@ class Routes extends React.Component {
             </HomeLayout>
           )}
         />
-        <Route
-          exact
-          path="/help-us"
-          render={props => (
-            <HomeLayout>
-              <HowCanHelp {...props} />
-            </HomeLayout>
-          )}
-        />
+        
 
         <Route
           exact
