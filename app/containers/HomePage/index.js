@@ -64,6 +64,7 @@ export class HomePage extends React.PureComponent {
           <div className="container">
             <div className="row justify-content-end banner__row align-items-end ">
               <div className="col-md-8 ">
+                <h1></h1>
                 <div className="video__holder">
                   <img className="video img-fluid" src={video} alt="" />
                   <iframe
@@ -82,7 +83,8 @@ export class HomePage extends React.PureComponent {
         </div>
         <div className="consultant">
           <div className="container">
-            <div className="row align-items-center">
+            <h2 className="mb-5 title__heading">Our Consultants</h2>
+            <div className="row">
               <div className="col-lg-4">
                 <h5 className="blue">Ravi Dhungel</h5>
                 <p className="dark__grey">Principal Cyber Security Engineer</p>
@@ -97,53 +99,8 @@ export class HomePage extends React.PureComponent {
                 </p>
               </div>
               <div className="col-lg-8">
-                <h2 className="text-center mb-5">Our Consultants</h2>
-                {/* <div className="row">
-                  <div className="col-md-4 text-center mb-4">
-                    <div className="team__holder mb-3 active">
-                      <img className="mb-2 img-fluid" src={team5} alt="" />
-                    </div>
-                    <h5>Ravi Dhungel </h5>
-                    <p>Principal Cyber Security Engineer</p>
-                  </div>
-                  <div className="col-md-4 text-center mb-4">
-                    <div className="team__holder mb-3">
-                      <img className="mb-2 img-fluid" src={team2} alt="" />
-                    </div>
-                    <h5>David Vesey</h5>
-                    <p>Principal Software Engineer - HIPPA</p>
-                  </div>
-                  <div className="col-md-4 text-center mb-4">
-                    <div className="team__holder mb-3">
-                      <img className="mb-2 img-fluid" src={team3} alt="" />
-                    </div>
-                    <h5>Pratigya Bhattarai</h5>
-                    <p>Privacy - GDPR</p>
-                  </div>
-                  <div className="col-md-4 text-center mb-4">
-                    <div className="team__holder mb-3">
-                      <img className="mb-2 img-fluid" src={team4} alt="" />
-                    </div>
-                    <h5>Justin Kohlbeck</h5>
-                    <p>Legal and Privacy Expert</p>
-                  </div>
-                  <div className="col-md-4 text-center mb-4">
-                    <div className="team__holder mb-3">
-                      <img className="mb-2 img-fluid" src={team1} alt="" />
-                    </div>
-                    <h5>Dinesh</h5>
-                    <p>Chief</p>
-                  </div>
-                  <div className="col-md-4 text-center mb-4">
-                    <div className="team__holder mb-3 ">
-                      <img className="mb-2 img-fluid" src={team6} alt="" />
-                    </div>
-                    <h5>Saroj</h5>
-                    <p>Chief </p>
-                  </div>
-                </div> */}
                 <div className="row">
-                  <div className="col-md-4 text-center mb-4">
+                  <div className="col-md-6 text-center mb-4">
                     <img
                       className="mb-2 img-fluid team__img active"
                       src={team1}
@@ -152,7 +109,7 @@ export class HomePage extends React.PureComponent {
                     <h5>Ravi Dhungel </h5>
                     <p>Principal Cyber Security Engineer</p>
                   </div>
-                  <div className="col-md-4 text-center mb-4">
+                  <div className="col-md-6 text-center mb-4">
                     <img
                       className="mb-2 img-fluid team__img"
                       src={team2}
@@ -161,7 +118,7 @@ export class HomePage extends React.PureComponent {
                     <h5>David Vesey</h5>
                     <p>Principal Software Engineer - HIPPA</p>
                   </div>
-                  <div className="col-md-4 text-center mb-4">
+                  <div className="col-md-6 text-center mb-4">
                     <img
                       className="mb-2 img-fluid team__img"
                       src={team3}
@@ -170,29 +127,10 @@ export class HomePage extends React.PureComponent {
                     <h5>Dinesh</h5>
                     <p>Chief</p>
                   </div>
-                  <div className="col-md-4 text-center mb-4">
+                  <div className="col-md-6 text-center mb-4">
                     <img
                       className="mb-2 img-fluid team__img"
                       src={team4}
-                      alt=""
-                    />
-                    <h5>Dinesh</h5>
-                    <p>Chief</p>
-                  </div>
-                  <div className="col-md-4 text-center mb-4">
-                    <img
-                      className="mb-2 img-fluid team__img "
-                      src={team5}
-                      alt=""
-                    />
-                    <h5>Dinesh</h5>
-                    <p>Chief</p>
-                  </div>
-
-                  <div className="col-md-4 text-center mb-4">
-                    <img
-                      className="mb-2 img-fluid team__img"
-                      src={team6}
                       alt=""
                     />
                     <h5>Dinesh</h5>
@@ -205,8 +143,12 @@ export class HomePage extends React.PureComponent {
         </div>
         <div className="product">
           <div className="container">
-            <h4>Make smarter decisions using better insights</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div className="mb-4">
+              <h4 className="title__heading">
+                Make smarter decisions using better insights
+              </h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </div>
             <div className="row">
               <div className="col-md-4">
                 <div className="product__card card inverse">

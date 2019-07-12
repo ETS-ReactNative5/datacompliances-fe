@@ -164,3 +164,18 @@ p {
   border: none;
   font-size: 14px;
 }
+
+.title__heading {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    height: 6px;
+    width: 80px;
+    background-color: $green;
+
+  }
+}
