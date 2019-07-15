@@ -45,6 +45,7 @@ h3 {
     border-color: darken($blue, 10%);
     box-shadow: none;
   }
+
 }
 
 .title__wrap {
@@ -163,4 +164,23 @@ p {
   padding: 8px 10px;
   border: none;
   font-size: 14px;
+
+  &.large {
+    padding: 8px 50px;
+  }
+}
+
+.title__heading {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    height: 6px;
+    width: 80px;
+    background-color: $green;
+
+  }
 }

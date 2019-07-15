@@ -78,8 +78,11 @@
 }
 
 .consultant,
-.product {
-  padding: 50px 0;
+.product,
+.consult,
+.customer,
+.step {
+  padding: 70px 0;
 }
 
 .product {
@@ -224,5 +227,27 @@
   .primary__button {
     color: $blue;
     background-color: #fff;
+
+
   }
+}
+
+.step__container {
+  margin: 80px 0 0 0;
+  border: 1px dashed #878787;
+  border-radius: 500px;
+}
+
+.step__holder {
+  position: relative;
+  background-color: #fff;
+  padding: 10px 20px;
+  width: 100px;
+  margin: 0 auto;
+  top: -40px;
+}
+
+.step__button {
+  position: relative;
+  top: 20px;
 }
