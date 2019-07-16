@@ -77,12 +77,12 @@
   padding: 70px 0;
 }
 
-.product {
-  background-image: url('../assets/animated__banner3.svg');
-  background-repeat: no-repeat;
-  background-position: right;
-  background-size: contain;
-}
+// .product {
+//   background-image: url('../assets/animated__banner3.svg');
+//   background-repeat: no-repeat;
+//   background-position: right;
+//   background-size: contain;
+// }
 
 .team__holder {
   cursor: pointer;
@@ -185,9 +185,9 @@
 
 .product__card {
   border-radius: 4px;
-  padding: 20px 15px;
+  padding: 30px 15px;
   border: none;
-  width: 260px;
+  width: 100%;
   margin: 0 auto;
   box-shadow: 0 0 10px #e5e5e5;
 }
@@ -196,6 +196,16 @@
   border-bottom: 1px solid #e5e5e5;
   margin-bottom: 20px;
   text-align: center;
+
+  h5 {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 34px;
+    color: #16c172;
+  }
 }
 
 .product__card.inverse {
@@ -211,13 +221,7 @@
     color: #fff;
   }
 
-  h5 {
-    font-size: 14px;
-  }
 
-  p {
-    font-size: 24px;
-  }
 
   .primary__button {
     color: $blue;
@@ -269,4 +273,8 @@
 .step__heading {
   position: relative;
   top: -40px;
+}
+
+.payment__img {
+  width: 100%;
 }

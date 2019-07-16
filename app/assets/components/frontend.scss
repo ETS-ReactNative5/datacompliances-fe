@@ -164,12 +164,15 @@ p {
   border: none;
   font-size: 14px;
   box-shadow: 0 0 4px $blue;
-  transition: all .2s ease-in-out;
+  transition: all .1s ease-in-out;
+  outline: none;
 
   &:hover,
   &:focus {
     background-color: darken($blue, 10%);
     box-shadow: none;
+    outline: none;
+
   }
 
   &.large {
@@ -201,4 +204,8 @@ p {
     background-color: $green;
 
   }
+}
+
+.min__h100 {
+  min-height: 100%;
 }
