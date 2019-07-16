@@ -5,7 +5,7 @@ export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
 const isProdEnv = process.env.NODE_ENV === 'production';
 
 export const API_BASE = isProdEnv
-  ? 'http://adminlego.nodebeats.com/api/'
+  ? 'http://52.43.164.220/api/'
   : 'http://localhost:4000/api/';
 
 export const RECAPTCHA_SITE_KEY = '6Le8zp0UAAAAAAYejRTLJgXSCnXx7rhqMYXukMbd';
