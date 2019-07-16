@@ -18,12 +18,6 @@ import client3 from './assets/client/client3.png';
 import client4 from './assets/client/client4.png';
 import client5 from './assets/client/client5.png';
 import client6 from './assets/client/client6.png';
-// import team1 from './assets/team/team1.png';
-// import team2 from './assets/team/team2.png';
-// import team3 from './assets/team/team0.png';
-// import team4 from './assets/team/team4.png';
-// import team5 from './assets/team/team5.png';
-// import team6 from './assets/team/team6.png';
 import team1 from './assets/team/t1.png';
 import team2 from './assets/team/t2.png';
 import team3 from './assets/team/t3.png';
@@ -36,6 +30,11 @@ import step2 from './assets/step/step2.svg';
 import step3 from './assets/step/step3.svg';
 import step4 from './assets/step/step4.svg';
 import video from './assets/pc.png';
+import cross from './assets/cross.svg';
+import check from './assets/check.svg';
+
+import report from './assets/report2.svg';
+
 import Slider from 'react-slick';
 const settings = {
   infinite: true,
@@ -87,7 +86,7 @@ export class HomePage extends React.PureComponent {
         </div>
         <div className="consultant">
           <div className="container">
-            <h2 className="mb-5 title__heading">Our Consultants</h2>
+            <h4 className="mb-5 title__heading">Our Consultants</h4>
             <div className="row align-items-center">
               <div className="col-lg-4">
                 <h5 className="blue">Ravi Dhungel</h5>
@@ -163,31 +162,37 @@ export class HomePage extends React.PureComponent {
         </div>
         <div className="step">
           <div className="container">
-            {/* <h4 className="title__heading">Step to Apply</h4> */}
+            <div className="text-center">
+              <h4 className="title__heading d-inline">Step Flow</h4>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut,
+                illum vel? Eligendi.
+              </p>
+            </div>
             <div className="row step__container">
               <div className="col-md-3">
                 <div className="step__holder">
                   <img className="img-fluid" src={step1} alt="step1" />
-                  <h5>Product</h5>
                 </div>
+                <h5 className="text-center step__heading">Product</h5>
               </div>
               <div className="col-md-3">
                 <div className="step__holder">
                   <img className="img-fluid" src={step2} alt="step1" />
-                  <h5>Product</h5>
                 </div>
+                <h5 className="text-center step__heading">Questionaire</h5>
               </div>
               <div className="col-md-3">
                 <div className="step__holder">
                   <img className="img-fluid" src={step3} alt="step1" />
-                  <h5>Product</h5>
                 </div>
+                <h5 className="text-center step__heading">Report</h5>
               </div>
               <div className="col-md-3">
                 <div className="step__holder">
                   <img className="img-fluid" src={step4} alt="step1" />
-                  <h5>Product</h5>
                 </div>
+                <h5 className="text-center step__heading">Consultant</h5>
               </div>
               <div className="col-md-12  text-center">
                 <div className="step__button">
@@ -205,36 +210,61 @@ export class HomePage extends React.PureComponent {
               </h4>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
-            <div className="row">
-              <div className="col-md-3">
+            <div className="row align-items-center">
+              <div className="col-md-3 min__h100">
                 <div className="product__card card inverse">
                   <div className="top__block">
                     <h5>Cyber Security on Demand</h5>
-                    <p>$1500</p>
+                    <p>$500</p>
                   </div>
                   <ul>
-                    <li>Cyber Privacy</li>
-                    <li>Cyber Compliance</li>
-                    <li>Cyber Assessment</li>
-                    <li>Cyber TM</li>
+                    <li>
+                      <img className="pr-1" src={check} alt="check" /> Cyber
+                      Privacy
+                    </li>
+                    <li>
+                      <img className="pr-1" src={check} alt="check" /> Cyber
+                      Compliance
+                    </li>
+                    <li>
+                      <img className="pr-1" src={check} alt="check" /> Cyber
+                      Assessment
+                    </li>
+                    <li>
+                      <img className="pr-1" src={check} alt="check" /> Cyber TM
+                    </li>
                   </ul>
                   <button className="primary__button">View Detail</button>
                 </div>
               </div>
-              <div className="col-md-3">
+              <div className="col-md-3 min__h100">
                 <div className="product__card card ">
                   <div className="top__block">
                     <h5>Adhoc Consulting and design enhancements</h5>
                     <p>$1500</p>
                   </div>
                   <ul>
-                    <li>Cyber Privacy</li>
-                    <li>Cyber Compliance</li>
-                    <li>Cyber Assessment</li>
-                    <li>Cyber TM</li>
+                    <li>
+                      <img className="pr-1" src={check} alt="check" /> Cyber
+                      Privacy
+                    </li>
+                    <li>
+                      <img className="pr-1" src={check} alt="check" /> Cyber
+                      Compliance
+                    </li>
+                    <li>
+                      <img className="pr-1" src={cross} alt="check" /> Cyber
+                      Assessment
+                    </li>
+                    <li>
+                      <img className="pr-1" src={cross} alt="check" /> Cyber TM
+                    </li>
                   </ul>
                   <button className="primary__button">View Detail</button>
                 </div>
+              </div>
+              <div className="col-md-5 ml-auto">
+                <img className="payment__img" src={report} alt="" />
               </div>
             </div>
           </div>
