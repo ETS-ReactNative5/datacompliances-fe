@@ -4,7 +4,7 @@
   height: 150px;
   cursor: pointer;
   filter: grayscale(100%);
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .team__img.active {
@@ -28,7 +28,6 @@
     left: 0;
     height: 100%;
     width: 100%;
-
   }
 }
 
@@ -62,16 +61,9 @@
   width: 60vw;
 }
 
-// .video {
-//   width: 40vw;
-//   position: relative;
-//   bottom: -60px;
-// }
-
 .pipe__wrapper {
   border-radius: 100px;
   box-shadow: 0 0 20px #e5e5e5;
-  // background-color: red;
   padding: 40px 40px;
   width: 300%;
   margin-bottom: 30px;
@@ -102,13 +94,13 @@
   border: 2px solid $blue;
   box-shadow: 0 0 0px 10px rgba(122, 203, 250, 0.5);
   margin: 0 auto;
-  transition: all .1s ease-in-out;
+  transition: all 0.1s ease-in-out;
 
   img {
     position: relative;
     top: 0;
     left: 0;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 
   &:hover {
@@ -140,7 +132,6 @@
       width: auto;
     }
   }
-
 
   @media screen and (min-width: 992px) {
     // background-image: url('../../../assets/images/lego2.png');
@@ -185,11 +176,11 @@
 }
 
 .slick-dots li button {
-  background-color: #D3D6DB;
+  background-color: #d3d6db;
 }
 
 .slick-dots .slick-active button {
-  background-color: #16C172;
+  background-color: #16c172;
 }
 
 .product__card {
@@ -208,12 +199,16 @@
 }
 
 .product__card.inverse {
-  background: linear-gradient(135deg, #9ED0F2 5%, #69B6EC 20%, #4299D6 40%, #39A3ED 100%);
+  background: linear-gradient(135deg,
+      #9ed0f2 5%,
+      #69b6ec 20%,
+      #4299d6 40%,
+      #39a3ed 100%);
 
   li,
   h5,
   p {
-    color: #fff
+    color: #fff;
   }
 
   h5 {
@@ -227,14 +222,12 @@
   .primary__button {
     color: $blue;
     background-color: #fff;
-
-
   }
 }
 
 .step__container {
   margin: 80px 0 0 0;
-  border: 1px dashed #878787;
+  border: 1px dashed #c9c9c9;
   border-radius: 500px;
 }
 
@@ -244,10 +237,36 @@
   padding: 10px 20px;
   width: 100px;
   margin: 0 auto;
+  text-align: center;
   top: -40px;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    border: 1px solid #c9c9c9;
+    position: absolute;
+    top: 35px;
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
 }
 
 .step__button {
   position: relative;
   top: 20px;
+}
+
+.step__heading {
+  position: relative;
+  top: -40px;
 }

@@ -26,27 +26,26 @@ h3 {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  // background-attachment: fixed;
 }
 
 .web__main {
   flex: 1;
 }
 
-.btn__primary {
-  background-color: $blue;
-  border-radius: 4px;
-  border-color: $blue;
+// .btn__primary {
+//   background-color: $blue;
+//   border-radius: 4px;
+//   border-color: $blue;
 
-  &:focus,
-  &.focus,
-  &:hover {
-    background-color: darken($blue, 10%);
-    border-color: darken($blue, 10%);
-    box-shadow: none;
-  }
+//   &:focus,
+//   &.focus,
+//   &:hover {
+//     background-color: darken($blue, 10%);
+//     border-color: darken($blue, 10%);
+//     box-shadow: none;
+//   }
 
-}
+// }
 
 .title__wrap {
   padding: 1.5rem 0;
@@ -157,17 +156,36 @@ p {
   }
 }
 
-.primary__button {
+.primary__button,
+.secondary__button {
   border-radius: 100px;
   color: #fff;
-  background-color: $blue;
-  padding: 8px 10px;
+  padding: 10px 40px;
   border: none;
   font-size: 14px;
+  box-shadow: 0 0 4px $blue;
+  transition: all .2s ease-in-out;
+
+  &:hover,
+  &:focus {
+    background-color: darken($blue, 10%);
+    box-shadow: none;
+  }
 
   &.large {
     padding: 8px 50px;
   }
+
+
+}
+
+.primary__button {
+  background-color: $blue;
+
+}
+
+.secondary__button {
+  background-color: $green;
 }
 
 .title__heading {
@@ -176,9 +194,9 @@ p {
   &::before {
     content: '';
     position: absolute;
-    top: -20px;
+    top: -10px;
     left: 0;
-    height: 6px;
+    height: 4px;
     width: 80px;
     background-color: $green;
 

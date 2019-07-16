@@ -87,7 +87,7 @@ export class HomePage extends React.PureComponent {
         </div>
         <div className="consultant">
           <div className="container">
-            <h2 className="mb-5 title__heading">Our Consultants</h2>
+            <h4 className="mb-5 title__heading">Our Consultants</h4>
             <div className="row align-items-center">
               <div className="col-lg-4">
                 <h5 className="blue">Ravi Dhungel</h5>
@@ -163,31 +163,37 @@ export class HomePage extends React.PureComponent {
         </div>
         <div className="step">
           <div className="container">
-            {/* <h4 className="title__heading">Step to Apply</h4> */}
+            <div className="text-center">
+              <h4 className="title__heading d-inline">Step Flow</h4>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut,
+                illum vel? Eligendi.
+              </p>
+            </div>
             <div className="row step__container">
               <div className="col-md-3">
                 <div className="step__holder">
                   <img className="img-fluid" src={step1} alt="step1" />
-                  <h5>Product</h5>
                 </div>
+                <h5 className="text-center step__heading">Product</h5>
               </div>
               <div className="col-md-3">
                 <div className="step__holder">
                   <img className="img-fluid" src={step2} alt="step1" />
-                  <h5>Product</h5>
                 </div>
+                <h5 className="text-center step__heading">Questionaire</h5>
               </div>
               <div className="col-md-3">
                 <div className="step__holder">
                   <img className="img-fluid" src={step3} alt="step1" />
-                  <h5>Product</h5>
                 </div>
+                <h5 className="text-center step__heading">Report</h5>
               </div>
               <div className="col-md-3">
                 <div className="step__holder">
                   <img className="img-fluid" src={step4} alt="step1" />
-                  <h5>Product</h5>
                 </div>
+                <h5 className="text-center step__heading">Consultant</h5>
               </div>
               <div className="col-md-12  text-center">
                 <div className="step__button">
