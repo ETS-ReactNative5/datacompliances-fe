@@ -1,0 +1,149 @@
+.practiceqstn {
+  background: transparent;
+  padding: 30px;
+  box-shadow: 0px 0px 20px #ebebeb;
+  h4 {
+    color: #b5b5b5;
+    font-size: 38px;
+    letter-spacing: -2px;
+    font-weight: 800;
+    border-bottom: 2px solid;
+    display: block;
+  }
+  h1 {
+    color: #535353;
+    font-size: 20px !important;
+    padding-bottom: 10px;
+    margin: 0px !important;
+    padding: 0;
+    padding-right: 20px;
+  }
+  .ui.form {
+    font-weight: 600;
+    margin-bottom: 30px;
+  }
+  .ui.button {
+    background: #029ba9;
+    text-transform: capitalize;
+    color: #fff;
+    margin-bottom: 10px;
+    padding: 12px 40px;
+    font-size: 18px;
+    .mr-1 {
+      margin-right: 6px;
+    }
+    .ml-1 {
+      margin-left: 6px;
+    }
+    &.btn-alt {
+      background: #159015;
+    }
+  }
+  .ui.checkbox input.hidden + label {
+    margin: 7px 0;
+  }
+}
+.qstntitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .timer {
+    font-weight: 700;
+    color: #de4d4e;
+    text-align: right;
+  }
+}
+.addfav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 0 15px;
+  .heart.outline.icon,
+  .red.heart.icon.icon {
+    cursor: pointer;
+    font-size: 20px;
+  }
+}
+.result__dis {
+  position: relative;
+  background: #ffdbdb;
+  padding: 30px;
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 12px;
+    background: #de4d4e;
+    height: 100%;
+  }
+  .check {
+    color: #029ba9;
+    margin-left: 20px;
+  }
+  p {
+    font-weight: 500;
+    font-size: 17px;
+    margin: 0;
+    margin-bottom: 10px;
+    span:first-child {
+      color: #029ba9;
+      display: block;
+    }
+    span:last-child {
+      color: #de4d4e;
+      display: block;
+    }
+  }
+  .rationale p {
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+}
+.result__dis_correct {
+  position: relative;
+  background: #d8f5d8;
+  padding: 30px;
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 12px;
+    background: #3c9b3c;
+    height: 100%;
+  }
+  .check {
+    color: #029ba9;
+    margin-left: 20px;
+  }
+  p {
+    font-weight: 500;
+    font-size: 17px;
+    margin: 0;
+    margin-bottom: 10px;
+    span:first-child {
+      color: #029ba9;
+      display: block;
+    }
+    span:last-child {
+      color: #43b143;
+      display: block;
+    }
+  }
+  .rationale p {
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+}
+@media only screen and (max-width: 565px) {
+  .practiceqstn .ui.button {
+    width: 100%;
+  }
+  .practiceqstn h1 {
+    font-size: 18px;
+  }
+  .result__dis_correct {
+    padding: 15px 30px;
+  }
+}

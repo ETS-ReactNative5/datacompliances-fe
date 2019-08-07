@@ -17,7 +17,6 @@ const ObjectToFormData = (obj, form, namespace) => {
           if (obj[property] instanceof Date) {
             fd.append(formKey, obj[property].toISOString());
           }
-          // else if (typeof obj[property] === 'object' && (obj[property] instanceof Array && obj[property].length>0) ) {
           else if (typeof obj[property] === 'object') {
             ObjectToFormData(obj[property], fd, formKey);
           } else { // if it's a string or a File object

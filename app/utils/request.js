@@ -1,4 +1,4 @@
-import "whatwg-fetch";
+import 'whatwg-fetch';
 
 /**
  * Parses the JSON returned by a network request
@@ -8,10 +8,10 @@ import "whatwg-fetch";
  * @return {object}          The parsed JSON from the request
  */
 function parseJSON(response) {
-  if (response.status === 204 || response.status === 205) {
-    return null;
-  }
-  return response.json();
+	if (response.status === 204 || response.status === 205) {
+		return null;
+	}
+	return response.json();
 }
 
 /**
@@ -22,31 +22,28 @@ function parseJSON(response) {
  * @return {object|undefined} Returns either the response, or throws an error
  */
 function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  }
+	if (response.status >= 200 && response.status < 300) {
+		return response;
+	}
 
-  const error = new Error(response.statusText);
-  error.response = response;
-  throw error;
+	const error = new Error(response.statusText);
+	error.response = response;
+	throw error;
 }
 
 export function requestJSON(url, options) {
-  if (options === undefined) {
-    options = {}; // eslint-disable-line no-param-reassign
-  }
-  // To send the cookies for same domain
-  options.credentials = "same-origin"; // eslint-disable-line no-param-reassign
+	if (options === undefined) {
+		options = {}; // eslint-disable-line no-param-reassign
+	}
+	// To send the cookies for same domain
+	options.credentials = 'same-origin'; // eslint-disable-line no-param-reassign
 
-  return fetch(url, options)
-    .then(checkStatus)
-    .then(parseJSON)
-    .catch(err => {
-      if (err.message === 'Failed to fetch') {
-        throw new Error('internet error');
-      }
-      throw err;
-    });
+	return fetch(url, options).then(checkStatus).then(parseJSON).catch((err) => {
+		if (err.message === 'Failed to fetch') {
+			throw new Error('internet error');
+		}
+		throw err;
+	});
 }
 
 /**
@@ -58,15 +55,12 @@ export function requestJSON(url, options) {
  * @return {object}           The response data
  */
 export function request(url, options) {
-  return fetch(url, options)
-    .then(checkStatus)
-    .then(parseJSON)
-    .catch(err => {
-      if (err.message === 'Failed to fetch') {
-        throw new Error('internet error');
-      }
-      throw err;
-    });
+	return fetch(url, options).then(checkStatus).then(parseJSON).catch((err) => {
+		if (err.message === 'Failed to fetch') {
+			throw new Error('internet error');
+		}
+		throw err;
+	});
 }
 
 export default request;

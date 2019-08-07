@@ -1,0 +1,70 @@
+.medi__quiz {
+  box-shadow: 0px 0px 20px #ebebeb;
+  img {
+    max-width: 100%;
+    display: block;
+    width: 100%;
+  }
+  .ui.form .field > label {
+    color: #535353;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .ui.form .fields {
+    margin: 0 -0.5em 0;
+  }
+  .ui.form .fields > .field:first-child {
+    margin-bottom: 10px;
+  }
+}
+.main_title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 35px;
+  color: #575757;
+}
+.quiz__dis {
+  background: transparent;
+  padding: 20px;
+  font-weight: 500;
+  color: #535353;
+  h3 {
+    text-transform: capitalize;
+    font-size: 16px;
+    font-weight: 500;
+    color: #353535;
+    margin-bottom: 5px;
+  }
+  .icon-clock span {
+    display: inline-block;
+    color: #353535;
+    font-weight: 400;
+    padding-left: 12px;
+    font-family: 'Poppins', sans-serif;
+  }
+  span {
+    display: block;
+    margin: 5px 0;
+    font-weight: 700;
+    color: #e14d4d;
+  }
+  p {
+    margin: 0 0 25px;
+  }
+  .ui.button {
+    background: #029ba9;
+    width: 100%;
+    text-transform: capitalize;
+    color: #fff;
+    margin-top: 10px;
+  }
+  .time_limit {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    text-transform: capitalize;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+}
