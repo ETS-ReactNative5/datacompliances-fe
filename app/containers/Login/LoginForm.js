@@ -177,20 +177,24 @@ class LoginForm extends React.Component {
 					<Form onSubmit={this.handleSubmit} className="ui form">
 						<InputField
 							type="text"
-							label="Email ID"
+							label="Username"
 							name="username"
+							placeholder="Enter Username "
 							className="form-control"
 							value={data.username || ''}
 							onChange={this.handleChange}
 							error={errors.username ? 'username_error' : null}
 						/>
-						<div className="pos-rel mg-btm-sm">
+						<div className="pos-rel mg-btm-sm password-field">
 							<PasswordInputField
 								password={data.password || ''}
 								onChange={this.handleChange}
+								placeholder="Enter Password "
 								error={errors.password ? 'password_error' : null}
 							/>
+							
 						</div>
+
 						<div>
 							{isCaptchaEnabled && (
 								<div className="hasCaptcha field" style={{ height: '76px' }}>
@@ -203,6 +207,7 @@ class LoginForm extends React.Component {
 								</div>
 							)}
 						</div>
+						
 						<p>
 							{window.location.pathname.split('/')[1] != 'guest-detail' && (
 								<a tabIndex="" onClick={this.showForgotPasswordForm} className="frg-pw">
@@ -211,7 +216,7 @@ class LoginForm extends React.Component {
 							)}
 						</p>
 
-						<Button className="button large" type="submit" loading={requesting} disabled={requesting}>
+						<Button className="btn btn-primary" type="submit" loading={requesting} disabled={requesting}>
 							Login
 						</Button>
 					</Form>
