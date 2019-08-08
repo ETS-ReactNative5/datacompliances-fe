@@ -2,7 +2,8 @@
  * Created by lakhe on 7/5/17.
  */
 import React from 'react';
-import { Form, Dropdown, Button, Icon } from 'semantic-ui-react';
+ import { Dropdown, Form, Button, Icon } from 'semantic-ui-react';
+// import { Form, Button } from 'react-bootstrap';
 import Captcha from 'components/Captcha';
 import PasswordInputField from 'components/common/Forms/PasswordInputField';
 import FormField from 'components/common/Forms/FormField';
