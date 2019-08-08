@@ -1,3 +1,7 @@
+export const GET_COUNTRY_REQUEST = 'app/Product/post/GET_COUNTRY_REQUEST';
+export const GET_COUNTRY_SUCCESS = 'app/Product/post/GET_COUNTRY_SUCCESS';
+export const GET_COUNTRY_FAILURE = 'app/Product/post/GET_COUNTRY_FAILURE';
+
 export const SIGNUP_REQUEST = 'XcelTrip/Register/SIGNUP_REQUEST';
 export const SIGNUP_SUCCESS = 'XcelTrip/Register/SIGNUP_SUCCESS';
 export const SIGNUP_FAILURE = 'XcelTrip/Register/SIGNUP_FAILURE';

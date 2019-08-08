@@ -57,10 +57,29 @@ class SideNavigation extends React.Component {
     const newIndex = activeIndex === index ? -1 : index;
     this.setState({ activeIndex: newIndex });
   };
+
+  componentRef = React.createRef(null);
+
+  handleWheel = (e) => {
+    e.stopPropagation();
+  }
+
+  componentDidMount() {
+    if (this.componentRef.current) {
+      this.componentRef.current.addEventListener('wheel', this.handleWheel);
+    }
+  }
+  
+  componentWillUnmount() {
+    if (this.componentRef.current) {
+      this.componentRef.current.removeEventListener('wheel', this.handleWheel);
+    }
+  }
+
   render() {
     const { activeIndex } = this.state;
     return (
-      <Accordion as={Menu} vertical className="dashboard__sidenav">
+      <Accordion style={{ touchAction: 'none' }}  as={Menu} vertical className="dashboard__sidenav">
         <Menu.Item>
           <Link className="nav__link" to="/user/dashboard/">
             <span className="nav__icon">

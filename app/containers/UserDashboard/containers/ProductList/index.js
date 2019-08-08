@@ -30,7 +30,7 @@ import {
 } from './actions';
 import { Link } from 'react-router-dom';
 import { DOCUMENT_URL_UPDATE } from 'containers/App/constants';
-import PopularPackage from './Popular_Package/Loadable';
+import PopularPackage from './Popular_Product/Loadable';
 
 import {
   makeSelectSuccess,

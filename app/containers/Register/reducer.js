@@ -2,6 +2,7 @@ import { fromJS } from "immutable";
 import * as types from "./constants";
 
 const initialState = fromJS({
+  countryData:[],
   response: '',
   error: '',
   requesting: false,
@@ -13,7 +14,8 @@ const initialState = fromJS({
 
 function signupReducer(state = initialState, action) {
   switch (action.type) {
-  case types.SIGNUP_REQUEST:
+    case types.GET_COUNTRY_REQUEST:
+    case types.SIGNUP_REQUEST:
       return state.merge({
         requesting: true,
         error: '',
@@ -25,6 +27,17 @@ function signupReducer(state = initialState, action) {
         response: action.response.message,
         error: '',
       });
+
+    case types.GET_COUNTRY_SUCCESS:
+        return state.merge({
+            requesting : false,
+            success : true,
+            countryData : fromJS(action.response.data),
+            error : '',
+            response : ''
+        })
+
+    case types.GET_COUNTRY_FAILURE:
     case types.SIGNUP_FAILURE:
       return state.merge({
         requesting: false,

@@ -9,9 +9,22 @@ import PasswordInputField from 'components/common/Forms/PasswordInputField';
 import FormField from 'components/common/Forms/FormField';
 import PasswordIndicator from 'components/PasswordIndicator';
 
+
+const industryList = [
+	{ key: '1', value: 'Financial', text: 'Financial' },
+	{
+	  key: '2',
+	  value: 'Health Care and Biomedical',
+	  text: 'Health Care and Biomedical',
+	},
+	{ key: '3', value: 'Technology', text: 'Technology' },
+	{ key: '4', value: 'Cyber Security', text: 'Cyber Security' },
+	{ key: '5', value: 'Energy', text: 'Energy' },
+	{ key: '6', value: 'Insurance', text: 'Insurance' },
+  ];
+
 const UserRegistrationForm = ({
 	handleSubmit,
-	handleSemanticChange,
 	handleChange,
 	data,
 	errors,
@@ -19,24 +32,13 @@ const UserRegistrationForm = ({
 	onRecaptchaChange,
 	isRequesting,
 	prefixes,
+	Country,
+	handleCountryChange,
+	handleDropDown
 }) => {
 	return (
 		<Form onSubmit={handleSubmit}>
 			<Form.Group>
-				{/* <Form.Field width={3} error={!!errors.gender}>
-					<label>Title</label>
-					<Dropdown
-						name="gender"
-						options={prefixes}
-						onChange={handleSemanticChange}
-						value={data.gender || ''}
-						error={!!errors.gender}
-						fluid
-						search
-						selection
-						placeholder="Prefix"
-					/>
-				</Form.Field> */}
 				<FormField
 					width={7}
 					label="First Name"
@@ -75,15 +77,55 @@ const UserRegistrationForm = ({
 					error={errors.profession}
 				/>
 			<div className="two fields">
-				<FormField
+				{/* <FormField
 					label="Country"
 					name="country"
 					value={data.country || ''}
 					onChange={handleChange}
 					placeholder="Country"
 					error={errors.country}
-				/>
+				/> */}
+				   <Form.Field>
+					<label>
+					<h3>Country</h3> 
+					</label>
+					<br />
+					<Dropdown
+					placeholder="Country"
+					search
+					selection
+					fluid
+					options={Country || []}
+				    onChange={handleCountryChange}
+					value={data.country || ''}
+					/>
+					<br />
+					{errors.country && (
+					<span style={{ color: 'red' }}>{errors.country}</span>
+					)}
+					</Form.Field>
 			</div>
+			<Form.Field>
+				<label>
+				<h3>Industry</h3> 
+				</label>
+					<br />
+						<Dropdown
+							placeholder="Industry"
+							name="industry"
+							search
+							selection
+							fluid
+							options={industryList || []}
+							onChange={handleDropDown}
+							value={data.industry || ''}
+						/>
+						<br />
+						{errors.industry && (
+						<span style={{ color: 'red' }}>{errors.industry}</span>
+						)}
+					<br />
+				</Form.Field>
 			<FormField
 				label="Email"
 				name="email"
@@ -93,6 +135,7 @@ const UserRegistrationForm = ({
 				placeholder="Email"
 				error={errors.email}
 			/>
+
 			<div className="pos-rel">
 				{/* check error case */}
 				<PasswordInputField

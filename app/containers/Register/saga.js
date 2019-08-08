@@ -117,7 +117,18 @@ function* signupWithGoogleFlow(action) {
 	yield cancel(successWatcher);
 }
 
+function* getCountryRequest(action) {
+	yield fork(
+	  Api.get(
+		`information/countries`,
+		actions.getCountrySuccess,
+		actions.getCountryFailure,
+	  ),
+	);
+  }
+
 export default function* signupSaga() {
+	yield takeLatest(types.GET_COUNTRY_REQUEST, getCountryRequest);
 	yield takeLatest(types.SIGNUP_REQUEST, signupFlow);
 	yield takeLatest(types.SIGNUP_FAILURE, signupFailureFlow);
 	yield takeLatest(types.LINK_FACEBOOK_REQUEST, signupWithFbFlow);
