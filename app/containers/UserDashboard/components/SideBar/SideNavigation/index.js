@@ -3,15 +3,49 @@ import { Link } from 'react-router-dom';
 import { Accordion, Menu } from 'semantic-ui-react';
 
 const mainMenu = [
+  // {
+  //   title: 'My-Packages',
+  //   path: '/user/dashboard/my-packages',
+  //   icon: 'icon-package',
+  // },
+  // {
+  //   title: 'Package List',
+  //   path: '/user/dashboard/package',
+  //   icon: 'icon-heart',
+  // },
   {
-    title: 'My-Packages',
-    path: '/user/dashboard/my-packages',
+    title: 'Packages',
+    path: '/',
     icon: 'icon-package',
+    subMenues: [
+      {
+        title: 'My-Packages',
+        path: '/user/dashboard/my-packages',
+        group_title: 'icon-package',
+      },
+      {
+        title: 'Package List',
+        path: '/user/dashboard/package',
+        group_title: 'icon-package',
+      },
+    ],
   },
-  {
-    title: 'Package List',
-    path: '/user/dashboard/package',
-    icon: 'icon-heart',
+    {
+    title: 'Product',
+    path: '/',
+    icon: 'icon-file',
+    subMenues: [
+      {
+        title: 'My Product',
+        path: '/user/dashboard/my-products',
+        group_title: 'my-product',
+      },
+      {
+        title: 'Available Products',
+        path: '/user/dashboard/product',
+        group_title: 'available-product',
+      },
+    ],
   },
 ];
 
