@@ -20,7 +20,7 @@ import PasswordInputField from 'components/common/Forms/PasswordInputField';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import reducer from './reducer';
-import saga from './saga';
+import saga from './sagas';
 import {compose} from "redux";
 
 const mapStateToProps = createStructuredSelector({

@@ -23,7 +23,7 @@ const UserRegistrationForm = ({
 	return (
 		<Form onSubmit={handleSubmit}>
 			<Form.Group>
-				<Form.Field width={3} error={!!errors.gender}>
+				{/* <Form.Field width={3} error={!!errors.gender}>
 					<label>Title</label>
 					<Dropdown
 						name="gender"
@@ -36,7 +36,7 @@ const UserRegistrationForm = ({
 						selection
 						placeholder="Prefix"
 					/>
-				</Form.Field>
+				</Form.Field> */}
 				<FormField
 					width={7}
 					label="First Name"
@@ -45,6 +45,15 @@ const UserRegistrationForm = ({
 					onChange={handleChange}
 					placeholder="First Name"
 					error={errors.first_name}
+				/>
+				<FormField
+					width={7}
+					label="Middle Name"
+					name="middle_name"
+					value={data.middle_name || ''}
+					onChange={handleChange}
+					placeholder="Middle Name"
+					error={errors.middle_name}
 				/>
 				<FormField
 					width={6}
@@ -56,14 +65,23 @@ const UserRegistrationForm = ({
 					error={errors.last_name}
 				/>
 			</Form.Group>
+			<FormField
+					width={7}
+					label="Profession"
+					name="profession"
+					value={data.profession || ''}
+					onChange={handleChange}
+					placeholder="Profession"
+					error={errors.profession}
+				/>
 			<div className="two fields">
 				<FormField
-					label="City (optional)"
-					name="address_city"
-					value={data.address_city || ''}
+					label="Country"
+					name="country"
+					value={data.country || ''}
 					onChange={handleChange}
-					placeholder="City"
-					error={errors.address_city}
+					placeholder="Country"
+					error={errors.country}
 				/>
 			</div>
 			<FormField

@@ -113,7 +113,7 @@ class SignupForm extends React.Component {
 		if (!data.email) errors.email = "Can't be blank";
 		if (!data.password) errors.password = 'password_error';
 		// if (Object.keys(passwordHelper(data.password)).length > 0) errors.password = "Please secure your account with a strong password";
-		if (!data.gender) errors.gender = "Can't be blank";
+		// if (!data.gender) errors.gender = "Can't be blank";
 		if (!data.agree_terms_condition) errors.agree_terms_condition = "Can't be blank";
 		if (!data.reCaptcha) errors.reCaptcha = 'Please check I am not a Robot checkbox';
 		// if (!data.mobile_number) errors.mobile_number = "Please input your mobile number";

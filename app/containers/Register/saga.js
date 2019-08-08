@@ -51,6 +51,7 @@ function* signupFailureFlow() {
 
 function* signupFlow(action) {
 	const successWatcher = yield fork(redirectOnSignupSuccess);
+	console.log(action.data,'kkkk')
 	yield fork(Api.post('user/data', actions.signupSuccess, actions.signupFailure, action.data));
 	yield take([ LOCATION_CHANGE, types.SIGNUP_FAILURE ]);
 	yield cancel(successWatcher);

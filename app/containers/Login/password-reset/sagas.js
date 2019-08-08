@@ -15,7 +15,7 @@ function* redirectOnSuccess() {
 
 function* passwordResetFlow(action) {
   const successWatcher = yield fork(redirectOnSuccess);
-  yield fork(XcelTrip.get(`api/password-reset/user/${action.data}`, passwordResetSuccess, passwordResetFailure));
+  yield fork(XcelTrip.get(`password-reset/user/${action.data}`, passwordResetSuccess, passwordResetFailure));
   yield take([LOCATION_CHANGE, types.PASSWORD_RESET_FAILURE]);
   yield cancel(successWatcher);
 }
@@ -25,7 +25,7 @@ function* redirectOnNewPasswordSuccess() {
 }
 function* newPasswordFlow(action) {
   const successWatcher = yield fork(redirectOnNewPasswordSuccess);
-  yield fork(XcelTrip.post(`api/user/change-password/confirm/${action.token}`, newPasswordSuccess, newPasswordFailure, action.data));
+  yield fork(XcelTrip.post(`user/change-password/confirm/${action.token}`, newPasswordSuccess, newPasswordFailure, action.data));
   yield take([LOCATION_CHANGE, types.NEW_PASSWORD_FAILURE]);
   yield cancel(successWatcher);
 }
