@@ -1,0 +1,280 @@
+@import '../../../assets/base/variables.scss';
+
+.team__img {
+  height: 150px;
+  cursor: pointer;
+  filter: grayscale(100%);
+  transition: all 0.2s ease-in-out;
+}
+
+.team__img.active {
+  filter: grayscale(0%);
+}
+
+.banner {
+  background-color: $dark_blue;
+  margin-bottom: 60px;
+  position: relative;
+  height: 500px;
+
+  &::before {
+    content: '';
+    background-image: url('./animated__banner2.svg');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.banner__row {
+  height: 500px;
+}
+
+.video {
+  position: relative;
+  bottom: -40px;
+}
+
+.video__holder {
+  position: relative;
+}
+
+.video__screen {
+  position: absolute;
+  bottom: 10px;
+  left: 15%;
+}
+
+.max1110 {
+  max-width: 25%;
+}
+
+.animate {
+  position: relative;
+  left: -25px;
+  display: inline;
+  width: 60vw;
+}
+
+.pipe__wrapper {
+  border-radius: 100px;
+  box-shadow: 0 0 20px #e5e5e5;
+  padding: 40px 40px;
+  width: 300%;
+  margin-bottom: 30px;
+}
+
+.consultant,
+.product,
+.consult,
+.customer,
+.step {
+  padding: 70px 0;
+}
+
+// .product {
+//   background-image: url('../assets/animated__banner3.svg');
+//   background-repeat: no-repeat;
+//   background-position: right;
+//   background-size: contain;
+// }
+
+.team__holder {
+  cursor: pointer;
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+  text-align: center;
+  overflow: hidden;
+  border: 2px solid $blue;
+  box-shadow: 0 0 0px 10px rgba(122, 203, 250, 0.5);
+  margin: 0 auto;
+  transition: all 0.1s ease-in-out;
+
+  img {
+    position: relative;
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &:hover {
+    box-shadow: 0 0 10px 10px rgba(122, 203, 250, 0.5);
+
+    img {
+      position: relative;
+      top: -6px;
+      left: -6px;
+      max-width: 110%;
+    }
+  }
+
+  &.active {
+    box-shadow: 0 0 0px 5px $blue;
+    border: none;
+  }
+}
+
+.block__question {
+  padding: 80px 0;
+  background-color: #ececeb;
+
+  .img__holder {
+    height: 100px;
+
+    img {
+      height: 100%;
+      width: auto;
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    // background-image: url('../../../assets/images/lego2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+  }
+
+  @media screen and (max-width: 1876px) {
+    .text-descrip {
+      width: 80%;
+    }
+  }
+
+  @media screen and (max-width: 1435px) {
+    .text-descrip {
+      width: 60%;
+    }
+  }
+
+  @media screen and (max-width: 1150px) {
+    .text-descrip {
+      width: 40%;
+    }
+  }
+
+  @media screen and (max-width: 991px) {
+    .text-descrip {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .maxwidth50__md {
+    width: 50%;
+  }
+}
+
+.slick-dots {
+  bottom: 0;
+}
+
+.slick-dots li button {
+  background-color: #d3d6db;
+}
+
+.slick-dots .slick-active button {
+  background-color: #16c172;
+}
+
+.product__card {
+  border-radius: 4px;
+  padding: 30px 15px;
+  border: none;
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 0 0 10px #e5e5e5;
+}
+
+.product__card .top__block {
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 20px;
+  text-align: center;
+
+  h5 {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 34px;
+    color: #16c172;
+  }
+}
+
+.product__card.inverse {
+  background: linear-gradient(135deg,
+      #9ed0f2 5%,
+      #69b6ec 20%,
+      #4299d6 40%,
+      #39a3ed 100%);
+
+  li,
+  h5,
+  p {
+    color: #fff;
+  }
+
+
+
+  .primary__button {
+    color: $blue;
+    background-color: #fff;
+  }
+}
+
+.step__container {
+  margin: 80px 0 0 0;
+  border: 1px dashed #c9c9c9;
+  border-radius: 500px;
+}
+
+.step__holder {
+  position: relative;
+  background-color: #fff;
+  padding: 10px 20px;
+  width: 100px;
+  margin: 0 auto;
+  text-align: center;
+  top: -40px;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    border: 1px solid #c9c9c9;
+    position: absolute;
+    top: 35px;
+  }
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
+}
+
+.step__button {
+  position: relative;
+  top: 20px;
+}
+
+.step__heading {
+  position: relative;
+  top: -40px;
+}
+
+.payment__img {
+  width: 100%;
+}

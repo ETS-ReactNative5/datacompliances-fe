@@ -1,0 +1,66 @@
+@import '../../../assets/base/variables.scss';
+
+#footer {
+  color: #fff;
+  background-color: $dark_blue;
+  position: relative;
+  padding: 10px 30px;
+
+
+  a {
+    color: #fff;
+  }
+
+  .sub__link {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .icon__holder {
+    cursor: pointer;
+
+    img {
+      margin-right: 6px;
+    }
+  }
+
+  .sub__footer {
+    border-top: 1px solid #fff;
+    padding-top: 10px;
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  .divider {
+    display: inline-block;
+    vertical-align: top;
+    height: 3px;
+    width: 3px;
+    border-radius: 50%;
+    background-color: #fff;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}
+
+.footer__logo {
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  #footer {
+    .col-md-4.column__wrap {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .d-flex {
+      display: block !important;
+    }
+  }
+}

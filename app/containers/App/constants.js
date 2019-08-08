@@ -1,7 +1,7 @@
 const isProdEnv = process.env.NODE_ENV === 'production';
 
 export const API_BASE = isProdEnv ? 'https://xcelpay.xceltrip.com/api/' : 
-'http://192.168.31.159:4001/api/';
+'http://localhost:4001/api/';
 // 'http://app.demo.xcelbet.com/api/';
 // http://app.demo.xcelbet.com/api/
 

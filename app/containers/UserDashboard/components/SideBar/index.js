@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, Icon, Button } from 'semantic-ui-react';
-import SideNavigation from '../SideNavigation';
+import SideNavigation from './SideNavigation';
 import CustomScroll from 'react-custom-scroll';
 import Logo from 'assets/images/pcsc.png';
 import {Link} from 'react-router-dom';

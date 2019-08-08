@@ -8,12 +8,10 @@ import HomePage from 'containers/HomePage/Loadable';
 import Login from 'containers/Login';
 import Register from 'containers/Register';
 import NotFoundPage from 'containers/NotFoundPage';
-import AdminDashboard from 'containers/AdminDashboard/Loadable';
-import AdminDashboardLayout from 'containers/AdminDashboard/containers/AdminLayout';
 import UserDashboard from 'containers/UserDashboard/Loadable';
 import UserDashboardLayout from 'containers/UserDashboard/containers/UserLayout';
-import GuestRoute from '../../components/Routes/GuestRoute';
-import UserRoute from '../../components/Routes/UserRoute';
+import HomeLayout from 'containers/HomeLayout';
+
 
 const mapStateToProps = createStructuredSelector({
 	location: makeSelectLocation(),
@@ -32,7 +30,16 @@ class Routes extends React.Component {
 	render() {
 		return (
 			<Switch location={this.props.location}>
-				<Route exact path="/" render={(props) => <HomePage {...props} />} />
+					<Route
+						exact
+						path="/"
+						render={props => (
+							<HomeLayout>
+							<HomePage {...props} />
+							</HomeLayout>
+						)}
+					/>
+				{/* <Route exact path="/" render={(props) => <HomePage {...props} />} /> */}
 				<Route exact path="/login" component={Login} />
 				<Route exact path="/register" component={Register} />
 				<Route
