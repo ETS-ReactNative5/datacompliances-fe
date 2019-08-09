@@ -124,16 +124,6 @@ export class PackageList extends React.Component {
                   packageData.is_free ? (
                     <div key={`freeList${idx}`} className="package__column">
                       <div className="img__wrap">
-                        <figure>
-                          <img
-                            className="img-fluid"
-                            src={`${DOCUMENT_URL_UPDATE}${
-                              packageData.image_name.document_name
-                            }`}
-                            alt="a"
-                          />
-                          <span>free</span>
-                        </figure>
                         <div className="pkg__wrapper">
                           <h1>{packageData.title}</h1>
                           <ul>
@@ -166,42 +156,8 @@ export class PackageList extends React.Component {
                   ) : (
                     <div key={`paidList${idx}`} className="package__column">
                       <div className="img__wrap">
-                        <figure>
-                          <img
-                            className="img-fluid"
-                            src={`${DOCUMENT_URL_UPDATE}${
-                              packageData.image_name.document_name
-                            }`}
-                            alt="a"
-                          />
-                          <span>NRp.{packageData.price}</span>
-                          <div className="hover__cart">
-                            {this.state.cartPackages.includes(
-                              packageData._id,
-                            ) ? (
-                              <button
-                                onClick={e =>
-                                  this.handleRemoveCart(e, packageData._id)
-                                }
-                              >
-                                <i className="icon-shopping-cart" />
-                                Remove From Cart
-                              </button>
-                            ) : (
-                              <button
-                                onClick={e =>
-                                  this.handleAddCart(e, packageData._id)
-                                }
-                              >
-                                <i className="icon-shopping-cart" />
-                                Add to Cart
-                              </button>
-                            )}
-                          </div>
-                        </figure>
-
                         <div className="pkg__wrapper">
-                          <h1>{packageData.title}</h1>
+                          <h3>{packageData.title}</h3>
                           <ul>
                             {packageData &&
                               packageData.included_features &&
@@ -229,6 +185,30 @@ export class PackageList extends React.Component {
                             </Link>
                           )}
                         </div>
+                          <span>NRp.{packageData.price}</span>
+                          <div className="hover__cart">
+                            {this.state.cartPackages.includes(
+                              packageData._id,
+                            ) ? (
+                              <button
+                                onClick={e =>
+                                  this.handleRemoveCart(e, packageData._id)
+                                }
+                              >
+                                <i className="icon-shopping-cart" />
+                                Remove From Cart
+                              </button>
+                            ) : (
+                              <button
+                                onClick={e =>
+                                  this.handleAddCart(e, packageData._id)
+                                }
+                              >
+                                Buy Package
+                              </button>
+                            )}
+                          </div>
+
                       </div>
                     </div>
                   ),

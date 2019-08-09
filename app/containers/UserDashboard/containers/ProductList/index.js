@@ -27,6 +27,7 @@ import {
   postCartRequest,
   loadAllCartPackageRequest,
   removeCartRequest,
+  getQuestionRequest,
 } from './actions';
 import { Link } from 'react-router-dom';
 import { DOCUMENT_URL_UPDATE } from 'containers/App/constants';
@@ -46,6 +47,26 @@ import saga from './saga';
 import loksewa from 'assets/images/loksewa.jpg';
 import pkgimg from 'assets/images/pkg_lst1.jpg';
 import pkgimg2 from 'assets/images/pkg_lst2.jpg';
+
+const mapStateToProps = createStructuredSelector({
+  packageList: makeSelectDataObj(),
+  isSuccess: makeSelectSuccess(),
+  errorResponse: makeSelectError(),
+  successResponse: makeSelectPackageResponse(),
+  isRequesting: makeSelectRequesting(),
+  cart_packages: makeSelectCartPackage(),
+});
+
+const mapDispatchToProps = dispatch => ({
+  getQuestionRequest: (page, perPage, query,) =>
+  dispatch(getQuestionRequest(page, perPage, query)),
+  fetchPackage: (page, perPage, query) =>
+    dispatch(loadAllPackageRequest(page, perPage, query)),
+  postCart: cart => dispatch(postCartRequest(cart)),
+  removeCart: cart => dispatch(removeCartRequest(cart)),
+  fetchCartPackage: () => dispatch(loadAllCartPackageRequest()),
+});
+
 /* eslint-disable react/prefer-stateless-function */
 export class ProductList extends React.Component {
   state = {
@@ -63,6 +84,7 @@ export class ProductList extends React.Component {
     const { page, perPage, query } = this.state;
     this.props.fetchPackage(page, perPage, query);
     this.props.fetchCartPackage();
+    // this.props.getQuestionRequest(page, perPage, '');
   }
   componentWillReceiveProps(nextProps) {
       // this.props.fetchPackage(
@@ -113,6 +135,8 @@ export class ProductList extends React.Component {
 
   render() {
     const { data } = this.state;
+
+ 
     return (
       <React.Fragment>
           <div className="packages__listing">
@@ -136,6 +160,7 @@ export class ProductList extends React.Component {
                         </figure>
                         <div className="pkg__wrapper">
                           <h1>{packageData.title}</h1>
+                          {console.log(packageData,'check')}
                           <ul>
                             {packageData &&
                               packageData.included_features &&
@@ -202,6 +227,14 @@ export class ProductList extends React.Component {
 
                         <div className="pkg__wrapper">
                           <h1>{packageData.title}</h1>
+                          <Link
+                            data-tooltip="Details"
+                            className="ui mini icon button blue"
+                            to={`/user/dashboard/product/detail/${packageData._id}`}
+                            key={`view__1`}
+                          >
+                          <Icon name="plus" />
+                        </Link>
                           <ul>
                             {packageData &&
                               packageData.included_features &&
@@ -262,22 +295,7 @@ export class ProductList extends React.Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  packageList: makeSelectDataObj(),
-  isSuccess: makeSelectSuccess(),
-  errorResponse: makeSelectError(),
-  successResponse: makeSelectPackageResponse(),
-  isRequesting: makeSelectRequesting(),
-  cart_packages: makeSelectCartPackage(),
-});
 
-const mapDispatchToProps = dispatch => ({
-  fetchPackage: (page, perPage, query) =>
-    dispatch(loadAllPackageRequest(page, perPage, query)),
-  postCart: cart => dispatch(postCartRequest(cart)),
-  removeCart: cart => dispatch(removeCartRequest(cart)),
-  fetchCartPackage: () => dispatch(loadAllCartPackageRequest()),
-});
 
 const withConnect = connect(
   mapStateToProps,
