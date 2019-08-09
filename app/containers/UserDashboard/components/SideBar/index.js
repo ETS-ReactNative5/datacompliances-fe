@@ -10,30 +10,10 @@ class SideBar extends React.Component {
     return (
       <div class="sidebar-wrap"
       >
-        <div className=" ">
+        <div className="sidebar-logo">
           <Image src={Logo} size="small" alt="" />
         </div>
-        <div className="">
-          <div className="">
-            <Image
-              size="mini"
-              avatar
-              src={this.props.profilePic}
-              alt="User Name"
-            />
-          </div>
-          <div className="">
-            <span className="">{this.props.username}</span>
-            <span className="">
-              <Icon
-                className=""
-                color="green"
-                name="check circle"
-              />
-              {this.props && this.props.email && this.props.email}
-            </span>
-          </div>
-        </div>
+        
         <CustomScroll flex="1">
           <SideNavigation />
         </CustomScroll>
