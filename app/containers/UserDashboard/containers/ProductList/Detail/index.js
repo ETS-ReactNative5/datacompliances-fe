@@ -125,7 +125,7 @@ export class ProductList extends React.Component {
       },
     ];
     return (
-      <div style={{ marginLeft: '200px' }}>
+      <div>
         <Helmet>
           <title>Product Details</title>
           <meta name="description" content="Description of PackageList" />
