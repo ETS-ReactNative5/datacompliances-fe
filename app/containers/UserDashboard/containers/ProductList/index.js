@@ -83,7 +83,7 @@ export class ProductList extends React.Component {
   componentDidMount() {
     const { page, perPage, query } = this.state;
     this.props.fetchPackage(page, perPage, query);
-    this.props.fetchCartPackage();
+    // this.props.fetchCartPackage();
     // this.props.getQuestionRequest(page, perPage, '');
   }
   componentWillReceiveProps(nextProps) {
@@ -98,7 +98,7 @@ export class ProductList extends React.Component {
       });
     }
     if (nextProps.successResponse != this.props.successResponse) {
-      this.props.fetchCartPackage();
+      // this.props.fetchCartPackage();
     }
     if (nextProps.cart_packages != this.props.cart_packages) {
       this.setState(
