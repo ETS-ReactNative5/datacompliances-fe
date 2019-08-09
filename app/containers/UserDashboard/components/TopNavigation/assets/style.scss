@@ -1,4 +1,24 @@
    .header-wrap{
-       border:1px solid green;
+    //    border:1px solid green;
        text-align: right;
    }
+   .header-menu{
+    margin: 0px;
+    height: 65px;
+    background:#fff;
+    border: none;
+    border-bottom: 1px solid #eee;
+    padding-right: 35px;
+    li.nav__item{
+        padding-top: 15px;
+    }
+}
+.ui.dropdown.nav__link > div{
+    float:left;
+    i{
+        margin-top: 2px;
+    }
+}
+.menu.transition.left.visible.basic-nav-menu{
+    margin-top:10px;
+}
