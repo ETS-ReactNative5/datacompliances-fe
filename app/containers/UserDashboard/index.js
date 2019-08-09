@@ -18,6 +18,7 @@ import Routes from './Routes';
 // import Notification from 'containers/Globals/Notifications/Loadable';
 import TopNavigation from './components/TopNavigation';
 // import AnalyticsGraph from './AnalyticsGraph';
+import './assets/style.scss';
 
 import {
   makeSelectError,
@@ -147,16 +148,8 @@ class UserDashboard extends React.Component {
 
   render() {
     return (
-      <div className="dashboard__main">
-        <TopNavigation
-          handleLogout={this.handleLogout}
-          showSticky={this.showSticky}
-          cartSize={this.state.cartSize}
-          handleToggleSidebar={this.handleToggleSidebar}
-          profilePic={this.state.ProfilePic}
-        />
-		<div className="d-flex">		
-        <SideBar
+      <div className="dashboard-wrap">
+          <SideBar 
           username={this.state.username}
           email={this.state.email}
           profilePic={this.state.ProfilePic}
@@ -164,17 +157,16 @@ class UserDashboard extends React.Component {
           handleLogout={this.handleLogout}
           showSticky={this.showSticky}
         />
-        <div className="dashboard__content">
-          {/* {this.state.showSticky && <CreateStickyNote />}
-          {((url.length == 5 && url[3] == 'user' && url[4] == 'dashboard') ||
-            (url[5] == '' && url.length == 6)) && (
-            <AnalyticsGraph
-              analyticsScore={this.state.analyticsScore}
-              handleToggle={this.handleToggle}
-              duration={this.state.duration}
-            />
-          )} */}
-          {/* <Package url={url} handleCartSize={this.handleCartSize} /> */}
+      
+		<div className="main-wrap">		
+        <TopNavigation
+            handleLogout={this.handleLogout}
+            showSticky={this.showSticky}
+            cartSize={this.state.cartSize}
+            handleToggleSidebar={this.handleToggleSidebar}
+            profilePic={this.state.ProfilePic}
+          />
+        <div className="content-wrap">
           <Routes
             location={this.props.location}
             handleCartSize={this.handleCartSize}
