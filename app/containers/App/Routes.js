@@ -11,7 +11,8 @@ import NotFoundPage from 'containers/NotFoundPage';
 import UserDashboard from 'containers/UserDashboard/Loadable';
 import UserDashboardLayout from 'containers/UserDashboard/containers/UserLayout';
 import HomeLayout from 'containers/HomeLayout';
-
+import PasswordReset from '../Login/password-reset';
+import ConfirmUser from '../Register/ConfirmUser'
 
 const mapStateToProps = createStructuredSelector({
 	location: makeSelectLocation(),
@@ -42,6 +43,18 @@ class Routes extends React.Component {
 				{/* <Route exact path="/" render={(props) => <HomePage {...props} />} /> */}
 				<Route exact path="/login" component={Login} />
 				<Route exact path="/register" component={Register} />
+
+				<Route
+					exact
+					path="/password-reset/user/:userid"
+					render={props => <ConfirmUser {...props} />}
+				/>
+
+                <Route
+					exact
+					path="/confirm/user/:userid"
+					render={props => <PasswordReset {...props} />}
+				/>
 				<Route
 					path="/user/dashboard"
 					render={(props) => (

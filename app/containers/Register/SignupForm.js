@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 import { prefixes } from '../App/constants';
 import UserRegistrationForm from './ui/UserRegistrationForm';
-import { signupRequest, clearState, linkFacebookRequest, linkGoogleRequest } from './actions';
+import { signupRequest, clearState, linkFacebookRequest, linkGoogleRequest, getCountryRequest, } from './actions';
 import { showDialog } from '../App/actions';
 import {
 	makeSelectError,
@@ -17,6 +17,7 @@ import {
 	makeSelectSmsSent,
 	makeSelectMobileNumberValidated,
 	makeSelectSuccess,
+	makegetCountryData
 } from './selectors';
 import { compose } from 'redux';
 import injectSaga from 'utils/injectSaga';
@@ -32,6 +33,7 @@ const mapDispatchToProps = (dispatch) => ({
 	addMobileRequest: (mobileInfo) => dispatch(addMobileRequest(mobileInfo)),
 	confirmMobileRequest: (code) => dispatch(confirmMobileRequest(code)),
 	showDialog: (dialog) => dispatch(showDialog(dialog)),
+	getCountryRequest: () => dispatch(getCountryRequest()),
 });
 
 const mapStateToProps = createStructuredSelector({
@@ -42,6 +44,7 @@ const mapStateToProps = createStructuredSelector({
 	success: makeSelectSuccess(),
 	sms_sent: makeSelectSmsSent(),
 	mobile_number_validated: makeSelectMobileNumberValidated(),
+	CountryData: makegetCountryData(),
 });
 
 class SignupForm extends React.Component {
@@ -66,9 +69,24 @@ class SignupForm extends React.Component {
 		};
 	}
 
-	componentDidMount() {}
+	componentDidMount() {
+		this.props.getCountryRequest();
+	}
 
-	componentWillReceiveProps(nextProps) {}
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.CountryData != this.props.CountryData) {
+			const CountryData = nextProps.CountryData && nextProps.CountryData.toJS();
+			let CountryArr = [];
+			CountryData.map(cat => {
+			  CountryArr.push({
+				key: cat._id,
+				value: cat.name,
+				text: cat.name,
+			  });
+			});
+			this.setState({ countryData: CountryArr });
+		  }
+	}
 
 	componentWillUnmount() {
 		this.props.clearState();
@@ -95,11 +113,26 @@ class SignupForm extends React.Component {
 		}));
 	};
 
-	handleSemanticChange = (e, { name, value }) => {
-		this.setState((state) => ({
-			data: { ...state.data, [name]: value },
-		}));
-	};
+	// handleSemanticChange = (e, { name, value }) => {
+	// 	this.setState((state) => ({
+	// 		data: { ...state.data, [name]: value },
+	// 	}));
+	// };
+
+	handleDropDown = (e, se) => {
+		let errors = this.state.errors;
+		if (!!errors[se.name] && !!se.value) delete errors[se.name];
+		this.setState({ errors });
+		this.setState(
+		  {
+			data: {
+			  ...this.state.data,
+			  [se.name]: se.value,
+			},
+		  }
+		);
+	  };
+	
 
 	validate = () => {
 		const { data } = this.state;
@@ -113,7 +146,7 @@ class SignupForm extends React.Component {
 		if (!data.email) errors.email = "Can't be blank";
 		if (!data.password) errors.password = 'password_error';
 		// if (Object.keys(passwordHelper(data.password)).length > 0) errors.password = "Please secure your account with a strong password";
-		if (!data.gender) errors.gender = "Can't be blank";
+		// if (!data.gender) errors.gender = "Can't be blank";
 		if (!data.agree_terms_condition) errors.agree_terms_condition = "Can't be blank";
 		if (!data.reCaptcha) errors.reCaptcha = 'Please check I am not a Robot checkbox';
 		// if (!data.mobile_number) errors.mobile_number = "Please input your mobile number";
@@ -130,6 +163,19 @@ class SignupForm extends React.Component {
 		}
 	};
 
+	handleCountryChange = (e, { value }) => {
+		let errors = this.state.errors;
+		if (!!errors.country)
+		  delete errors.country;
+		this.setState({
+		  data: {
+			...this.state.data,
+			country: value,
+			country_name:e.target.textContent
+		  },
+		});
+	  };
+
 	render() {
 		const { data, errors } = this.state;
 		const { errorResponse, isRequesting } = this.props;
@@ -139,7 +185,7 @@ class SignupForm extends React.Component {
 
 				<UserRegistrationForm
 					handleSubmit={this.handleSubmit}
-					handleSemanticChange={this.handleSemanticChange}
+					// handleSemanticChange={this.handleSemanticChange}
 					handleChange={this.handleChange}
 					data={data}
 					errors={errors}
@@ -147,6 +193,10 @@ class SignupForm extends React.Component {
 					onRecaptchaChange={this.onRecaptchaChange}
 					isRequesting={isRequesting}
 					prefixes={prefixes}
+					Country={this.state.countryData}
+					handleCountryChange={this.handleCountryChange}
+					handleDropDown={this.handleDropDown}
+
 				/>
 				{window.location.pathname.split('/')[1] != 'guest-detail' && (
 					<p>

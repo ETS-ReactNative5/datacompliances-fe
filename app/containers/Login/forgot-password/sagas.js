@@ -12,7 +12,7 @@ function* forgotPasswordFlow(action) {
 	const successWatcher = yield fork(redirectOnSuccess);
 	yield call(
 		Api.post(
-			'api/user/security-settings/reset-password-link',
+			'user/security-settings/reset-password-link',
 			actions.forgotPasswordSuccess,
 			actions.forgotPasswordFailure,
 			action.data,

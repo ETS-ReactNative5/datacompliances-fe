@@ -16,6 +16,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import FontFaceObserver from 'fontfaceobserver';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
+import 'semantic-ui-css/semantic.min.css';
 import 'bootstrap-css/';
 import 'assets/style.scss';
 

@@ -1,6 +1,11 @@
 import action from 'utils/action';
 import * as types from './constants';
 
+
+export const getCountryRequest = action(types.GET_COUNTRY_REQUEST);
+export const getCountrySuccess = action(types.GET_COUNTRY_SUCCESS, 'response');
+export const getCountryFailure = action(types.GET_COUNTRY_FAILURE, 'error');
+
 export const signupRequest = action(types.SIGNUP_REQUEST, 'data');
 export const signupSuccess = action(types.SIGNUP_SUCCESS, 'response');
 export const signupFailure = action(types.SIGNUP_FAILURE, 'error');

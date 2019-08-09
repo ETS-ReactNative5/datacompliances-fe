@@ -3,15 +3,49 @@ import { Link } from 'react-router-dom';
 import { Accordion, Menu } from 'semantic-ui-react';
 
 const mainMenu = [
+  // {
+  //   title: 'My-Packages',
+  //   path: '/user/dashboard/my-packages',
+  //   icon: 'icon-package',
+  // },
+  // {
+  //   title: 'Package List',
+  //   path: '/user/dashboard/package',
+  //   icon: 'icon-heart',
+  // },
   {
-    title: 'My-Packages',
-    path: '/user/dashboard/my-packages',
+    title: 'Packages',
+    path: '/',
     icon: 'icon-package',
+    subMenues: [
+      {
+        title: 'My-Packages',
+        path: '/user/dashboard/my-packages',
+        group_title: 'icon-package',
+      },
+      {
+        title: 'Package List',
+        path: '/user/dashboard/package',
+        group_title: 'icon-package',
+      },
+    ],
   },
-  {
-    title: 'Package List',
-    path: '/user/dashboard/package',
-    icon: 'icon-heart',
+    {
+    title: 'Product',
+    path: '/',
+    icon: 'icon-file',
+    subMenues: [
+      {
+        title: 'My Product',
+        path: '/user/dashboard/my-products',
+        group_title: 'my-product',
+      },
+      {
+        title: 'Available Products',
+        path: '/user/dashboard/product',
+        group_title: 'available-product',
+      },
+    ],
   },
 ];
 
@@ -23,10 +57,29 @@ class SideNavigation extends React.Component {
     const newIndex = activeIndex === index ? -1 : index;
     this.setState({ activeIndex: newIndex });
   };
+
+  componentRef = React.createRef(null);
+
+  handleWheel = (e) => {
+    e.stopPropagation();
+  }
+
+  componentDidMount() {
+    if (this.componentRef.current) {
+      this.componentRef.current.addEventListener('wheel', this.handleWheel);
+    }
+  }
+  
+  componentWillUnmount() {
+    if (this.componentRef.current) {
+      this.componentRef.current.removeEventListener('wheel', this.handleWheel);
+    }
+  }
+
   render() {
     const { activeIndex } = this.state;
     return (
-      <Accordion as={Menu} vertical className="dashboard__sidenav">
+      <Accordion style={{ touchAction: 'none' }}  as={Menu} vertical className="dashboard__sidenav">
         <Menu.Item>
           <Link className="nav__link" to="/user/dashboard/">
             <span className="nav__icon">

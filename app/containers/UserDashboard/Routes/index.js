@@ -9,6 +9,9 @@ import Profile from 'components/Profile';
 import PackageList from '../containers/PackageList/';
 import MyPackage from '../containers/PackageList/Cart/SubscribedPackage';
 
+import ProductList from '../containers/ProductList/'
+import MyProducts from '../containers/ProductList/Cart/SubscribedProduct'
+
 function check(status) {
 	let isValid = false,
 		expired = true;
@@ -50,6 +53,9 @@ function UserRoutes({ location, status }) {
 			/>
 			<Route exact path="/user/dashboard/package" component={PackageList} />
 			<Route exact path="/user/dashboard/my-packages" component={MyPackage} />
+
+			<Route exact path="/user/dashboard/product" component={ProductList} />
+			<Route exact path="/user/dashboard/my-products" component={MyProducts} />
 
 		</Switch>
 	);
