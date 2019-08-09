@@ -7,6 +7,7 @@ import { makeSelectLocation } from 'containers/App/selectors';
 import { makeSelectStatus } from '../selectors';
 import Profile from 'components/Profile';
 import PackageList from '../containers/PackageList/';
+import PackageDetails from '../containers/PackageList/Detail/Loadable'
 import MyPackage from '../containers/PackageList/Cart/SubscribedPackage';
 
 import ProductList from '../containers/ProductList/'
@@ -53,6 +54,7 @@ function UserRoutes({ location, status }) {
 				)}
 			/>
 			<Route exact path="/user/dashboard/package" component={PackageList} />
+			<Route exact path="/user/dashboard/package/detail/:id" component={PackageDetails} />
 			<Route exact path="/user/dashboard/my-packages" component={MyPackage} />
 
 			<Route exact path="/user/dashboard/product" component={ProductList} />

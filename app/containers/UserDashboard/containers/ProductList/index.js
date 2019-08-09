@@ -154,9 +154,9 @@ export class ProductList extends React.Component {
                             src={`${DOCUMENT_URL_UPDATE}${
                               packageData.image_name.document_name
                             }`}
-                            alt="a"
+                            alt="no image"
                           />
-                          <span>NRp.{packageData.price}</span>
+                          <span>Rs.{packageData.price}</span>
                           <div className="hover__cart">
                             {this.state.cartPackages.includes(
                               packageData._id,
