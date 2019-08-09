@@ -25,6 +25,19 @@ import {
 import reducer from '../reducer';
 import saga from '../saga';
 
+const mapStateToProps = createStructuredSelector({
+  isSuccess: makeSelectSuccess(),
+  errorResponse: makeSelectError(),
+  successResponse: makeSelectPackageResponse(),
+  isRequesting: makeSelectRequesting(),
+  singlePackage: makeSelectNewData(),
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchPackage: id => dispatch(loadPackageByIdRequest(id)),
+});
+
+
 /* eslint-disable react/prefer-stateless-function */
 export class PackageList extends React.Component {
   state = {
@@ -35,7 +48,10 @@ export class PackageList extends React.Component {
   };
   componentDidMount() {
     let id = this.props.match.params.id ? this.props.match.params.id : null;
-    this.props.fetchPackage(id);
+    if(id) {
+      this.props.fetchProduct(id);
+      // this.props.getProductRequest(1, 5, id);
+    }
   }
   componentWillReceiveProps(nextProps) {
     if (this.props.singlePackage != nextProps.singlePackage) {
@@ -61,17 +77,6 @@ export class PackageList extends React.Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  isSuccess: makeSelectSuccess(),
-  errorResponse: makeSelectError(),
-  successResponse: makeSelectPackageResponse(),
-  isRequesting: makeSelectRequesting(),
-  singlePackage: makeSelectNewData(),
-});
-
-const mapDispatchToProps = dispatch => ({
-  fetchPackage: id => dispatch(loadPackageByIdRequest(id)),
-});
 
 const withConnect = connect(
   mapStateToProps,

@@ -105,9 +105,21 @@ export class ProductList extends React.Component {
         },
       },
       {
+        name: 'Question Type',
+        field: 'type_of_question',
+        key: 2,
+        format: data => {
+          return (
+          <div>
+           <div className="table-trim">{data.type_of_questions}</div>
+          </div>
+          )
+        },
+      },
+      {
         name: 'Added On',
         field: 'Added On',
-        key: 2,
+        key: 3,
         format: data => {
           return <div className="table-trim">{data.added_on}</div>;
         },

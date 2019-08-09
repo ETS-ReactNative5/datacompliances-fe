@@ -170,6 +170,7 @@ export class PackageList extends React.Component {
                                 ),
                               )}
                           </ul>
+                         
                           {packageData.trial_period_applicable && (
                             <Link
                               to={{
@@ -208,6 +209,14 @@ export class PackageList extends React.Component {
                               </button>
                             )}
                           </div>
+                          <Link
+                            data-tooltip="Details"
+                            className="ui mini icon button blue"
+                            to={`/user/dashboard/product/detail/${packageData._id}`}
+                            key={`view__1`}
+                          >
+                          <Icon name="plus" />
+                        </Link>
 
                       </div>
                     </div>
