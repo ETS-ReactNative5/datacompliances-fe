@@ -4,21 +4,17 @@ import SideNavigation from './SideNavigation';
 import CustomScroll from 'react-custom-scroll';
 import Logo from 'assets/images/pcsc.png';
 import {Link} from 'react-router-dom';
+import './assets/style.scss';
 class SideBar extends React.Component {
   render() {
     return (
-      <div
-        className={
-          this.props.sidebar
-            ? 'dashboard__sidebar'
-            : 'dashboard__sidebar toggle_collapsed'
-        }
+      <div class="sidebar-wrap"
       >
-        <div className="navbar__logo user_mobile">
-          <Image src={Logo} size="small" alt="Medicrony" />
+        <div className=" ">
+          <Image src={Logo} size="small" alt="" />
         </div>
-        <div className="sidebar__profile">
-          <div className="sidebar__avatar">
+        <div className="">
+          <div className="">
             <Image
               size="mini"
               avatar
@@ -26,11 +22,11 @@ class SideBar extends React.Component {
               alt="User Name"
             />
           </div>
-          <div className="profile__info">
-            <span className="profile__name">{this.props.username}</span>
-            <span className="profile__email">
+          <div className="">
+            <span className="">{this.props.username}</span>
+            <span className="">
               <Icon
-                className="profile__verification"
+                className=""
                 color="green"
                 name="check circle"
               />

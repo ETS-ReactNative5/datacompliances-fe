@@ -143,8 +143,9 @@ class LoginForm extends React.Component {
     this.props.redirectToSignup();
   };
 
-  showForgotPasswordForm = () => this.props.showDialog(<ForgotPassword />);
-
+  showForgotPasswordForm = () => {
+     this.props.showDialog(<ForgotPassword />);
+    }
   resendEmail = () => {
     this.props.resendConfirmationEmail(this.props.unverifiedImpUserId);
   };
@@ -227,7 +228,7 @@ class LoginForm extends React.Component {
               )}
             </div>
 
-            <p>
+            <p className="forgot-password"> 
               {window.location.pathname.split('/')[1] != 'guest-detail' && (
                 <a
                   tabIndex=""

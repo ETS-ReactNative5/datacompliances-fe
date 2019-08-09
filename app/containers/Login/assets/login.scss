@@ -5,7 +5,7 @@ $light-blue:#6CC4EB;
 $box-shadow: 0px 8px 28px rgba(0,0,0,0.2);
 $btn-blue:#068DF8;
 
-*{
+*,p{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 label{
@@ -15,7 +15,7 @@ label{
 }
 .form-control{
   border-radius: 25px;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   padding: 10px 25px;
 
   &:focus{
@@ -23,7 +23,12 @@ label{
     border-color:$btn-blue;
   }
 }
-
+.bold-text{
+  font-weight: 600;
+}
+.uppercase-txt{
+  text-transform: uppercase;
+}
 .login-wrap{
   height: 100vh;
   display: grid;
@@ -32,7 +37,7 @@ label{
 
   .login-form{
     margin: 0 auto;
-    width: 25%;
+    min-width: 360px;
     background: #fff;
     padding: 50px 35px;
     box-shadow: $box-shadow;
@@ -80,6 +85,16 @@ label{
           top: 57%;
           right: 15px;
       }
+    }
+  }
+}
+
+.forgot-password{
+  text-align: center;
+  a{
+    color:#777;
+    &:hover{
+      color: $btn-blue;
     }
   }
 }
