@@ -145,53 +145,10 @@ export class ProductList extends React.Component {
             <div className="package__grid">
               {data.length > 0 ? (
                 data.map((packageData, idx) =>
-                  packageData.is_free ? (
-                    <div key={`freeList${idx}`} className="package__column">
-                      <div className="img__wrap">
-                        <figure>
-                          <img
-                            className="img-fluid"
-                            src={`${DOCUMENT_URL_UPDATE}${
-                              packageData.image_name.document_name
-                            }`}
-                            alt="a"
-                          />
-                          <span>free</span>
-                        </figure>
-                        <div className="pkg__wrapper">
-                          <h1>{packageData.title}</h1>
-                          {console.log(packageData,'check')}
-                          <ul>
-                            {packageData &&
-                              packageData.included_features &&
-                              packageData.included_features.map(
-                                (feature, idx) => (
-                                  <li key={`feature${idx}`}>
-                                    <i className="icon-check" />
-                                    {feature.feature}
-                                  </li>
-                                ),
-                              )}
-                          </ul>
-                          {packageData && (
-                            <Link
-                              to={{
-                                pathname: `/user/dashboard/exam-display/${
-                                  packageData._id
-                                }`,
-                                state: { title: packageData.title },
-                              }}
-                            >
-                              <button>start exam</button>
-                            </Link>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
                     <div key={`paidList${idx}`} className="package__column">
                       <div className="img__wrap">
                         <figure>
+                          {console.log(':::',packageData.image_name)}
                           <img
                             className="img-fluid"
                             src={`${DOCUMENT_URL_UPDATE}${
@@ -218,8 +175,7 @@ export class ProductList extends React.Component {
                                   this.handleAddCart(e, packageData._id)
                                 }
                               >
-                                <i className="icon-shopping-cart" />
-                                Add to Cart
+                                Buy Product
                               </button>
                             )}
                           </div>
@@ -264,7 +220,6 @@ export class ProductList extends React.Component {
                         </div>
                       </div>
                     </div>
-                  ),
                 )
               ) : this.props.isRequesting ? (
                 <Grid columns={3} stackable>
