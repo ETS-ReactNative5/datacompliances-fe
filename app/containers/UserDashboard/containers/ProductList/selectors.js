@@ -52,6 +52,12 @@ const makeSelectPopularPackage = () =>
     state => state.get('popularPackage'),
   );
 
+  const makeSelectQuestions = () =>
+  createSelector(
+    selectPackageListDomain,
+    state => state.get('questionsSuccess'),
+  );
+
 export {
   makeSelectSuccess,
   makeSelectXResponse,
@@ -62,4 +68,5 @@ export {
   makeSelectNewData,
   makeSelectCartPackage,
   makeSelectPopularPackage,
+  makeSelectQuestions
 };

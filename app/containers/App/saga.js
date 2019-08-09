@@ -136,7 +136,7 @@ function* resendConfirmationRequest(action) {
 	// const successWatcher = yield fork(redirectOnSuccess);
 	// since confirm use is going to give updated token by invalidating current token,
 	// it makes sense to log out user after server responds success if user is logged in
-	yield fork(Api.get(`resend-confirm-email/${action.userId}`, resendConfirmationSuccess, resendConfirmationFailure));
+	yield fork(Api.post(`resend-confirm-email/${action.userId}`, resendConfirmationSuccess, resendConfirmationFailure,  { userId: action.userId }, ''));
 	// yield take([LOCATION_CHANGE, types.CONFIRM_USER_FAILURE]);
 	// localStorage.clear();
 	// sessionStorage.removeItem('token');

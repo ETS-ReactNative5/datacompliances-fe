@@ -45,7 +45,7 @@ function* loadPackageByIdRequest(action) {
   const successWatcher = yield fork(redirectOnLoadByIdSuccess);
   yield fork(
     Api.get(
-      `mcqs-package/${id}`,
+      `product/info/${id}`,
       actions.loadPackageByIdSuccess,
       actions.loadPackageByIdFailure,
       token,
@@ -110,6 +110,22 @@ function* removeCartRequest(action) {
   yield cancel(successWatcher);
 }
 
+function* getQuestionRequest(action) {
+  const { page, perPage, query } = action;
+  const token = localStorage.getItem('token');
+  console.log('get question request saga', action)
+
+  yield fork(
+    Api.get(
+      `product/questionnaires/${action.query}?&page=${page}&perpage=${perPage}&active=all`,
+      actions.getQuestionSuccess,
+      actions.getQuestionFailure,
+      token,
+    ),
+  );
+  yield take([LOCATION_CHANGE, types.GET_QUESTION_FAILURE]);
+}
+
 export default function* packageWatcher() {
   yield takeLatest(types.LOAD_PACKGE_REQUEST, loadAllPackages);
   yield takeLatest(types.LOAD_PACKGE_BY_ID_REQUEST, loadPackageByIdRequest);
@@ -119,4 +135,6 @@ export default function* packageWatcher() {
     loadAllCartPackageRequest,
   );
   yield takeLatest(types.REMOVE_CART_REQUEST, removeCartRequest);
+  yield takeLatest(types.GET_QUESTION_REQUEST, getQuestionRequest);
+
 }

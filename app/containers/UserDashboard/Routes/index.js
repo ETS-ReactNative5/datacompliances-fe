@@ -10,6 +10,7 @@ import PackageList from '../containers/PackageList/';
 import MyPackage from '../containers/PackageList/Cart/SubscribedPackage';
 
 import ProductList from '../containers/ProductList/'
+import ProductDetails from '../containers/ProductList/Detail/Loadable'
 import MyProducts from '../containers/ProductList/Cart/SubscribedProduct'
 
 function check(status) {
@@ -55,6 +56,7 @@ function UserRoutes({ location, status }) {
 			<Route exact path="/user/dashboard/my-packages" component={MyPackage} />
 
 			<Route exact path="/user/dashboard/product" component={ProductList} />
+			<Route exact path="/user/dashboard/product/detail/:id" component={ProductDetails} />
 			<Route exact path="/user/dashboard/my-products" component={MyProducts} />
 
 		</Switch>

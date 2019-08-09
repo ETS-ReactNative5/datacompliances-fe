@@ -4,6 +4,14 @@
  *
  */
 
+ /* GET Top 5 QUESTIONNAIRES */
+export const GET_QUESTION_REQUEST =
+'app/UserDashboard/containers/ProductList/Questionnaire/GET_QUESTION_REQUEST';
+export const GET_QUESTION_SUCCESS =
+'app/UserDashboard/containers/ProductList/Questionnaire/GET_QUESTION_SUCCESS';
+export const GET_QUESTION_FAILURE =
+'app/UserDashboard/containers/ProductList/Questionnaire/GET_QUESTION_FAILURE';
+
 export const LOAD_PACKGE_REQUEST =
   'app/containers/UserDashboard/containers/PackageList/LOAD_PACKGE_REQUEST';
 export const LOAD_PACKGE_SUCCESS =
