@@ -20,11 +20,11 @@ export const LOAD_PACKGE_FAILURE =
   'app/containers/UserDashboard/containers/PackageList/LOAD_PACKGE_FAILURE';
 
 export const LOAD_PACKGE_BY_ID_REQUEST =
-  'app/containers/UserDashboard/containers/PackageList/LOAD_PACKGE_BY_ID_REQUEST';
+  'app/containers/UserDashboard/containers/ProductList/LOAD_PACKGE_BY_ID_REQUEST';
 export const LOAD_PACKGE_BY_ID_SUCCESS =
-  'app/containers/UserDashboard/containers/PackageList/LOAD_PACKGE_BY_ID_SUCCESS';
+  'app/containers/UserDashboard/containers/ProductList/LOAD_PACKGE_BY_ID_SUCCESS';
 export const LOAD_PACKGE_BY_ID_FAILURE =
-  'app/containers/UserDashboard/containers/PackageList/LOAD_PACKGE_BY_ID_FAILURE';
+  'app/containers/UserDashboard/containers/ProductList/LOAD_PACKGE_BY_ID_FAILURE';
 
 export const POST_CART_REQUEST =
   'app/containers/UserDashboard/containers/PackageList/POST_CART_REQUEST';

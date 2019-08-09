@@ -47,6 +47,29 @@ import loksewa from 'assets/images/loksewa.jpg';
 import pkgimg from 'assets/images/pkg_lst1.jpg';
 import pkgimg2 from 'assets/images/pkg_lst2.jpg';
 /* eslint-disable react/prefer-stateless-function */
+
+
+
+const mapStateToProps = createStructuredSelector({
+  packageList: makeSelectDataObj(),
+  isSuccess: makeSelectSuccess(),
+  errorResponse: makeSelectError(),
+  successResponse: makeSelectPackageResponse(),
+  isRequesting: makeSelectRequesting(),
+  cart_packages: makeSelectCartPackage(),
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchPackage: (page, perPage, query) =>
+    dispatch(loadAllPackageRequest(page, perPage, query)),
+  postCart: cart => dispatch(postCartRequest(cart)),
+  removeCart: cart => dispatch(removeCartRequest(cart)),
+  fetchCartPackage: () => dispatch(loadAllCartPackageRequest()),
+});
+
+
+
+
 export class PackageList extends React.Component {
   state = {
     data: [],
@@ -57,12 +80,11 @@ export class PackageList extends React.Component {
     package_title: [],
     cartPackages: [],
   };
-  componentWillMount() {}
 
   componentDidMount() {
     const { page, perPage, query } = this.state;
     this.props.fetchPackage(page, perPage, query);
-    this.props.fetchCartPackage();
+    // this.props.fetchCartPackage();
   }
   componentWillReceiveProps(nextProps) {
       // this.props.fetchPackage(
@@ -186,7 +208,7 @@ export class PackageList extends React.Component {
                             </Link>
                           )}
                         </div>
-                          <span>NRp.{packageData.price}</span>
+                          <div>Rs.{packageData.price}</div>
                           <div className="hover__cart">
                             {this.state.cartPackages.includes(
                               packageData._id,
@@ -212,7 +234,7 @@ export class PackageList extends React.Component {
                           <Link
                             data-tooltip="Details"
                             className="ui mini icon button blue"
-                            to={`/user/dashboard/product/detail/${packageData._id}`}
+                            to={`/user/dashboard/package/detail/${packageData._id}`}
                             key={`view__1`}
                           >
                           <Icon name="plus" />
@@ -251,22 +273,7 @@ export class PackageList extends React.Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  packageList: makeSelectDataObj(),
-  isSuccess: makeSelectSuccess(),
-  errorResponse: makeSelectError(),
-  successResponse: makeSelectPackageResponse(),
-  isRequesting: makeSelectRequesting(),
-  cart_packages: makeSelectCartPackage(),
-});
 
-const mapDispatchToProps = dispatch => ({
-  fetchPackage: (page, perPage, query) =>
-    dispatch(loadAllPackageRequest(page, perPage, query)),
-  postCart: cart => dispatch(postCartRequest(cart)),
-  removeCart: cart => dispatch(removeCartRequest(cart)),
-  fetchCartPackage: () => dispatch(loadAllCartPackageRequest()),
-});
 
 const withConnect = connect(
   mapStateToProps,

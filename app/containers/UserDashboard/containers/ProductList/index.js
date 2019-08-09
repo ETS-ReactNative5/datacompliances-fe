@@ -148,7 +148,6 @@ export class ProductList extends React.Component {
                     <div key={`paidList${idx}`} className="package__column">
                       <div className="img__wrap">
                         <figure>
-                          {console.log(':::',packageData.image_name)}
                           <img
                             className="img-fluid"
                             src={`${DOCUMENT_URL_UPDATE}${
@@ -156,7 +155,7 @@ export class ProductList extends React.Component {
                             }`}
                             alt="no image"
                           />
-                          <span>Rs.{packageData.price}</span>
+                          <div>Rs.{packageData.price}</div>
                           <div className="hover__cart">
                             {this.state.cartPackages.includes(
                               packageData._id,
