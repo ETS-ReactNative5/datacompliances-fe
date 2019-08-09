@@ -79,7 +79,8 @@ class SideNavigation extends React.Component {
   render() {
     const { activeIndex } = this.state;
     return (
-      <Accordion style={{ touchAction: 'none' }}  as={Menu} vertical className="dashboard__sidenav">
+      <div className="sidebar-nav"> 
+      <Accordion style={{ touchAction: 'none' }}  as={Menu} vertical className="">
         <Menu.Item>
           <Link className="nav__link" to="/user/dashboard/">
             <span className="nav__icon">
@@ -135,8 +136,27 @@ class SideNavigation extends React.Component {
                   </Link>
                 </Menu.Item>
               );
+             
           })}
+           <Menu.Item>
+          <Link className="nav__link" to="/user/dashboard/">
+            <span className="nav__icon">
+              <i className="icon-grid" />
+            </span>
+            <span className="nav__text">Reports</span>
+          </Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link className="nav__link" to="/user/dashboard/">
+            <span className="nav__icon">
+              <i className="icon-grid" />
+            </span>
+            <span className="nav__text">FAQs</span>
+          </Link>
+        </Menu.Item>
       </Accordion>
+      </div>
+
     );
   }
 }

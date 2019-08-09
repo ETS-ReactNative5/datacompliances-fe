@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800');
-@import 'variable.scss';
+@import 'base/mixins.scss';
+@import 'base/variables.scss';
+@import 'base/semanticCssOverride';
+@import 'base/base.scss';
+@import 'components/icofont.scss';
+@import 'components/dashboard.scss';
 @import 'userdashboard/dashboard.scss';
 @import 'userdashboard/packages.scss';
 @import 'userdashboard/refer_share.scss';
@@ -15,7 +20,7 @@
 @import 'userdashboard/reset_password.scss';
 @import 'userdashboard/practicequestionnaire.scss';
 @import 'userdashboard/resultdetail.scss';
-@import 'userdashboard/topNavigation.scss';
+@import 'fonts/customfonts.scss';
 
 body {
   font-family: 'Poppins', sans-serif;
@@ -34,7 +39,4 @@ h6 {
   width: 100%;
   overflow: hidden;
   min-height: 100vh;
-}
-.d-flex{
-  display: flex;
 }

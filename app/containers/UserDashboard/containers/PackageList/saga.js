@@ -45,7 +45,7 @@ function* loadPackageByIdRequest(action) {
   const successWatcher = yield fork(redirectOnLoadByIdSuccess);
   yield fork(
     Api.get(
-      `mcqs-package/${id}`,
+      `package/info/${id}`,
       actions.loadPackageByIdSuccess,
       actions.loadPackageByIdFailure,
       token,

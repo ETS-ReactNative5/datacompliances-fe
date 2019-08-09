@@ -224,31 +224,3 @@
     margin: 10px 0 20px !important;
   }
 }
-.dashboard__content {
-  padding: 40px;
-  margin-left: 200px;
-  margin-top: 64px;
-}
-@media screen and (max-width: 767px) {
-  .toggle_nav .navbar-toggle {
-    display: block;
-  }
-  .toggle_collapsed {
-    left: -200px;
-  }
-  .dashboard__content {
-    padding: 20px;
-    margin-left: 0;
-    margin-top: 64px;
-  }
-  .user_mobile {
-    display: block;
-  }
-  .user_desktop {
-    display: none;
-  }
-  .dashboard__sidebar .sidebar__profile {
-    padding: 20px 16px 15px;
-  }
-}
-

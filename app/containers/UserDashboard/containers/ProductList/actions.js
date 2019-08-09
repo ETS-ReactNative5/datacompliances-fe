@@ -6,6 +6,20 @@
 import action from 'utils/action';
 import * as types from './constants';
 
+
+export const getQuestionRequest = action(
+  types.GET_QUESTION_REQUEST,
+  'page',
+  'perPage',
+  'query',
+);
+export const getQuestionSuccess = action(
+  types.GET_QUESTION_SUCCESS,
+  'response',
+);
+export const getQuestionFailure = action(types.GET_QUESTION_FAILURE, 'error');
+
+
 export const loadAllPackageRequest = action(
   types.LOAD_PACKGE_REQUEST,
   'page',

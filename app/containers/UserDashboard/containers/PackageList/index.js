@@ -47,6 +47,29 @@ import loksewa from 'assets/images/loksewa.jpg';
 import pkgimg from 'assets/images/pkg_lst1.jpg';
 import pkgimg2 from 'assets/images/pkg_lst2.jpg';
 /* eslint-disable react/prefer-stateless-function */
+
+
+
+const mapStateToProps = createStructuredSelector({
+  packageList: makeSelectDataObj(),
+  isSuccess: makeSelectSuccess(),
+  errorResponse: makeSelectError(),
+  successResponse: makeSelectPackageResponse(),
+  isRequesting: makeSelectRequesting(),
+  cart_packages: makeSelectCartPackage(),
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchPackage: (page, perPage, query) =>
+    dispatch(loadAllPackageRequest(page, perPage, query)),
+  postCart: cart => dispatch(postCartRequest(cart)),
+  removeCart: cart => dispatch(removeCartRequest(cart)),
+  fetchCartPackage: () => dispatch(loadAllCartPackageRequest()),
+});
+
+
+
+
 export class PackageList extends React.Component {
   state = {
     data: [],
@@ -57,12 +80,11 @@ export class PackageList extends React.Component {
     package_title: [],
     cartPackages: [],
   };
-  componentWillMount() {}
 
   componentDidMount() {
     const { page, perPage, query } = this.state;
     this.props.fetchPackage(page, perPage, query);
-    this.props.fetchCartPackage();
+    // this.props.fetchCartPackage();
   }
   componentWillReceiveProps(nextProps) {
       // this.props.fetchPackage(
@@ -124,16 +146,6 @@ export class PackageList extends React.Component {
                   packageData.is_free ? (
                     <div key={`freeList${idx}`} className="package__column">
                       <div className="img__wrap">
-                        <figure>
-                          <img
-                            className="img-fluid"
-                            src={`${DOCUMENT_URL_UPDATE}${
-                              packageData.image_name.document_name
-                            }`}
-                            alt="a"
-                          />
-                          <span>free</span>
-                        </figure>
                         <div className="pkg__wrapper">
                           <h1>{packageData.title}</h1>
                           <ul>
@@ -166,15 +178,37 @@ export class PackageList extends React.Component {
                   ) : (
                     <div key={`paidList${idx}`} className="package__column">
                       <div className="img__wrap">
-                        <figure>
-                          <img
-                            className="img-fluid"
-                            src={`${DOCUMENT_URL_UPDATE}${
-                              packageData.image_name.document_name
-                            }`}
-                            alt="a"
-                          />
-                          <span>NRp.{packageData.price}</span>
+                        <div className="pkg__wrapper">
+                          <h3>{packageData.title}</h3>
+                          <ul>
+                            {packageData &&
+                              packageData.included_features &&
+                              packageData.included_features.map(
+                                (feature, idx) => (
+                                  <li key={`feature${idx}`}>
+                                    <i className="icon-check" />
+                                    {feature.feature}
+                                  </li>
+                                ),
+                              )}
+                          </ul>
+                         
+                          {packageData.trial_period_applicable && (
+                            <Link
+                              to={{
+                                pathname: `/user/dashboard/trial/exam-display/${
+                                  packageData._id
+                                }`,
+                                state: {
+                                  title: `Trial ${packageData.title}`,
+                                },
+                              }}
+                            >
+                              <button>Start Trial</button>
+                            </Link>
+                          )}
+                        </div>
+                          <div>Rs.{packageData.price}</div>
                           <div className="hover__cart">
                             {this.state.cartPackages.includes(
                               packageData._id,
@@ -193,42 +227,19 @@ export class PackageList extends React.Component {
                                   this.handleAddCart(e, packageData._id)
                                 }
                               >
-                                <i className="icon-shopping-cart" />
-                                Add to Cart
+                                Buy Package
                               </button>
                             )}
                           </div>
-                        </figure>
+                          <Link
+                            data-tooltip="Details"
+                            className="ui mini icon button blue"
+                            to={`/user/dashboard/package/detail/${packageData._id}`}
+                            key={`view__1`}
+                          >
+                          <Icon name="plus" />
+                        </Link>
 
-                        <div className="pkg__wrapper">
-                          <h1>{packageData.title}</h1>
-                          <ul>
-                            {packageData &&
-                              packageData.included_features &&
-                              packageData.included_features.map(
-                                (feature, idx) => (
-                                  <li key={`feature${idx}`}>
-                                    <i className="icon-check" />
-                                    {feature.feature}
-                                  </li>
-                                ),
-                              )}
-                          </ul>
-                          {packageData.trial_period_applicable && (
-                            <Link
-                              to={{
-                                pathname: `/user/dashboard/trial/exam-display/${
-                                  packageData._id
-                                }`,
-                                state: {
-                                  title: `Trial ${packageData.title}`,
-                                },
-                              }}
-                            >
-                              <button>Start Trial</button>
-                            </Link>
-                          )}
-                        </div>
                       </div>
                     </div>
                   ),
@@ -262,22 +273,7 @@ export class PackageList extends React.Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  packageList: makeSelectDataObj(),
-  isSuccess: makeSelectSuccess(),
-  errorResponse: makeSelectError(),
-  successResponse: makeSelectPackageResponse(),
-  isRequesting: makeSelectRequesting(),
-  cart_packages: makeSelectCartPackage(),
-});
 
-const mapDispatchToProps = dispatch => ({
-  fetchPackage: (page, perPage, query) =>
-    dispatch(loadAllPackageRequest(page, perPage, query)),
-  postCart: cart => dispatch(postCartRequest(cart)),
-  removeCart: cart => dispatch(removeCartRequest(cart)),
-  fetchCartPackage: () => dispatch(loadAllCartPackageRequest()),
-});
 
 const withConnect = connect(
   mapStateToProps,

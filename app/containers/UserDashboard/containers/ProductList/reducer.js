@@ -8,6 +8,7 @@ import { fromJS } from 'immutable';
 import * as types from './constants';
 
 const initialState = fromJS({
+  questionsSuccess:'',
   response: null,
   xresponse: null,
   error: null,
@@ -20,6 +21,7 @@ const initialState = fromJS({
 
 function PackageListReducer(state = initialState, action) {
   switch (action.type) {
+    case types.GET_QUESTION_REQUEST:
     case types.LOAD_PACKGE_REQUEST:
     case types.LOAD_PACKGE_BY_ID_REQUEST:
     case types.POST_CART_REQUEST:
@@ -33,7 +35,19 @@ function PackageListReducer(state = initialState, action) {
         response: xresponse,
         xresponse: null,
         error: null,
+        questionsSuccess:''
       });
+
+    case types.GET_QUESTION_SUCCESS:
+      console.log(action.response.data,'ffff')
+      return state.merge({
+        requesting: false,
+        success: true,
+        response: '',
+        questionsSuccess: fromJS(action.response.data),
+        error: '',
+      });  
+
     case types.LOAD_PACKGE_SUCCESS:
       //   let xresponse =
       //     state.get('response') != null ? state.get('response') : null;
@@ -74,6 +88,7 @@ function PackageListReducer(state = initialState, action) {
         success: true,
         packages: fromJS(action.response.data),
       });
+    case types.GET_QUESTION_FAILURE:
     case types.LOAD_PACKGE_FAILURE:
     case types.LOAD_PACKGE_BY_ID_FAILURE:
     case types.POST_CART_FAILURE:
