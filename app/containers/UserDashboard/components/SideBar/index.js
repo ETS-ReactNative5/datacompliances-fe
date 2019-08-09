@@ -17,7 +17,7 @@ class SideBar extends React.Component {
         <CustomScroll flex="1">
           <SideNavigation />
         </CustomScroll>
-        <div className="sidebar__footer">
+        {/* <div className="sidebar__footer">
           <Button.Group widths="2">
             <Link
               className="ui blue icon button"
@@ -33,7 +33,7 @@ class SideBar extends React.Component {
               icon="power off"
             />
           </Button.Group>
-        </div>
+        </div> */}
       </div>
     );
   }
