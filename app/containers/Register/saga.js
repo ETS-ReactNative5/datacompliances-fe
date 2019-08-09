@@ -51,6 +51,7 @@ function* signupFailureFlow() {
 
 function* signupFlow(action) {
 	const successWatcher = yield fork(redirectOnSignupSuccess);
+	console.log(action.data,'kkkk')
 	yield fork(Api.post('user/data', actions.signupSuccess, actions.signupFailure, action.data));
 	yield take([ LOCATION_CHANGE, types.SIGNUP_FAILURE ]);
 	yield cancel(successWatcher);
@@ -116,7 +117,18 @@ function* signupWithGoogleFlow(action) {
 	yield cancel(successWatcher);
 }
 
+function* getCountryRequest(action) {
+	yield fork(
+	  Api.get(
+		`information/countries`,
+		actions.getCountrySuccess,
+		actions.getCountryFailure,
+	  ),
+	);
+  }
+
 export default function* signupSaga() {
+	yield takeLatest(types.GET_COUNTRY_REQUEST, getCountryRequest);
 	yield takeLatest(types.SIGNUP_REQUEST, signupFlow);
 	yield takeLatest(types.SIGNUP_FAILURE, signupFailureFlow);
 	yield takeLatest(types.LINK_FACEBOOK_REQUEST, signupWithFbFlow);

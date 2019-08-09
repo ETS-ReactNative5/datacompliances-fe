@@ -2,15 +2,29 @@
  * Created by lakhe on 7/5/17.
  */
 import React from 'react';
-import { Form, Dropdown, Button, Icon } from 'semantic-ui-react';
+ import { Dropdown, Form, Button, Icon } from 'semantic-ui-react';
+// import { Form, Button } from 'react-bootstrap';
 import Captcha from 'components/Captcha';
 import PasswordInputField from 'components/common/Forms/PasswordInputField';
 import FormField from 'components/common/Forms/FormField';
 import PasswordIndicator from 'components/PasswordIndicator';
 
+
+const industryList = [
+	{ key: '1', value: 'Financial', text: 'Financial' },
+	{
+	  key: '2',
+	  value: 'Health Care and Biomedical',
+	  text: 'Health Care and Biomedical',
+	},
+	{ key: '3', value: 'Technology', text: 'Technology' },
+	{ key: '4', value: 'Cyber Security', text: 'Cyber Security' },
+	{ key: '5', value: 'Energy', text: 'Energy' },
+	{ key: '6', value: 'Insurance', text: 'Insurance' },
+  ];
+
 const UserRegistrationForm = ({
 	handleSubmit,
-	handleSemanticChange,
 	handleChange,
 	data,
 	errors,
@@ -18,24 +32,13 @@ const UserRegistrationForm = ({
 	onRecaptchaChange,
 	isRequesting,
 	prefixes,
+	Country,
+	handleCountryChange,
+	handleDropDown
 }) => {
 	return (
 		<Form onSubmit={handleSubmit}>
 			<Form.Group>
-				<Form.Field width={3} error={!!errors.gender}>
-					<label>Title</label>
-					<Dropdown
-						name="gender"
-						options={prefixes}
-						onChange={handleSemanticChange}
-						value={data.gender || ''}
-						error={!!errors.gender}
-						fluid
-						search
-						selection
-						placeholder="Prefix"
-					/>
-				</Form.Field>
 				<FormField
 					width={7}
 					label="First Name"
@@ -44,6 +47,15 @@ const UserRegistrationForm = ({
 					onChange={handleChange}
 					placeholder="First Name"
 					error={errors.first_name}
+				/>
+				<FormField
+					width={7}
+					label="Middle Name"
+					name="middle_name"
+					value={data.middle_name || ''}
+					onChange={handleChange}
+					placeholder="Middle Name"
+					error={errors.middle_name}
 				/>
 				<FormField
 					width={6}
@@ -55,16 +67,65 @@ const UserRegistrationForm = ({
 					error={errors.last_name}
 				/>
 			</Form.Group>
-			<div className="two fields">
-				<FormField
-					label="City (optional)"
-					name="address_city"
-					value={data.address_city || ''}
+			<FormField
+					width={7}
+					label="Profession"
+					name="profession"
+					value={data.profession || ''}
 					onChange={handleChange}
-					placeholder="City"
-					error={errors.address_city}
+					placeholder="Profession"
+					error={errors.profession}
 				/>
+			<div className="two fields">
+				{/* <FormField
+					label="Country"
+					name="country"
+					value={data.country || ''}
+					onChange={handleChange}
+					placeholder="Country"
+					error={errors.country}
+				/> */}
+				   <Form.Field>
+					<label>
+					<h3>Country</h3> 
+					</label>
+					<br />
+					<Dropdown
+					placeholder="Country"
+					search
+					selection
+					fluid
+					options={Country || []}
+				    onChange={handleCountryChange}
+					value={data.country || ''}
+					/>
+					<br />
+					{errors.country && (
+					<span style={{ color: 'red' }}>{errors.country}</span>
+					)}
+					</Form.Field>
 			</div>
+			<Form.Field>
+				<label>
+				<h3>Industry</h3> 
+				</label>
+					<br />
+						<Dropdown
+							placeholder="Industry"
+							name="industry"
+							search
+							selection
+							fluid
+							options={industryList || []}
+							onChange={handleDropDown}
+							value={data.industry || ''}
+						/>
+						<br />
+						{errors.industry && (
+						<span style={{ color: 'red' }}>{errors.industry}</span>
+						)}
+					<br />
+				</Form.Field>
 			<FormField
 				label="Email"
 				name="email"
@@ -74,6 +135,7 @@ const UserRegistrationForm = ({
 				placeholder="Email"
 				error={errors.email}
 			/>
+
 			<div className="pos-rel">
 				{/* check error case */}
 				<PasswordInputField

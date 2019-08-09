@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import Link from 'react-router-dom/Link';
+import { Link } from 'react-router-dom';
 import { Button, Form } from 'semantic-ui-react';
 import { passwordResetRequest, newPasswordRequest } from './actions';
 import {
@@ -20,7 +20,7 @@ import PasswordInputField from 'components/common/Forms/PasswordInputField';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import reducer from './reducer';
-import saga from './saga';
+import saga from './sagas';
 import {compose} from "redux";
 
 const mapStateToProps = createStructuredSelector({

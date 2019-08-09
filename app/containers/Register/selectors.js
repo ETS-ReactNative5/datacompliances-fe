@@ -10,6 +10,9 @@ const makeSelectSMSRequesting = () => createSelector(selectSignup, (state) => st
 const makeSelectSmsSent = () => createSelector(selectSignup, (state) => state.get('sms_sent'));
 const makeSelectMobileNumberValidated = () =>
 	createSelector(selectSignup, (state) => state.get('mobile_number_validated'));
+const makegetCountryData = () => createSelector(selectSignup, state => state.get('countryData'));
+
+
 
 export {
 	makeSelectSuccess,
@@ -19,4 +22,5 @@ export {
 	makeSelectSMSRequesting,
 	makeSelectSmsSent,
 	makeSelectMobileNumberValidated,
+	makegetCountryData
 };
