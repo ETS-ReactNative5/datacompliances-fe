@@ -1,7 +1,7 @@
 import { schema } from 'normalizr';
 
+
 export const contentTemplateSchema = new schema.Entity(
-  'contentTemplate',
-  {},
-  { idAttribute: 'slug' },
+  "contentTemplate", {}, { idAttribute: "template_name" }
 );
+

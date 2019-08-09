@@ -1,0 +1,127 @@
+.profile_section {
+  width: 70%;
+  max-width: 100%;
+  .field input {
+    font-family: 'Poppins', sans-serif !important;
+    padding: 1em !important;
+    padding-left: 20px !important;
+    color: #4a4a4a !important;
+    font-weight: 500;
+  }
+  .field > label {
+    font-size: 15px !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500 !important;
+    color: #575757 !important;
+  }
+  .ui.form .inline.fields {
+    margin: 1.5em 0 1.5em;
+  }
+  .ui.segment {
+    padding: 0;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    select {
+      padding: 1em;
+    }
+  }
+  button {
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    color: white !important;
+    background: #029ba9 !important;
+    border-radius: 50px !important;
+    padding: 15px 70px !important;
+    font-size: 16px !important;
+    outline: none;
+    border: 0;
+    box-shadow: 0px 8px 30px -10px #029ba9;
+  }
+  .has-indicator {
+    position: relative;
+    .icon-eye,
+    .icon-eye-off {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      right: 20px;
+    }
+  }
+  .custom-checkbox {
+    .custom-control-input {
+      vertical-align: middle !important;
+    }
+    .custom-control-description {
+      color: #dd4b39;
+    }
+  }
+  .ui.toggle.checkbox input:focus:checked ~ .box:before,
+  .ui.toggle.checkbox input:focus:checked ~ label:before {
+    background-color: #029ba9 !important;
+  }
+  .pre_setting {
+    .mb-2 {
+      label {
+        margin: 5px 0;
+      }
+    }
+    .field_notify {
+      margin: 30px 0;
+      .notify_title {
+        font-size: 15px !important;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500 !important;
+        color: #575757 !important;
+        padding-bottom: 12px;
+        display: inherit;
+      }
+    }
+    .field_fav {
+      margin: 0 0 30px;
+    }
+  }
+  .user_setting .ui.right.labeled.input {
+    margin: 10px 0 0;
+  }
+  .per_page {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 20px 0;
+    label {
+      margin-bottom: 10px !important;
+    }
+  }
+  .negative_marks {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 20px 0;
+    label {
+      margin-bottom: 10px !important;
+    }
+  }
+}
+.profile_section .ui.form .field > .selection.dropdown {
+  cursor: pointer;
+}
+@media screen and (max-width: 1500px) {
+  .profile_section {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .profile_section button {
+    width: 100%;
+    padding: 15px 0 !important;
+  }
+  .profile_section .ui.form .field > .selection.dropdown {
+    margin-bottom: 15px;
+  }
+  .dashboard__content .ui.menu {
+    display: flex;
+    flex-direction: column;
+  }
+}

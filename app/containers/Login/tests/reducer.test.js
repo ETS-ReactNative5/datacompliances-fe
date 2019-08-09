@@ -1,8 +1,9 @@
-import { fromJS } from 'immutable';
-import loginReducer from '../reducer';
 
-describe('loginReducer', () => {
+import { fromJS } from 'immutable';
+import loginContainerReducer from '../reducer';
+
+describe('loginContainerReducer', () => {
   it('returns the initial state', () => {
-    expect(loginReducer(undefined, {})).toEqual(fromJS({}));
+    expect(loginContainerReducer(undefined, {})).toEqual(fromJS({}));
   });
 });

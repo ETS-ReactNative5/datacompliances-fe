@@ -1,25 +1,28 @@
 import { createSelector } from 'reselect';
-import { initialState } from './reducer';
 
-/**
- * Direct selector to the login state domain
- */
+const selectLogin = (state) => state.login;
 
-const selectLoginDomain = state => state.get('login', initialState);
+const makeSelectSuccess = () => createSelector(selectLogin, (state) => state.get('success'));
+const makeSelectResponse = () => createSelector(selectLogin, (state) => state.get('response'));
+const makeSelectError = () => createSelector(selectLogin, (state) => state.get('error'));
+const makeSelectRequesting = () => createSelector(selectLogin, (state) => state.get('requesting'));
+const makeSelectCaptchaEnabled = () => createSelector(selectLogin, (state) => state.get('isCaptchaEnabled'));
+const makeSelectUserConfirmation = () => createSelector(selectLogin, (state) => state.get('user_confirmation'));
+const makeSelectIsLoggedIn = () => createSelector(selectLogin, (state) => state.get('isLoggedIn'));
+const makeSelectUserId = () => createSelector(selectLogin, (state) => state.get('userId'));
+const makeSelectResendEmailRequesting = () =>
+	createSelector(selectLogin, (state) => state.get('resendEmailRequesting'));
+const makeSelectEmail = () => createSelector(selectLogin, (state) => state.get('email'));
 
-/**
- * Other specific selectors
- */
-
-/**
- * Default selector used by Login
- */
-
-const makeSelectLogin = () =>
-  createSelector(
-    selectLoginDomain,
-    substate => substate.toJS(),
-  );
-
-export default makeSelectLogin;
-export { selectLoginDomain };
+export {
+	makeSelectSuccess,
+	makeSelectResponse,
+	makeSelectError,
+	makeSelectRequesting,
+	makeSelectCaptchaEnabled,
+	makeSelectUserConfirmation,
+	makeSelectIsLoggedIn,
+	makeSelectUserId,
+	makeSelectResendEmailRequesting,
+	makeSelectEmail,
+};

@@ -1,0 +1,69 @@
+.refer__history {
+  padding-bottom: 50px;
+  box-shadow: 0px 30px 70px -50px #9b9b9b;
+  .field input {
+    font-family: 'Poppins', sans-serif !important;
+    // border-radius: 50px !important;
+    // background: #e7e7e7 !important;
+    // border-color: #fff !important;
+    padding: 1em !important;
+    padding-left: 20px !important;
+    color: #4a4a4a !important;
+    font-weight: 500;
+  }
+  button {
+    cursor: pointer;
+    opacity: 1 !important;
+    color: white !important;
+    background: #029ba9 !important;
+    border-radius: 50px !important;
+    padding: 15px 70px !important;
+    font-size: 16px !important;
+  }
+  table tbody tr:nth-child(even) {
+    background: #e7e7e7;
+  }
+  .ui.celled.table tr td,
+  .ui.celled.table tr th {
+    padding: 15px 30px;
+  }
+}
+.dashboard__content .ui.menu {
+  margin-bottom: 30px;
+}
+.dashboard__content .ui.menu .item {
+  font-size: 15px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: #575757;
+}
+.dashboard__content .ui.menu .item.active {
+  color: #fff;
+}
+.ui.menu .item:before {
+  display: none;
+}
+.ui.menu .active.item {
+  background-color: #029ba9;
+  color: #fff;
+}
+.ui.pointing.menu .active.item:after {
+  background-color: #029ba9;
+}
+.ui.pagination.menu .active.item {
+  background-color: rgb(231, 231, 231);
+  color: rgb(114, 114, 114);
+}
+
+@media screen and (max-width: 767px) {
+  .refer__history .ui.form .fields {
+    flex-direction: column;
+  }
+  .refer__history .field input {
+    margin-bottom: 15px !important;
+  }
+  .table_wrap {
+    overflow-x: scroll;
+    margin-top: 30px;
+  }
+}

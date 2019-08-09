@@ -24,7 +24,6 @@ class Header extends React.PureComponent {
                 <img className="brand__logo" src={logo} alt="PCSC logo" />
               </div>
             </Link>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
             {/* <Navbar.Collapse id="basic-navbar-nav">
               <Nav>
                 <NavLink exact className="nav-link" to="/">
@@ -58,7 +57,7 @@ class Header extends React.PureComponent {
   }
 }
 const mapStateToProps = createStructuredSelector({
-  orgInfo: makeSelectOrgInfo(),
+  // orgInfo: makeSelectOrgInfo(),
 });
 
 export default connect(mapStateToProps)(Header);

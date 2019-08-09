@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Alert } from 'react-bootstrap';
+import { Message } from 'semantic-ui-react';
 
 class Toaster extends Component {
   static propTypes = {
@@ -33,16 +33,9 @@ class Toaster extends Component {
     const { message, success, error, warning, size } = this.props;
     if (visible) {
       return (
-        <Alert
-          className="toaster"
-          floating
-          onDismiss={this.handleDismiss}
-          header={'Message from server!'}
-          content={message}
-          positive={success}
-          negative={error}
-          warning={warning}
-          size={size}
+        <Message
+          floating onDismiss={this.handleDismiss} header={'Message from server!'}
+          content={message} positive={success} negative={error} warning={warning} size={size}
         />
       );
     }

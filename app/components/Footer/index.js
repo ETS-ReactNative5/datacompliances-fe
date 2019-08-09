@@ -35,7 +35,7 @@ export class Footer extends React.PureComponent {
   }
 }
 const mapStateToProps = createStructuredSelector({
-  orgInfo: makeSelectOrgInfo(),
+  // orgInfo: makeSelectOrgInfo(),
 });
 
 export default connect(mapStateToProps)(Footer);

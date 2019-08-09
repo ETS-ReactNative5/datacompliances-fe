@@ -1,16 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import { createStructuredSelector } from 'reselect';
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import {Helmet} from 'react-helmet';
+import { Link } from 'react-router-dom'
 import './assets/HomePage.scss';
-import injectReducer from 'utils/injectReducer';
-import injectSaga from 'utils/injectSaga';
-import Helmet from 'react-helmet';
-import { makeSelectContentTemplate } from 'containers/App/selectors';
-import saga from './saga';
-import reducer from './reducer';
-import { loadRepos } from '../App/actions';
 import animate from './assets/animated__banner2.svg';
 import client1 from './assets/client/client1.png';
 import client2 from './assets/client/client2.png';
@@ -45,11 +37,14 @@ const settings = {
   dots: true,
   arrows: false,
 };
-export class HomePage extends React.PureComponent {
-  componentDidMount() {}
 
-  render() {
-    return (
+/* eslint-disable react/no-multi-comp */
+/* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
+ * such things.
+ */
+class HomePage extends React.Component{
+  render(){
+    return(
       <React.Fragment>
         <Helmet>
           <title>PCSC</title>
@@ -75,9 +70,9 @@ export class HomePage extends React.PureComponent {
                     width="70%"
                     height="82%"
                     src="https://www.youtube.com/embed/jqIXnyL8B1k"
-                    frameborder="0"
+                    frameBorder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
+                    allowFullScreen
                   ></iframe>
                 </div>
               </div>
@@ -329,37 +324,7 @@ export class HomePage extends React.PureComponent {
           </div>
         </div>
       </React.Fragment>
-    );
+    )
   }
 }
-
-HomePage.propTypes = {
-  loading: PropTypes.bool,
-};
-
-export function mapDispatchToProps(dispatch) {
-  return {
-    onSubmitForm: evt => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(loadRepos());
-    },
-  };
-}
-
-const mapStateToProps = createStructuredSelector({
-  contentTemplate: makeSelectContentTemplate(),
-});
-
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
-
-const withReducer = injectReducer({ key: 'home', reducer });
-const withSaga = injectSaga({ key: 'home', saga });
-
-export default compose(
-  withReducer,
-  withSaga,
-  withConnect,
-)(HomePage);
+export default HomePage

@@ -5,21 +5,17 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
-import './style.scss';
+import { FormattedMessage } from 'react-intl';
+
+// import H1 from 'components/H1';
+import messages from './messages';
+
 export default function NotFound() {
-  return (
-    <div className="not__found__page">
-      <Container>
-        <div className="heading">
-          <h1>Oops</h1>
-          <h2>404 - THE PAGE CAN'T BE FOUND</h2>
-        </div>
-        <Link className="btn btn-sm btn-danger" to="/">
-          Go to Home
-        </Link>
-      </Container>
-    </div>
-  );
+	return (
+		<article>
+			<h1>
+				<FormattedMessage {...messages.header} />
+			</h1>
+		</article>
+	);
 }
