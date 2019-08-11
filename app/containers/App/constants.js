@@ -1,14 +1,12 @@
 const isProdEnv = process.env.NODE_ENV === 'production';
 
 export const API_BASE = isProdEnv
-  ? 'https://xcelpay.xceltrip.com/api/'
+  ? 'http://52.43.164.220/api/'
   : 'http://localhost:4001/api/';
-// 'http://app.demo.xcelbet.com/api/';
-// http://app.demo.xcelbet.com/api/
 
 export const GOOGLE_CLIENT_ID =
   '632673995527-997dv6bet048loapcqgtfpfbqubslr2l.apps.googleusercontent.com';
-export const RECAPTCHA_SITE_KEY = '6Le2JDIUAAAAAHDQrwjHmm2YgMXULV4tShO0dytY';
+export const RECAPTCHA_SITE_KEY = '6LeAbLIUAAAAAJE2oNUmgbiPqN3S-IkiudLYmyKq';
 
 export const prefixes = [
   {
