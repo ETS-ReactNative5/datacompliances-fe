@@ -152,14 +152,6 @@ class SideNavigation extends React.Component {
             <span className="nav__text">Reports</span>
           </Link>
         </Menu.Item>
-        <Menu.Item>
-          <Link className="nav__link" to="/user/dashboard/">
-            <span className="nav__icon">
-              <i className="icon-grid" />
-            </span>
-            <span className="nav__text">FAQs</span>
-          </Link>
-        </Menu.Item>
       </Accordion>
       </div>
 

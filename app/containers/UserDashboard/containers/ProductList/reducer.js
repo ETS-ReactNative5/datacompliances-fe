@@ -22,7 +22,7 @@ const initialState = fromJS({
 function PackageListReducer(state = initialState, action) {
   switch (action.type) {
     case types.GET_QUESTION_REQUEST:
-    case types.LOAD_PACKGE_REQUEST:
+    case types.LOAD_PRODUCT_REQUEST:
     case types.LOAD_PACKGE_BY_ID_REQUEST:
     case types.POST_CART_REQUEST:
     case types.REMOVE_CART_REQUEST:
@@ -47,7 +47,7 @@ function PackageListReducer(state = initialState, action) {
         error: '',
       });  
 
-    case types.LOAD_PACKGE_SUCCESS:
+    case types.LOAD_PRODUCT_SUCCESS:
       //   let xresponse =
       //     state.get('response') != null ? state.get('response') : null;
       return state.merge({
@@ -88,7 +88,7 @@ function PackageListReducer(state = initialState, action) {
         packages: fromJS(action.response.data),
       });
     case types.GET_QUESTION_FAILURE:
-    case types.LOAD_PACKGE_FAILURE:
+    case types.LOAD_PRODUCT_FAILURE:
     case types.LOAD_PACKGE_BY_ID_FAILURE:
     case types.POST_CART_FAILURE:
     case types.REMOVE_CART_FAILURE:

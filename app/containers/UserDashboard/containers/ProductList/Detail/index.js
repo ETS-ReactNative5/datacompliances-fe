@@ -13,7 +13,7 @@ import { compose } from 'redux';
 import { Button, Card, Image, Icon } from 'semantic-ui-react';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import { loadPackageByIdRequest, getQuestionRequest} from '../actions';
+import { loadProductByIdRequest, getQuestionRequest} from '../actions';
 import {
   makeSelectError,
   makeSelectRequesting,
@@ -40,7 +40,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchProduct: id => dispatch(loadPackageByIdRequest(id)),
+  fetchProduct: id => dispatch(loadProductByIdRequest(id)),
   getQuestionRequest: (page, perPage, query,) =>
    dispatch(getQuestionRequest(page, perPage, query)),
 });

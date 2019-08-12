@@ -23,7 +23,7 @@ import {
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import {
-  loadAllPackageRequest,
+  loadAllProductRequest,
   postCartRequest,
   loadAllCartPackageRequest,
   removeCartRequest,
@@ -44,9 +44,6 @@ import {
 
 import reducer from './reducer';
 import saga from './saga';
-import loksewa from 'assets/images/loksewa.jpg';
-import pkgimg from 'assets/images/pkg_lst1.jpg';
-import pkgimg2 from 'assets/images/pkg_lst2.jpg';
 
 const mapStateToProps = createStructuredSelector({
   packageList: makeSelectDataObj(),
@@ -60,8 +57,8 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   getQuestionRequest: (page, perPage, query,) =>
   dispatch(getQuestionRequest(page, perPage, query)),
-  fetchPackage: (page, perPage, query) =>
-    dispatch(loadAllPackageRequest(page, perPage, query)),
+  fetchProduct: (page, perPage, query) =>
+    dispatch(loadAllProductRequest(page, perPage, query)),
   postCart: cart => dispatch(postCartRequest(cart)),
   removeCart: cart => dispatch(removeCartRequest(cart)),
   fetchCartPackage: () => dispatch(loadAllCartPackageRequest()),
@@ -82,12 +79,12 @@ export class ProductList extends React.Component {
 
   componentDidMount() {
     const { page, perPage, query } = this.state;
-    this.props.fetchPackage(page, perPage, query);
+    this.props.fetchProduct(page, perPage, query);
     // this.props.fetchCartPackage();
     // this.props.getQuestionRequest(page, perPage, '');
   }
   componentWillReceiveProps(nextProps) {
-      // this.props.fetchPackage(
+      // this.props.fetchProduct(
       //   this.state.page,
       //   this.state.perPage,
       //   this.state.query,
