@@ -27,7 +27,6 @@ import {
   postCartRequest,
   loadAllCartPackageRequest,
   removeCartRequest,
-  getQuestionRequest,
 } from './actions';
 import { Link } from 'react-router-dom';
 import { DOCUMENT_URL_UPDATE } from 'containers/App/constants';
@@ -55,8 +54,6 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getQuestionRequest: (page, perPage, query,) =>
-  dispatch(getQuestionRequest(page, perPage, query)),
   fetchProduct: (page, perPage, query) =>
     dispatch(loadAllProductRequest(page, perPage, query)),
   postCart: cart => dispatch(postCartRequest(cart)),
@@ -81,14 +78,9 @@ export class ProductList extends React.Component {
     const { page, perPage, query } = this.state;
     this.props.fetchProduct(page, perPage, query);
     // this.props.fetchCartPackage();
-    // this.props.getQuestionRequest(page, perPage, '');
   }
   componentWillReceiveProps(nextProps) {
-      // this.props.fetchProduct(
-      //   this.state.page,
-      //   this.state.perPage,
-      //   this.state.query,
-      // );
+
     if (this.props.packageList != nextProps.packageList) {
       this.setState({
         data: nextProps.packageList.toJS(),

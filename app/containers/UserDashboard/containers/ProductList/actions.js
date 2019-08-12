@@ -19,6 +19,15 @@ export const getQuestionSuccess = action(
 );
 export const getQuestionFailure = action(types.GET_QUESTION_FAILURE, 'error');
 
+export const buyProductRequest = action(
+  types.BUY_PRODUCT_REQUEST,
+  'payload'
+);
+export const buyProductSuccess = action(
+  types.BUY_PRODUCT_SUCCESS,
+  'response',
+);
+export const buyProductFailure = action(types.BUY_PRODUCT_FAILURE, 'error');
 
 export const loadAllProductRequest = action(
   types.LOAD_PRODUCT_REQUEST,
