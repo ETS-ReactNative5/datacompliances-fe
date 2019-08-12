@@ -39,7 +39,6 @@ function PackageListReducer(state = initialState, action) {
       });
 
     case types.GET_QUESTION_SUCCESS:
-      console.log(action.response.data,'ffff')
       return state.merge({
         requesting: false,
         success: true,

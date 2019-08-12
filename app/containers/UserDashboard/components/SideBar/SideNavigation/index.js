@@ -13,23 +13,23 @@ const mainMenu = [
   //   path: '/user/dashboard/package',
   //   icon: 'icon-heart',
   // },
-  {
-    title: 'Packages',
-    path: '/',
-    icon: 'icon-package',
-    subMenues: [
-      {
-        title: 'My-Packages',
-        path: '/user/dashboard/my-packages',
-        group_title: 'icon-package',
-      },
-      {
-        title: 'Package List',
-        path: '/user/dashboard/package',
-        group_title: 'icon-package',
-      },
-    ],
-  },
+  // {
+  //   title: 'Packages',
+  //   path: '/',
+  //   icon: 'icon-package',
+  //   subMenues: [
+  //     {
+  //       title: 'My-Packages',
+  //       path: '/user/dashboard/my-packages',
+  //       group_title: 'icon-package',
+  //     },
+  //     {
+  //       title: 'Package List',
+  //       path: '/user/dashboard/package',
+  //       group_title: 'icon-package',
+  //     },
+  //   ],
+  // },
     {
     title: 'Product',
     path: '/',
@@ -50,6 +50,12 @@ const mainMenu = [
 ];
 
 class SideNavigation extends React.Component {
+
+  constructor(props) {
+    super(props);
+    // this.componentRef = React.createRef(null);
+    }
+
   state = { activeIndex: 0 };
   handleClick = (e, titleProps) => {
     const { index } = titleProps;
@@ -80,7 +86,7 @@ class SideNavigation extends React.Component {
     const { activeIndex } = this.state;
     return (
       <div className="sidebar-nav"> 
-      <Accordion style={{ touchAction: 'none' }}  as={Menu} vertical className="">
+      <Accordion style={{ touchAction: 'none' }} as={Menu} vertical className="">
         <Menu.Item>
           <Link className="nav__link" to="/user/dashboard/">
             <span className="nav__icon">

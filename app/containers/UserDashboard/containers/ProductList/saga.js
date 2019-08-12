@@ -113,8 +113,6 @@ function* removeCartRequest(action) {
 function* getQuestionRequest(action) {
   const { page, perPage, query } = action;
   const token = localStorage.getItem('token');
-  console.log('get question request saga', action)
-
   yield fork(
     Api.get(
       `product/questionnaires/${action.query}?&page=${page}&perpage=${perPage}&active=all`,
