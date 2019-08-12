@@ -9,6 +9,7 @@ import PasswordInputField from 'components/common/Forms/PasswordInputField';
 import FormField from 'components/common/Forms/FormField';
 import PasswordIndicator from 'components/PasswordIndicator';
 
+import { Link } from 'react-router-dom';
 
 const industryList = [
 	{ key: '1', value: 'Financial', text: 'Financial' },
@@ -37,157 +38,208 @@ const UserRegistrationForm = ({
 	handleDropDown
 }) => {
 	return (
-		<Form onSubmit={handleSubmit}>
-			<Form.Group>
-				<FormField
-					width={7}
-					label="First Name"
-					name="first_name"
-					value={data.first_name || ''}
-					onChange={handleChange}
-					placeholder="First Name"
-					error={errors.first_name}
-				/>
-				<FormField
-					width={7}
-					label="Middle Name"
-					name="middle_name"
-					value={data.middle_name || ''}
-					onChange={handleChange}
-					placeholder="Middle Name"
-					error={errors.middle_name}
-				/>
-				<FormField
-					width={6}
-					label="Last Name"
-					name="last_name"
-					value={data.last_name || ''}
-					onChange={handleChange}
-					placeholder="Last Name"
-					error={errors.last_name}
-				/>
-			</Form.Group>
-			<FormField
-					width={7}
-					label="Profession"
-					name="profession"
-					value={data.profession || ''}
-					onChange={handleChange}
-					placeholder="Profession"
-					error={errors.profession}
-				/>
-			<div className="two fields">
-				{/* <FormField
-					label="Country"
-					name="country"
-					value={data.country || ''}
-					onChange={handleChange}
-					placeholder="Country"
-					error={errors.country}
-				/> */}
-				   <Form.Field>
-					<label>
-					<h3>Country</h3> 
-					</label>
-					<br />
-					<Dropdown
-					placeholder="Country"
-					search
-					selection
-					fluid
-					options={Country || []}
-				    onChange={handleCountryChange}
-					value={data.country || ''}
-					/>
-					<br />
-					{errors.country && (
-					<span style={{ color: 'red' }}>{errors.country}</span>
-					)}
-					</Form.Field>
-			</div>
-			<Form.Field>
-				<label>
-				<h3>Industry</h3> 
-				</label>
-					<br />
-						<Dropdown
-							placeholder="Industry"
-							name="industry"
-							search
-							selection
-							fluid
-							options={industryList || []}
-							onChange={handleDropDown}
-							value={data.industry || ''}
-						/>
-						<br />
-						{errors.industry && (
-						<span style={{ color: 'red' }}>{errors.industry}</span>
-						)}
-					<br />
-				</Form.Field>
-			<FormField
-				label="Email"
-				name="email"
-				type="email"
-				value={data.email || ''}
-				onChange={handleChange}
-				placeholder="Email"
-				error={errors.email}
-			/>
-
-			<div className="pos-rel">
-				{/* check error case */}
-				<PasswordInputField
-					password={data.password || ''}
-					placeholder="Password"
-					onChange={handleChange}
-					error={errors.password}
-				/>
-			</div>
-			<PasswordIndicator password={data.password || ''} />
-
-			<div className="inline field">
-				{/* <label className="custom-control custom-checkbox">
-          <input
-            type="checkbox" className="custom-control-input" name="email_offer_subscription"
-            onChange={handleCheckbox} checked={data.email_offer_subscription}
-          />
-          <div className="custom-control-indicator" />
-          <div className="custom-control-description">
-            Please send me emails with travel deals, special offers and other information.
-          </div>
-        </label> */}
-				<div className={`field ${errors.agree_terms_condition ? 'error' : ''}`}>
-					<label className="custom-control custom-checkbox mt-1">
-						<input
-							type="checkbox"
-							className="custom-control-input"
-							name="agree_terms_condition"
-							onChange={handleCheckbox}
-							checked={data.agree_terms_condition}
-						/>
-						<div className="custom-control-indicator" />
-						<div className="custom-control-description">
-							I have read and agree to the Terms and Use and the Privacy Policy.
-						</div>
-					</label>
+		<div className="row">
+			<div className="col-md-10 offset-md-1">
+		<Form onSubmit={handleSubmit} className="register-form">
+			<div className="row">
+				<div className="col-md-4">
+					logo
+				</div>
+				<div className="col-md-6 mb-4">
+					<h3>Create your Account</h3>	
 				</div>
 			</div>
-			<div className="hasCaptcha field" style={{ height: '76px' }}>
-				<Captcha onChange={onRecaptchaChange} />
-				{errors.reCaptcha && (
-					<span data-tooltip={errors.reCaptcha}>
-						<i className="icon-exclamation-triangle red" />
-					</span>
+				<div className="row">
+					<div className= "col-md-4 "	>
+						<FormField
+						label="First Name *"
+						name="first_name"
+						value={data.first_name || ''}
+						onChange={handleChange}
+						placeholder="First Name"
+						error={errors.first_name}
+						className="form-control"
+						/>
+					</div>
+					<div className="col-md-4">
+						<FormField
+						label="Middle Name"
+						name="middle_name"
+						value={data.middle_name || ''}
+						onChange={handleChange}
+						placeholder="Middle Name"
+						className="form-control"
+						error={errors.middle_name}
+						/>
+					</div>
+					<div className="col-md-4">
+						<FormField
+						label="Last Name *"
+						name="last_name"
+						value={data.last_name || ''}
+						onChange={handleChange}
+						placeholder="Last Name"
+						className="form-control"
+						error={errors.last_name}
+					/>
+					</div>
+
+				</div>
+
+				<div className="row">
+				
+					<div className="col-md-6">
+						<FormField
+							label="Email *"
+							name="email"
+							className="form-control"
+							type="email"
+							value={data.email || ''}
+							onChange={handleChange}
+							placeholder="Email"
+							error={errors.email}
+						/>
+					</div>		
+					<div className="col-md-6">
+						<div className="pos-rel">
+							{/* check error case */}
+							<PasswordInputField
+								password={data.password || ''}
+								placeholder="Password *"
+								className="form-control"
+								onChange={handleChange}
+								error={errors.password}
+							/>
+						</div>
+						<PasswordIndicator password={data.password || ''} />
+					</div> 		
+				
+					
+				</div>
+				<div className="row">
+				<div className="col-md-6">
+						<FormField
+							label="Phone Number *"
+							name="phone"
+							className="form-control"
+							type="text"
+							value={data.phone || ''}
+							onChange={handleChange}
+							placeholder="Phone number"
+							error={errors.phone}
+						/>
+					</div>
+					
+					<div className="col-md-6">
+						<Form.Field>
+						<label>
+						Country *
+						</label>
+						<Dropdown
+						placeholder="Country"
+						className="form-control"
+						search
+						selection
+						fluid
+						options={Country || []}
+						onChange={handleCountryChange}
+						value={data.country || ''}
+						/>
+					
+						{errors.country && (
+						<span style={{ color: 'red' }}>{errors.country}</span>
+						)}
+						</Form.Field>
+					</div>
+					
+				</div>
+
+				<div className="row">
+				
+					<div className="col-md-6">
+						<FormField
+							label="Profession *"
+							name="profession"
+							value={data.profession || ''}
+							onChange={handleChange}
+							placeholder="Profession"
+							className="form-control"
+							error={errors.profession}
+						/>
+					</div>
+					<div className="col-md-6">
+						<Form.Field>
+						<label>	Industry *</label>
+							
+								<Dropdown
+									placeholder="Industry"
+									className="form-control"
+									name="industry"
+									search
+									selection
+									fluid
+									options={industryList || []}
+									onChange={handleDropDown}
+									value={data.industry || ''}
+								/>
+			
+								{errors.industry && (
+								<span style={{ color: 'red' }}>{errors.industry}</span>
+								)}
+						
+						</Form.Field>
+					</div>
+					</div>
+				
+				
+				<div className="row">
+					<div className="col-md-6">
+					<div className="inline field">
+			
+							<div className={`field ${errors.agree_terms_condition ? 'error' : ''}`}>
+								<label className="custom-control custom-checkbox mt-1">
+									<input
+										type="checkbox"
+										className="custom-control-input"
+										name="agree_terms_condition"
+										onChange={handleCheckbox}
+										checked={data.agree_terms_condition}
+									/>
+									<div className="custom-control-indicator" />
+									<div className="custom-control-description">
+										I have read and agree to the Terms and Use and the Privacy Policy.
+									</div>
+								</label>
+							</div>
+						</div>
+
+						<div className="hasCaptcha field" style={{ height: '76px' }}>
+							<Captcha onChange={onRecaptchaChange} />
+							{errors.reCaptcha && (
+								<span data-tooltip={errors.reCaptcha}>
+									<i className="icon-exclamation-triangle red" />
+								</span>
+							)}
+						</div>
+					</div>
+					<div className="col-md-6">
+						<div className="field">
+							<Button className="button primary large full-width" type="submit" loading={isRequesting}>
+								Join Now
+							</Button>
+						</div>
+						{window.location.pathname.split('/')[1] != 'guest-detail' && (
+					<p>
+						Already a Member? <Link to="/login">Login</Link>
+					</p>
 				)}
-			</div>
-			<div className="field">
-				<Button className="button primary large full-width" type="submit" loading={isRequesting}>
-					Join Now
-				</Button>
-			</div>
+					</div>
+				</div>
+				
 		</Form>
+		</div>
+		</div>
+
 	);
 };
 

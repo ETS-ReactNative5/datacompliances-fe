@@ -22,7 +22,7 @@ class PasswordInputField extends React.Component {
           onChange={this.props.onChange}
           {...this.props}
         />
-        <span className="showPass" onClick={this.handlePasswordChecked}>
+        <span className="show-pass" onClick={this.handlePasswordChecked}>
           <i className={!showPassword ? 'icon-eye' : 'icon-eye-off'} />
         </span>
       </div>

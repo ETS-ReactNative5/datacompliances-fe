@@ -12,6 +12,7 @@ import Captcha from 'components/Captcha';
 import PasswordInputField from 'components/common/Forms/PasswordInputField';
 import { Link } from 'react-router-dom';
 import reducer from './reducer';
+import '../../assets/base/form-base-style.scss';
 import saga from '../App/saga';
 // import GoogleLogin from 'react-google-login';
 import { showDialog } from '../App/actions';
@@ -228,6 +229,16 @@ class LoginForm extends React.Component {
               )}
             </div>
 
+            
+
+            <Button
+              className="btn btn-primary primary"
+              type="submit"
+              loading={requesting}
+              disabled={requesting}
+            >
+              Login
+            </Button>
             <p className="forgot-password"> 
               {window.location.pathname.split('/')[1] != 'guest-detail' && (
                 <a
@@ -239,15 +250,6 @@ class LoginForm extends React.Component {
                 </a>
               )}
             </p>
-
-            <Button
-              className="btn btn-primary"
-              type="submit"
-              loading={requesting}
-              disabled={requesting}
-            >
-              Login
-            </Button>
           </Form>
         )}
         {userResp && Object.keys(userResp).length > 1 && (

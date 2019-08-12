@@ -4,7 +4,19 @@
   width: 100%;
   min-height: 100vh;
 }
-
+*,p,a,h1,h2,h3,h4,h5,h6{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+a{
+  text-decoration: none;
+  color: #068DF8;
+}
+button{
+  border:none;
+  padding:10px 25px;
+  background:068DF8;
+  color:#fff;
+}
 ul {
   padding: 0 0 0 10px;
 

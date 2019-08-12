@@ -198,11 +198,7 @@ class SignupForm extends React.Component {
 					handleDropDown={this.handleDropDown}
 
 				/>
-				{window.location.pathname.split('/')[1] != 'guest-detail' && (
-					<p>
-						Already a Member? <Link to="/login">Login</Link>
-					</p>
-				)}
+			
 			</div>
 		);
 	}
