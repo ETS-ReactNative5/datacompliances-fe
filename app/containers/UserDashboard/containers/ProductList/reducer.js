@@ -51,6 +51,7 @@ function PackageListReducer(state = initialState, action) {
     case types.BUY_PRODUCT_SUCCESS:
     //   let xresponse =
     //     state.get('response') != null ? state.get('response') : null;
+    console.log(action.response,'ccccc')
     return state.merge({
       requesting: false,
       success: true,

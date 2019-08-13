@@ -11,12 +11,13 @@ function* redirectOnLoadAllSuccess() {
 }
 
 function* loadAllExamRequestService(action) {
+  debugger
   const token = localStorage.getItem("token");
   const successWatcher = yield fork(redirectOnLoadAllSuccess);
   const {page, perPage, query} = action;
   yield fork(
     XcelTrip.get(
-      `mcqs-exam`,
+      `product`,
       actions.loadAllExamSuccess,
       actions.loadAllExamFailure,
       token
@@ -31,7 +32,7 @@ function* loadAllPackageExams(action) {
   const {package_id} = action;
   yield fork(
     XcelTrip.get(
-      `mcqs-package/exam/${package_id}?`,
+      `product/info/${package_id}?`,
       actions.loadPackageExamsSuccess,
       actions.loadPackageExamsFailure,
       token
@@ -51,7 +52,7 @@ function* loadExamByIdService(action) {
   const {exam_id} = action;
   yield fork(
     XcelTrip.get(
-      `mcqs-exam/${exam_id}`,
+      `product/info/${exam_id}`,
       actions.loadExamByIdSuccess,
       actions.loadExamByIdFailure,
       token

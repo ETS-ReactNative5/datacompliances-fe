@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 
-const selectDomain = state => state.get('examDisplay');
+// const selectDomain = state => state.get('productDisplay');
+const selectDomain = state => state.productDisplay;
 
 const makeSelectSuccess = () => createSelector(selectDomain, state => state.get('success'));
 const makeSelectResponse = () => createSelector(selectDomain, state => state.get('response'));

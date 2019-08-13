@@ -87,10 +87,10 @@ export class ProductList extends React.Component {
   }
   buyProduct = () => {
     let id = this.props.match.params.id ? this.props.match.params.id : null;
-    console.log(this.state.userInfo._id,"dddddd",id)
     const data = {
       user_id: this.state.userInfo._id,
-      product_id: id
+      product_id: id,
+      price: this.state.data.price,
     }
     this.props.buyProductRequest(data)
 
