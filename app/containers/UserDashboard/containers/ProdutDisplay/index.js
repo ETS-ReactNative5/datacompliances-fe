@@ -191,9 +191,19 @@ class ExamDisplay extends React.Component {
 
                       {/* <span>2019-01-14 00:18</span> */}
                       <p>Description: {exam.description}</p>
-                      <Form>
+                      <Link
+                          className="ui vertical primary animated button"
+                          to={`/user/dashboard/product-display/questions/${exam._id}`}
+                          role="button"
+                          disabled={Object.keys(this.state.data[idx]).includes(
+                            'quiz_type',
+                          )}
+                        >
+                          Answer Questions
+                        </Link>
+                      {/* <Form>
                         <Form.Field>
-                          <label>Select Quiz Type:</label>
+                          <label>Select Question Type:</label>
                           <Form.Group>
                             <Form.Radio
                               label="Practice"
@@ -215,8 +225,8 @@ class ExamDisplay extends React.Component {
                             />
                           </Form.Group>
                         </Form.Field>
-                      </Form>
-                      {Object.keys(this.state.data[idx]).includes(
+                      </Form> */}
+                      {/* {Object.keys(this.state.data[idx]).includes(
                         'quiz_type',
                       ) && url.includes('trial') ? (
                         <Link
@@ -251,8 +261,7 @@ class ExamDisplay extends React.Component {
                             Start Exam
                           </Link>
                         )
-                      )}
-                      {/* <Button>Click Here</Button> */}
+                      )} */}
                     </div>
                   </div>
                 </Grid.Column>

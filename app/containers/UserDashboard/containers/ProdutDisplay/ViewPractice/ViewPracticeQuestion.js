@@ -263,7 +263,7 @@ const ViewPracticeQuestion = props => {
                     data.length > 0 &&
                     data.map((each, idx) => (
                       <Label
-                        color={data[idx].user_answer && 'green'}
+                        // color={data[idx].user_answer && 'green'}
                         circular
                         key={`list${idx}`}
                         onClick={e => handleJump(e, idx, questionIdx)}
