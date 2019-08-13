@@ -3,6 +3,13 @@
  * PackageList constants
  *
  */
+/*Order Product*/ 
+export const BUY_PRODUCT_REQUEST =
+'app/containers/UserDashboard/containers/ProductList/BUY_PRODUCT_REQUEST';
+export const BUY_PRODUCT_SUCCESS =
+'app/containers/UserDashboard/containers/ProductList/BUY_PRODUCT_SUCCESS';
+export const BUY_PRODUCT_FAILURE =
+'app/containers/UserDashboard/containers/ProductList/BUY_PRODUCT_FAILURE';
 
  /* GET Top 5 QUESTIONNAIRES */
 export const GET_QUESTION_REQUEST =

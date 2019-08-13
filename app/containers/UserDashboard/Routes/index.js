@@ -12,7 +12,11 @@ import MyPackage from '../containers/PackageList/Cart/SubscribedPackage';
 
 import ProductList from '../containers/ProductList/'
 import ProductDetails from '../containers/ProductList/Detail/Loadable'
-import MyProducts from '../containers/ProductList/Cart/SubscribedProduct'
+import SubscribedProducts from '../containers/ProductList/Cart/SubscribedProduct'
+
+import ProductDisplay from '../containers/ProdutDisplay/Loadable';
+import ViewPractice from '../containers/ProdutDisplay/ViewPractice/Loadable';
+import ViewExam from '../containers/ProdutDisplay/ViewExam/Loadable';
 
 function check(status) {
 	let isValid = false,
@@ -59,7 +63,48 @@ function UserRoutes({ location, status }) {
 
 			<Route exact path="/user/dashboard/product" component={ProductList} />
 			<Route exact path="/user/dashboard/product/detail/:id" component={ProductDetails} />
-			<Route exact path="/user/dashboard/my-products" component={MyProducts} />
+			<Route exact path="/user/dashboard/my-products" component={SubscribedProducts} />
+
+			<Route
+        exact
+        path="/user/dashboard/product-display"
+        component={ProductDisplay}
+      />
+      {/* <Route
+        exact
+        path="/user/dashboard/my-packages"
+        component={SubscribedPackage}
+      /> */}
+      <Route
+        exact
+        path="/user/dashboard/product-display/:package_id"
+        component={ProductDisplay}
+      />
+      <Route
+        exact
+        path="/user/dashboard/trial/product-display/:package_id"
+        component={ProductDisplay}
+      />
+      <Route
+        exact
+        path="/user/dashboard/trial/product-display/practice-quiz/:exam_id"
+        component={ViewPractice}
+      />
+      <Route
+        exact
+        path="/user/dashboard/trial/product-display/exam-quiz/:exam_id"
+        component={ViewExam}
+      />
+      <Route
+        exact
+        path="/user/dashboard/product-display/practice-quiz/:exam_id"
+        component={ViewPractice}
+      />
+      <Route
+        exact
+        path="/user/dashboard/product-display/exam-quiz/:exam_id"
+        component={ViewExam}
+      />
 
 		</Switch>
 	);

@@ -17,7 +17,7 @@ function* redirectOnSuccess() {
   const action = yield take(types.LOAD_PRODUCT_SUCCESS);
 }
 
-function* loadAllPackages(action) {
+function* loadAllProduct(action) {
   const token = localStorage.getItem('token');
   if (token) {
     const successWatcher = yield fork(redirectOnSuccess);
@@ -124,8 +124,35 @@ function* getQuestionRequest(action) {
   yield take([LOCATION_CHANGE, types.GET_QUESTION_FAILURE]);
 }
 
+function* redirectOnBuySuccess() {
+  const action = yield take(types.BUY_PRODUCT_SUCCESS);
+  console.log(action.response)
+  debugger
+  yield put(push(`/user/dashboard/product-display/${action.response.data.product_id}`));
+}
+
+function* buyProductRequest(action) {
+  const token = localStorage.getItem('token');
+  const { payload } = action;
+  console.log(payload,'ddd buy')
+  const successWatcher = yield fork(redirectOnBuySuccess);
+
+  yield fork(
+    Api.post(
+      `order`,
+      actions.buyProductSuccess,
+      actions.buyProductFailure,
+      payload,
+      token,
+    ),
+  );
+  yield take([LOCATION_CHANGE, types.BUY_PRODUCT_FAILURE]);
+  yield cancel(successWatcher);
+}
+
 export default function* packageWatcher() {
-  yield takeLatest(types.LOAD_PRODUCT_REQUEST, loadAllPackages);
+  yield takeLatest(types.BUY_PRODUCT_REQUEST, buyProductRequest);
+  yield takeLatest(types.LOAD_PRODUCT_REQUEST, loadAllProduct);
   yield takeLatest(types.LOAD_PACKGE_BY_ID_REQUEST, loadProductByIdRequest);
   yield takeLatest(types.POST_CART_REQUEST, postCartRequest);
   yield takeLatest(

@@ -33,6 +33,33 @@ import saga from './saga';
 import pkgimg from 'assets/images/pkg_lst1.jpg';
 import nt_fnd_img from 'assets/images/not_found_img.png';
 
+const mockData = { 
+  "status":200,
+  "data":{ 
+     "dataList":[ 
+        { 
+           "_id":"50637d80-b9fe-11e9-b0d4-1b64d2910f02",
+           "title":"2019 Privacy, Cyber Security and Compliance Queries",
+           "description":"On the occasion of new year, medicrony gifts a complete set with rationale consisting of 50 questions based on LookSewa curriculum.",
+           "price":50,
+           "image_name":{ 
+              "document_name":"mcqsPackage-1555165050853-c8b40.png",
+              "document_original_name":"surf school (17).png",
+              "document_mimetype":"image/png"
+           },
+           "included_features":[ 
+              { 
+                 "feature":"Extra Layer Security included ",
+                 "highlighted_feature":true
+              }
+           ]
+        }
+     ],
+     "totalItems":1,
+     "currentPage":1
+  }
+}
+
 /* eslint-disable react/prefer-stateless-function */
 export class SubscribedPackage extends React.Component {
   state = {
@@ -55,11 +82,11 @@ export class SubscribedPackage extends React.Component {
     const { data } = this.state;
     return (
       <div>
-        <h1 className="main_title">Your Purchased Package</h1>
+        <h1 className="main_title">Your Purchased Product</h1>
         <div className="packages__listing">
           <div className="package__grid">
-            {data.length > 0 ? (
-              data.map((packageData, idx) => (
+            {mockData.data.dataList.length > 0 ? (
+              mockData.data.dataList.map((packageData, idx) => (
                 <div key={`subscribed${idx}`} className="package__column">
                   <div className="img__wrap">
                     <img
@@ -83,13 +110,13 @@ export class SubscribedPackage extends React.Component {
                       </ul>
                       <Link
                         to={{
-                          pathname: `/user/dashboard/exam-display/${
+                          pathname: `/user/dashboard/product-display/${
                             packageData._id
                           }`,
                           state: { title: packageData.title },
                         }}
                       >
-                        <button>start exam</button>
+                        <button>Answer the Questions</button>
                       </Link>
                     </div>
                   </div>
