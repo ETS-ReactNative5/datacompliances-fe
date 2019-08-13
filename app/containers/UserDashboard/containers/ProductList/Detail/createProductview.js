@@ -5,21 +5,25 @@ import { DOCUMENT_URL_UPDATE } from '../../../../../../../prj_pcsc/client_app/ap
 const CreateProductView = (props) => {
     const {viewdata}  = props ;
     return(
-        <div> 
-            <h3>Title : {viewdata.title}</h3>
-            <h3>Description : {viewdata.description}</h3>
-            <h3>Industry : {viewdata.industry}</h3>
-            <h3>Price : {viewdata.price}</h3>
-            <h3>Country : {viewdata.country}</h3>
-            <label>Image:</label><br />
-              {viewdata.image_name && <div className="card card-md">
-                <img src={`${DOCUMENT_URL_UPDATE}${viewdata.image_name.document_name}`} alt=""
-                style= {{border: "1px solid #ddd",
-                borderRadius: "4px",
-                padding: "5px",
-                width: "400px"}} height="400" width="400"/>
-              </div>}<br />
-            </div>
+        <div className="two-col-grid mb-5"> 
+             <div className="left">
+                {viewdata.image_name &&
+                  <div className="product-image">
+                  <img src={`${DOCUMENT_URL_UPDATE}${viewdata.image_name.document_name}`} alt="product image here"
+                   />
+                </div>}
+              </div>
+          <div className="right product-detail">
+              <p className="product-name"><span>Title :</span> {viewdata.title}</p>
+              
+              <p className="product-industry"><span>Industry :</span> {viewdata.industry}</p>
+              <p className="product-price"><span>Price : </span>{viewdata.price}</p>
+              <p className="product-country"><span>Country :</span> {viewdata.country}</p>
+              <p className="product-desc"> <span>Description :</span>{viewdata.description}</p>
+              
+          </div>
+            
+          </div>
     )
 }
 

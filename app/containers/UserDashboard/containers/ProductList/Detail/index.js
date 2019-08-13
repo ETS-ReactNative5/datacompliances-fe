@@ -32,6 +32,9 @@ import saga from '../saga';
 
 import ProductView from './createProductview'
 import QuestionsTable from './QuestionsTable'
+import './assets/style.scss'
+import '../../../assets/table.scss'
+
 
 
 const mapStateToProps = createStructuredSelector({
@@ -105,7 +108,7 @@ export class ProductList extends React.Component {
 
           <span className="action__btn" key={`${data._id}`}>
             {' '}
-            <Icon name="eye" onClick={() => this.getDetail(data._id)} />
+            <Icon  name="eye" onClick={() => this.getDetail(data._id)} />
           </span>
         ),
         // }
@@ -159,16 +162,19 @@ export class ProductList extends React.Component {
       },
     ];
     return (
-      <div>
+      <div className="mr-4">
         <Helmet>
           <title>Product Details</title>
           <meta name="description" content="Description of PackageList" />
         </Helmet>
-        <Button onClick={this.buyProduct}>Buy this Product</Button>
-        <h1>{data.title}</h1>
+       
+        <h1 className="main_title">{data.title}</h1>
         <ProductView
                 viewdata={this.state.data}
         />
+         <Button className="button buy-btn" onClick={this.buyProduct}>Buy this Product</Button>
+
+         <h1 className="main_title mt-5">Top 5 Questionnaires</h1>
         {questions && questions.size > 0 &&
            <QuestionsTable
                 headers={headers}
