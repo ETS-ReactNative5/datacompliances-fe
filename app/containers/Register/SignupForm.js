@@ -148,7 +148,7 @@ class SignupForm extends React.Component {
 		// if (Object.keys(passwordHelper(data.password)).length > 0) errors.password = "Please secure your account with a strong password";
 		// if (!data.gender) errors.gender = "Can't be blank";
 		if (!data.agree_terms_condition) errors.agree_terms_condition = "Can't be blank";
-		if (!data.reCaptcha) errors.reCaptcha = 'Please check I am not a Robot checkbox';
+		// if (!data.reCaptcha) errors.reCaptcha = 'Please check I am not a Robot checkbox';
 		// if (!data.mobile_number) errors.mobile_number = "Please input your mobile number";
 		// if (!data.country_code) errors.country_code = "Please select/enter country code of your mobile network";
 		return errors;
@@ -158,6 +158,7 @@ class SignupForm extends React.Component {
 		e.preventDefault();
 		const errors = this.validate();
 		this.setState({ errors });
+		console.log(this.state.errors,'fffff', this.state.errors.length)
 		if (Object.keys(errors).length === 0) {
 			this.props.signupRequest(this.state.data);
 		}

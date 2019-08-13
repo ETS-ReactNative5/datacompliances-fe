@@ -14,7 +14,7 @@ import Api from 'utils/apiHelper';
 import { makeSelectToken } from 'containers/App/selectors';
 
 function* redirectOnSuccess() {
-  const action = yield take(types.LOAD_PACKGE_SUCCESS);
+  const action = yield take(types.LOAD_PRODUCT_SUCCESS);
 }
 
 function* loadAllPackages(action) {
@@ -25,12 +25,12 @@ function* loadAllPackages(action) {
     yield fork(
       Api.get(
         `product`,
-        actions.loadAllPackageSuccess,
-        actions.loadAllPackageFailure,
+        actions.loadAllProductSuccess,
+        actions.loadAllProductFailure,
         token,
       ),
     );
-    yield take([LOCATION_CHANGE, types.LOAD_PACKGE_FAILURE]);
+    yield take([LOCATION_CHANGE, types.LOAD_PRODUCT_FAILURE]);
     yield cancel(successWatcher);
   }
 }
@@ -39,15 +39,15 @@ function* redirectOnLoadByIdSuccess() {
   const action = yield take(types.LOAD_PACKGE_BY_ID_SUCCESS);
 }
 
-function* loadPackageByIdRequest(action) {
+function* loadProductByIdRequest(action) {
   const token = localStorage.getItem('token');
   const { id } = action;
   const successWatcher = yield fork(redirectOnLoadByIdSuccess);
   yield fork(
     Api.get(
       `product/info/${id}`,
-      actions.loadPackageByIdSuccess,
-      actions.loadPackageByIdFailure,
+      actions.loadProductByIdSuccess,
+      actions.loadProductByIdFailure,
       token,
     ),
   );
@@ -113,8 +113,6 @@ function* removeCartRequest(action) {
 function* getQuestionRequest(action) {
   const { page, perPage, query } = action;
   const token = localStorage.getItem('token');
-  console.log('get question request saga', action)
-
   yield fork(
     Api.get(
       `product/questionnaires/${action.query}?&page=${page}&perpage=${perPage}&active=all`,
@@ -127,8 +125,8 @@ function* getQuestionRequest(action) {
 }
 
 export default function* packageWatcher() {
-  yield takeLatest(types.LOAD_PACKGE_REQUEST, loadAllPackages);
-  yield takeLatest(types.LOAD_PACKGE_BY_ID_REQUEST, loadPackageByIdRequest);
+  yield takeLatest(types.LOAD_PRODUCT_REQUEST, loadAllPackages);
+  yield takeLatest(types.LOAD_PACKGE_BY_ID_REQUEST, loadProductByIdRequest);
   yield takeLatest(types.POST_CART_REQUEST, postCartRequest);
   yield takeLatest(
     types.LOAD_ALL_CART_PACKAGE_REQUEST,

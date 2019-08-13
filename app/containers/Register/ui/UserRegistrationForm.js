@@ -212,7 +212,7 @@ const UserRegistrationForm = ({
 								</label>
 							</div>
 						</div>
-
+{/* 
 						<div className="hasCaptcha field" style={{ height: '76px' }}>
 							<Captcha onChange={onRecaptchaChange} />
 							{errors.reCaptcha && (
@@ -220,7 +220,7 @@ const UserRegistrationForm = ({
 									<i className="icon-exclamation-triangle red" />
 								</span>
 							)}
-						</div>
+						</div> */}
 					</div>
 					<div className="col-md-6">
 						<div className="field">

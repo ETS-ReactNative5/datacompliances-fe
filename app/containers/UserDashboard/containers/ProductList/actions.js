@@ -20,27 +20,27 @@ export const getQuestionSuccess = action(
 export const getQuestionFailure = action(types.GET_QUESTION_FAILURE, 'error');
 
 
-export const loadAllPackageRequest = action(
-  types.LOAD_PACKGE_REQUEST,
+export const loadAllProductRequest = action(
+  types.LOAD_PRODUCT_REQUEST,
   'page',
   'perPage',
   'query',
 );
-export const loadAllPackageSuccess = action(
-  types.LOAD_PACKGE_SUCCESS,
+export const loadAllProductSuccess = action(
+  types.LOAD_PRODUCT_SUCCESS,
   'response',
 );
-export const loadAllPackageFailure = action(types.LOAD_PACKGE_FAILURE, 'error');
+export const loadAllProductFailure = action(types.LOAD_PRODUCT_FAILURE, 'error');
 
-export const loadPackageByIdRequest = action(
+export const loadProductByIdRequest = action(
   types.LOAD_PACKGE_BY_ID_REQUEST,
   'id',
 );
-export const loadPackageByIdSuccess = action(
+export const loadProductByIdSuccess = action(
   types.LOAD_PACKGE_BY_ID_SUCCESS,
   'response',
 );
-export const loadPackageByIdFailure = action(
+export const loadProductByIdFailure = action(
   types.LOAD_PACKGE_BY_ID_FAILURE,
   'error',
 );

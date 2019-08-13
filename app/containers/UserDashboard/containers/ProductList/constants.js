@@ -12,19 +12,19 @@ export const GET_QUESTION_SUCCESS =
 export const GET_QUESTION_FAILURE =
 'app/UserDashboard/containers/ProductList/Questionnaire/GET_QUESTION_FAILURE';
 
-export const LOAD_PACKGE_REQUEST =
-  'app/containers/UserDashboard/containers/PackageList/LOAD_PACKGE_REQUEST';
-export const LOAD_PACKGE_SUCCESS =
-  'app/containers/UserDashboard/containers/PackageList/LOAD_PACKGE_SUCCESS';
-export const LOAD_PACKGE_FAILURE =
-  'app/containers/UserDashboard/containers/PackageList/LOAD_PACKGE_FAILURE';
+export const LOAD_PRODUCT_REQUEST =
+  'app/containers/UserDashboard/containers/ProductList/LOAD_PRODUCT_REQUEST';
+export const LOAD_PRODUCT_SUCCESS =
+  'app/containers/UserDashboard/containers/ProductList/LOAD_PRODUCT_SUCCESS';
+export const LOAD_PRODUCT_FAILURE =
+  'app/containers/UserDashboard/containers/ProductList/LOAD_PRODUCT_FAILURE';
 
 export const LOAD_PACKGE_BY_ID_REQUEST =
-  'app/containers/UserDashboard/containers/PackageList/LOAD_PACKGE_BY_ID_REQUEST';
+  'app/containers/UserDashboard/containers/ProductList/LOAD_PACKGE_BY_ID_REQUEST';
 export const LOAD_PACKGE_BY_ID_SUCCESS =
-  'app/containers/UserDashboard/containers/PackageList/LOAD_PACKGE_BY_ID_SUCCESS';
+  'app/containers/UserDashboard/containers/ProductList/LOAD_PACKGE_BY_ID_SUCCESS';
 export const LOAD_PACKGE_BY_ID_FAILURE =
-  'app/containers/UserDashboard/containers/PackageList/LOAD_PACKGE_BY_ID_FAILURE';
+  'app/containers/UserDashboard/containers/ProductList/LOAD_PACKGE_BY_ID_FAILURE';
 
 export const POST_CART_REQUEST =
   'app/containers/UserDashboard/containers/PackageList/POST_CART_REQUEST';

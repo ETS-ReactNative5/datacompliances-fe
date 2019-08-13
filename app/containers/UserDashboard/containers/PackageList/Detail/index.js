@@ -13,7 +13,7 @@ import { compose } from 'redux';
 import { Button, Card, Image } from 'semantic-ui-react';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import { loadPackageByIdRequest } from '../actions';
+import { loadPackageByIdRequest, getProductRequest } from '../actions';
 import {
   makeSelectError,
   makeSelectRequesting,
@@ -25,6 +25,8 @@ import {
 import reducer from '../reducer';
 import saga from '../saga';
 
+import PackageView from './createPackageview'
+
 const mapStateToProps = createStructuredSelector({
   isSuccess: makeSelectSuccess(),
   errorResponse: makeSelectError(),
@@ -35,6 +37,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   fetchPackage: id => dispatch(loadPackageByIdRequest(id)),
+  getProductRequest: (page, perPage, query,) =>
+  dispatch(getProductRequest(page, perPage, query)),
 });
 
 
@@ -49,7 +53,7 @@ export class PackageList extends React.Component {
   componentDidMount() {
     let id = this.props.match.params.id ? this.props.match.params.id : null;
     if(id) {
-      this.props.fetchProduct(id);
+      this.props.fetchPackage(id);
       // this.props.getProductRequest(1, 5, id);
     }
   }
@@ -69,9 +73,9 @@ export class PackageList extends React.Component {
           <meta name="description" content="Description of PackageList" />
         </Helmet>
         <h1>{data.title}</h1>
-        <span>
-          Trial Period Applicable: {data.trial_period_applicable ? 'Yes' : 'NO'}
-        </span>
+        <PackageView
+                viewdata={this.state.data}
+        />
       </div>
     );
   }
