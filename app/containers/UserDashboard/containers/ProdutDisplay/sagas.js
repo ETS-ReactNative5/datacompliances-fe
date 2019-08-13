@@ -32,7 +32,7 @@ function* loadAllPackageExams(action) {
   const {package_id} = action;
   yield fork(
     XcelTrip.get(
-      `product/info/${package_id}?`,
+      `product/detail/${package_id}?`,
       actions.loadPackageExamsSuccess,
       actions.loadPackageExamsFailure,
       token
@@ -52,7 +52,7 @@ function* loadExamByIdService(action) {
   const {exam_id} = action;
   yield fork(
     XcelTrip.get(
-      `product/info/${exam_id}`,
+      `product/detail/${exam_id}`,
       actions.loadExamByIdSuccess,
       actions.loadExamByIdFailure,
       token

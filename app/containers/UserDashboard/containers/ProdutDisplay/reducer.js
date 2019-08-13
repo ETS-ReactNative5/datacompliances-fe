@@ -43,13 +43,12 @@ function examDisplayReducer(state = initialState, action = {}) {
       });
 
     case types.LOAD_PACKAGE_EXAMS_SUCCESS:
-      console.log(action.response.data,'ffff')
       return state.merge({
         requesting: false,
         success: true,
         response: xresponse,
         error: null,
-        exams: fromJS(action.response.data),
+        exams: fromJS(action.response.data.dataList),
       });
 
     case types.LOAD_EXAM_BY_ID_SUCCESS:
@@ -58,7 +57,7 @@ function examDisplayReducer(state = initialState, action = {}) {
         success: true,
         response: action.response.message,
         error: null,
-        examDisplay: fromJS(action.response.data),
+        examDisplay: fromJS(action.response.data.dataList),
       });
 
     case types.LOAD_ALL_EXAM_FAILURE:
