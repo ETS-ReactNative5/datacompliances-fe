@@ -85,7 +85,6 @@ export class SubscribedPackage extends React.Component {
         <h1 className="main_title">Your Purchased Product</h1>
         <div className="packages__listing">
           <div className="package__grid">
-            {console.log(mockData,'gggg',mockData.data.dataList.length)}
             {mockData.data.dataList.length > 0 ? (
               mockData.data.dataList.map((packageData, idx) => (
                 <div key={`subscribed${idx}`} className="package__column">
