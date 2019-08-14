@@ -206,6 +206,7 @@ class LoginForm extends React.Component {
               value={data.username || ''}
               onChange={this.handleChange}
               error={errors.username ? 'username_error' : null}
+              
             />
             <div className="pos-rel mg-btm-sm password-field">
               <PasswordInputField

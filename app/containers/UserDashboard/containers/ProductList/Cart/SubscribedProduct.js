@@ -127,7 +127,8 @@ export class SubscribedPackage extends React.Component {
                         <button class="detail-btn">Answer the Questions</button>
                       </Link>
                       </div>
-                    
+                    <span className="ribbon">Purchased
+                    </span>
                   </div>
                 </div>
               ))
