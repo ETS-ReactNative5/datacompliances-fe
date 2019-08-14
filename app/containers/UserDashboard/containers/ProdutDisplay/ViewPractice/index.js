@@ -14,6 +14,9 @@ import reducer from './reducer';
 import saga from './sagas';
 import { compose } from 'redux';
 import {
+  makeSelectUser
+} from '../../../../App/selectors';
+import {
   makeSelectSuccess,
   makeSelectResponse,
   makeSelectError,
@@ -39,62 +42,6 @@ import {
 } from './actions';
 import ViewPracticeQuestion from './ViewPracticeQuestion';
 
-
-const mockData2 = { 
-  "status":200,
-  "data":{ 
-     "dataList":[ 
-        { 
-           "_id":"c0970ce0-5dd6-11e9-aa52-2bb5c8bae8ce",
-           "question":"Most common accident during use of DDT is due to",
-           "question_slug":"most-common-accident-during-use-of-ddt-is-due-to",
-           "point":2,
-           "multi_answer_applicable":false,
-           "answer_tip":"",
-           "time_limit_applicable":false,
-           "time_limit_answer":"",
-           "report_issue":[ 
-
-           ],
-           "answers":[ 
-              { 
-                 "answer":"Swallowing ",
-                 "rationale":"",
-                 "is_answer_correct_option":false,
-                 "further_reading":"",
-                 "id":"c0970ce1-5dd6-11e9-aa52-2bb5c8bae8ce"
-              },
-              { 
-                 "answer":"Contact ",
-                 "rationale":"",
-                 "is_answer_correct_option":true,
-                 "further_reading":"",
-                 "id":"c0970ce2-5dd6-11e9-aa52-2bb5c8bae8ce"
-              },
-              { 
-                 "answer":"Injection ",
-                 "rationale":"",
-                 "is_answer_correct_option":false,
-                 "further_reading":"",
-                 "id":"c0970ce3-5dd6-11e9-aa52-2bb5c8bae8ce"
-              },
-              { 
-                 "answer":"Inhalation ",
-                 "rationale":"",
-                 "is_answer_correct_option":false,
-                 "further_reading":"",
-                 "id":"c0970ce4-5dd6-11e9-aa52-2bb5c8bae8ce"
-              }
-           ],
-           "category_id":"5946c500-2512-11e9-8c86-853685e9f68b",
-           "images":[ 
-
-           ],
-        }
-     ]
-  }
-}
-
 const mapStateToProps = createStructuredSelector({
   isSuccess: makeSelectSuccess(),
   isRequesting: makeSelectRequesting(),
@@ -107,6 +54,7 @@ const mapStateToProps = createStructuredSelector({
   favoriteQuestions: makeSelectGetFavoriteQuestion(),
   favSuccess: makeSelectFavSuccess(),
   favFailure: makeSelectFavFaliure(),
+  currentUser:makeSelectUser()
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -303,7 +251,9 @@ class ViewPractice extends React.Component {
     this.props.clearMessage();
   }
 
-  handleAnswerChange = (e, event, answerIdx, mainIdx) => {
+  handleAnswerChange = (e, event, answerIdx, mainIdx, questionId) => {
+    console.log(answerIdx,'sssss',mainIdx,'sssss',event,'----',questionId,'=>>pro_id==',this.props.match.params.product_id,'...>',this.props.currentUser.toJS())
+
     let newState = this.state.data;
     newState[mainIdx].user_answer = event.value;
     newState[mainIdx].user_answer_number = answerIdx;

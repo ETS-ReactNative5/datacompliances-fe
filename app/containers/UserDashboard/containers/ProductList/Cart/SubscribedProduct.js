@@ -121,7 +121,7 @@ export class SubscribedPackage extends React.Component {
                     You haven't purchased any packages
                   </span>
                   <Link to="/user/dashboard">
-                    <button>purchase now</button>
+                    <button className="detail-btn">purchase now</button>
                   </Link>
                   <img src={nt_fnd_img} />
                 </div>
