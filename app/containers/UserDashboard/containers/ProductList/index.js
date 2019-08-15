@@ -31,7 +31,7 @@ import {
 import { Link } from 'react-router-dom';
 import { DOCUMENT_URL_UPDATE } from 'containers/App/constants';
 import PopularPackage from './Popular_Product/Loadable';
-
+import '../../assets/card.scss';
 import {
   makeSelectSuccess,
   makeSelectPackageResponse,
@@ -128,25 +128,20 @@ export class ProductList extends React.Component {
  
     return (
       <React.Fragment>
-          <div className="packages__listing">
-            {/* <PopularPackage handleCartSize={this.props.handleCartSize} /> */}
-            <h1 className="main_title">All Products</h1>
-            <div className="package__grid">
+          <div className="product-listing">
+            <h1 className="main_title">Available Products</h1>
+            <div className="product-grid">
               {data.length > 0 ? (
                 data.map((packageData, idx) =>
-                    <div key={`paidList${idx}`} className="package__column">
-                      <div className="img__wrap">
-                        <figure>
-                          <img
-                            className="img-fluid"
-                            src={`${DOCUMENT_URL_UPDATE}${
-                              packageData.image_name.document_name
-                            }`}
-                            alt="no image"
-                          />
-                          <div>Rs.{packageData.price}</div>
-                          <div className="hover__cart">
-                            {this.state.cartPackages.includes(
+                    <div key={`paidList${idx}`} className="product-item">
+                      <div className="product-wrap">
+                        
+                          <p className="product-title">{packageData.title}</p>
+                          <p className="product-price">Rs.{packageData.price}</p>
+                          <p className="product-pricing-detail">Per user / month</p>
+                          <div className="buttons-wrap">
+                          
+                            {/* {this.state.cartPackages.includes(
                               packageData._id,
                             ) ? (
                               <button
@@ -165,20 +160,24 @@ export class ProductList extends React.Component {
                               >
                                 Buy Product
                               </button>
-                            )}
-                          </div>
-                        </figure>
-
-                        <div className="pkg__wrapper">
-                          <h1>{packageData.title}</h1>
-                          <Link
-                            data-tooltip="Details"
-                            className="ui mini icon button blue"
+                            )} */}
+                          {/* <Link
+                            data-tooltip="Buy Product"
+                            className="ui mini icon button buy-btn"
                             to={`/user/dashboard/product/detail/${packageData._id}`}
                             key={`view__1`}
                           >
-                          <Icon name="plus" />
+                          Buy Now
+                        </Link>                    */}
+                        <Link
+                            data-tooltip="View Detail"
+                            className="ui mini icon button detail-btn"
+                            to={`/user/dashboard/product/detail/${packageData._id}`}
+                            key={`view__1`}
+                          >
+                          View Detail
                         </Link>
+                        </div>
                           <ul>
                             {packageData &&
                               packageData.included_features &&
@@ -205,7 +204,7 @@ export class ProductList extends React.Component {
                               <button>Start Trial</button>
                             </Link>
                           )}
-                        </div>
+                        
                       </div>
                     </div>
                 )

@@ -67,7 +67,7 @@ export class PackageList extends React.Component {
   render() {
     const { data } = this.state;
     return (
-      <div style={{ marginLeft: '200px' }}>
+      <div >
         <Helmet>
           <title>PackageList</title>
           <meta name="description" content="Description of PackageList" />

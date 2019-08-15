@@ -252,8 +252,13 @@ class ViewPractice extends React.Component {
   }
 
   handleAnswerChange = (e, event, answerIdx, mainIdx, questionId) => {
-    console.log(answerIdx,'sssss',mainIdx,'sssss',event,'----',questionId,'=>>pro_id==',this.props.match.params.product_id,'...>',this.props.currentUser.toJS())
-
+    // console.log(answerIdx,'sssss',mainIdx,'sssss',event,'----',questionId,'=>>pro_id==',this.props.match.params.product_id,'...>',this.props.currentUser.toJS()._id)
+    const payload ={
+      user_id: this.props.currentUser.toJS()._id,
+      product_id: this.props.match.params.product_id,
+      question_id: questionId,
+      answer: event.value
+    }
     let newState = this.state.data;
     newState[mainIdx].user_answer = event.value;
     newState[mainIdx].user_answer_number = answerIdx;
@@ -264,6 +269,7 @@ class ViewPractice extends React.Component {
         error_msg: '',
       },
       () => {
+        // console.log(payload,'>>>><<<')
         localStorage.setItem(
           `previousState>${this.state.previousUrl}`,
           JSON.stringify(this.state),
@@ -302,6 +308,7 @@ class ViewPractice extends React.Component {
 
   handleNextButton = (event, mainIdx) => {
     let { questionIdx } = this.state;
+    // console.log(event,'.........',mainIdx)
     questionIdx++;
     this.setState({
       questionIdx: questionIdx,

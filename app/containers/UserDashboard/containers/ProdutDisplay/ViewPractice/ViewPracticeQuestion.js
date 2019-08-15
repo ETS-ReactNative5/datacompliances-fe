@@ -74,8 +74,7 @@ const ViewPracticeQuestion = props => {
               <Form>
                 <h1>{data[questionIdx].question}</h1>
                 <Form.Field>
-                {console.log(data[questionIdx].answers,'ffffff')}
-
+                {/* {console.log(data[questionIdx].answers,'ffffff')} */}
                   {data[questionIdx].answers.length > 0 &&
                     data[questionIdx].answers.map((ans, idx) =>
                       !data[questionIdx].multi_answer_applicable ? (
@@ -126,7 +125,7 @@ const ViewPracticeQuestion = props => {
                       <h1>{data[questionIdx].question}</h1> 
                    
                       <Form>
-                        {console.log(data[questionIdx].questionnaire_id,'jsjsjsj',yesno)}
+                        {/* {console.log(data[questionIdx].questionnaire_id,'jsjsjsj',yesno)} */}
                         <Form.Field>
 
                          { yesno.length > 0 &&
@@ -148,25 +147,6 @@ const ViewPracticeQuestion = props => {
                            )
                        )} 
                            </Form.Field>
-
-                          {/* <Form.Field>
-                            <Radio
-                              label='Yes'
-                              name='radioGroup'
-                              value='this'
-                              // checked={this.state.value === 'this'}
-                              // onChange={this.handleChange}
-                            />
-                          </Form.Field>
-                          <Form.Field>
-                            <Radio
-                              label='No'
-                              name='radioGroup'
-                              value='that'
-                              // checked={this.state.value === 'that'}
-                              // onChange={this.handleChange}
-                            />
-                          </Form.Field> */}
                          </Form>
                         </div>
                   }

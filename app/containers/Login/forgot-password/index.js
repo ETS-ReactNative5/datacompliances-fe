@@ -21,6 +21,7 @@ import reducer from './reducer';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import { compose } from 'redux';
+import '../assets/login.scss';
 
 const mapStateToProps = createStructuredSelector({
 	successResponse: makeSelectResponse(),
@@ -84,7 +85,7 @@ class ForgotPassword extends React.Component {
 		const { errors, data } = this.state;
 		const { isRequesting, errorResponse, successResponse, unverifiedUserId, requestingResendEmail } = this.props;
 		return (
-			<Modal open onClose={this.props.hideDialog} className="mini" closeIcon>
+			<Modal open onClose={this.props.hideDialog} className="mini forgot-pass" closeIcon>
 				<Modal.Content>
 					{errorResponse && (
 						<div className="negative message">

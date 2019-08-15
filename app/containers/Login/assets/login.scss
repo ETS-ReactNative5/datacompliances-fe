@@ -5,30 +5,7 @@ $light-blue:#6CC4EB;
 $box-shadow: 0px 8px 28px rgba(0,0,0,0.2);
 $btn-blue:#068DF8;
 
-*,p{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-label{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-}
-.form-control{
-  border-radius: 25px;
-  margin-bottom: 25px;
-  padding: 10px 25px;
 
-  &:focus{
-    box-shadow: none;
-    border-color:$btn-blue;
-  }
-}
-.bold-text{
-  font-weight: 600;
-}
-.uppercase-txt{
-  text-transform: uppercase;
-}
 .login-wrap{
   height: 100vh;
   display: grid;
@@ -69,7 +46,7 @@ label{
       display: inline-block;
       width: 100%;
       border-radius:25px;
-      padding: 10px 25px;
+      padding: 12px 25px;
       transition:0.3s ease;
       box-shadow: 0px 0px 0px rgba(0,0,0,0);
 
@@ -80,7 +57,7 @@ label{
     }
     .password-field{
       position: relative;
-      span.showPass {
+      span.show-pass {
           position: absolute;
           top: 57%;
           right: 15px;
@@ -111,6 +88,43 @@ label{
   }
 }
 
+.negative.message{
+  
+  p{color:red;}
+}
+
+.forgot-pass{
+  height: 390px;
+  position: relative;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  .content{
+    padding-top:40px !important; 
+    text-align: center;
+    img{
+      margin-bottom: 30px;
+    }
+  }
+  &:before{
+    position: absolute;
+    content: '';
+    height: 100px;
+    width:80px;
+    background:url('wave.png');
+    right:0px;
+  }
+  &:after{
+    position: absolute;
+    content: '';
+    height: 100px;
+    width:80px;
+    background:url('wave.png');
+    left:0px;
+    bottom: 0;
+    transform: rotate(-180deg);
+  }
+}
 .form__group input:-webkit-autofill,
 .form__group input:-webkit-autofill:hover,
 .form__group input:-webkit-autofill:focus {

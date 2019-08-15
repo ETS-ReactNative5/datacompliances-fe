@@ -1,14 +1,17 @@
 import React from 'react';
 import SignupForm from './SignupForm';
+import './assets/style.scss';
+import '../../assets/base/form-base-style.scss';
+import { format } from 'util';
 
 const Register = (props) => (
-  <div className="header-top-gap ptn-1">
-    <div className="ui container text pd-btm-lg">
-      <div className="segment maxWidth500 m-auto">
-        <SignupForm {...props}/>
-      </div>
+  <div className="register-wrap">
+    <div className="container">
+      <SignupForm {...props}/>
     </div>
   </div>
+      
+     
 );
 
 export default Register;

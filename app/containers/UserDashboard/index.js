@@ -149,6 +149,13 @@ class UserDashboard extends React.Component {
   render() {
     return (
       <div className="dashboard-wrap">
+        <TopNavigation
+            handleLogout={this.handleLogout}
+            showSticky={this.showSticky}
+            cartSize={this.state.cartSize}
+            handleToggleSidebar={this.handleToggleSidebar}
+            profilePic={this.state.ProfilePic}
+          />
           <SideBar 
           username={this.state.username}
           email={this.state.email}
@@ -159,19 +166,13 @@ class UserDashboard extends React.Component {
         />
       
 		<div className="main-wrap">		
-        <TopNavigation
-            handleLogout={this.handleLogout}
-            showSticky={this.showSticky}
-            cartSize={this.state.cartSize}
-            handleToggleSidebar={this.handleToggleSidebar}
-            profilePic={this.state.ProfilePic}
-          />
-        <div className="content-wrap">
-          <Routes
-            location={this.props.location}
-            handleCartSize={this.handleCartSize}
-          />
-        </div></div>
+          <div className="content-wrap">
+            <Routes
+              location={this.props.location}
+              handleCartSize={this.handleCartSize}
+            />
+          </div>
+        </div>
       </div>
     );
   }
