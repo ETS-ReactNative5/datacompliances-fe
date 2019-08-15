@@ -3,6 +3,13 @@
  * PackageList constants
  *
  */
+/*Order Product*/ 
+export const BUY_PRODUCT_REQUEST =
+'app/containers/UserDashboard/containers/ProductList/BUY_PRODUCT_REQUEST';
+export const BUY_PRODUCT_SUCCESS =
+'app/containers/UserDashboard/containers/ProductList/BUY_PRODUCT_SUCCESS';
+export const BUY_PRODUCT_FAILURE =
+'app/containers/UserDashboard/containers/ProductList/BUY_PRODUCT_FAILURE';
 
  /* GET Top 5 QUESTIONNAIRES */
 export const GET_QUESTION_REQUEST =
@@ -12,12 +19,12 @@ export const GET_QUESTION_SUCCESS =
 export const GET_QUESTION_FAILURE =
 'app/UserDashboard/containers/ProductList/Questionnaire/GET_QUESTION_FAILURE';
 
-export const LOAD_PACKGE_REQUEST =
-  'app/containers/UserDashboard/containers/ProductList/LOAD_PACKGE_REQUEST';
-export const LOAD_PACKGE_SUCCESS =
-  'app/containers/UserDashboard/containers/ProductList/LOAD_PACKGE_SUCCESS';
-export const LOAD_PACKGE_FAILURE =
-  'app/containers/UserDashboard/containers/ProductList/LOAD_PACKGE_FAILURE';
+export const LOAD_PRODUCT_REQUEST =
+  'app/containers/UserDashboard/containers/ProductList/LOAD_PRODUCT_REQUEST';
+export const LOAD_PRODUCT_SUCCESS =
+  'app/containers/UserDashboard/containers/ProductList/LOAD_PRODUCT_SUCCESS';
+export const LOAD_PRODUCT_FAILURE =
+  'app/containers/UserDashboard/containers/ProductList/LOAD_PRODUCT_FAILURE';
 
 export const LOAD_PACKGE_BY_ID_REQUEST =
   'app/containers/UserDashboard/containers/ProductList/LOAD_PACKGE_BY_ID_REQUEST';

@@ -13,6 +13,7 @@ const makeSelectUserId = () => createSelector(selectLogin, (state) => state.get(
 const makeSelectResendEmailRequesting = () =>
 	createSelector(selectLogin, (state) => state.get('resendEmailRequesting'));
 const makeSelectEmail = () => createSelector(selectLogin, (state) => state.get('email'));
+const makeSelectUserInfo = () => createSelector(selectLogin, (state) => state.get('userInfo'));
 
 export {
 	makeSelectSuccess,
@@ -25,4 +26,5 @@ export {
 	makeSelectUserId,
 	makeSelectResendEmailRequesting,
 	makeSelectEmail,
+	makeSelectUserInfo
 };
