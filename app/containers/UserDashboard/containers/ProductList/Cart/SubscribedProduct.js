@@ -68,25 +68,25 @@ export class SubscribedPackage extends React.Component {
                       <p className="product-title">{packageData.title}</p>
                       <ul className="feature-list">
                         {packageData &&
-                          packageData.included_features &&
-                          packageData.included_features.map((feature, idx) => (
-                            <li key={`feature${idx}`}>
-                              <i className="icon-check"/>
-                              {feature.feature}
-                            </li>
-                          ))}
-                          <li>
-                              <i className="icon-check"/>
-                             <span>Industry:</span> Finance
+                        packageData.included_features &&
+                        packageData.included_features.map((feature, idx) => (
+                          <li key={`feature${idx}`}>
+                            <i className="icon-check"/>
+                            {feature.feature}
                           </li>
-                          <li>
-                              <i className="icon-check"/>
-                             <span>Country:</span> France
-                          </li>
-                          <li>
-                              <i className="icon-check"/>
-                             <span>Questionnaire:</span> 100 Questions
-                          </li>
+                        ))}
+                        <li>
+                          <i className="icon-check"/>
+                          <span>Industry:</span> Finance
+                        </li>
+                        <li>
+                          <i className="icon-check"/>
+                          <span>Country:</span> France
+                        </li>
+                        <li>
+                          <i className="icon-check"/>
+                          <span>Questionnaire:</span> 100 Questions
+                        </li>
                       </ul>
                       <div className="buttons-wrap">
                       <Link 
@@ -100,33 +100,34 @@ export class SubscribedPackage extends React.Component {
                         <button className="detail-btn">See Details</button>
                       </Link>
                       </div>
-                    <span className="ribbon">Purchased
+                      <span className="ribbon">Purchased
                     </span>
+                    </div>
                   </div>
-                </div>
-              ))
-            ) : this.props.isRequesting ? (
-              <Grid columns={3} stackable>
-                <Grid.Column>
-                  <Segment raised>
-                    <Placeholder>
-                      <Placeholder.Header image>
-                        <Placeholder.Line />
-                        <Placeholder.Line />
-                      </Placeholder.Header>
-                      <Placeholder.Paragraph>
-                        <Placeholder.Line length="medium" />
-                        <Placeholder.Line length="short" />
-                      </Placeholder.Paragraph>
-                    </Placeholder>
-                  </Segment>
-                </Grid.Column>
-              </Grid>
-            ) : (
-              <div className="package_not_found">
-                <div className="package_not_found_grid">
-                  <h1>Oops !</h1>
-                  <span>
+                // </div>
+                  ))
+                  ) : this.props.isRequesting ? (
+                  <Grid columns={3} stackable>
+                    <Grid.Column>
+                      <Segment raised>
+                        <Placeholder>
+                          <Placeholder.Header image>
+                            <Placeholder.Line />
+                            <Placeholder.Line />
+                          </Placeholder.Header>
+                          <Placeholder.Paragraph>
+                            <Placeholder.Line length="medium" />
+                            <Placeholder.Line length="short" />
+                          </Placeholder.Paragraph>
+                        </Placeholder>
+                      </Segment>
+                    </Grid.Column>
+                  </Grid>
+                  ) : (
+                  <div className="package_not_found">
+                    <div className="package_not_found_grid">
+                      <h1>Oops !</h1>
+                      <span>
                     Looks like <br />
                     You haven't purchased any packages
                   </span>
