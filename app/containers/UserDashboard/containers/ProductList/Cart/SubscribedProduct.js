@@ -57,42 +57,36 @@ export class SubscribedPackage extends React.Component {
     return (
       <div>
         <h1 className="main_title">Your Purchased Product</h1>
-        <div className="packages__listing">
-          <div className="package__grid">
+        <div className="product-listing">
+          <div className="product-grid">
             {data.length > 0 ? (
-                 data.map((packageData, idx) => (
-                <div key={`subscribed${idx}`} className="package__column">
-                  <div className="img__wrap">
-                    <img
-                      className="img-fluid"
-                      src={`${DOCUMENT_URL_UPDATE}${
-                           packageData.image_name && packageData.image_name.document_name
-                      }`}
-                      alt="a"
-                    />
-                    <div className="pkg__wrapper">
-                      <h1>{packageData.product.title}</h1>
-                      <ul>
+                data.map((packageData, idx) => (
+                <div key={`subscribed${idx}`} className="product-item">
+                  <div className="product-wrap">
+                    
+                   
+                      <p className="product-title">{packageData.title}</p>
+                      <ul className="feature-list">
                         {packageData &&
-                          packageData.included_features &&
-                          packageData.included_features.map((feature, idx) => (
-                            <li key={`feature${idx}`}>
-                              <i className="icon-check"/>
-                              {feature.feature}
-                            </li>
-                          ))}
-                          <li>
-                              <i className="icon-check"/>
-                             <span>Industry:</span> Finance
+                        packageData.included_features &&
+                        packageData.included_features.map((feature, idx) => (
+                          <li key={`feature${idx}`}>
+                            <i className="icon-check"/>
+                            {feature.feature}
                           </li>
-                          <li>
-                              <i className="icon-check"/>
-                             <span>Country:</span> France
-                          </li>
-                          <li>
-                              <i className="icon-check"/>
-                             <span>Questionnaire:</span> 100 Questions
-                          </li>
+                        ))}
+                        <li>
+                          <i className="icon-check"/>
+                          <span>Industry:</span> Finance
+                        </li>
+                        <li>
+                          <i className="icon-check"/>
+                          <span>Country:</span> France
+                        </li>
+                        <li>
+                          <i className="icon-check"/>
+                          <span>Questionnaire:</span> 100 Questions
+                        </li>
                       </ul>
                       <div className="buttons-wrap">
                       <Link 
@@ -103,41 +97,42 @@ export class SubscribedPackage extends React.Component {
                           state: { title: packageData.title },
                         }}
                       >
-                        <button>See Details</button>
+                        <button className="detail-btn">See Details</button>
                       </Link>
                       </div>
-                    <span className="ribbon">Purchased
+                      <span className="ribbon">Purchased
                     </span>
+                    </div>
                   </div>
-                </div>
-              ))
-            ) : this.props.isRequesting ? (
-              <Grid columns={3} stackable>
-                <Grid.Column>
-                  <Segment raised>
-                    <Placeholder>
-                      <Placeholder.Header image>
-                        <Placeholder.Line />
-                        <Placeholder.Line />
-                      </Placeholder.Header>
-                      <Placeholder.Paragraph>
-                        <Placeholder.Line length="medium" />
-                        <Placeholder.Line length="short" />
-                      </Placeholder.Paragraph>
-                    </Placeholder>
-                  </Segment>
-                </Grid.Column>
-              </Grid>
-            ) : (
-              <div className="package_not_found">
-                <div className="package_not_found_grid">
-                  <h1>Oops !</h1>
-                  <span>
+                // </div>
+                  ))
+                  ) : this.props.isRequesting ? (
+                  <Grid columns={3} stackable>
+                    <Grid.Column>
+                      <Segment raised>
+                        <Placeholder>
+                          <Placeholder.Header image>
+                            <Placeholder.Line />
+                            <Placeholder.Line />
+                          </Placeholder.Header>
+                          <Placeholder.Paragraph>
+                            <Placeholder.Line length="medium" />
+                            <Placeholder.Line length="short" />
+                          </Placeholder.Paragraph>
+                        </Placeholder>
+                      </Segment>
+                    </Grid.Column>
+                  </Grid>
+                  ) : (
+                  <div className="package_not_found">
+                    <div className="package_not_found_grid">
+                      <h1>Oops !</h1>
+                      <span>
                     Looks like <br />
                     You haven't purchased any packages
                   </span>
                   <Link to="/user/dashboard">
-                    <button>purchase now</button>
+                    <button className="detail-btn">purchase now</button>
                   </Link>
                   <img src={nt_fnd_img} />
                 </div>

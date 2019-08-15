@@ -77,7 +77,7 @@ export class ProductList extends React.Component {
         data: nextProps.singlePackage.toJS(),
       });
     }
-    if (this.props.questions != nextProps.questions) {
+    if (this.props.questions != nextProps.questions && nextProps.questions != "") {
       this.setState({
         questions: nextProps.questions && nextProps.questions,
       });
@@ -175,6 +175,7 @@ export class ProductList extends React.Component {
          <Button className="button buy-btn" onClick={this.buyProduct}>Buy this Product</Button>
 
          <h1 className="main_title mt-5">Top 5 Questionnaires</h1>
+         {console.log(questions,'......',questions.size)}
         {questions && questions.size > 0 &&
            <QuestionsTable
                 headers={headers}
