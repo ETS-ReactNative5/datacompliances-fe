@@ -126,7 +126,6 @@ function* getQuestionRequest(action) {
 
 function* redirectOnBuySuccess() {
   const action = yield take(types.BUY_PRODUCT_SUCCESS);
-  console.log(action.response)
   debugger
   yield put(push(`/user/dashboard/product-display/${action.response.data.product_id}`));
 }
@@ -134,7 +133,6 @@ function* redirectOnBuySuccess() {
 function* buyProductRequest(action) {
   const token = localStorage.getItem('token');
   const { payload } = action;
-  console.log(payload,'ddd buy')
   const successWatcher = yield fork(redirectOnBuySuccess);
 
   yield fork(
