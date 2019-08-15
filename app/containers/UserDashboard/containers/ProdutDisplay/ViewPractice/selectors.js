@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-const selectDomain = state => state.get('viewPractice');
+const selectDomain = state => state.viewPractice;
 
 const makeSelectSuccess = () =>
   createSelector(

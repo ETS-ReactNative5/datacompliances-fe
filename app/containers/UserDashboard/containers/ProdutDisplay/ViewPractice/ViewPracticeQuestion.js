@@ -8,6 +8,7 @@ import {
   Icon,
   Segment,
   Label,
+  TextArea
 } from 'semantic-ui-react';
 import {
   BarChart,
@@ -31,7 +32,6 @@ const ViewPracticeQuestion = props => {
     perPage,
     handleAnswerChange,
     handleNextButton,
-    handleCheckButton,
     handleViewResultButton,
     questionIdx,
     showAnswer,
@@ -40,9 +40,6 @@ const ViewPracticeQuestion = props => {
     score,
     full_score,
     is_radio_disabled,
-    handleFavoriteButton,
-    handleUnfavoriteButton,
-    // handleTimeOver,
     time,
     isCorrect,
     count,
@@ -55,30 +52,6 @@ const ViewPracticeQuestion = props => {
     attempted_length,
   } = props;
 
-  const BarGraphData = [
-    {
-      name: 'Total Average Score',
-      score: (resultResponse && resultResponse.averageScore) || 0,
-    },
-    {
-      name: 'Top 5 Average Score',
-      score: (resultResponse && resultResponse.averageScoreByHighestScore) || 0,
-    },
-    {
-      name: 'Last 5 Average Score',
-      score: (resultResponse && resultResponse.averageScoreByLatestDate) || 0,
-    },
-    {
-      name: 'Your Score',
-      score: (resultResponse && resultResponse.currentScore) || 0,
-    },
-  ];
-  const DonutData = [
-    { name: 'Total Attempted Questions', value: attempted_length },
-    { name: 'Total Correct Answers', value: count ? count : 0 },
-  ];
-  const COLORS = ['#0088FE', '#00C49F'];
-
   return (
     <div>
       <Grid>
@@ -89,50 +62,13 @@ const ViewPracticeQuestion = props => {
                 <h4>
                   {questionIdx + 1} / {data.length}
                 </h4>
-                {/* {time > 0 && (
-                  <div className="timer">
-                    Time Remaining:
-                    <TimerComponent
-                      minutes={time}
-                      handleTimeOver={handleTimeOver}
-                    />
-                  </div>
-                )} */}
               </div>
               <div className="addfav">
-                <h1>{data[questionIdx].question}</h1>
-                {fav_questions &&
-                  !fav_questions.includes(data[questionIdx]._id) &&
-                  url &&
-                  !url.includes('trial') && (
-                    <Icon
-                      name="heart outline"
-                      onClick={e =>
-                        handleFavoriteButton(
-                          e,
-                          data[questionIdx]._id,
-                          questionIdx,
-                        )
-                      }
-                    />
-                  )}
-                {fav_questions &&
-                  fav_questions.includes(data[questionIdx]._id) &&
-                  url &&
-                  !url.includes('trial') && (
-                    <i
-                      onClick={e =>
-                        handleUnfavoriteButton(
-                          e,
-                          data[questionIdx]._id,
-                          questionIdx,
-                        )
-                      }
-                      className="heart icon red"
-                    />
-                  )}
               </div>
+              {/* {console.log(data[questionIdx],'>>>>>>>>',data,'====',data[questionIdx].type_of_questions == "Yes/No")} */}
+             { data[questionIdx] && data[questionIdx].type_of_questions == "Objective" &&
               <Form>
+                <h1>{data[questionIdx].question}</h1>
                 <Form.Field>
                   {data[questionIdx].answers.length > 0 &&
                     data[questionIdx].answers.map((ans, idx) =>
@@ -178,23 +114,47 @@ const ViewPracticeQuestion = props => {
                 </Form.Field>
               </Form>
 
+             }
+                { data[questionIdx] && data[questionIdx].type_of_questions == "Yes/No" &&
+                     <div>
+                      <h1>{data[questionIdx].question}</h1>  
+                      <Form>
+                          <Form.Field>
+                            {/* Selected value: <b>{this.state.value}</b> */}
+                          </Form.Field>
+                          <Form.Field>
+                            <Radio
+                              label='Yes'
+                              name='radioGroup'
+                              value='this'
+                              // checked={this.state.value === 'this'}
+                              // onChange={this.handleChange}
+                            />
+                          </Form.Field>
+                          <Form.Field>
+                            <Radio
+                              label='No'
+                              name='radioGroup'
+                              value='that'
+                              // checked={this.state.value === 'that'}
+                              // onChange={this.handleChange}
+                            />
+                          </Form.Field>
+                         </Form>
+                        </div>
+                  }
+                  { data[questionIdx] && data[questionIdx].type_of_questions == "Subjective" &&
+                  <div>
+                   <h1>{data[questionIdx].question}</h1> 
+                    <TextArea 
+                       placeholder='Tell us more' />
+                    </div>
+            
+                  }
+
               {questionIdx != 0 && (
                 <Button onClick={e => handleBackButton(e, questionIdx)}>
                   <i className="icon-arrow-left mr-1" /> Previous
-                </Button>
-              )}
-              {questionIdx < data.length && !showAnswer && (
-                <Button
-                  className="btn-alt"
-                  disabled={
-                    !data[questionIdx].user_answer ||
-                    (data[questionIdx] &&
-                      data[questionIdx].user_answers &&
-                      data[questionIdx].user_answers.length < 0)
-                  }
-                  onClick={e => handleCheckButton(e, questionIdx)}
-                >
-                  Check
                 </Button>
               )}
               {questionIdx < data.length - 1 && (
@@ -222,6 +182,19 @@ const ViewPracticeQuestion = props => {
                   //     data[questionIdx].user_answers.length < 0)
                   // }
                   onClick={e => handleViewResultButton(e, questionIdx)}
+                />
+              )}
+              {questionIdx === data.length - 1 && (
+                <Button
+                  color="teal"
+                  content="Submit"
+                  // disabled={
+                  //   !data[questionIdx].user_answer ||
+                  //   (data[questionIdx] &&
+                  //     data[questionIdx].user_answers &&
+                  //     data[questionIdx].user_answers.length < 0)
+                  // }
+                  // onClick={e => handleViewResultButton(e, questionIdx)}
                 />
               )}
               {showAnswer && (
@@ -263,7 +236,7 @@ const ViewPracticeQuestion = props => {
                     data.length > 0 &&
                     data.map((each, idx) => (
                       <Label
-                        color={data[idx].user_answer && 'green'}
+                        // color={data[idx].user_answer && 'green'}
                         circular
                         key={`list${idx}`}
                         onClick={e => handleJump(e, idx, questionIdx)}

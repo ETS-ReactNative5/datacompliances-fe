@@ -24,7 +24,7 @@ function* loadAllQuestionnaireService(action) {
   const successWatcher = yield fork(redirectOnLoadQuestionnaireSuccess);
   yield fork(
     TenderKo.get(
-      `mcqs-exam/questionaire/${id}?page=1&perpage=100&package_id=${package_id}`,
+      `product/questionnaires/${id}?page=1&perpage=100`,
       actions.loadAllQuestionnaireSuccess,
       actions.loadAllQuestionnaireFailure,
       token,
@@ -176,15 +176,15 @@ function* loadAllFavoriteQuestion(action) {
   const token = localStorage.getItem('token');
   const successWatcher = yield fork(redirectOnLoadSuccess);
   const { page, perPage, query } = action;
-  yield fork(
-    TenderKo.get(
-      `mcqs-questionnaires/favourite?page=${page}&perpage=${perPage}`,
-      actions.loadAllFavoriteQuestionnaireSuccess,
-      actions.loadAllFavoriteQuestionnaireFailure,
-      token,
-    ),
-  );
-  yield take([LOCATION_CHANGE, types.LOAD_ALL_FAVORITE_QUESTIONNAIRE_FAILURE]);
+  // yield fork(
+  //   TenderKo.get(
+  //     `mcqs-questionnaires/favourite?page=${page}&perpage=${perPage}`,
+  //     actions.loadAllFavoriteQuestionnaireSuccess,
+  //     actions.loadAllFavoriteQuestionnaireFailure,
+  //     token,
+  //   ),
+  // );
+  // yield take([LOCATION_CHANGE, types.LOAD_ALL_FAVORITE_QUESTIONNAIRE_FAILURE]);
   yield cancel(successWatcher);
 }
 
