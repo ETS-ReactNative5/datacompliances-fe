@@ -57,22 +57,16 @@ export class SubscribedPackage extends React.Component {
     return (
       <div>
         <h1 className="main_title">Your Purchased Product</h1>
-        <div className="packages__listing">
-          <div className="package__grid">
+        <div className="product-listing">
+          <div className="product-grid">
             {data.length > 0 ? (
-              data.map((packageData, idx) => (
-                <div key={`subscribed${idx}`} className="package__column">
-                  <div className="img__wrap">
-                    <img
-                      className="img-fluid"
-                      src={`${DOCUMENT_URL_UPDATE}${
-                      packageData.image_name && packageData.image_name.document_name
-                        }`}
-                      alt="a"
-                    />
-                    <div className="pkg__wrapper">
-                      <h1>{packageData.product.title}</h1>
-                      <ul>
+                data.map((packageData, idx) => (
+                <div key={`subscribed${idx}`} className="product-item">
+                  <div className="product-wrap">
+                    
+                   
+                      <p className="product-title">{packageData.title}</p>
+                      <ul className="feature-list">
                         {packageData &&
                         packageData.included_features &&
                         packageData.included_features.map((feature, idx) => (
@@ -95,22 +89,22 @@ export class SubscribedPackage extends React.Component {
                         </li>
                       </ul>
                       <div className="buttons-wrap">
-                        <Link
-                          to={{
-                            pathname: `/user/dashboard/product-display/${
-                              packageData.product._id
-                              }`,
-                            state: { title: packageData.title },
-                          }}
-                        >
-                          <button>See Details</button>
-                        </Link>
+                      <Link 
+                        to={{
+                          pathname: `/user/dashboard/product-display/${
+                            packageData.product._id
+                          }`,
+                          state: { title: packageData.title },
+                        }}
+                      >
+                        <button className="detail-btn">See Details</button>
+                      </Link>
                       </div>
                       <span className="ribbon">Purchased
                     </span>
                     </div>
                   </div>
-                </div>
+                // </div>
                   ))
                   ) : this.props.isRequesting ? (
                   <Grid columns={3} stackable>
@@ -137,14 +131,13 @@ export class SubscribedPackage extends React.Component {
                     Looks like <br />
                     You haven't purchased any packages
                   </span>
-                      <Link to="/user/dashboard">
-                        <button>purchase now</button>
-                      </Link>
-                      <img src={nt_fnd_img} />
-                    </div>
-                  </div>
-                  )
-            }
+                  <Link to="/user/dashboard">
+                    <button className="detail-btn">purchase now</button>
+                  </Link>
+                  <img src={nt_fnd_img} />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

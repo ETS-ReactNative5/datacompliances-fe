@@ -52,6 +52,11 @@ const ViewPracticeQuestion = props => {
     attempted_length,
   } = props;
 
+   const yesno = [
+           {answer: 'Yes'},
+           {answer: 'No'}
+   ]
+
   return (
     <div>
       <Grid>
@@ -65,11 +70,11 @@ const ViewPracticeQuestion = props => {
               </div>
               <div className="addfav">
               </div>
-              {/* {console.log(data[questionIdx],'>>>>>>>>',data,'====',data[questionIdx].type_of_questions == "Yes/No")} */}
              { data[questionIdx] && data[questionIdx].type_of_questions == "Objective" &&
               <Form>
                 <h1>{data[questionIdx].question}</h1>
                 <Form.Field>
+                {/* {console.log(data[questionIdx].answers,'ffffff')} */}
                   {data[questionIdx].answers.length > 0 &&
                     data[questionIdx].answers.map((ans, idx) =>
                       !data[questionIdx].multi_answer_applicable ? (
@@ -83,7 +88,7 @@ const ViewPracticeQuestion = props => {
                               data[questionIdx].user_answer === ans.answer
                             }
                             onChange={(e, se) =>
-                              handleAnswerChange(e, se, idx, questionIdx)
+                              handleAnswerChange(e, se, idx, questionIdx, data[questionIdx].questionnaire_id)
                             }
                           />
                         </div>
@@ -105,7 +110,7 @@ const ViewPracticeQuestion = props => {
                               false
                             }
                             onChange={(e, se) =>
-                              handleAnswerChange(e, se, idx, questionIdx)
+                              handleAnswerChange(e, se, idx, questionIdx,data[questionIdx].questionnaire_id)
                             }
                           />
                         </div>
@@ -117,29 +122,31 @@ const ViewPracticeQuestion = props => {
              }
                 { data[questionIdx] && data[questionIdx].type_of_questions == "Yes/No" &&
                      <div>
-                      <h1>{data[questionIdx].question}</h1>  
+                      <h1>{data[questionIdx].question}</h1> 
+                   
                       <Form>
-                          <Form.Field>
-                            {/* Selected value: <b>{this.state.value}</b> */}
-                          </Form.Field>
-                          <Form.Field>
-                            <Radio
-                              label='Yes'
-                              name='radioGroup'
-                              value='this'
-                              // checked={this.state.value === 'this'}
-                              // onChange={this.handleChange}
-                            />
-                          </Form.Field>
-                          <Form.Field>
-                            <Radio
-                              label='No'
-                              name='radioGroup'
-                              value='that'
-                              // checked={this.state.value === 'that'}
-                              // onChange={this.handleChange}
-                            />
-                          </Form.Field>
+                        {/* {console.log(data[questionIdx].questionnaire_id,'jsjsjsj',yesno)} */}
+                        <Form.Field>
+
+                         { yesno.length > 0 &&
+                           yesno.map((ans, idx) => (
+                           <div key={`ans${idx}`}>
+                           <Radio
+                             disabled={is_radio_disabled}
+                             label={`${ans.answer}`}
+                             value={ans.answer}
+                             name={`ans${questionIdx}`}
+                             checked={
+                               data[questionIdx].user_answer === ans.answer
+                             }
+                             onChange={(e, se) =>
+                               handleAnswerChange(e, se, idx, questionIdx, data[questionIdx].questionnaire_id)
+                             }
+                           />
+                         </div>
+                           )
+                       )} 
+                           </Form.Field>
                          </Form>
                         </div>
                   }
