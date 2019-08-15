@@ -6,7 +6,7 @@ const ReceiptTable = (props) => {
         headers, tableData, loading, page, perPage, onPaginate
     } = props;
     return (
-        <div>
+        <div className="mt-3">
             <TenderKoTable
                 headers={headers} tableData={tableData} loading={loading}
                 page={page} perPage={perPage} onPaginate={onPaginate}

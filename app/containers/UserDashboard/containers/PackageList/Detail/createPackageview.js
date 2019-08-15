@@ -10,7 +10,8 @@ const CreateProductView = (props) => {
             <h3>Description : {viewdata.description}</h3>
             <h3>Price : {viewdata.price}</h3>
             <h3>Country : {viewdata.country}</h3>
-            </div>
+            
+        </div>
     )
 }
 

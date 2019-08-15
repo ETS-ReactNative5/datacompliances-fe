@@ -137,16 +137,16 @@ export class PackageList extends React.Component {
     const { data } = this.state;
     return (
       <React.Fragment>
-          <div className="packages__listing">
+          <div className="packages-listing">
             {/* <PopularPackage handleCartSize={this.props.handleCartSize} /> */}
-            <h1 className="main_title">All Packages</h1>
-            <div className="package__grid">
+            <h3 className="main_title">All Packages</h3>
+            <div className="package-grid">
               {data.length > 0 ? (
                 data.map((packageData, idx) =>
                   packageData.is_free ? (
-                    <div key={`freeList${idx}`} className="package__column">
-                      <div className="img__wrap">
-                        <div className="pkg__wrapper">
+                    <div key={`freeList${idx}`} className="package-item">
+                      <div className="img-wrap">
+                        <div className="pkg-wrapper">
                           <h1>{packageData.title}</h1>
                           <ul>
                             {packageData &&

@@ -32,6 +32,7 @@ import reducer from './reducer';
 import saga from './saga';
 import pkgimg from 'assets/images/pkg_lst1.jpg';
 import nt_fnd_img from 'assets/images/not_found_img.png';
+import '../../../assets/card.scss';
 
 /* eslint-disable react/prefer-stateless-function */
 export class SubscribedPackage extends React.Component {
@@ -76,12 +77,25 @@ export class SubscribedPackage extends React.Component {
                           packageData.included_features &&
                           packageData.included_features.map((feature, idx) => (
                             <li key={`feature${idx}`}>
-                              <i className="icon-check" />
+                              <i className="icon-check"/>
                               {feature.feature}
                             </li>
                           ))}
+                          <li>
+                              <i className="icon-check"/>
+                             <span>Industry:</span> Finance
+                          </li>
+                          <li>
+                              <i className="icon-check"/>
+                             <span>Country:</span> France
+                          </li>
+                          <li>
+                              <i className="icon-check"/>
+                             <span>Questionnaire:</span> 100 Questions
+                          </li>
                       </ul>
-                      <Link
+                      <div className="buttons-wrap">
+                      <Link 
                         to={{
                           pathname: `/user/dashboard/product-display/${
                             packageData.product._id
@@ -91,7 +105,9 @@ export class SubscribedPackage extends React.Component {
                       >
                         <button>See Details</button>
                       </Link>
-                    </div>
+                      </div>
+                    <span className="ribbon">Purchased
+                    </span>
                   </div>
                 </div>
               ))
