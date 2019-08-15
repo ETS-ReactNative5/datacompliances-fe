@@ -32,6 +32,7 @@ import reducer from './reducer';
 import saga from './saga';
 import pkgimg from 'assets/images/pkg_lst1.jpg';
 import nt_fnd_img from 'assets/images/not_found_img.png';
+import '../../../assets/card.scss';
 
 /* eslint-disable react/prefer-stateless-function */
 export class SubscribedPackage extends React.Component {
@@ -43,7 +44,7 @@ export class SubscribedPackage extends React.Component {
   };
 
   componentDidMount() {
-    this.props.fetchSubscribedPackage();
+    this.props.fetchSubscribedProduct();
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.subscribedPackage != this.props.subscribedPackage) {
@@ -55,43 +56,58 @@ export class SubscribedPackage extends React.Component {
     const { data } = this.state;
     return (
       <div>
-        <h1 className="main_title">Your Purchased Package</h1>
+        <h1 className="main_title">Your Purchased Product</h1>
         <div className="packages__listing">
           <div className="package__grid">
             {data.length > 0 ? (
-              data.map((packageData, idx) => (
+                 data.map((packageData, idx) => (
                 <div key={`subscribed${idx}`} className="package__column">
                   <div className="img__wrap">
                     <img
                       className="img-fluid"
                       src={`${DOCUMENT_URL_UPDATE}${
-                        packageData.image_name.document_name
+                           packageData.image_name && packageData.image_name.document_name
                       }`}
                       alt="a"
                     />
                     <div className="pkg__wrapper">
-                      <h1>{packageData.title}</h1>
+                      <h1>{packageData.product.title}</h1>
                       <ul>
                         {packageData &&
                           packageData.included_features &&
                           packageData.included_features.map((feature, idx) => (
                             <li key={`feature${idx}`}>
-                              <i className="icon-check" />
+                              <i className="icon-check"/>
                               {feature.feature}
                             </li>
                           ))}
+                          <li>
+                              <i className="icon-check"/>
+                             <span>Industry:</span> Finance
+                          </li>
+                          <li>
+                              <i className="icon-check"/>
+                             <span>Country:</span> France
+                          </li>
+                          <li>
+                              <i className="icon-check"/>
+                             <span>Questionnaire:</span> 100 Questions
+                          </li>
                       </ul>
-                      <Link
+                      <div className="buttons-wrap">
+                      <Link 
                         to={{
-                          pathname: `/user/dashboard/exam-display/${
-                            packageData._id
+                          pathname: `/user/dashboard/product-display/${
+                            packageData.product._id
                           }`,
                           state: { title: packageData.title },
                         }}
                       >
-                        <button>start exam</button>
+                        <button>See Details</button>
                       </Link>
-                    </div>
+                      </div>
+                    <span className="ribbon">Purchased
+                    </span>
                   </div>
                 </div>
               ))
@@ -140,7 +156,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchSubscribedPackage: () => dispatch(loadSubscribedPackageRequest()),
+  fetchSubscribedProduct: () => dispatch(loadSubscribedPackageRequest()),
 });
 
 const withConnect = connect(

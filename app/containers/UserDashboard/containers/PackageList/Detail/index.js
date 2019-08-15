@@ -13,7 +13,7 @@ import { compose } from 'redux';
 import { Button, Card, Image } from 'semantic-ui-react';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import { loadPackageByIdRequest, getProductRequest } from '../actions';
+import { loadPackageByIdRequest } from '../actions';
 import {
   makeSelectError,
   makeSelectRequesting,
@@ -37,8 +37,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   fetchPackage: id => dispatch(loadPackageByIdRequest(id)),
-  getProductRequest: (page, perPage, query,) =>
-  dispatch(getProductRequest(page, perPage, query)),
+  // getProductRequest: (page, perPage, query,) =>
+  // dispatch(getProductRequest(page, perPage, query)),
 });
 
 
@@ -67,7 +67,7 @@ export class PackageList extends React.Component {
   render() {
     const { data } = this.state;
     return (
-      <div style={{ marginLeft: '200px' }}>
+      <div >
         <Helmet>
           <title>PackageList</title>
           <meta name="description" content="Description of PackageList" />

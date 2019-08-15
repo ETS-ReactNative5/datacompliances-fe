@@ -8,7 +8,7 @@ import './assets/style.scss';
 class SideBar extends React.Component {
   render() {
     return (
-      <div class="sidebar-wrap"
+      <div className="sidebar-wrap"
       >
         <div className="sidebar-logo">
           <Image src={Logo} size="small" alt="" />
