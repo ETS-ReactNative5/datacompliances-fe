@@ -158,13 +158,13 @@ const UserRegistrationForm = ({
 				
 					<div className="col-md-6">
 						<FormField
-							label="Profession *"
-							name="profession"
-							value={data.profession || ''}
+							label="Company *"
+							name="company_name"
+							value={data.company_name || ''}
 							onChange={handleChange}
-							placeholder="Profession"
+							placeholder="Company Name"
 							className="form-control"
-							error={errors.profession}
+							error={errors.company_name}
 						/>
 					</div>
 					<div className="col-md-6">

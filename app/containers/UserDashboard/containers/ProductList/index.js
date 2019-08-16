@@ -138,7 +138,24 @@ export class ProductList extends React.Component {
                         
                           <p className="product-title">{packageData.title}</p>
                           <p className="product-price">Rs.{packageData.price}</p>
-                          <p className="product-pricing-detail">Per user / month</p>
+                          <ul className="feature-list">
+                            <li>
+                                <i className="icon-check"/>
+                              <span>Industry: Finance </span> 
+                            </li>
+                            <li>
+                                <i className="icon-check"/>
+                              <span>Country: France</span>
+                            </li>
+                            <li>
+                                <i className="icon-check"/>
+                              <span>Questionnaire: 100 Questions</span>
+                            </li>
+                            <li>
+                                <i className="icon-check"/>
+                              <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry....</span>
+                            </li>
+                          </ul>
                           <div className="buttons-wrap">
                           
                             {/* {this.state.cartPackages.includes(
@@ -170,7 +187,6 @@ export class ProductList extends React.Component {
                           Buy Now
                         </Link>                    */}
                         <Link
-                            data-tooltip="View Detail"
                             className="ui mini icon button detail-btn"
                             to={`/user/dashboard/product/detail/${packageData._id}`}
                             key={`view__1`}

@@ -4,6 +4,8 @@ import Routes from './Routes';
 import TabbedView from '../TabbedView';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import '../../assets/base/form-base-style.scss';
+import './assets/style.scss';
 
 class Profile extends React.Component {
   static propTypes = {
@@ -17,7 +19,7 @@ class Profile extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div class="mr-5">
         <TabbedView items={this.state.tabs} Link={NavLink} />
         <Routes />
       </div>
