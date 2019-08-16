@@ -1,4 +1,7 @@
 import React from 'react';
+
+import { Progress } from 'semantic-ui-react'
+
 import {
   Grid,
   Form,
@@ -76,7 +79,9 @@ const ViewPracticeQuestion = props => {
    ]
 
   return (
+    
     <div>
+      
       <Grid>
         {data.length > 0 && !show_final_result && (
           <Grid.Column largeScreen={16} widescreen={16}>
@@ -175,10 +180,10 @@ const ViewPracticeQuestion = props => {
                         //              mockData.data.question_answer[data[questionIdx].questionnaire_id] : ''}
                         value ={saveAnswerResponse.product_id == productId && saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
                                    saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] : '' }             
-                        // onChange={(e, se) =>
-                        //    handleAnswerChangeSubjective(e, se, data[questionIdx].questionnaire_id)}
                         onChange={(e, se) =>
-                          handleAnswerChange(e, se, '', questionIdx, data[questionIdx].questionnaire_id)}
+                           handleAnswerChangeSubjective(e, se, data[questionIdx].questionnaire_id)}
+                        // onChange={(e, se) =>
+                        //   handleAnswerChange(e, se, '', questionIdx, data[questionIdx].questionnaire_id)}
                        />
                        </Form.Field>
                        <Form.Field>

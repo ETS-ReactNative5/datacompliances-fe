@@ -43,6 +43,8 @@ import {
   loadPackageExamsRequest,
 } from './actions';
 
+import './assests/style.scss';
+
 const mapStateToProps = createStructuredSelector({
   isSuccess: makeSelectSuccess(),
   // isRequesting: makeSelectRequesting(),
@@ -149,7 +151,7 @@ class ExamDisplay extends React.Component {
     //   message = <Toaster message={errorResponse} timeout={5000} error />;
     // }
     return (
-      <div>
+      <div className="mr-5">
         {message && message}
         <h1 className="main_title">
           {this.props.location && this.props.location.state
@@ -162,14 +164,14 @@ class ExamDisplay extends React.Component {
              {data && data.length > 0 ? (
               data.map((exam, idx) => (
                 <Grid.Column
-                  mobile={16}
-                  tablet={8}
-                  computer={4}
+                  
                   key={`exam_${idx}`}
                 >
-                  <div className="medi__quiz">
+                  <div className="two-col-grid">
+                    <div className="product-image">
                     {exam.image_name.document_name ? (
                       <img
+                        className="product-img"
                         src={`${DOCUMENT_URL_UPDATE}${
                           exam.image_name.document_name
                         }`}
@@ -178,28 +180,19 @@ class ExamDisplay extends React.Component {
                     ) : (
                       <img src={mediquiz} />
                     )}
-                    <div className="quiz__dis">
-                      <h3>{exam.title}</h3>
-                      {exam.time_limit > 0 && (
-                        <div className="time_limit">
-                          <span>Complexity Level: {exam.complexity_level}</span>
-                          <i className="icon-clock">
-                            <span>{`${exam.time_limit}min`}</span>
-                          </i>
-                        </div>
-                      )}
-
-                      {/* <span>2019-01-14 00:18</span> */}
-                      <p>Description: {exam.description}</p>
+                    </div>
+                    <div className="">
+                      <h3 className="product-title">{exam.title}</h3>
+                      <p className="product-description">Description: {exam.description}</p>
                       <Link
-                          className="ui vertical primary animated button"
+                          className="button buy-btn"
                           to={`/user/dashboard/product-display/questions/${exam._id}`}
                           role="button"
                           disabled={Object.keys(this.state.data[idx]).includes(
                             'quiz_type',
                           )}
                         >
-                          Answer Questions
+                          Start your assessment
                         </Link>
                       {/* <Form>
                         <Form.Field>

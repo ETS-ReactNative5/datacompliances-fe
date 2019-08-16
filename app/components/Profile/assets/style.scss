@@ -5,3 +5,21 @@
     }
   }
 }
+input {
+  border-radius: 25px !important;
+}
+input[type="text"]{
+  border-radius: 25px !important; 
+}
+.ui.selection.dropdown{
+  border-radius: 25px !important;
+}
+.pos-rel{
+  position: relative;
+}
+.indicator{
+  .indicator_password_container{
+    position: relative;
+    width:100%;
+  }
+}

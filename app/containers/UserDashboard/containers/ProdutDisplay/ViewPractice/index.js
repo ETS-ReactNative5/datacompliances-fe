@@ -107,7 +107,7 @@ class ViewPractice extends React.Component {
   };
 
   componentDidMount() {
-    this.props.saveAnswerRequest({})
+    
     const { page, perPage, query } = this.state;
     let previousState = JSON.parse(
       localStorage.getItem(`previousState>${this.state.previousUrl}`),
@@ -129,6 +129,12 @@ class ViewPractice extends React.Component {
       : null;
       if (exam_id) {
         this.props.getQuestionRequest(exam_id, '111');
+        const payload ={
+          user_id: this.props.currentUser.toJS()._id,
+          product_id: this.props.match.params.product_id,
+          question_answer: {}
+        }
+        this.props.saveAnswerRequest(payload)
       }
       this.setState(
         JSON.parse(
@@ -147,6 +153,12 @@ class ViewPractice extends React.Component {
       }
       if (exam_id) {
         this.props.getQuestionRequest(exam_id, '111');
+        const payload ={
+          user_id: this.props.currentUser.toJS()._id,
+          product_id: this.props.match.params.product_id,
+          question_answer: {}
+        }
+        this.props.saveAnswerRequest(payload)
       }
       if (exam_id) {
         this.props.examRequest(exam_id);
@@ -557,6 +569,7 @@ class ViewPractice extends React.Component {
           <h1 className="main_title">Questionnaire</h1>
         )}
         {/* {console.log(this.state.exam_id,'lll>>>>>>',)} */}
+        {console.log(saveAnswerResponse,'oooooo')}
         <ViewPracticeQuestion
           data={data}
           saveAnswerResponse={saveAnswerResponse}
