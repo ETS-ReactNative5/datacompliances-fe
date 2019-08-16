@@ -17,6 +17,7 @@ import SubscribedProducts from '../containers/ProductList/Cart/SubscribedProduct
 import ProductDisplay from '../containers/ProdutDisplay/Loadable';
 import ViewPractice from '../containers/ProdutDisplay/ViewPractice/Loadable';
 import ViewExam from '../containers/ProdutDisplay/ViewExam/Loadable';
+import ViewProductQuestions from '../containers/ProdutDisplay/ViewPractice/Loadable';
 
 function check(status) {
 	let isValid = false,
@@ -94,6 +95,11 @@ function UserRoutes({ location, status }) {
         exact
         path="/user/dashboard/trial/product-display/exam-quiz/:exam_id"
         component={ViewExam}
+      />
+	   <Route
+        exact
+        path="/user/dashboard/product-display/questions/:product_id"
+        component={ViewProductQuestions}
       />
       <Route
         exact

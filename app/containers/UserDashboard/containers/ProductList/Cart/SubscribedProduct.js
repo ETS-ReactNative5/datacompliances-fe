@@ -34,33 +34,6 @@ import pkgimg from 'assets/images/pkg_lst1.jpg';
 import nt_fnd_img from 'assets/images/not_found_img.png';
 import '../../../assets/card.scss';
 
-const mockData = { 
-  "status":200,
-  "data":{ 
-     "dataList":[ 
-        { 
-           "_id":"50637d80-b9fe-11e9-b0d4-1b64d2910f02",
-           "title":"2019 Privacy, Cyber Security and Compliance Queries",
-           "description":"On the occasion of new year, medicrony gifts a complete set with rationale consisting of 50 questions based on LookSewa curriculum.",
-           "price":50,
-           "image_name":{ 
-              "document_name":"mcqsPackage-1555165050853-c8b40.png",
-              "document_original_name":"surf school (17).png",
-              "document_mimetype":"image/png"
-           },
-           "included_features":[ 
-              { 
-                 "feature":"Extra Layer Security included ",
-                 "highlighted_feature":true
-              }
-           ]
-        }
-     ],
-     "totalItems":1,
-     "currentPage":1
-  }
-}
-
 /* eslint-disable react/prefer-stateless-function */
 export class SubscribedPackage extends React.Component {
   state = {
@@ -71,7 +44,7 @@ export class SubscribedPackage extends React.Component {
   };
 
   componentDidMount() {
-    this.props.fetchSubscribedPackage();
+    this.props.fetchSubscribedProduct();
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.subscribedPackage != this.props.subscribedPackage) {
@@ -86,45 +59,43 @@ export class SubscribedPackage extends React.Component {
         <h1 className="main_title">Your Purchased Product</h1>
         <div className="product-listing">
           <div className="product-grid">
-            {mockData.data.dataList.length > 0 ? (
-              mockData.data.dataList.map((packageData, idx) => (
+            {data.length > 0 ? (
+                  data.map((packageData, idx) => (
                 <div key={`subscribed${idx}`} className="product-item">
                   <div className="product-wrap">
-                    
-                   
-                      <p className="product-title">{packageData.title}</p>
+                      <p className="product-title">{packageData.product.title}</p>
                       <ul class="feature-list">
                         {packageData &&
                           packageData.included_features &&
                           packageData.included_features.map((feature, idx) => (
                             <li key={`feature${idx}`}>
                               <i className="icon-check"/>
-                              {feature.feature}
+                             <span> {feature.feature}</span>
                             </li>
                           ))}
                           <li>
                               <i className="icon-check"/>
-                             <span>Industry:</span> Finance
+                             <span>Industry: Finance</span> 
                           </li>
                           <li>
                               <i className="icon-check"/>
-                             <span>Country:</span> France
+                             <span>Country: France</span> 
                           </li>
                           <li>
                               <i className="icon-check"/>
-                             <span>Questionnaire:</span> 100 Questions
+                             <span>Questionnaire: 100 Questions</span>
                           </li>
                       </ul>
                       <div className="buttons-wrap">
                       <Link 
                         to={{
                           pathname: `/user/dashboard/product-display/${
-                            packageData._id
+                            packageData.product._id
                           }`,
                           state: { title: packageData.title },
                         }}
                       >
-                        <button class="detail-btn">Answer the Questions</button>
+                        <button className="detail-btn">See Details</button>
                       </Link>
                       </div>
                     <span className="ribbon">Purchased
@@ -177,7 +148,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchSubscribedPackage: () => dispatch(loadSubscribedPackageRequest()),
+  fetchSubscribedProduct: () => dispatch(loadSubscribedPackageRequest()),
 });
 
 const withConnect = connect(

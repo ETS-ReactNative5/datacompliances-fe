@@ -39,6 +39,62 @@ import {
 } from './actions';
 import ViewPracticeQuestion from './ViewPracticeQuestion';
 
+
+const mockData2 = { 
+  "status":200,
+  "data":{ 
+     "dataList":[ 
+        { 
+           "_id":"c0970ce0-5dd6-11e9-aa52-2bb5c8bae8ce",
+           "question":"Most common accident during use of DDT is due to",
+           "question_slug":"most-common-accident-during-use-of-ddt-is-due-to",
+           "point":2,
+           "multi_answer_applicable":false,
+           "answer_tip":"",
+           "time_limit_applicable":false,
+           "time_limit_answer":"",
+           "report_issue":[ 
+
+           ],
+           "answers":[ 
+              { 
+                 "answer":"Swallowing ",
+                 "rationale":"",
+                 "is_answer_correct_option":false,
+                 "further_reading":"",
+                 "id":"c0970ce1-5dd6-11e9-aa52-2bb5c8bae8ce"
+              },
+              { 
+                 "answer":"Contact ",
+                 "rationale":"",
+                 "is_answer_correct_option":true,
+                 "further_reading":"",
+                 "id":"c0970ce2-5dd6-11e9-aa52-2bb5c8bae8ce"
+              },
+              { 
+                 "answer":"Injection ",
+                 "rationale":"",
+                 "is_answer_correct_option":false,
+                 "further_reading":"",
+                 "id":"c0970ce3-5dd6-11e9-aa52-2bb5c8bae8ce"
+              },
+              { 
+                 "answer":"Inhalation ",
+                 "rationale":"",
+                 "is_answer_correct_option":false,
+                 "further_reading":"",
+                 "id":"c0970ce4-5dd6-11e9-aa52-2bb5c8bae8ce"
+              }
+           ],
+           "category_id":"5946c500-2512-11e9-8c86-853685e9f68b",
+           "images":[ 
+
+           ],
+        }
+     ]
+  }
+}
+
 const mapStateToProps = createStructuredSelector({
   isSuccess: makeSelectSuccess(),
   isRequesting: makeSelectRequesting(),
@@ -111,14 +167,21 @@ class ViewPractice extends React.Component {
       window.location.href ===
       (previousState !== null ? previousState.previousUrl : '')
     ) {
+      //......................................................
+      let exam_id = this.props.match.params.product_id
+      ? this.props.match.params.product_id
+      : null;
+      if (exam_id) {
+        this.props.getQuestionRequest(exam_id, '111');
+      }
       this.setState(
         JSON.parse(
           localStorage.getItem(`previousState>${this.state.previousUrl}`),
         ),
       );
     } else {
-      let exam_id = this.props.match.params.exam_id
-        ? this.props.match.params.exam_id
+      let exam_id = this.props.match.params.product_id
+        ? this.props.match.params.product_id
         : null;
       let url = window.location.href.split('/');
       this.setState({ url });
@@ -126,8 +189,8 @@ class ViewPractice extends React.Component {
       if (exam_id && url.includes('trial')) {
         this.props.fetchTrialQuestions(exam_id);
       }
-      if (exam_id && package_id) {
-        this.props.getQuestionRequest(exam_id, this.props.location.state.id);
+      if (exam_id) {
+        this.props.getQuestionRequest(exam_id, '111');
       }
       if (exam_id) {
         this.props.examRequest(exam_id);
@@ -489,8 +552,9 @@ class ViewPractice extends React.Component {
       <div>
         {message && message}
         {!show_final_result && (
-          <h1 className="main_title">Practice Questionnaire</h1>
+          <h1 className="main_title">Questionnaire</h1>
         )}
+        {/* {console.log(data,'lll>>>>>>',)} */}
         <ViewPracticeQuestion
           data={data}
           page={page}

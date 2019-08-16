@@ -14,7 +14,7 @@ $btn-blue:#068DF8;
 
   .login-form{
     margin: 0 auto;
-    min-width: 360px;
+    width: 360px;
     background: #fff;
     padding: 50px 35px;
     box-shadow: $box-shadow;
@@ -90,7 +90,7 @@ $btn-blue:#068DF8;
 
 .negative.message{
   
-  p{color:red;}
+  p{color:#fff;}
 }
 
 .forgot-pass{
@@ -125,6 +125,17 @@ $btn-blue:#068DF8;
     transform: rotate(-180deg);
   }
 }
+
+.indicator_password_container{
+  position: absolute;
+    width: 94%;
+    top: 95%;
+    .ui.tiny.progress{
+      border-radius: 25px;
+      height: 10px;
+    }
+}
+
 .form__group input:-webkit-autofill,
 .form__group input:-webkit-autofill:hover,
 .form__group input:-webkit-autofill:focus {

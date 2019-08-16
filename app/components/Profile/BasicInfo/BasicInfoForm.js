@@ -131,6 +131,7 @@ const BasicInfoForm = ({
       {/* <h3>Address</h3> */}
       <Form.Group widths="equal">
         <InputField
+          label="Address Line 1"
           placeholder="address line 1"
           type="text"
           // label="Address Line 1"
@@ -141,7 +142,7 @@ const BasicInfoForm = ({
         <InputField
           type="text"
           placeholder="address line 2"
-          // label="Address Line 2"
+          label="Address Line 2"
           name="address_address_line_2"
           value={user.address_address_line_2 || ''}
           onChange={handleChange}
@@ -149,6 +150,7 @@ const BasicInfoForm = ({
       </Form.Group>
       <Form.Group widths="equal">
         <InputField
+           label="City"
           type="text"
           placeholder="City"
           name="address_city"
@@ -156,6 +158,7 @@ const BasicInfoForm = ({
           onChange={handleChange}
         />
         <InputField
+          label="State/Province/Region"
           type="text"
           placeholder="State/Province/Region"
           name="address_state_region_province"
@@ -165,7 +168,9 @@ const BasicInfoForm = ({
       </Form.Group>
       <Form.Group widths="equal">
         <Form.Field>
+          <label>Country</label>
           <select
+            
             style={{ padding: '8px 6px' }}
             className="ui selection dropdown"
             name="address_country"
@@ -176,7 +181,9 @@ const BasicInfoForm = ({
           </select>
         </Form.Field>
         <Form.Field>
+        <label>ZIP/Postal Code</label>
           <Input>
+           
             <input
               type="text"
               placeholder="ZIP/Postal Code"

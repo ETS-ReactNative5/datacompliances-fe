@@ -41,7 +41,7 @@ function* loadSubscribedPackage() {
   const token = localStorage.getItem('token');
   yield fork(
     Api.get(
-      'package-subscription/detail',
+      'order/user',
       actions.loadSubscribedPackageSuccess,
       actions.loadSubscribedPackageFailure,
       token,
