@@ -64,7 +64,7 @@ export class SubscribedPackage extends React.Component {
                 <div key={`subscribed${idx}`} className="product-item">
                   <div className="product-wrap">
                       <p className="product-title">{packageData.product.title}</p>
-                      <ul class="feature-list">
+                      <ul className="feature-list">
                         {packageData &&
                           packageData.included_features &&
                           packageData.included_features.map((feature, idx) => (

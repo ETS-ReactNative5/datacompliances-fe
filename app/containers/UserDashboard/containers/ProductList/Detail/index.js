@@ -149,17 +149,6 @@ export class ProductList extends React.Component {
           return <div className="table-trim">{data.added_on}</div>;
         },
       },
-      {
-        key: 5,
-        name: 'Actions',
-        format: data => {
-          return (
-            <div className="action">
-              {filterActions.map(action => action.format(data))}
-            </div>
-          );
-        },
-      },
     ];
     return (
       <div className="mr-4">
