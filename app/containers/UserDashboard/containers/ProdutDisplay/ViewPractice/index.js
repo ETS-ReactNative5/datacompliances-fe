@@ -28,6 +28,7 @@ import {
   makeSelectResultResponse,
   makeSelectFavSuccess,
   makeSelectFavFaliure,
+  makeSelectSaveAnswerResponse
 } from './selectors';
 import {
   loadAllQuestionnaireRequest,
@@ -39,6 +40,7 @@ import {
   loadTrialQuestionnaireRequest,
   postResultRequest,
   postQuestionScoreRequest,
+  saveAnswerRequest
 } from './actions';
 import ViewPracticeQuestion from './ViewPracticeQuestion';
 
@@ -54,7 +56,9 @@ const mapStateToProps = createStructuredSelector({
   favoriteQuestions: makeSelectGetFavoriteQuestion(),
   favSuccess: makeSelectFavSuccess(),
   favFailure: makeSelectFavFaliure(),
-  currentUser:makeSelectUser()
+  currentUser: makeSelectUser(),
+  saveAnswerResponse: makeSelectSaveAnswerResponse()
+
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -72,6 +76,7 @@ const mapDispatchToProps = dispatch => ({
   clearMessage: () => dispatch(clearMessage()),
   postResult: result => dispatch(postResultRequest(result)),
   postQuestionScore: score => dispatch(postQuestionScoreRequest(score)),
+  saveAnswerRequest: payload => dispatch(saveAnswerRequest(payload))
 });
 var check = 0;
 let score_arr = [];
@@ -85,6 +90,7 @@ class ViewPractice extends React.Component {
   // };
 
   state = {
+    payload:{},
     page: 1,
     perPage: 1,
     query: {},
@@ -97,9 +103,11 @@ class ViewPractice extends React.Component {
     count: 0,
     fav_questions: [],
     previousUrl: window.location.href,
+    saveAnswerResponse:{}
   };
 
   componentDidMount() {
+    this.props.saveAnswerRequest({})
     const { page, perPage, query } = this.state;
     let previousState = JSON.parse(
       localStorage.getItem(`previousState>${this.state.previousUrl}`),
@@ -147,6 +155,14 @@ class ViewPractice extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+
+    if ((nextProps.saveAnswerResponse !== this.props.saveAnswerResponse) && nextProps.saveAnswerResponse.size > 0) {
+      // console.log(nextProps.saveAnswerResponse && nextProps.saveAnswerResponse.toJS(),'>>>>>>>>>>>>>',this.props.saveAnswerResponse,'.......',nextProps.saveAnswerResponse == {})
+      this.setState({
+        saveAnswerResponse: nextProps.saveAnswerResponse && nextProps.saveAnswerResponse.toJS(),
+      });
+    }
+
     if (nextProps.getQuestionSucces !== this.props.getQuestionSucces) {
       this.setState(
         {
@@ -251,14 +267,36 @@ class ViewPractice extends React.Component {
     this.props.clearMessage();
   }
 
-  handleAnswerChange = (e, event, answerIdx, mainIdx, questionId) => {
-    // console.log(answerIdx,'sssss',mainIdx,'sssss',event,'----',questionId,'=>>pro_id==',this.props.match.params.product_id,'...>',this.props.currentUser.toJS()._id)
+  handleAnswerChangeSubjective = (e, event, questionId) => {
     const payload ={
       user_id: this.props.currentUser.toJS()._id,
       product_id: this.props.match.params.product_id,
-      question_id: questionId,
-      answer: event.value
+      question_answer: {
+        [questionId]: event.value
+      }
     }
+    this.setState({saveAnswerResponse: payload})
+  }
+
+  saveSubjectiveAnswer = () => {
+    // console.log(this.state.subjectiveAnswer)
+    this.props.saveAnswerRequest(this.state.subjectiveAnswer)
+  }
+
+  handleAnswerChange = (e, event, answerIdx, mainIdx, questionId) => {
+    // console.log(answerIdx,'sssss',mainIdx,'sssss>',event.value,'----',questionId,'=>>pro_id==',this.props.match.params.product_id,'...>',this.props.currentUser.toJS()._id)
+    // console.log(event,'>><<')
+    
+    const payload ={
+      user_id: this.props.currentUser.toJS()._id,
+      product_id: this.props.match.params.product_id,
+      question_answer: {
+        [questionId]: event.value
+      }
+    }
+    // console.log(payload,'kkkkk')
+    this.props.saveAnswerRequest(payload)
+    // this.setState({payload: payload})
     let newState = this.state.data;
     newState[mainIdx].user_answer = event.value;
     newState[mainIdx].user_answer_number = answerIdx;
@@ -306,9 +344,13 @@ class ViewPractice extends React.Component {
     this.setState({ data: newData });
   };
 
-  handleNextButton = (event, mainIdx) => {
-    let { questionIdx } = this.state;
-    // console.log(event,'.........',mainIdx)
+  handleNextButton = (event, mainIdx, questionId) => {
+    let { questionIdx, payload } = this.state;
+    // console.log(payload,'kkkk',event)
+    // console.log(questionId,'=======',Object.keys(payload.question_answer)[0])
+    // if(questionId == Object.keys(payload.question_answer)[0] ) {
+    //   console.log(questionId,'.........',payload.question_answer,'ddddd>>',Object.keys(payload.question_answer)[0])
+    // }
     questionIdx++;
     this.setState({
       questionIdx: questionIdx,
@@ -451,6 +493,7 @@ class ViewPractice extends React.Component {
   //   }
   // };
   handleBackButton = (e, questionIdx) => {
+    // console.log('previous',this.state.payload)
     this.setState({
       questionIdx: questionIdx - 1,
       showAnswer: false,
@@ -494,6 +537,7 @@ class ViewPractice extends React.Component {
       url,
       fav_questions,
       favFailure,
+      saveAnswerResponse
     } = this.state;
     const { successResponse, errorResponse } = this.props;
     let message = null;
@@ -505,17 +549,22 @@ class ViewPractice extends React.Component {
         <Toaster message={favFailure && favFailure} timeout={5000} error />
       );
     }
+    // console.log(saveAnswerResponse,'llll')
     return (
       <div>
         {message && message}
         {!show_final_result && (
           <h1 className="main_title">Questionnaire</h1>
         )}
-        {/* {console.log(data,'lll>>>>>>',)} */}
+        {/* {console.log(this.state.exam_id,'lll>>>>>>',)} */}
         <ViewPracticeQuestion
           data={data}
+          saveAnswerResponse={saveAnswerResponse}
           page={page}
           perPage={perPage}
+          productId={this.state.exam_id}
+          handleAnswerChangeSubjective={this.handleAnswerChangeSubjective}
+          saveSubjectiveAnswer={this.saveSubjectiveAnswer}
           handleAnswerChange={this.handleAnswerChange}
           handleNextButton={this.handleNextButton}
           handleCheckButton={this.handleCheckButton}

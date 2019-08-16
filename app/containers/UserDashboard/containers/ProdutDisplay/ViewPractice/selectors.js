@@ -57,6 +57,13 @@ const makeSelectFavFaliure = () =>
     selectDomain,
     state => state.get('faverror'),
   );
+
+const makeSelectSaveAnswerResponse = () =>
+createSelector(
+  selectDomain,
+  state => state.get('saveAnswerResponse'),
+);
+  
 export {
   makeSelectSuccess,
   makeSelectResponse,
@@ -69,4 +76,5 @@ export {
   makeSelectResultResponse,
   makeSelectFavSuccess,
   makeSelectFavFaliure,
+  makeSelectSaveAnswerResponse
 };

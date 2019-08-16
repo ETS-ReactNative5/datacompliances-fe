@@ -20,10 +20,12 @@ const initialState = fromJS({
   resultResponse: {},
   faverror: '',
   favresponse: '',
+  saveAnswerResponse: {}
 });
 
 function viewPracticeReducer(state = initialState, action = {}) {
   switch (action.type) {
+    case types.SAVE_ANSWER_REQUEST:
     case types.LOAD_ALL_QUESTIONNAIRE_REQUEST:
     case types.FAVORITE_QUESTION_REQUEST:
     case types.UNFAVORITE_QUESTION_REQUEST:
@@ -39,6 +41,7 @@ function viewPracticeReducer(state = initialState, action = {}) {
         error: '',
         faverror: '',
         favresponse: '',
+        saveAnswerResponse: {}
       });
     case types.POST_QUESTION_SCORE_SUCCESS:
       return state.merge({
@@ -107,6 +110,16 @@ function viewPracticeReducer(state = initialState, action = {}) {
         resultResponse: fromJS(action.response.data),
       });
 
+    case types.SAVE_ANSWER_SUCCESS:
+      console.log(action.response.data,'gggg')
+    return state.merge({
+      requesting: false,
+      success: true,
+      response: action.response.message,
+      error: null,
+      saveAnswerResponse: fromJS(action.response.data),
+    });  
+
     case types.FAVORITE_QUESTION_FAILURE:
     case types.UNFAVORITE_QUESTION_FAILURE:
       return state.merge({
@@ -115,7 +128,8 @@ function viewPracticeReducer(state = initialState, action = {}) {
         favresponse: '',
         faverror: action.error.message,
       });
-
+    
+    case types.SAVE_ANSWER_FAILURE:  
     case types.LOAD_ALL_QUESTIONNAIRE_FAILURE:
     case types.LOAD_EXAM_BY_ID_FAILURE:
     case types.LOAD_ALL_FAVORITE_QUESTIONNAIRE_FAILURE:

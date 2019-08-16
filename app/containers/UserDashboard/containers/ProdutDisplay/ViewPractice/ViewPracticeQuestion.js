@@ -25,12 +25,29 @@ import {
 import TimerComponent from '../Timer';
 import { number } from 'prop-types';
 
+const mockData = {
+  "status": 200,
+  "data": {
+    "_id": "d1519df0-bfdf-11e9-9022-197a96d8b532",
+    "user_id": "dc5275e0-ba5c-11e9-a6c7-31c1c9cd3aec",
+    "product_id": "50637d80-b9fe-11e9-b0d4-1b64d2910f02",
+    "question_answer": {
+      // "317854b0-b907-11e9-910c-5db73aa5a3fa": "Yes",
+      // "19d7d910-be53-11e9-94d7-a5e0e6414811": "Option 4 is this",
+      // "26471ec0-be5a-11e9-94d7-a5e0e6414811": "Sarik"
+    }
+  }
+}
+
 const ViewPracticeQuestion = props => {
   const {
     data,
+    productId,
     page,
     perPage,
     handleAnswerChange,
+    handleAnswerChangeSubjective,
+    saveSubjectiveAnswer,
     handleNextButton,
     handleViewResultButton,
     questionIdx,
@@ -50,6 +67,7 @@ const ViewPracticeQuestion = props => {
     handleJump,
     correctAnswers,
     attempted_length,
+    saveAnswerResponse
   } = props;
 
    const yesno = [
@@ -74,47 +92,32 @@ const ViewPracticeQuestion = props => {
               <Form>
                 <h1>{data[questionIdx].question}</h1>
                 <Form.Field>
-                {/* {console.log(data[questionIdx].answers,'ffffff')} */}
                   {data[questionIdx].answers.length > 0 &&
                     data[questionIdx].answers.map((ans, idx) =>
-                      !data[questionIdx].multi_answer_applicable ? (
                         <div key={`ans${idx}`}>
+                          {/* {console.log(mockData.data.product_id,'=====',productId)} */}
                           <Radio
                             disabled={is_radio_disabled}
                             label={`${ans.answer}`}
                             value={ans.answer}
                             name={`ans${questionIdx}`}
-                            checked={
-                              data[questionIdx].user_answer === ans.answer
+                            // checked={
+                            //   data[questionIdx].user_answer === ans.answer
+                            // }
+                            // mockData.data.product_id == this.props.match.params.product_id &&
+                            // checked={ mockData.data.product_id == productId &&
+                            //         mockData.data.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
+                            //       mockData.data.question_answer[data[questionIdx].questionnaire_id] === ans.answer : false
+                            // }
+                            checked={ saveAnswerResponse.product_id == productId &&
+                              saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
+                              saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] === ans.answer : false
                             }
                             onChange={(e, se) =>
                               handleAnswerChange(e, se, idx, questionIdx, data[questionIdx].questionnaire_id)
                             }
                           />
                         </div>
-                      ) : (
-                        <div key={`ans${idx}`}>
-                          <Checkbox
-                            disabled={is_radio_disabled}
-                            label={`${ans.answer}`}
-                            value={ans.answer}
-                            name={`ans${questionIdx}`}
-                            checked={
-                              (data &&
-                                data.length > 0 &&
-                                data[questionIdx] &&
-                                data[questionIdx].user_answers &&
-                                data[questionIdx].user_answers.includes(
-                                  ans.answer,
-                                )) ||
-                              false
-                            }
-                            onChange={(e, se) =>
-                              handleAnswerChange(e, se, idx, questionIdx,data[questionIdx].questionnaire_id)
-                            }
-                          />
-                        </div>
-                      ),
                     )}
                 </Form.Field>
               </Form>
@@ -125,20 +128,27 @@ const ViewPracticeQuestion = props => {
                       <h1>{data[questionIdx].question}</h1> 
                    
                       <Form>
-                        {/* {console.log(data[questionIdx].questionnaire_id,'jsjsjsj',yesno)} */}
                         <Form.Field>
-
                          { yesno.length > 0 &&
                            yesno.map((ans, idx) => (
                            <div key={`ans${idx}`}>
+                             {/* {console.log(ans.answer,'ggghhhjjj', mockData.data.question_answer[data[questionIdx].questionnaire_id])} */}
                            <Radio
                              disabled={is_radio_disabled}
                              label={`${ans.answer}`}
                              value={ans.answer}
                              name={`ans${questionIdx}`}
-                             checked={
-                               data[questionIdx].user_answer === ans.answer
-                             }
+                            //  checked={
+                            //    data[questionIdx].user_answer === ans.answer
+                            //  }
+                              // checked={
+                              //   mockData.data.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
+                              //       mockData.data.question_answer[data[questionIdx].questionnaire_id] === ans.answer : false
+                              // }
+                              checked={ saveAnswerResponse.product_id == productId &&
+                                saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
+                                saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] === ans.answer : false
+                              }
                              onChange={(e, se) =>
                                handleAnswerChange(e, se, idx, questionIdx, data[questionIdx].questionnaire_id)
                              }
@@ -150,11 +160,31 @@ const ViewPracticeQuestion = props => {
                          </Form>
                         </div>
                   }
-                  { data[questionIdx] && data[questionIdx].type_of_questions == "Subjective" &&
+                  {data[questionIdx] && data[questionIdx].type_of_questions == "Subjective" &&
                   <div>
                    <h1>{data[questionIdx].question}</h1> 
+                   <Form onSubmit={() =>
+                         saveSubjectiveAnswer()}>
+                     <Form.Field>
                     <TextArea 
-                       placeholder='Tell us more' />
+                       placeholder='Tell us more' 
+                       cols={100}
+                       rows={5}
+                      //  value={ans.answer || ''}
+                        // value ={ mockData.data.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
+                        //              mockData.data.question_answer[data[questionIdx].questionnaire_id] : ''}
+                        value ={saveAnswerResponse.product_id == productId && saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
+                                   saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] : '' }             
+                        // onChange={(e, se) =>
+                        //    handleAnswerChangeSubjective(e, se, data[questionIdx].questionnaire_id)}
+                        onChange={(e, se) =>
+                          handleAnswerChange(e, se, '', questionIdx, data[questionIdx].questionnaire_id)}
+                       />
+                       </Form.Field>
+                       <Form.Field>
+                       <Button color="yellow" type='submit'>Save Answer</Button>
+                       </Form.Field>
+                     </Form> 
                     </div>
             
                   }
@@ -164,6 +194,7 @@ const ViewPracticeQuestion = props => {
                   <i className="icon-arrow-left mr-1" /> Previous
                 </Button>
               )}
+              {/* {console.log(data[questionIdx].questionnaire_id,'test')} */}
               {questionIdx < data.length - 1 && (
                 <Button
                   // disabled={
@@ -172,13 +203,13 @@ const ViewPracticeQuestion = props => {
                   //     data[questionIdx].user_answers &&
                   //     data[questionIdx].user_answers.length < 0)
                   // }
-                  onClick={e => handleNextButton(e, questionIdx)}
+                  onClick={e => handleNextButton(e, questionIdx, data[questionIdx].questionnaire_id)}
                 >
                   Next
                   <i className="icon-arrow-right ml-1" />
                 </Button>
               )}
-              {questionIdx === data.length - 1 && (
+              {/* {questionIdx === data.length - 1 && (
                 <Button
                   color="red"
                   content="View Result"
@@ -190,20 +221,7 @@ const ViewPracticeQuestion = props => {
                   // }
                   onClick={e => handleViewResultButton(e, questionIdx)}
                 />
-              )}
-              {questionIdx === data.length - 1 && (
-                <Button
-                  color="teal"
-                  content="Submit"
-                  // disabled={
-                  //   !data[questionIdx].user_answer ||
-                  //   (data[questionIdx] &&
-                  //     data[questionIdx].user_answers &&
-                  //     data[questionIdx].user_answers.length < 0)
-                  // }
-                  // onClick={e => handleViewResultButton(e, questionIdx)}
-                />
-              )}
+              )} */}
               {showAnswer && (
                 <div
                   className={
@@ -237,7 +255,7 @@ const ViewPracticeQuestion = props => {
                   )}
                 </div>
               )}
-              {data && (
+              {/* {data && (
                 <div className="pagination">
                   {data &&
                     data.length > 0 &&
@@ -252,7 +270,7 @@ const ViewPracticeQuestion = props => {
                       </Label>
                     ))}
                 </div>
-              )}
+              )} */}
             </div>
           </Grid.Column>
         )}

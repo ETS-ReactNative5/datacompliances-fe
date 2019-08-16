@@ -188,6 +188,29 @@ function* loadAllFavoriteQuestion(action) {
   yield cancel(successWatcher);
 }
 
+function* redirectOnSaveAnswerSuccess() {
+  const action = yield take(types.SAVE_ANSWER_SUCCESS);
+  // executed on successful action
+  // yield put(push("/next-route"));
+}
+
+function* saveAnswerRequest(action) {
+  const token = localStorage.getItem('token');
+  const successWatcher = yield fork(redirectOnSaveAnswerSuccess);
+  const { payload } = action;
+  yield fork(
+    TenderKo.post(
+      'user-answer',
+      actions.saveAnswerSuccess,
+      actions.saveAnswerFailure,
+      payload,
+      token,
+    ),
+  );
+  yield take([LOCATION_CHANGE, types.POST_RESULT_FAILURE]);
+  yield cancel(successWatcher);
+}
+
 // Individual exports for testing
 export default function* viewPracticeWatcher() {
   // See example in containers/HomePage/sagas.js
@@ -211,4 +234,5 @@ export default function* viewPracticeWatcher() {
     loadAllFavoriteQuestion,
   );
   yield takeLatest(types.POST_QUESTION_SCORE_REQUEST, postQuestionScoreRequest);
+  yield takeLatest(types.SAVE_ANSWER_REQUEST, saveAnswerRequest);
 }
