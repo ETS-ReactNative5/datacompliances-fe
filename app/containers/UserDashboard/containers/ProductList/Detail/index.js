@@ -164,7 +164,6 @@ export class ProductList extends React.Component {
          <Button className="button buy-btn" onClick={this.buyProduct}>Buy this Product</Button>
 
          <h1 className="main_title mt-5">Top 5 Questionnaires</h1>
-         {console.log(questions,'......',questions.size)}
         {questions && questions.size > 0 &&
            <QuestionsTable
                 headers={headers}

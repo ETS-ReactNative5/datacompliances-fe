@@ -70,27 +70,27 @@ const ViewPracticeQuestion = props => {
     handleJump,
     correctAnswers,
     attempted_length,
-    saveAnswerResponse
+    saveAnswerResponse,
+    tempValue
   } = props;
 
    const yesno = [
            {answer: 'Yes'},
            {answer: 'No'}
    ]
-
+   
   return (
-    
     <div>
       
       <Grid>
         {data.length > 0 && !show_final_result && (
           <Grid.Column largeScreen={16} widescreen={16}>
             <div className="practiceqstn">
-              <div className="qstntitle">
+              {/* <div className="qstntitle">
                 <h4>
                   {questionIdx + 1} / {data.length}
                 </h4>
-              </div>
+              </div> */}
               <div className="addfav">
               </div>
              { data[questionIdx] && data[questionIdx].type_of_questions == "Objective" &&
@@ -178,12 +178,12 @@ const ViewPracticeQuestion = props => {
                       //  value={ans.answer || ''}
                         // value ={ mockData.data.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
                         //              mockData.data.question_answer[data[questionIdx].questionnaire_id] : ''}
-                        value ={saveAnswerResponse.product_id == productId && saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
-                                   saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] : '' }             
-                        onChange={(e, se) =>
-                           handleAnswerChangeSubjective(e, se, data[questionIdx].questionnaire_id)}
+                        value ={tempValue == '' && saveAnswerResponse.product_id == productId && saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
+                                   saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] : tempValue }             
                         // onChange={(e, se) =>
-                        //   handleAnswerChange(e, se, '', questionIdx, data[questionIdx].questionnaire_id)}
+                        //    handleAnswerChangeSubjective(e, se, data[questionIdx].questionnaire_id)}
+                        onChange={(e, se) =>
+                          handleAnswerChange(e, se, '', questionIdx, data[questionIdx].questionnaire_id)}
                        />
                        </Form.Field>
                        <Form.Field>

@@ -138,7 +138,7 @@ export class ProductList extends React.Component {
                         
                           <p className="product-title">{packageData.title}</p>
                           <p className="product-price">Rs.{packageData.price}</p>
-                          <ul class="feature-list">
+                          <ul className="feature-list">
                             <li>
                                 <i className="icon-check"/>
                               <span>Industry: Finance </span> 
