@@ -24,11 +24,12 @@ $btn-blue:#068DF8;
     font-style: italic;
   }
 .negative.message{
-    background:red;
+    background:#ea0000;
     color: #fff !important;
     padding: 10px 20px;
     box-shadow: 0px 0px 18px rgba(0,0,0,0.2);
     border-radius: 10px;
+    margin-bottom: 20px;
 }
 .form-control{
     border-radius: 25px !important;

@@ -149,17 +149,6 @@ export class ProductList extends React.Component {
           return <div className="table-trim">{data.added_on}</div>;
         },
       },
-      {
-        key: 5,
-        name: 'Actions',
-        format: data => {
-          return (
-            <div className="action">
-              {filterActions.map(action => action.format(data))}
-            </div>
-          );
-        },
-      },
     ];
     return (
       <div className="mr-4">
@@ -175,7 +164,6 @@ export class ProductList extends React.Component {
          <Button className="button buy-btn" onClick={this.buyProduct}>Buy this Product</Button>
 
          <h1 className="main_title mt-5">Top 5 Questionnaires</h1>
-         {console.log(questions,'......',questions.size)}
         {questions && questions.size > 0 &&
            <QuestionsTable
                 headers={headers}

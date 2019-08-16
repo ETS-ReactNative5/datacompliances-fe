@@ -95,6 +95,8 @@ class Password extends React.Component {
     }
     return (
       <div className="profile_section">
+        <div className="row">
+          <div className="col-md-8">
         <React.Fragment>
           {message && message}
           <Form className="form" onSubmit={this.handleSubmit}>
@@ -108,7 +110,7 @@ class Password extends React.Component {
                 name="old_password"
               />
             </div>
-            <div className="pos-rel field">
+            <div className="pos-rel field indicator">
               <PasswordInputField
                 password={data.password || ''}
                 placeholder="New Password"
@@ -116,8 +118,9 @@ class Password extends React.Component {
                 error={errors.password}
                 name="password"
               />
+              <PasswordIndicator password={data.password || ''} className="mt-2" />
             </div>
-            <PasswordIndicator password={data.password || ''} />
+            
             <div className="pos-rel field">
               <PasswordInputField
                 password={data.retyped_password || ''}
@@ -153,6 +156,8 @@ class Password extends React.Component {
             </Button>
           </Form>
         </React.Fragment>
+        </div>
+        </div>
       </div>
     );
   }

@@ -4,6 +4,10 @@
  *
  */
 
+export const SAVE_ANSWER_REQUEST = 'app/ViewPractice/SAVE_ANSWER_REQUEST';
+export const SAVE_ANSWER_SUCCESS = 'app/ViewPractice/SAVE_ANSWER_SUCCESS';
+export const SAVE_ANSWER_FAILURE = 'app/ViewPractice/SAVE_ANSWER_FAILURE';
+
 export const DEFAULT_ACTION_REQUEST = 'app/ViewPractice/DEFAULT_ACTION_REQUEST';
 export const DEFAULT_ACTION_SUCCESS = 'app/ViewPractice/DEFAULT_ACTION_SUCCESS';
 export const DEFAULT_ACTION_FAILURE = 'app/ViewPractice/DEFAULT_ACTION_FAILURE';

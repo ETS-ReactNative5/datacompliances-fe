@@ -7,6 +7,20 @@
 import action from 'utils/action';
 import * as types from './constants';
 
+
+export const saveAnswerRequest = action(
+  types.SAVE_ANSWER_REQUEST,
+  'payload',
+);
+export const saveAnswerSuccess = action(
+  types.SAVE_ANSWER_SUCCESS,
+  'response',
+);
+export const saveAnswerFailure = action(
+  types.SAVE_ANSWER_FAILURE,
+  'error',
+);
+
 export const defaultActionRequest = action(
   types.DEFAULT_ACTION_REQUEST,
   'payload',
