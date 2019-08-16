@@ -111,7 +111,6 @@ function viewPracticeReducer(state = initialState, action = {}) {
       });
 
     case types.SAVE_ANSWER_SUCCESS:
-      console.log(action.response.data,'gggg')
     return state.merge({
       requesting: false,
       success: true,

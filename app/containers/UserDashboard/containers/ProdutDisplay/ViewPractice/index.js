@@ -90,6 +90,8 @@ class ViewPractice extends React.Component {
   // };
 
   state = {
+    bit: false,
+    tempValue: '',
     payload:{},
     page: 1,
     perPage: 1,
@@ -291,14 +293,13 @@ class ViewPractice extends React.Component {
   }
 
   saveSubjectiveAnswer = () => {
-    // console.log(this.state.subjectiveAnswer)
-    this.props.saveAnswerRequest(this.state.subjectiveAnswer)
+    // console.log(this.state.payload,'::::::::')
+    this.props.saveAnswerRequest(this.state.payload)
   }
 
   handleAnswerChange = (e, event, answerIdx, mainIdx, questionId) => {
     // console.log(answerIdx,'sssss',mainIdx,'sssss>',event.value,'----',questionId,'=>>pro_id==',this.props.match.params.product_id,'...>',this.props.currentUser.toJS()._id)
-    // console.log(event,'>><<')
-    
+    if(event.as != 'textarea' )  {
     const payload ={
       user_id: this.props.currentUser.toJS()._id,
       product_id: this.props.match.params.product_id,
@@ -306,9 +307,20 @@ class ViewPractice extends React.Component {
         [questionId]: event.value
       }
     }
-    // console.log(payload,'kkkkk')
     this.props.saveAnswerRequest(payload)
-    // this.setState({payload: payload})
+  } else {
+    this.setState({bit:true, tempValue: event.value})
+    const payload ={
+      user_id: this.props.currentUser.toJS()._id,
+      product_id: this.props.match.params.product_id,
+      question_answer: {
+        [questionId]: event.value
+      }
+    }
+    this.setState({payload:payload})
+    // this.props.saveAnswerRequest(payload)
+
+  }
     let newState = this.state.data;
     newState[mainIdx].user_answer = event.value;
     newState[mainIdx].user_answer_number = answerIdx;
@@ -549,7 +561,8 @@ class ViewPractice extends React.Component {
       url,
       fav_questions,
       favFailure,
-      saveAnswerResponse
+      saveAnswerResponse,
+      tempValue
     } = this.state;
     const { successResponse, errorResponse } = this.props;
     let message = null;
@@ -569,9 +582,10 @@ class ViewPractice extends React.Component {
           <h1 className="main_title">Questionnaire</h1>
         )}
         {/* {console.log(this.state.exam_id,'lll>>>>>>',)} */}
-        {console.log(saveAnswerResponse,'oooooo')}
+        {/* {console.log(saveAnswerResponse,'oooooo')} */}
         <ViewPracticeQuestion
           data={data}
+          tempValue={tempValue}
           saveAnswerResponse={saveAnswerResponse}
           page={page}
           perPage={perPage}
