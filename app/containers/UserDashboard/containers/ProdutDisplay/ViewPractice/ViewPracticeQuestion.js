@@ -96,7 +96,7 @@ const ViewPracticeQuestion = props => {
               </div>
              { data[questionIdx] && data[questionIdx].type_of_questions == "Objective" &&
               <Form>
-                <h1 class="question-title">{data[questionIdx].question}</h1>
+                <h1 className="question-title">{data[questionIdx].question}</h1>
                 <Form.Field>
                   {data[questionIdx].answers.length > 0 &&
                     data[questionIdx].answers.map((ans, idx) =>
