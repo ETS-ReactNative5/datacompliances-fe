@@ -10,7 +10,8 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { Button, Card, Image, Icon } from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
+import Toaster from 'components/Toaster';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import { loadProductByIdRequest, getQuestionRequest, buyProductRequest} from '../actions';
@@ -100,6 +101,9 @@ export class ProductList extends React.Component {
   }
   render() {
     const { data, questions, userInfo } = this.state;
+    const {
+      successResponse,
+      errorResponse } = this.props
     const actions = [
       {
         key: 1,
@@ -150,18 +154,28 @@ export class ProductList extends React.Component {
         },
       },
     ];
+
+    let message = null;
+    if (successResponse) {
+      message = <Toaster message={successResponse} timeout={3000} success />;
+    }
+    if (errorResponse) {
+      message = <Toaster message={errorResponse} timeout={30000} error />;
+    }
+
     return (
       <div className="mr-4">
         <Helmet>
           <title>Product Details</title>
           <meta name="description" content="Description of PackageList" />
         </Helmet>
-       
+        {message && message}
         <h1 className="main_title">{data.title}</h1>
         <ProductView
                 viewdata={this.state.data}
+                buyProduct={this.buyProduct}
         />
-         <Button className="button buy-btn" onClick={this.buyProduct}>Buy this Product</Button>
+         {/* <Button className="button buy-btn" onClick={this.buyProduct}>Buy this Product</Button> */}
 
          <h1 className="main_title mt-5">Top 5 Questionnaires</h1>
         {questions && questions.size > 0 &&
