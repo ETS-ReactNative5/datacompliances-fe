@@ -35,6 +35,7 @@ import ProductView from './createProductview'
 import QuestionsTable from './QuestionsTable'
 import './assets/style.scss'
 import '../../../assets/table.scss'
+import moment from 'moment';
 
 
 
@@ -147,11 +148,9 @@ export class ProductList extends React.Component {
       },
       {
         name: 'Added On',
-        field: 'Added On',
+        field: 'added_on',
         key: 3,
-        format: data => {
-          return <div className="table-trim">{data.added_on}</div>;
-        },
+        format: data => moment(data.added_on, 'YYYY-MM-DD').format('YYYY-MM-DD'),
       },
     ];
 
