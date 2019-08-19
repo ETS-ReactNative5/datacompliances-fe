@@ -47,13 +47,13 @@ class Routes extends React.Component {
 				<Route
 					exact
 					path="/password-reset/user/:userid"
-					render={props => <ConfirmUser {...props} />}
+					render={props => <PasswordReset {...props} />}
 				/>
 
                 <Route
 					exact
 					path="/confirm/user/:userid"
-					render={props => <PasswordReset {...props} />}
+					render={props => <ConfirmUser {...props} />}
 				/>
 				<Route
 					path="/user/dashboard"

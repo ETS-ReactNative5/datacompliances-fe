@@ -30,6 +30,11 @@ const mainMenu = [
   //     },
   //   ],
   // },
+   {
+      title: 'Dashboard',
+      path: '/user/dashboard/',
+      icon: "icon-grid",
+    },
     {
     title: 'Product',
     path: '/',
@@ -90,14 +95,6 @@ class SideNavigation extends React.Component {
     return (
       <div className="sidebar-nav"> 
       <Accordion style={{ touchAction: 'none' }} as={Menu} vertical className="">
-        <Menu.Item>
-          <Link className="nav__link" to="/user/dashboard/">
-            <span className="nav__icon">
-              <i className="icon-grid" />
-            </span>
-            <span className="nav__text">Dashboard</span>
-          </Link>
-        </Menu.Item>
         {mainMenu &&
           mainMenu.length > 0 &&
           mainMenu.map((main, idx) => {

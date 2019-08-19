@@ -61,11 +61,20 @@ const BasicInfoForm = ({
         </div>
       )}
     </Form.Field>
+    {console.log(user,'>>>>>>>??????')}
     <div className="form__elements">
       <Form.Group widths="equal">
           <FormField
             label="First Name"
-            placeholder="first name"
+            placeholder="First Name"
+            name="first_name"
+            value={user.first_name || ''}
+            onChange={handleChange}
+            error={errors.first_name}
+          />
+           <FormField
+            label="Middle Name"
+            placeholder="Middle Name"
             name="first_name"
             value={user.first_name || ''}
             onChange={handleChange}
@@ -73,7 +82,7 @@ const BasicInfoForm = ({
           />
           <FormField
             label="Last Name"
-            placeholder="last name"
+            placeholder="Last Name"
             name="last_name"
             value={user.last_name || ''}
             onChange={handleChange}

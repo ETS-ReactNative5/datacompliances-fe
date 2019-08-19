@@ -18,6 +18,8 @@ import ProductDisplay from '../containers/ProdutDisplay/Loadable';
 import ViewPractice from '../containers/ProdutDisplay/ViewPractice/Loadable';
 import ViewProductQuestions from '../containers/ProdutDisplay/ViewPractice/Loadable';
 
+// import UserDashboard from '../containers/DashboardView/Loadable'
+
 function check(status) {
 	let isValid = false,
 		expired = true;
