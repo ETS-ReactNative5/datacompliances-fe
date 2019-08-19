@@ -110,6 +110,20 @@ class BasicInfo extends React.Component {
     }));
   };
 
+  handleDropDown = (e, se) => {
+		let errors = this.state.errors;
+		if (!!errors[se.name] && !!se.value) delete errors[se.name];
+		this.setState({ errors });
+		this.setState(
+		  {
+			data: {
+			  ...this.state.data,
+			  [se.name]: se.value,
+			},
+		  }
+		);
+	  };
+
   onDrop = imgFile => {
     imgFile[0].preview = URL.createObjectURL(imgFile[0]);
     this.setState({
@@ -141,6 +155,8 @@ class BasicInfo extends React.Component {
     const { data } = this.state;
     const errors = {};
     if (!data.first_name) errors.first_name = 'Can\'t be blank';
+    if (!data.company_name) errors.company_name = 'Can\'t be blank';
+    if (!data.industry) errors.industry = 'Can\'t be blank';
     if (data.first_name && data.first_name.length > 26)
       errors.first_name = 'Can\'t be more than 26 characters';
     if (data.first_name && data.first_name.length < 3)
@@ -213,6 +229,7 @@ class BasicInfo extends React.Component {
                 avatarImage={avatarImage}
                 onDrop={this.onDrop}
                 handleChange={this.handleChange}
+                handleDropDown={this.handleDropDown}
                 handleSubmit={this.handleSubmit}
                 isLoading={requesting}
                 datechange={this.handleDateChange}
