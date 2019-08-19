@@ -27,6 +27,7 @@ import {
 } from 'recharts';
 import TimerComponent from '../Timer';
 import { number } from 'prop-types';
+import '../assests/style.scss';
 
 const mockData = {
   "status": 200,
@@ -85,17 +86,17 @@ const ViewPracticeQuestion = props => {
       <Grid>
         {data.length > 0 && !show_final_result && (
           <Grid.Column largeScreen={16} widescreen={16}>
-            <div className="practiceqstn">
-              {/* <div className="qstntitle">
-                <h4>
+            <div className="question-wrap mr-5">
+              {/*
+                <h4 className="item">
                   {questionIdx + 1} / {data.length}
                 </h4>
-              </div> */}
+              */}
               <div className="addfav">
               </div>
              { data[questionIdx] && data[questionIdx].type_of_questions == "Objective" &&
               <Form>
-                <h1>{data[questionIdx].question}</h1>
+                <h1 class="question-title">{data[questionIdx].question}</h1>
                 <Form.Field>
                   {data[questionIdx].answers.length > 0 &&
                     data[questionIdx].answers.map((ans, idx) =>
@@ -195,13 +196,16 @@ const ViewPracticeQuestion = props => {
                   }
 
               {questionIdx != 0 && (
-                <Button onClick={e => handleBackButton(e, questionIdx)}>
+                <Button 
+                  className="buy-btn prev-btn"
+                onClick={e => handleBackButton(e, questionIdx)}>
                   <i className="icon-arrow-left mr-1" /> Previous
                 </Button>
               )}
               {/* {console.log(data[questionIdx].questionnaire_id,'test')} */}
               {questionIdx < data.length - 1 && (
                 <Button
+                  className="buy-btn next-btn"
                   // disabled={
                   //   !data[questionIdx].user_answer ||
                   //   (data[questionIdx] &&
