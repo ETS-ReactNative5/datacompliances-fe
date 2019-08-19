@@ -15,7 +15,7 @@ function* redirectOnMultiFactorAuthLoginSuccess() {
 function* multiFactorAuthLoginFlow(action) {
   const successWatcher = yield fork(redirectOnMultiFactorAuthLoginSuccess);
   yield fork(
-    XcelTrip.post(`api/multi-factor-auth/totp-validate/${action.userId}`, actions.multiFactorAuthLoginSuccess,
+    XcelTrip.post(`multi-factor-auth/totp-validate/${action.userId}`, actions.multiFactorAuthLoginSuccess,
       actions.multiFactorAuthLoginFailure, action.data));
   yield take([LOCATION_CHANGE, types.MULTI_FACTOR_AUTH_LOGIN_FAILURE]);
   yield cancel(successWatcher);

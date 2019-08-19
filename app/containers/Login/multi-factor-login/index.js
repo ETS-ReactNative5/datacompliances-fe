@@ -79,7 +79,7 @@ class MultiFactorLogin extends React.Component {
               {errorResponse}
             </p>}
           <i className="icon-lock text-lg"/><br/>
-          <h3 className="thin">XCELTRIP Multi Factor Auth Login</h3>
+          <h3 className="thin">PCSC Multi Factor Auth Login</h3>
           <p>Enter the token from your authenticator app</p>
           <Form onSubmit={this.handleSubmit}>
             <InputField
