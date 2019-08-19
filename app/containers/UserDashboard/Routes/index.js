@@ -16,7 +16,6 @@ import SubscribedProducts from '../containers/ProductList/Cart/SubscribedProduct
 
 import ProductDisplay from '../containers/ProdutDisplay/Loadable';
 import ViewPractice from '../containers/ProdutDisplay/ViewPractice/Loadable';
-import ViewExam from '../containers/ProdutDisplay/ViewExam/Loadable';
 import ViewProductQuestions from '../containers/ProdutDisplay/ViewPractice/Loadable';
 
 function check(status) {
@@ -91,11 +90,6 @@ function UserRoutes({ location, status }) {
         path="/user/dashboard/trial/product-display/practice-quiz/:exam_id"
         component={ViewPractice}
       />
-      <Route
-        exact
-        path="/user/dashboard/trial/product-display/exam-quiz/:exam_id"
-        component={ViewExam}
-      />
 	   <Route
         exact
         path="/user/dashboard/product-display/questions/:product_id"
@@ -106,13 +100,7 @@ function UserRoutes({ location, status }) {
         path="/user/dashboard/product-display/practice-quiz/:exam_id"
         component={ViewPractice}
       />
-      <Route
-        exact
-        path="/user/dashboard/product-display/exam-quiz/:exam_id"
-        component={ViewExam}
-      />
-
-		</Switch>
+	</Switch>
 	);
 }
 
