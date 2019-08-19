@@ -30,7 +30,9 @@ import injectReducer from 'utils/injectReducer';
 import reducer from './reducer';
 import saga from './sagas';
 import { compose } from 'redux';
-import Package from './containers/PackageList/Loadable';
+import Product from './containers/ProductList/Loadable';
+import SubscribedProducts from './containers/ProductList/Cart/SubscribedProduct'
+
 
 const mapStateToProps = createStructuredSelector({
   location: makeSelectLocation(),
@@ -144,6 +146,7 @@ class UserDashboard extends React.Component {
   };
 
   render() {
+    let url = window.location.href.split('/');
     return (
       <div className="dashboard-wrap">
         <TopNavigation
@@ -164,6 +167,15 @@ class UserDashboard extends React.Component {
       
 		<div className="main-wrap">		
           <div className="content-wrap">
+          {((url.length == 5 &&
+              url[3] == 'user' &&
+               url[4] == 'dashboard') ||
+          (url[5] == '' && url.length == 6)) && (
+            <div>
+            <SubscribedProducts />
+            <Product />
+            </div>
+          )}
             <Routes
               location={this.props.location}
               handleCartSize={this.handleCartSize}

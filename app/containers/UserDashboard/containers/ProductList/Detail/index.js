@@ -174,8 +174,6 @@ export class ProductList extends React.Component {
                 viewdata={this.state.data}
                 buyProduct={this.buyProduct}
         />
-         {/* <Button className="button buy-btn" onClick={this.buyProduct}>Buy this Product</Button> */}
-
          <h1 className="main_title mt-5">Top 5 Questionnaires</h1>
         {questions && questions.size > 0 &&
            <QuestionsTable
