@@ -65,25 +65,18 @@ export class SubscribedPackage extends React.Component {
                   <div className="product-wrap">
                       <p className="product-title">{packageData.product.title}</p>
                       <ul className="feature-list">
-                        {packageData &&
-                          packageData.included_features &&
-                          packageData.included_features.map((feature, idx) => (
-                            <li key={`feature${idx}`}>
-                              <i className="icon-check"/>
-                             <span> {feature.feature}</span>
-                            </li>
-                          ))}
+                         <li>
+                            <i className="icon-check"/>
+                            <span>Country: { packageData.product.country }</span> 
+                         </li>
                           <li>
-                              <i className="icon-check"/>
-                             <span>Industry: Finance</span> 
+                             <i className="icon-check"/>
+                             <span>Industry: { packageData.product.industry }</span> 
                           </li>
+                       
                           <li>
-                              <i className="icon-check"/>
-                             <span>Country: France</span> 
-                          </li>
-                          <li>
-                              <i className="icon-check"/>
-                             <span>Questionnaire: 100 Questions</span>
+                             <i className="icon-check"/>
+                             <span>Questionnaire: { packageData.product.questions.length }</span>
                           </li>
                       </ul>
                       <div className="buttons-wrap">

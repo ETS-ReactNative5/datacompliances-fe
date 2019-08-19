@@ -62,21 +62,21 @@ function* redirectOnLoadByIdSuccess() {
   // yield put(push("/next-route"));
 }
 
-function* loadExamByIdService(action) {
-  const token = localStorage.getItem('token');
-  const successWatcher = yield fork(redirectOnLoadByIdSuccess);
-  const { exam_id } = action;
-  yield fork(
-    TenderKo.get(
-      `mcqs-exam/${exam_id}`,
-      actions.loadExamByIdSuccess,
-      actions.loadExamByIdFailure,
-      token,
-    ),
-  );
-  yield take([LOCATION_CHANGE, types.LOAD_EXAM_BY_ID_FAILURE]);
-  yield cancel(successWatcher);
-}
+// function* loadExamByIdService(action) {
+//   const token = localStorage.getItem('token');
+//   const successWatcher = yield fork(redirectOnLoadByIdSuccess);
+//   const { exam_id } = action;
+//   yield fork(
+//     TenderKo.get(
+//       `mcqs-exam/${exam_id}`,
+//       actions.loadExamByIdSuccess,
+//       actions.loadExamByIdFailure,
+//       token,
+//     ),
+//   );
+//   yield take([LOCATION_CHANGE, types.LOAD_EXAM_BY_ID_FAILURE]);
+//   yield cancel(successWatcher);
+// }
 function* redirectOnFavoriteSuccess() {
   const action = yield take(types.FAVORITE_QUESTION_SUCCESS);
   // executed on successful action
@@ -218,7 +218,7 @@ export default function* viewPracticeWatcher() {
     types.LOAD_ALL_QUESTIONNAIRE_REQUEST,
     loadAllQuestionnaireService,
   );
-  yield takeLatest(types.LOAD_EXAM_BY_ID_REQUEST, loadExamByIdService);
+  // yield takeLatest(types.LOAD_EXAM_BY_ID_REQUEST, loadExamByIdService);
   yield takeLatest(
     types.UNFAVORITE_QUESTION_REQUEST,
     unfavoriteQuestionRequest,

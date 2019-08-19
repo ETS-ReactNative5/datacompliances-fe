@@ -327,13 +327,14 @@ class MultiFactorAuth extends React.Component {
             <p>Backup verification codes</p>
             <ul className="ui tag labels">
               {recoveryCodes
-                .entrySeq()
+                // .entrySeq()
                 .map(([key, value]) => (
                   <li className="label" key={`${key}_${value}`}>
                     {value}
                   </li>
                 ))
-                .toArray()}
+                // .toArray()
+                }
             </ul>
             <p className="muted mg-btm-md">
               Generated Time : {this.props.recovery_code_generated_on}
