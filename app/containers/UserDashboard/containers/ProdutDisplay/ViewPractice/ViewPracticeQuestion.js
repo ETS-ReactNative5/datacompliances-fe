@@ -1,47 +1,28 @@
 import React from 'react';
 
-import { Progress } from 'semantic-ui-react'
-
 import {
   Grid,
   Form,
   Button,
   Radio,
-  Checkbox,
   Icon,
-  Segment,
-  Label,
   TextArea
 } from 'semantic-ui-react';
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  PieChart,
-  Pie,
-  Cell,
-} from 'recharts';
-import TimerComponent from '../Timer';
-import { number } from 'prop-types';
 import '../assests/style.scss';
 
-const mockData = {
-  "status": 200,
-  "data": {
-    "_id": "d1519df0-bfdf-11e9-9022-197a96d8b532",
-    "user_id": "dc5275e0-ba5c-11e9-a6c7-31c1c9cd3aec",
-    "product_id": "50637d80-b9fe-11e9-b0d4-1b64d2910f02",
-    "question_answer": {
-      // "317854b0-b907-11e9-910c-5db73aa5a3fa": "Yes",
-      // "19d7d910-be53-11e9-94d7-a5e0e6414811": "Option 4 is this",
-      // "26471ec0-be5a-11e9-94d7-a5e0e6414811": "Sarik"
-    }
-  }
-}
+// const mockData = {
+//   "status": 200,
+//   "data": {
+//     "_id": "d1519df0-bfdf-11e9-9022-197a96d8b532",
+//     "user_id": "dc5275e0-ba5c-11e9-a6c7-31c1c9cd3aec",
+//     "product_id": "50637d80-b9fe-11e9-b0d4-1b64d2910f02",
+//     "question_answer": {
+//       // "317854b0-b907-11e9-910c-5db73aa5a3fa": "Yes",
+//       // "19d7d910-be53-11e9-94d7-a5e0e6414811": "Option 4 is this",
+//       // "26471ec0-be5a-11e9-94d7-a5e0e6414811": "Sarik"
+//     }
+//   }
+// }
 
 const ViewPracticeQuestion = props => {
   const {
@@ -50,7 +31,6 @@ const ViewPracticeQuestion = props => {
     page,
     perPage,
     handleAnswerChange,
-    handleAnswerChangeSubjective,
     saveSubjectiveAnswer,
     handleNextButton,
     handleViewResultButton,
@@ -82,21 +62,19 @@ const ViewPracticeQuestion = props => {
    
   return (
     <div>
-      
       <Grid>
+        {/* {console.log(data,'>>>>id',questionIdx)} */}
         {data.length > 0 && !show_final_result && (
           <Grid.Column largeScreen={16} widescreen={16}>
             <div className="question-wrap mr-5">
-              {/*
+              
                 <h4 className="item">
                   {questionIdx + 1} / {data.length}
                 </h4>
-              */}
-              <div className="addfav">
-              </div>
+              {/* {console.log(questionIdx,'>>>??')} */}
              { data[questionIdx] && data[questionIdx].type_of_questions == "Objective" &&
               <Form>
-                <h1 class="question-title">{data[questionIdx].question}</h1>
+                <h1 className="question-title">{data[questionIdx].question}</h1>
                 <Form.Field>
                   {data[questionIdx].answers.length > 0 &&
                     data[questionIdx].answers.map((ans, idx) =>
@@ -115,7 +93,7 @@ const ViewPracticeQuestion = props => {
                             //         mockData.data.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
                             //       mockData.data.question_answer[data[questionIdx].questionnaire_id] === ans.answer : false
                             // }
-                            checked={ saveAnswerResponse.product_id == productId &&
+                            checked={
                               saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
                               saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] === ans.answer : false
                             }
@@ -151,7 +129,7 @@ const ViewPracticeQuestion = props => {
                               //   mockData.data.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
                               //       mockData.data.question_answer[data[questionIdx].questionnaire_id] === ans.answer : false
                               // }
-                              checked={ saveAnswerResponse.product_id == productId &&
+                              checked={ 
                                 saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
                                 saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] === ans.answer : false
                               }
@@ -179,10 +157,8 @@ const ViewPracticeQuestion = props => {
                       //  value={ans.answer || ''}
                         // value ={ mockData.data.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
                         //              mockData.data.question_answer[data[questionIdx].questionnaire_id] : ''}
-                        value ={tempValue == '' && saveAnswerResponse.product_id == productId && saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
+                        value ={tempValue == '' && saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
                                    saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] : tempValue }             
-                        // onChange={(e, se) =>
-                        //    handleAnswerChangeSubjective(e, se, data[questionIdx].questionnaire_id)}
                         onChange={(e, se) =>
                           handleAnswerChange(e, se, '', questionIdx, data[questionIdx].questionnaire_id)}
                        />
@@ -194,7 +170,6 @@ const ViewPracticeQuestion = props => {
                     </div>
             
                   }
-
               {questionIdx != 0 && (
                 <Button 
                   className="buy-btn prev-btn"

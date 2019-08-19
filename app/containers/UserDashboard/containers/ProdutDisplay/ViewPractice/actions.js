@@ -91,18 +91,18 @@ export const unfavoriteQuestionFailure = action(
   'error',
 );
 
-export const loadExamByIdRequest = action(
-  types.LOAD_EXAM_BY_ID_REQUEST,
-  'exam_id',
-);
-export const loadExamByIdSuccess = action(
-  types.LOAD_EXAM_BY_ID_SUCCESS,
-  'response',
-);
-export const loadExamByIdFailure = action(
-  types.LOAD_EXAM_BY_ID_FAILURE,
-  'error',
-);
+// export const loadExamByIdRequest = action(
+//   types.LOAD_EXAM_BY_ID_REQUEST,
+//   'exam_id',
+// );
+// export const loadExamByIdSuccess = action(
+//   types.LOAD_EXAM_BY_ID_SUCCESS,
+//   'response',
+// );
+// export const loadExamByIdFailure = action(
+//   types.LOAD_EXAM_BY_ID_FAILURE,
+//   'error',
+// );
 
 export const loadTrialQuestionnaireRequest = action(
   types.LOAD_TRIAL_QUESTIONNAIRE_REQUEST,

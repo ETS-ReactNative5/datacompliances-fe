@@ -30,7 +30,6 @@ import {
 } from './actions';
 import { Link } from 'react-router-dom';
 import { DOCUMENT_URL_UPDATE } from 'containers/App/constants';
-import PopularPackage from './Popular_Product/Loadable';
 import '../../assets/card.scss';
 import {
   makeSelectSuccess,
@@ -106,22 +105,6 @@ export class ProductList extends React.Component {
     }
   }
 
-  handleRemoveCart = (e, id) => {
-    e.preventDefault();
-    let cart = {
-      packages: id,
-    };
-    this.props.removeCart(cart);
-  };
-
-  handleAddCart = (e, id) => {
-    e.preventDefault();
-    let cart = {
-      packages: id,
-    };
-    this.props.postCart(cart);
-  };
-
   render() {
     const { data } = this.state;
 
@@ -135,57 +118,23 @@ export class ProductList extends React.Component {
                 data.map((packageData, idx) =>
                     <div key={`paidList${idx}`} className="product-item">
                       <div className="product-wrap">
-                        
                           <p className="product-title">{packageData.title}</p>
                           <p className="product-price">Rs.{packageData.price}</p>
                           <ul className="feature-list">
                             <li>
                                 <i className="icon-check"/>
-                              <span>Industry: Finance </span> 
+                              <span>Country: {packageData.country}</span>
                             </li>
                             <li>
                                 <i className="icon-check"/>
-                              <span>Country: France</span>
+                              <span>Industry: {packageData.industry} </span> 
                             </li>
                             <li>
                                 <i className="icon-check"/>
-                              <span>Questionnaire: 100 Questions</span>
-                            </li>
-                            <li>
-                                <i className="icon-check"/>
-                              <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry....</span>
+                              <span>Questionnaire: {packageData.questions.length}</span>
                             </li>
                           </ul>
                           <div className="buttons-wrap">
-                          
-                            {/* {this.state.cartPackages.includes(
-                              packageData._id,
-                            ) ? (
-                              <button
-                                onClick={e =>
-                                  this.handleRemoveCart(e, packageData._id)
-                                }
-                              >
-                                <i className="icon-shopping-cart" />
-                                Remove From Cart
-                              </button>
-                            ) : (
-                              <button
-                                onClick={e =>
-                                  this.handleAddCart(e, packageData._id)
-                                }
-                              >
-                                Buy Product
-                              </button>
-                            )} */}
-                          {/* <Link
-                            data-tooltip="Buy Product"
-                            className="ui mini icon button buy-btn"
-                            to={`/user/dashboard/product/detail/${packageData._id}`}
-                            key={`view__1`}
-                          >
-                          Buy Now
-                        </Link>                    */}
                         <Link
                             className="ui mini icon button detail-btn"
                             to={`/user/dashboard/product/detail/${packageData._id}`}
@@ -194,33 +143,6 @@ export class ProductList extends React.Component {
                           View Detail
                         </Link>
                         </div>
-                          <ul>
-                            {packageData &&
-                              packageData.included_features &&
-                              packageData.included_features.map(
-                                (feature, idx) => (
-                                  <li key={`feature${idx}`}>
-                                    <i className="icon-check" />
-                                    {feature.feature}
-                                  </li>
-                                ),
-                              )}
-                          </ul>
-                          {packageData.trial_period_applicable && (
-                            <Link
-                              to={{
-                                pathname: `/user/dashboard/trial/exam-display/${
-                                  packageData._id
-                                }`,
-                                state: {
-                                  title: `Trial ${packageData.title}`,
-                                },
-                              }}
-                            >
-                              <button>Start Trial</button>
-                            </Link>
-                          )}
-                        
                       </div>
                     </div>
                 )
@@ -243,7 +165,7 @@ export class ProductList extends React.Component {
                 </Grid>
               ) : (
                 <Card>
-                  <CardContent>Packages Not Found</CardContent>
+                  <CardContent>Products Not Found</CardContent>
                 </Card>
               )}
             </div>

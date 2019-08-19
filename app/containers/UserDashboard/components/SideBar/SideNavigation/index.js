@@ -30,6 +30,11 @@ const mainMenu = [
   //     },
   //   ],
   // },
+   {
+      title: 'Dashboard',
+      path: '/user/dashboard/',
+      icon: "icon-grid",
+    },
     {
     title: 'Product',
     path: '/',
@@ -56,7 +61,7 @@ class SideNavigation extends React.Component {
     // this.componentRef = React.createRef(null);
     }
 
-  state = { activeIndex: 0 };
+  state = { activeIndex: 0, submenu_content: 0 };
   handleClick = (e, titleProps) => {
     const { index } = titleProps;
     const { activeIndex } = this.state;
@@ -81,20 +86,15 @@ class SideNavigation extends React.Component {
       this.componentRef.current.removeEventListener('wheel', this.handleWheel);
     }
   }
+  contentClick = (idx) => {
+    this.setState({submenu_content : idx})
+  }
 
   render() {
-    const { activeIndex } = this.state;
+    const { activeIndex, submenu_content } = this.state;
     return (
       <div className="sidebar-nav"> 
       <Accordion style={{ touchAction: 'none' }} as={Menu} vertical className="">
-        <Menu.Item>
-          <Link className="nav__link" to="/user/dashboard/">
-            <span className="nav__icon">
-              <i className="icon-grid" />
-            </span>
-            <span className="nav__text">Dashboard</span>
-          </Link>
-        </Menu.Item>
         {mainMenu &&
           mainMenu.length > 0 &&
           mainMenu.map((main, idx) => {
@@ -117,7 +117,7 @@ class SideNavigation extends React.Component {
                       </Accordion.Title>
                       <Accordion.Content active={activeIndex === idx}>
                         {main.subMenues.map((menu, idx) => (
-                          <div key={idx}>
+                          <div className={submenu_content === idx ? 'active' : ''} onClick={() => this.contentClick(idx)} key={idx}>
                             <Link className="nav__link" to={menu.path}>
                               <span className="nav__icon">
                                 <i className={menu.icon} />

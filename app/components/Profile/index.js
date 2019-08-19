@@ -19,7 +19,7 @@ class Profile extends React.Component {
   }
   render() {
     return (
-      <div class="mr-5">
+      <div className="mr-5">
         <TabbedView items={this.state.tabs} Link={NavLink} />
         <Routes />
       </div>

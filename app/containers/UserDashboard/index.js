@@ -14,10 +14,7 @@ import {
 } from './actions';
 import { DOCUMENT_URL_UPDATE } from '../App/constants';
 import Routes from './Routes';
-// import CreateStickyNote from './containers/StickyNotes/Create/Loadable';
-// import Notification from 'containers/Globals/Notifications/Loadable';
 import TopNavigation from './components/TopNavigation';
-// import AnalyticsGraph from './AnalyticsGraph';
 import './assets/style.scss';
 
 import {
