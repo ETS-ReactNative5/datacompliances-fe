@@ -26,9 +26,11 @@ class ConfirmUser extends React.Component {
     match: PropTypes.object
   };
   componentDidMount() {
-    const { userId } = this.props.match.params;
-    if (userId) this.props.confirmUser(userId);
-  }
+    const { userid } = this.props.match.params;
+    if (userid) {
+      this.props.confirmUser(userid);
+     }
+    }
   render() {
     const { requesting, success, errorResponse, successResponse, isRequesting } = this.props;
     return (

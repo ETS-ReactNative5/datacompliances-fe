@@ -174,7 +174,7 @@ export class ProductList extends React.Component {
                 viewdata={this.state.data}
                 buyProduct={this.buyProduct}
         />
-         <h1 className="main_title mt-5">Top 5 Questionnaires</h1>
+        <h1 className="main_title mt-5">Top 5 Questionnaires</h1>
         {questions && questions.size > 0 &&
            <QuestionsTable
                 headers={headers}
