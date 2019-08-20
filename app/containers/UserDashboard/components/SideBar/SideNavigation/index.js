@@ -32,7 +32,7 @@ const mainMenu = [
   // },
    {
       title: 'Dashboard',
-      path: '/user/dashboard/',
+      path: '/user/dashboard',
       icon: "icon-grid",
     },
     {

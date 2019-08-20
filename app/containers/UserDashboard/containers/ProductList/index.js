@@ -107,8 +107,6 @@ export class ProductList extends React.Component {
 
   render() {
     const { data } = this.state;
-
- 
     return (
       <React.Fragment>
           <div className="product-listing">
@@ -170,7 +168,7 @@ export class ProductList extends React.Component {
               )}
             </div>
           </div>
-      </React.Fragment>
+    </React.Fragment>
     );
   }
 }
