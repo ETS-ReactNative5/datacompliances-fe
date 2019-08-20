@@ -94,7 +94,7 @@ const ViewPracticeQuestion = props => {
                             //       mockData.data.question_answer[data[questionIdx].questionnaire_id] === ans.answer : false
                             // }
                             checked={
-                              saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
+                              saveAnswerResponse.question_answer && saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
                               saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] === ans.answer : false
                             }
                             onChange={(e, se) =>
@@ -130,7 +130,7 @@ const ViewPracticeQuestion = props => {
                               //       mockData.data.question_answer[data[questionIdx].questionnaire_id] === ans.answer : false
                               // }
                               checked={ 
-                                saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
+                                saveAnswerResponse.question_answer && saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
                                 saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] === ans.answer : false
                               }
                              onChange={(e, se) =>

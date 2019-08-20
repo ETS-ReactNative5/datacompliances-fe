@@ -104,7 +104,6 @@ class ViewPractice extends React.Component {
   componentDidMount() {
     console.log('did mount')
     const { page, perPage, query } = this.state;
-    this.setState({questionIdx: 0})
      const payload ={
           user_id: this.props.currentUser.toJS()._id,
           product_id: this.props.match.params.product_id,
