@@ -68,6 +68,7 @@ function* redirectOnLoginSuccess(redirect) {
 	const action = yield take(loginTypes.LOGIN_SUCCESS);
 	const { user: { data: { token, userInfo } } } = action;
 	localStorage.setItem('token', token);
+	yield put(actions.showDialog(null));
 	yield put(actions.setToken(token));
 	yield put(actions.setUser(userInfo));
 	if (userInfo.user_role[0] == 'enduser') {
