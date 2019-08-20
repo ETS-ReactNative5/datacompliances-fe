@@ -52,7 +52,7 @@ const BasicInfoForm = ({
 }) => (
   <Form onSubmit={handleSubmit} className="py-2">
     <h2 className="main_title">Basic Info</h2>
-    <Form.Field>
+    <Form.Field className="img-editor-wrap">
       <ReactDropzone onDrop={onDrop}>
         <img
           className="ui image"
@@ -61,8 +61,9 @@ const BasicInfoForm = ({
         />
       </ReactDropzone>
       {newImage && (
-        <div>
+        <div className="img-editor " >
           <AvatarEditor
+            className="mb-3"
             image={avatarImage}
             width={250}
             height={250}
@@ -70,7 +71,7 @@ const BasicInfoForm = ({
             scale={1.2}
             ref={setEditorRef}
           />
-          <br />
+          <br/>
           <Button primary onClick={onCrop}>
             Crop
           </Button>

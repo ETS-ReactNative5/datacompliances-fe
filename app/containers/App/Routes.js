@@ -12,7 +12,7 @@ import UserDashboard from 'containers/UserDashboard/Loadable';
 import UserDashboardLayout from 'containers/UserDashboard/containers/UserLayout';
 import HomeLayout from 'containers/HomeLayout';
 import PasswordReset from '../Login/password-reset';
-import ConfirmUser from '../Register/ConfirmUser'
+import ConfirmUser from '../Register/ConfirmUser/Loadable'
 
 const mapStateToProps = createStructuredSelector({
 	location: makeSelectLocation(),
