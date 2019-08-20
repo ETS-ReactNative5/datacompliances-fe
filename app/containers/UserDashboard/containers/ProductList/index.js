@@ -225,25 +225,31 @@ export class ProductList extends React.Component {
                     </div>
                 )
               ) : this.props.isRequesting ? (
-                <Grid columns={3} stackable>
-                  <Grid.Column>
-                    <Segment raised>
-                      <Placeholder>
-                        <Placeholder.Header image>
-                          <Placeholder.Line />
-                          <Placeholder.Line />
-                        </Placeholder.Header>
-                        <Placeholder.Paragraph>
-                          <Placeholder.Line length="medium" />
-                          <Placeholder.Line length="short" />
-                        </Placeholder.Paragraph>
-                      </Placeholder>
-                    </Segment>
-                  </Grid.Column>
-                </Grid>
+                // <Grid columns={3} stackable>
+                //   <Grid.Column>
+                //     <Segment raised>
+                //       <Placeholder>
+                //         <Placeholder.Header image>
+                //           <Placeholder.Line />
+                //           <Placeholder.Line />
+                //         </Placeholder.Header>
+                //         <Placeholder.Paragraph>
+                //           <Placeholder.Line length="medium" />
+                //           <Placeholder.Line length="short" />
+                //         </Placeholder.Paragraph>
+                //       </Placeholder>
+                //     </Segment>
+                //   </Grid.Column>
+                // </Grid>
+                <div class="ui segment">
+                  <div class="ui active inverted dimmer">
+                    <div class="ui small text loader">Loading.....</div>
+                  </div>
+                  <p></p>
+                </div>
               ) : (
                 <Card>
-                  <CardContent>Packages Not Found</CardContent>
+                  <CardContent>Products Not Found</CardContent>
                 </Card>
               )}
             </div>

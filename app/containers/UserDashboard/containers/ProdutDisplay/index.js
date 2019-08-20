@@ -267,13 +267,13 @@ class ExamDisplay extends React.Component {
                   (url.includes('trial') ? (
                     <div>
                       <Card>
-                        <CardContent>No Trial Quiz available!</CardContent>
+                        <CardContent>No Trial Questions available!</CardContent>
                       </Card>
                     </div>
                   ) : (
                     <div>
                       <Card>
-                        <CardContent>No Quiz available!</CardContent>
+                        <CardContent>No Questions available!</CardContent>
                       </Card>
                     </div>
                   ))}

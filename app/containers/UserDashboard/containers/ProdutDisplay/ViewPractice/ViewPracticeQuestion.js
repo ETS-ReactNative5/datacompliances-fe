@@ -11,7 +11,8 @@ import {
   Icon,
   Segment,
   Label,
-  TextArea
+  TextArea,
+  Popup,
 } from 'semantic-ui-react';
 import {
   BarChart,
@@ -96,13 +97,14 @@ const ViewPracticeQuestion = props => {
               </div>
              { data[questionIdx] && data[questionIdx].type_of_questions == "Objective" &&
               <Form>
-                <h1 class="question-title">{data[questionIdx].question}</h1>
+                  {console.log(data[questionIdx])}
+                <div className="wrapper"> <h1 className="question-title">{data[questionIdx].question}</h1><Popup content={data[questionIdx].answer_tip} trigger={<Button className="answer-tip" icon='info' />} /></div>
                 <Form.Field>
                   {data[questionIdx].answers.length > 0 &&
                     data[questionIdx].answers.map((ans, idx) =>
                         <div key={`ans${idx}`}>
-                          {/* {console.log(mockData.data.product_id,'=====',productId)} */}
-                          <Radio
+                          {/* {console.log(mockData.data.product_id,'=====',productId)} */} 
+                          <Radio 
                             disabled={is_radio_disabled}
                             label={`${ans.answer}`}
                             value={ans.answer}
@@ -131,7 +133,7 @@ const ViewPracticeQuestion = props => {
              }
                 { data[questionIdx] && data[questionIdx].type_of_questions == "Yes/No" &&
                      <div>
-                      <h1>{data[questionIdx].question}</h1> 
+                      <div className="wrapper"> <h1 className="question-title">{data[questionIdx].question}</h1><Popup content={data[questionIdx].answer_tip} trigger={<Button className="answer-tip" icon='info' />} /></div>
                    
                       <Form>
                         <Form.Field>
@@ -168,7 +170,7 @@ const ViewPracticeQuestion = props => {
                   }
                   {data[questionIdx] && data[questionIdx].type_of_questions == "Subjective" &&
                   <div>
-                   <h1>{data[questionIdx].question}</h1> 
+                   <div className="wrapper"> <h1 className="question-title">{data[questionIdx].question}</h1><Popup content={data[questionIdx].answer_tip} trigger={<Button className="answer-tip" icon='info' />} /></div>
                    <Form onSubmit={() =>
                          saveSubjectiveAnswer()}>
                      <Form.Field>
@@ -188,7 +190,7 @@ const ViewPracticeQuestion = props => {
                        />
                        </Form.Field>
                        <Form.Field>
-                       <Button color="yellow" type='submit'>Save Answer</Button>
+                       <Button color="green" type='submit'>Save Answer</Button>
                        </Form.Field>
                      </Form> 
                     </div>
