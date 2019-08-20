@@ -6,7 +6,10 @@ import {
   Button,
   Radio,
   Icon,
-  TextArea
+  Segment,
+  Label,
+  TextArea,
+  Popup,
 } from 'semantic-ui-react';
 import '../assests/style.scss';
 
@@ -34,6 +37,7 @@ const ViewPracticeQuestion = props => {
     saveSubjectiveAnswer,
     handleNextButton,
     handleViewResultButton,
+    handleSubmitResultButton,
     questionIdx,
     showAnswer,
     error_msg,
@@ -74,13 +78,13 @@ const ViewPracticeQuestion = props => {
               {/* {console.log(questionIdx,'>>>??')} */}
              { data[questionIdx] && data[questionIdx].type_of_questions == "Objective" &&
               <Form>
-                <h1 className="question-title">{data[questionIdx].question}</h1>
+                <div className="wrapper"> <h1 className="question-title">{data[questionIdx].question}</h1><Popup content={data[questionIdx].answer_tip} trigger={<Button className="answer-tip" icon='info' />} /></div>
                 <Form.Field>
                   {data[questionIdx].answers.length > 0 &&
                     data[questionIdx].answers.map((ans, idx) =>
                         <div key={`ans${idx}`}>
-                          {/* {console.log(mockData.data.product_id,'=====',productId)} */}
-                          <Radio
+                          {/* {console.log(mockData.data.product_id,'=====',productId)} */} 
+                          <Radio 
                             disabled={is_radio_disabled}
                             label={`${ans.answer}`}
                             value={ans.answer}
@@ -94,7 +98,7 @@ const ViewPracticeQuestion = props => {
                             //       mockData.data.question_answer[data[questionIdx].questionnaire_id] === ans.answer : false
                             // }
                             checked={
-                              saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
+                              saveAnswerResponse.question_answer && saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
                               saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] === ans.answer : false
                             }
                             onChange={(e, se) =>
@@ -109,7 +113,7 @@ const ViewPracticeQuestion = props => {
              }
                 { data[questionIdx] && data[questionIdx].type_of_questions == "Yes/No" &&
                      <div>
-                      <h1>{data[questionIdx].question}</h1> 
+                      <div className="wrapper"> <h1 className="question-title">{data[questionIdx].question}</h1><Popup content={data[questionIdx].answer_tip} trigger={<Button className="answer-tip" icon='info' />} /></div>
                    
                       <Form>
                         <Form.Field>
@@ -130,7 +134,7 @@ const ViewPracticeQuestion = props => {
                               //       mockData.data.question_answer[data[questionIdx].questionnaire_id] === ans.answer : false
                               // }
                               checked={ 
-                                saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
+                                saveAnswerResponse.question_answer && saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
                                 saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] === ans.answer : false
                               }
                              onChange={(e, se) =>
@@ -146,7 +150,7 @@ const ViewPracticeQuestion = props => {
                   }
                   {data[questionIdx] && data[questionIdx].type_of_questions == "Subjective" &&
                   <div>
-                   <h1>{data[questionIdx].question}</h1> 
+                   <div className="wrapper"> <h1 className="question-title">{data[questionIdx].question}</h1><Popup content={data[questionIdx].answer_tip} trigger={<Button className="answer-tip" icon='info' />} /></div>
                    <Form onSubmit={() =>
                          saveSubjectiveAnswer()}>
                      <Form.Field>
@@ -164,7 +168,7 @@ const ViewPracticeQuestion = props => {
                        />
                        </Form.Field>
                        <Form.Field>
-                       <Button color="yellow" type='submit'>Save Answer</Button>
+                       <Button color="green" type='submit'>Save Answer</Button>
                        </Form.Field>
                      </Form> 
                     </div>
@@ -193,6 +197,13 @@ const ViewPracticeQuestion = props => {
                   <i className="icon-arrow-right ml-1" />
                 </Button>
               )}
+                {/* {questionIdx === data.length - 1 && (
+                <Button
+                  color="teal"
+                  content="Submit"
+                  onClick={e => handleSubmitResultButton(e, questionIdx)}
+                />
+              )} */}
               {/* {questionIdx === data.length - 1 && (
                 <Button
                   color="red"
@@ -263,10 +274,7 @@ const ViewPracticeQuestion = props => {
       {show_final_result && (
         <div>
           <div className="score_point">
-            <h2 className="main_title">Result Detail</h2>
-            <h3>
-              Your score: <b>{score}</b> out of <strong>{full_score}</strong>
-            </h3>
+            <h2 className="main_title">Detail</h2>
           </div>
           <div className="resultdetail">
             <Grid>
@@ -278,156 +286,39 @@ const ViewPracticeQuestion = props => {
                     widescreen={16}
                     key={`que${indx}`}
                   >
-                    {question.multi_answer_applicable ? (
-                      question.user_answers.map((answers, idx) => (
-                        <div key={`ans${idx}`}>
-                          {question.user_answer_numbers ? (
-                            question.answers &&
-                            question.answers.length > 0 &&
-                            question.answers[
-                              question.user_answer_numbers[idx] - 1
-                            ].is_answer_correct_option ? (
-                              <div className="result_listing">
-                                <span>question {indx + 1}</span>
-                                <h1>{question.question}</h1>
-                                <p>
-                                  <i
-                                    aria-hidden="true"
-                                    className="check icon"
-                                  />
-                                  {answers}
-                                </p>
-                                <div className="rationable_pt">
-                                  <h2>Rationale:</h2>
-                                  {data && data.length > 0 && (
-                                    <div
-                                      className="rationale"
-                                      dangerouslySetInnerHTML={{
-                                        __html: question.rationale,
-                                      }}
-                                    />
-                                  )}
-                                </div>
-                              </div>
-                            ) : (
-                              <div className="result_listing">
-                                <span>question {indx + 1}</span>
-                                <h1>{question.question}</h1>
-                                <p>
-                                  <i
-                                    aria-hidden="true"
-                                    className="times icon"
-                                  />
-                                  {answers}
-                                </p>
-                                <div className="rationable_pt">
-                                  <h2>Rationale:</h2>
-                                  {data && data.length > 0 && (
-                                    <div
-                                      className="rationale"
-                                      dangerouslySetInnerHTML={{
-                                        __html: question.rationale,
-                                      }}
-                                    />
-                                  )}
-                                </div>
-                              </div>
-                            )
-                          ) : (
-                            <div className="result_listing">
-                              <span>question {indx + 1}</span>
-                              <h1>{question.question}</h1>
-                              <p>
-                                <i aria-hidden="true" className="times icon" />
-                                {answers}
-                              </p>
-                              <div className="rationable_pt">
-                                <h2>Rationale:</h2>
-                                {data && data.length > 0 && (
-                                  <div
-                                    className="rationale"
-                                    dangerouslySetInnerHTML={{
-                                      __html: question.rationale,
-                                    }}
-                                  />
-                                )}
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      ))
-                    ) : (
                       <div>
-                        {question.user_answer_number != null ? (
-                          question.answers &&
-                          question.answers.length > 0 &&
-                          question.answers[
-                            question.user_answer_number &&
-                              question.user_answer_number
-                          ].is_answer_correct_option ? (
-                            <div className="result_listing correct">
-                              <span>question {indx + 1}</span>
-                              <h1>{question.question}</h1>
-                              <p>
-                                <i aria-hidden="true" className="check icon" />
-                                {question.user_answer}
-                              </p>
-                              <div className="rationable_pt">
-                                <h2>Rationale:</h2>
-                                {data && data.length > 0 && (
-                                  <div
-                                    className="rationale"
-                                    dangerouslySetInnerHTML={{
-                                      __html: question.rationale,
-                                    }}
-                                  />
-                                )}
-                              </div>
-                            </div>
-                          ) : (
-                            <div className="result_listing">
-                              <span>question {indx + 1}</span>
-                              <h1>{question.question}</h1>
-                              <p>
-                                <i aria-hidden="true" className="times icon" />
-                                {question.user_answer}
-                              </p>
-                              <div className="rationable_pt">
-                                <h2>Rationale:</h2>
-                                {data && data.length > 0 && (
-                                  <div
-                                    className="rationale"
-                                    dangerouslySetInnerHTML={{
-                                      __html: question.rationale,
-                                    }}
-                                  />
-                                )}
-                              </div>
-                            </div>
-                          )
-                        ) : (
+                        {/* {console.log(question,'>>>', tempValue == '' && saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
+                                   saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] : tempValue )} */}
                           <div className="result_listing">
-                            <span>question {indx + 1}</span>
-                            <h1>{question.question}</h1>
-                            <p>
-                              <i aria-hidden="true" className="times icon" />
-                              {question.user_answer}
-                            </p>
-                            <div className="rationable_pt">
-                              <h2>Rationale:</h2>
-                              {data && data.length > 0 && (
-                                <div
-                                  className="rationale"
-                                  dangerouslySetInnerHTML={{
-                                    __html: question.rationale,
-                                  }}
-                                />
-                              )}
-                            </div>
+                            { question.type_of_questions == "Objective" &&
+                                <div>
+                                <span><b>Q) {indx + 1}</b></span>
+                                <h3>{question.question}</h3>
+                                <p>
+                            
+                                </p>
+                                </div>
+                            }
+                            { question.type_of_questions == "Yes/No" &&
+                                <div>
+                                <span><b>Q) {indx + 1}</b></span>
+                                <h3>{question.question}</h3>
+                                <p>
+                                
+                                </p>
+                                </div>
+                            }
+                            { question.type_of_questions == "Subjective" &&
+                                <div>
+                                <span><b>Q) {indx + 1}</b></span>
+                                <h3>{question.question}</h3>
+                                <p>
+                                  
+                                </p>
+                                </div>
+                            }
                           </div>
-                        )}
                       </div>
-                    )}
                   </Grid.Column>
                 ))}
             </Grid>

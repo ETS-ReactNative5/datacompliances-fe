@@ -106,7 +106,6 @@ function PackageListReducer(state = initialState, action) {
     case types.POST_CART_FAILURE:
     case types.REMOVE_CART_FAILURE:
     case types.LOAD_ALL_CART_PACKAGE_FAILURE:
-    console.log(action.error,'ccccc')
       return state.merge({
         requesting: false,
         success: false,

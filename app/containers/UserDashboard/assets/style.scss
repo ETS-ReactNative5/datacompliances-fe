@@ -3,6 +3,9 @@
 }
 .main-wrap{
     margin-left:280px;
+    @media(max-width:768px){
+        margin-left:220px;
+    }
 }
 .content-wrap {
     padding-left: 30px;

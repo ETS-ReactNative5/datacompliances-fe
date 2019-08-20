@@ -1,6 +1,8 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react';
-import { DOCUMENT_URL_UPDATE } from '../../../../../../../prj_pcsc/client_app/app/containers/App/constants';
+import { DOCUMENT_URL_UPDATE } from '../../../../App/constants';
+import {
+    Button
+  } from 'semantic-ui-react';
 
 
 const CreateProductView = (props) => {

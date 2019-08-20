@@ -13,6 +13,7 @@
 
 .product-listing{
     margin-right: 30px;
+    margin-bottom:30px;
 }
 .product-grid{
     display: grid;
@@ -20,6 +21,10 @@
     grid-gap:30px;
     @media(min-width:1420px){
         grid-template-columns: 1fr 1fr 1fr 1fr;   
+    }
+    @media(max-width:768px){
+        grid-template-columns:1fr 1fr;
+        grid-gap:20px;
     }
 }
 .product-item {
@@ -121,5 +126,10 @@
             font-weight: 800;
             font-size: 20px;
         }
+    }
+}
+.product-grid {
+    .ui.segment{
+        min-height: 200px;
     }
 }
