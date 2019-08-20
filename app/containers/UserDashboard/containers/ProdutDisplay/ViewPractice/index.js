@@ -90,33 +90,39 @@ class ViewPractice extends React.Component {
     let previousState = JSON.parse(
       localStorage.getItem(`previousState>${this.state.previousUrl}`),
     );
-    if (
-      window.location.href ===
-      (previousState !== null ? previousState.previousUrl : '')
-    ) {
-      //......................................................
-      let product_id = this.props.match.params.product_id
+    // if (
+    //   window.location.href ===
+    //   (previousState == 'fff' ? previousState.previousUrl : '')
+    // ) {
+    //   //......................................................
+    //   let product_id = this.props.match.params.product_id
+    //   ? this.props.match.params.product_id
+    //   : null;
+    //   if (product_id) {
+    //     this.props.getQuestionRequest(product_id, '111');
+    //   }
+    //   this.setState(
+    //     JSON.parse(
+    //       localStorage.getItem(`previousState>${this.state.previousUrl}`),
+    //     ),
+    //   );
+    // } else {
+    //   let product_id = this.props.match.params.product_id
+    //     ? this.props.match.params.product_id
+    //     : null;
+    //   let url = window.location.href.split('/');
+    //   this.setState({ url });
+    //   this.setState({ product_id });
+    //   if (product_id) {
+    //     this.props.getQuestionRequest(product_id, '111');
+    //   }
+    // }
+        let product_id = this.props.match.params.product_id
       ? this.props.match.params.product_id
       : null;
       if (product_id) {
         this.props.getQuestionRequest(product_id, '111');
       }
-      this.setState(
-        JSON.parse(
-          localStorage.getItem(`previousState>${this.state.previousUrl}`),
-        ),
-      );
-    } else {
-      let product_id = this.props.match.params.product_id
-        ? this.props.match.params.product_id
-        : null;
-      let url = window.location.href.split('/');
-      this.setState({ url });
-      this.setState({ product_id });
-      if (product_id) {
-        this.props.getQuestionRequest(product_id, '111');
-      }
-    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -365,7 +371,6 @@ class ViewPractice extends React.Component {
         <Toaster message={favFailure && favFailure} timeout={5000} error />
       );
     }
-    console.log(this.state.questionIdx,'>>?????')
     return (
       <div>
         {message && message}
