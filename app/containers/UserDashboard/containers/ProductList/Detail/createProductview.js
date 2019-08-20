@@ -3,7 +3,7 @@ import { DOCUMENT_URL_UPDATE } from '../../../../App/constants';
 
 
 const CreateProductView = (props) => {
-    const {viewdata}  = props ;
+    const {viewdata, buyProduct}  = props ;
     return(
         <div className="two-col-grid mb-5"> 
              <div className="left">
@@ -20,9 +20,8 @@ const CreateProductView = (props) => {
               <p className="product-price"><span>Price : </span>{viewdata.price}</p>
               <p className="product-country"><span>Country :</span> {viewdata.country}</p>
               <p className="product-desc"> <span>Description :</span>{viewdata.description}</p>
-              
+              <Button className="button buy-btn" onClick={buyProduct}>Buy this Product</Button>
           </div>
-            
           </div>
     )
 }

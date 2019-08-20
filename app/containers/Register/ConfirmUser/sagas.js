@@ -17,7 +17,7 @@ function* confirmUserFlow(action) {
 	const successWatcher = yield fork(redirectOnSuccess);
 	// since confirm use is going to give updated token by invalidating current token,
 	// it makes sense to log out user after server responds success if user is logged in
-	yield fork(Api.get(`api/confirm/user/${action.data}`, confirmUserSuccess, confirmUserFailure));
+	yield fork(Api.get(`confirm/user/${action.data}`, confirmUserSuccess, confirmUserFailure));
 	yield take([ LOCATION_CHANGE, types.CONFIRM_USER_FAILURE ]);
 	// localStorage.clear();
 	// sessionStorage.removeItem('token');
@@ -25,8 +25,6 @@ function* confirmUserFlow(action) {
 	yield cancel(successWatcher);
 }
 
-function* confirmUserWatcher() {
+export default function* confirmUserWatcher() {
 	yield takeLatest(types.CONFIRM_USER_REQUEST, confirmUserFlow);
 }
-
-export default [ confirmUserWatcher ];

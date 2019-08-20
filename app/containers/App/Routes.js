@@ -12,7 +12,7 @@ import UserDashboard from 'containers/UserDashboard/Loadable';
 import UserDashboardLayout from 'containers/UserDashboard/containers/UserLayout';
 import HomeLayout from 'containers/HomeLayout';
 import PasswordReset from '../Login/password-reset';
-import ConfirmUser from '../Register/ConfirmUser'
+import ConfirmUser from '../Register/ConfirmUser/Loadable'
 
 const mapStateToProps = createStructuredSelector({
 	location: makeSelectLocation(),
@@ -47,13 +47,13 @@ class Routes extends React.Component {
 				<Route
 					exact
 					path="/password-reset/user/:userid"
-					render={props => <ConfirmUser {...props} />}
+					render={props => <PasswordReset {...props} />}
 				/>
 
                 <Route
 					exact
 					path="/confirm/user/:userid"
-					render={props => <PasswordReset {...props} />}
+					render={props => <ConfirmUser {...props} />}
 				/>
 				<Route
 					path="/user/dashboard"

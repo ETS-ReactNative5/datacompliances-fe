@@ -17,6 +17,7 @@ import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import reducer from './reducer';
 import saga from './sagas';
+import '../assets/login.scss'
 
 const mapDispatchToProps = (dispatch) => ({
   multiFactorAuthLogin: (userId, data) => dispatch(multiFactorAuthLoginRequest(userId, data)),
@@ -39,7 +40,7 @@ class MultiFactorLogin extends React.Component {
     data: {},
     errors: {}
   };
-  componentWillMount() {
+  componentDidMount() {
     this.props.loginClearState();
   }
   componentWillUnmount() {
@@ -72,14 +73,14 @@ class MultiFactorLogin extends React.Component {
     const { errors, data } = this.state;
     const { isRequesting, errorResponse } = this.props;
     return (
-      <Modal open onClose={() => this.props.showDialog(null)} className="mini">
+      <Modal open onClose={() => this.props.showDialog(null)} className="two-fac-modal">
         <Modal.Content>
           {errorResponse &&
             <p className="negative message">
               {errorResponse}
             </p>}
-          <i className="icon-lock text-lg"/><br/>
-          <h3 className="thin">PCSC Multi Factor Auth Login</h3>
+          
+          <h3 className="thin"><span><i className="icon-lock text-lg"/></span> &nbsp; PCSC Multi Factor Auth Login</h3>
           <p>Enter the token from your authenticator app</p>
           <Form onSubmit={this.handleSubmit}>
             <InputField

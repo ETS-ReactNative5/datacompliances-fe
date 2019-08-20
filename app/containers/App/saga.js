@@ -68,6 +68,7 @@ function* redirectOnLoginSuccess(redirect) {
 	const action = yield take(loginTypes.LOGIN_SUCCESS);
 	const { user: { data: { token, userInfo } } } = action;
 	localStorage.setItem('token', token);
+	yield put(actions.showDialog(null));
 	yield put(actions.setToken(token));
 	yield put(actions.setUser(userInfo));
 	if (userInfo.user_role[0] == 'enduser') {
@@ -136,7 +137,7 @@ function* resendConfirmationRequest(action) {
 	// const successWatcher = yield fork(redirectOnSuccess);
 	// since confirm use is going to give updated token by invalidating current token,
 	// it makes sense to log out user after server responds success if user is logged in
-	yield fork(Api.post(`resend-confirm-email/${action.userId}`, resendConfirmationSuccess, resendConfirmationFailure,  { userId: action.userId }, ''));
+	yield fork(Api.post(`user/resend-confirm-email/${action.userId}`, resendConfirmationSuccess, resendConfirmationFailure,  { userId: action.userId }, ''));
 	// yield take([LOCATION_CHANGE, types.CONFIRM_USER_FAILURE]);
 	// localStorage.clear();
 	// sessionStorage.removeItem('token');

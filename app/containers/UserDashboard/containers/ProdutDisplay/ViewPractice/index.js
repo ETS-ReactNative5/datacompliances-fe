@@ -22,7 +22,7 @@ import {
   makeSelectError,
   makeSelectRequesting,
   makeSelectGetQuestion,
-  makeSelectGetFavoriteQuestion,
+  // makeSelectGetFavoriteQuestion,
   makeSelectExamDisplay,
   makeSelectTrialQuestions,
   makeSelectResultResponse,
@@ -34,7 +34,7 @@ import {
   loadAllQuestionnaireRequest,
   favoriteQuestionRequest,
   unfavoriteQuestionRequest,
-  loadExamByIdRequest,
+  // loadExamByIdRequest,
   clearMessage,
   loadAllFavoriteQuestionnaireRequest,
   loadTrialQuestionnaireRequest,
@@ -53,7 +53,7 @@ const mapStateToProps = createStructuredSelector({
   examData: makeSelectExamDisplay(),
   trialQuestions: makeSelectTrialQuestions(),
   resultResponse: makeSelectResultResponse(),
-  favoriteQuestions: makeSelectGetFavoriteQuestion(),
+  // favoriteQuestions: makeSelectGetFavoriteQuestion(),
   favSuccess: makeSelectFavSuccess(),
   favFailure: makeSelectFavFaliure(),
   currentUser: makeSelectUser(),
@@ -64,15 +64,15 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   getQuestionRequest: (id, package_id) =>
     dispatch(loadAllQuestionnaireRequest(id, package_id)),
-  getFavoriteQuestion: (page, perPage, query) =>
-    dispatch(loadAllFavoriteQuestionnaireRequest(page, perPage, query)),
+  // getFavoriteQuestion: (page, perPage, query) =>
+  //   dispatch(loadAllFavoriteQuestionnaireRequest(page, perPage, query)),
   favoriteQuestionRequest: (question_id, package_id) =>
     dispatch(favoriteQuestionRequest(question_id, package_id)),
   unfavoriteQuestionRequest: (question_id, package_id) =>
     dispatch(unfavoriteQuestionRequest(question_id, package_id)),
-  examRequest: exam_id => dispatch(loadExamByIdRequest(exam_id)),
-  fetchTrialQuestions: exam_id =>
-    dispatch(loadTrialQuestionnaireRequest(exam_id)),
+  // examRequest: product_id => dispatch(loadExamByIdRequest(product_id)),
+  fetchTrialQuestions: product_id =>
+    dispatch(loadTrialQuestionnaireRequest(product_id)),
   clearMessage: () => dispatch(clearMessage()),
   postResult: result => dispatch(postResultRequest(result)),
   postQuestionScore: score => dispatch(postQuestionScoreRequest(score)),
@@ -81,13 +81,6 @@ const mapDispatchToProps = dispatch => ({
 var check = 0;
 let score_arr = [];
 class ViewPractice extends React.Component {
-  // eslint-disable-line react/prefer-stateless-function
-  // static propTypes = {
-  //   isSuccess: PropTypes.bool.isRequired,
-  //   isRequesting: PropTypes.bool.isRequired,
-  //   successResponse: PropTypes.string.isRequired,
-  //   errorResponse: PropTypes.string.isRequired,
-  // };
 
   state = {
     bit: false,
@@ -109,34 +102,34 @@ class ViewPractice extends React.Component {
   };
 
   componentDidMount() {
-    
+    console.log('did mount')
     const { page, perPage, query } = this.state;
-    let previousState = JSON.parse(
-      localStorage.getItem(`previousState>${this.state.previousUrl}`),
-    );
-    let package_id = this.props.location.state
-      ? this.props.location.state.id
-      : '';
-    if (package_id) {
-      this.setState({ package_id });
-    }
-    this.props.getFavoriteQuestion(page, 1000, query);
-    if (
-      window.location.href ===
-      (previousState !== null ? previousState.previousUrl : '')
-    ) {
-      //......................................................
-      let exam_id = this.props.match.params.product_id
-      ? this.props.match.params.product_id
-      : null;
-      if (exam_id) {
-        this.props.getQuestionRequest(exam_id, '111');
-        const payload ={
+     const payload ={
           user_id: this.props.currentUser.toJS()._id,
           product_id: this.props.match.params.product_id,
           question_answer: {}
         }
         this.props.saveAnswerRequest(payload)
+    let previousState = JSON.parse(
+      localStorage.getItem(`previousState>${this.state.previousUrl}`),
+    );
+    // let package_id = this.props.location.state
+    //   ? this.props.location.state.id
+    //   : '';
+    // if (package_id) {
+    //   this.setState({ package_id });
+    // }
+    // this.props.getFavoriteQuestion(page, 1000, query);
+    if (
+      window.location.href ===
+      (previousState !== null ? previousState.previousUrl : '')
+    ) {
+      //......................................................
+      let product_id = this.props.match.params.product_id
+      ? this.props.match.params.product_id
+      : null;
+      if (product_id) {
+        this.props.getQuestionRequest(product_id, '111');
       }
       this.setState(
         JSON.parse(
@@ -144,27 +137,21 @@ class ViewPractice extends React.Component {
         ),
       );
     } else {
-      let exam_id = this.props.match.params.product_id
+      let product_id = this.props.match.params.product_id
         ? this.props.match.params.product_id
         : null;
       let url = window.location.href.split('/');
       this.setState({ url });
-      this.setState({ exam_id });
-      if (exam_id && url.includes('trial')) {
-        this.props.fetchTrialQuestions(exam_id);
+      this.setState({ product_id });
+      // if (product_id && url.includes('trial')) {
+      //   this.props.fetchTrialQuestions(product_id);
+      // }
+      if (product_id) {
+        this.props.getQuestionRequest(product_id, '111');
       }
-      if (exam_id) {
-        this.props.getQuestionRequest(exam_id, '111');
-        const payload ={
-          user_id: this.props.currentUser.toJS()._id,
-          product_id: this.props.match.params.product_id,
-          question_answer: {}
-        }
-        this.props.saveAnswerRequest(payload)
-      }
-      if (exam_id) {
-        this.props.examRequest(exam_id);
-      }
+      // if (product_id) {
+      //   this.props.examRequest(product_id);
+      // }
     }
   }
 
@@ -253,9 +240,9 @@ class ViewPractice extends React.Component {
     if (nextProps.resultResponse != this.props.resultResponse) {
       this.setState({ resultResponse: nextProps.resultResponse.toJS() });
     }
-    if (nextProps.favSuccess != this.props.favSuccess) {
-      this.props.getFavoriteQuestion(1, 1000, '');
-    }
+    // if (nextProps.favSuccess != this.props.favSuccess) {
+    //   this.props.getFavoriteQuestion(1, 1000, '');
+    // }
     if (nextProps.favFailure != this.props.favFailure) {
       this.setState({ favFailure: nextProps.favFailure });
     }
@@ -279,17 +266,6 @@ class ViewPractice extends React.Component {
 
   componentWillUnmount() {
     this.props.clearMessage();
-  }
-
-  handleAnswerChangeSubjective = (e, event, questionId) => {
-    const payload ={
-      user_id: this.props.currentUser.toJS()._id,
-      product_id: this.props.match.params.product_id,
-      question_answer: {
-        [questionId]: event.value
-      }
-    }
-    this.setState({saveAnswerResponse: payload})
   }
 
   saveSubjectiveAnswer = () => {
@@ -370,11 +346,6 @@ class ViewPractice extends React.Component {
 
   handleNextButton = (event, mainIdx, questionId) => {
     let { questionIdx, payload } = this.state;
-    // console.log(payload,'kkkk',event)
-    // console.log(questionId,'=======',Object.keys(payload.question_answer)[0])
-    // if(questionId == Object.keys(payload.question_answer)[0] ) {
-    //   console.log(questionId,'.........',payload.question_answer,'ddddd>>',Object.keys(payload.question_answer)[0])
-    // }
     questionIdx++;
     this.setState({
       questionIdx: questionIdx,
@@ -503,7 +474,7 @@ class ViewPractice extends React.Component {
       // if (this.state.url && !this.state.url.includes('trial')) {
       //   let result = {
       //     score: this.state.score,
-      //     exam_id: this.state.exam_id,
+      //     product_id: this.state.product_id,
       //   };
       //   this.props.postResult(result);
       // }
@@ -517,7 +488,6 @@ class ViewPractice extends React.Component {
   //   }
   // };
   handleBackButton = (e, questionIdx) => {
-    // console.log('previous',this.state.payload)
     this.setState({
       questionIdx: questionIdx - 1,
       showAnswer: false,
@@ -531,7 +501,7 @@ class ViewPractice extends React.Component {
         return answer.answer == this.state.data[ques_idx].user_answer;
       });
       let score = {
-        exam_id: this.state.exam_id,
+        product_id: this.state.product_id,
         questionnaire_id: this.state.data[ques_idx]._id,
         answer_id: id[0].id,
       };
@@ -574,23 +544,20 @@ class ViewPractice extends React.Component {
         <Toaster message={favFailure && favFailure} timeout={5000} error />
       );
     }
-    // console.log(saveAnswerResponse,'llll')
+    console.log(this.state.questionIdx,'>>?????')
     return (
       <div>
         {message && message}
         {!show_final_result && (
           <h1 className="main_title">Questionnaire</h1>
         )}
-        {/* {console.log(this.state.exam_id,'lll>>>>>>',)} */}
-        {/* {console.log(saveAnswerResponse,'oooooo')} */}
         <ViewPracticeQuestion
           data={data}
           tempValue={tempValue}
           saveAnswerResponse={saveAnswerResponse}
           page={page}
           perPage={perPage}
-          productId={this.state.exam_id}
-          handleAnswerChangeSubjective={this.handleAnswerChangeSubjective}
+          productId={this.state.product_id}
           saveSubjectiveAnswer={this.saveSubjectiveAnswer}
           handleAnswerChange={this.handleAnswerChange}
           handleNextButton={this.handleNextButton}

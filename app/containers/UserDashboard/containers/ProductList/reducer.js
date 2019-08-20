@@ -49,9 +49,8 @@ function PackageListReducer(state = initialState, action) {
       });  
 
     case types.BUY_PRODUCT_SUCCESS:
-    //   let xresponse =
-    //     state.get('response') != null ? state.get('response') : null;
-    console.log(action.response,'ccccc')
+      xresponse =
+        state.get('response') != null ? state.get('response') : null;
     return state.merge({
       requesting: false,
       success: true,
@@ -107,6 +106,7 @@ function PackageListReducer(state = initialState, action) {
     case types.POST_CART_FAILURE:
     case types.REMOVE_CART_FAILURE:
     case types.LOAD_ALL_CART_PACKAGE_FAILURE:
+    console.log(action.error,'ccccc')
       return state.merge({
         requesting: false,
         success: false,

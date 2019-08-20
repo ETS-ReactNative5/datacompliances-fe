@@ -7,6 +7,12 @@ import { confirmUserRequest } from './actions';
 import { makeSelectRequesting, makeSelectError, makeSelectResponse, makeSelectSuccess } from './selectors';
 import Spinner from 'components/common/Spinner';
 
+import { compose } from 'redux';
+import injectSaga from 'utils/injectSaga';
+import injectReducer from 'utils/injectReducer';
+import reducer from './reducers';
+import saga from './sagas';
+
 const mapStateToProps = createStructuredSelector({
   isRequesting: makeSelectRequesting(),
   success: makeSelectSuccess(),
@@ -26,9 +32,12 @@ class ConfirmUser extends React.Component {
     match: PropTypes.object
   };
   componentDidMount() {
-    const { userId } = this.props.match.params;
-    if (userId) this.props.confirmUser(userId);
-  }
+    const { userid } = this.props.match.params;
+    if (userid) {
+      console.log(userid,'>>>>')
+      this.props.confirmUser(userid);
+     }
+    }
   render() {
     const { requesting, success, errorResponse, successResponse, isRequesting } = this.props;
     return (
@@ -57,4 +66,9 @@ class ConfirmUser extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ConfirmUser);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+const withReducer = injectReducer({ key: 'registerConfirmUser', reducer });
+const withSaga = injectSaga({ key: 'registerConfirmUser', saga });
+
+export default compose(withReducer, withSaga, withConnect)(ConfirmUser);

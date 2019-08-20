@@ -22,6 +22,7 @@ const industryList = [
 	{ key: '4', value: 'Cyber Security', text: 'Cyber Security' },
 	{ key: '5', value: 'Energy', text: 'Energy' },
 	{ key: '6', value: 'Insurance', text: 'Insurance' },
+	{ key: '7', value: 'Education', text: 'Education' },
   ];
 
 const UserRegistrationForm = ({

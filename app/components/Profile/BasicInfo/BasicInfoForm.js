@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDropzone from 'react-dropzone';
 import AvatarEditor from 'react-avatar-editor';
-import { Button, Form, Segment, Radio, Input } from 'semantic-ui-react';
+import { Button, Form, Dropdown } from 'semantic-ui-react';
 import InputField from 'components/common/Forms/InputField';
 import FormField from 'components/common/Forms/FormField';
 import DatePicker from 'components/common/DatePicker';
@@ -14,6 +14,21 @@ const countries = Countries.map(country => (
   </option>
 ));
 
+const industryList = [
+	{ key: '1', value: 'Financial', text: 'Financial' },
+	{
+	  key: '2',
+	  value: 'Health Care and Biomedical',
+	  text: 'Health Care and Biomedical',
+	},
+	{ key: '3', value: 'Technology', text: 'Technology' },
+	{ key: '4', value: 'Cyber Security', text: 'Cyber Security' },
+	{ key: '5', value: 'Energy', text: 'Energy' },
+	{ key: '6', value: 'Insurance', text: 'Insurance' },
+	{ key: '7', value: 'Education', text: 'Education' },
+  ];
+
+
 const BasicInfoForm = ({
   date,
   focused,
@@ -23,6 +38,7 @@ const BasicInfoForm = ({
   user,
   avatarImage,
   handleChange,
+  handleDropDown,
   handleSubmit,
   handleCheckBox,
   onDrop,
@@ -66,60 +82,32 @@ const BasicInfoForm = ({
       <Form.Group widths="equal">
           <FormField
             label="First Name"
-            placeholder="first name"
+            placeholder="First Name"
             name="first_name"
             value={user.first_name || ''}
             onChange={handleChange}
             error={errors.first_name}
           />
+           <FormField
+            label="Middle Name"
+            placeholder="Middle Name"
+            name="middle_name"
+            value={user.middle_name || ''}
+            onChange={handleChange}
+            error={errors.middle_name}
+          />
           <FormField
             label="Last Name"
-            placeholder="last name"
+            placeholder="Last Name"
             name="last_name"
             value={user.last_name || ''}
             onChange={handleChange}
             error={errors.last_name}
           />
       </Form.Group>
-      <Form.Group inline>
-        <Form.Field>
-          <label style={{ fontWeight: 400 }}>Gender:</label>
-        </Form.Field>
-        <Form.Field>
-          <Radio
-            label="Male"
-            name="gender"
-            value="Male"
-            checked={(user.gender || '').toLowerCase() === 'male'}
-            onChange={handleGenderChange}
-          />
-        </Form.Field>
-        <Form.Field>
-          <Radio
-            label="Female"
-            name="gender"
-            value="Female"
-            checked={(user.gender || '').toLowerCase() === 'female'}
-            onChange={handleGenderChange}
-          />
-        </Form.Field>
-        <Form.Field>
-          <Radio
-            label="Other"
-            name="gender"
-            value="Other"
-            checked={(user.gender || '').toLowerCase() === 'other'}
-            onChange={handleGenderChange}
-          />
-        </Form.Field>
-      </Form.Group>
-      <Form.Field>
-        <label>Date of Birth: </label>
-        <DatePicker datechange={datechange} date={user.birth_date || null} />
-      </Form.Field>
       <Form.Group widths="equal">
         <Form.Field>
-          <label>User Name</label>
+          <label>User Email</label>
           <input
             placeholder="username"
             name="username"
@@ -129,44 +117,34 @@ const BasicInfoForm = ({
           />
         </Form.Field>
       </Form.Group>
-      {/* <h3>Address</h3> */}
-      <Form.Group widths="equal">
-        <InputField
-          label="Address Line 1"
-          placeholder="address line 1"
-          type="text"
-          // label="Address Line 1"
-          name="address_address_line_1"
-          value={user.address_address_line_1 || ''}
-          onChange={handleChange}
-        />
-        <InputField
-          type="text"
-          placeholder="address line 2"
-          label="Address Line 2"
-          name="address_address_line_2"
-          value={user.address_address_line_2 || ''}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      <Form.Group widths="equal">
-        <InputField
-           label="City"
-          type="text"
-          placeholder="City"
-          name="address_city"
-          value={user.address_city || ''}
-          onChange={handleChange}
-        />
-        <InputField
-          label="State/Province/Region"
-          type="text"
-          placeholder="State/Province/Region"
-          name="address_state_region_province"
-          value={user.address_state_region_province || ''}
-          onChange={handleChange}
-        />
-      </Form.Group>
+      <FormField
+            label="Company"
+            placeholder="Company Name"
+            name="company_name"
+            value={user.company_name || ''}
+            onChange={handleChange}
+            error={errors.company_name}
+          />
+        	<Form.Field>
+						<label>	Industry *</label>
+							
+								<Dropdown
+									placeholder="Industry"
+									className="form-control"
+									name="industry"
+									search
+									selection
+									fluid
+									options={industryList || []}
+									onChange={handleDropDown}
+									value={user.industry || ''}
+								/>
+			
+								{errors.industry && (
+								<span style={{ color: 'red' }}>{errors.industry}</span>
+								)}
+						
+						</Form.Field>
       <Form.Group widths="equal">
         <Form.Field>
           <label>Country</label>
@@ -180,19 +158,6 @@ const BasicInfoForm = ({
           >
             {countries}
           </select>
-        </Form.Field>
-        <Form.Field>
-        <label>ZIP/Postal Code</label>
-          <Input>
-           
-            <input
-              type="text"
-              placeholder="ZIP/Postal Code"
-              name="address_zip_postal_code"
-              value={user.address_zip_postal_code || ''}
-              onChange={handleChange}
-            />
-          </Input>
         </Form.Field>
       </Form.Group>
       <Button type="submit" primary loading={isLoading} disabled={isLoading}>
