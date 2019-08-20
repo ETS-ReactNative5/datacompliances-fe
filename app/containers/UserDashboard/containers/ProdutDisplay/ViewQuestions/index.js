@@ -1,6 +1,6 @@
 /*
  *
- * ViewPractice
+ * ViewQuestions
  *
  */
 
@@ -33,7 +33,7 @@ import {
   postQuestionScoreRequest,
   saveAnswerRequest
 } from './actions';
-import ViewPracticeQuestion from './ViewPracticeQuestion';
+import ViewQuestionsForm from './ViewQuestionsForm';
 
 const mapStateToProps = createStructuredSelector({
   isSuccess: makeSelectSuccess(),
@@ -58,7 +58,7 @@ const mapDispatchToProps = dispatch => ({
 });
 var check = 0;
 let score_arr = [];
-class ViewPractice extends React.Component {
+class ViewQuestions extends React.Component {
 
   state = {
     bit: false,
@@ -377,7 +377,7 @@ class ViewPractice extends React.Component {
         {!show_final_result && (
           <h1 className="main_title">Questionnaire</h1>
         )}
-        <ViewPracticeQuestion
+        <ViewQuestionsForm
           data={data}
           tempValue={tempValue}
           saveAnswerResponse={saveAnswerResponse}
@@ -411,8 +411,8 @@ class ViewPractice extends React.Component {
   }
 }
 
-const withReducer = injectReducer({ key: 'viewPractice', reducer });
-const withSaga = injectSaga({ key: 'viewPractice', saga });
+const withReducer = injectReducer({ key: 'viewQuestions', reducer });
+const withSaga = injectSaga({ key: 'viewQuestions', saga });
 const withConnect = connect(
   mapStateToProps,
   mapDispatchToProps,
@@ -422,4 +422,4 @@ export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(ViewPractice);
+)(ViewQuestions);

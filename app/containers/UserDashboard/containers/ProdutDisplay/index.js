@@ -194,67 +194,6 @@ class ExamDisplay extends React.Component {
                         >
                           Start your assessment
                         </Link>
-                      {/* <Form>
-                        <Form.Field>
-                          <label>Select Question Type:</label>
-                          <Form.Group>
-                            <Form.Radio
-                              label="Practice"
-                              name={`quiz_type_${idx}`}
-                              value="Practice"
-                              checked={data[idx].quiz_type === 'Practice'}
-                              onChange={(e, se) =>
-                                this.handleRadioChange(e, se, idx)
-                              }
-                            />
-                            <Form.Radio
-                              label="Exam"
-                              name={`quiz_type_${idx}`}
-                              value="Exam"
-                              checked={data[idx].quiz_type === 'Exam'}
-                              onChange={(e, se) =>
-                                this.handleRadioChange(e, se, idx)
-                              }
-                            />
-                          </Form.Group>
-                        </Form.Field>
-                      </Form> */}
-                      {/* {Object.keys(this.state.data[idx]).includes(
-                        'quiz_type',
-                      ) && url.includes('trial') ? (
-                        <Link
-                          className="ui vertical primary animated button"
-                          to={`/user/dashboard/trial/exam-display/${
-                            exam.quizRoute
-                          }/${exam._id}`}
-                          role="button"
-                          disabled={Object.keys(this.state.data[idx]).includes(
-                            'quiz_type',
-                          )}
-                        >
-                          Start Exam
-                        </Link>
-                      ) : (
-                        Object.keys(this.state.data[idx]).includes(
-                          'quiz_type',
-                        ) && (
-                          <Link
-                            className="ui vertical primary animated button"
-                            to={{
-                              pathname: `/user/dashboard/exam-display/${
-                                exam.quizRoute
-                              }/${exam._id}`,
-                              state: { id: this.state.package_id },
-                            }}
-                            role="button"
-                            disabled={Object.keys(
-                              this.state.data[idx],
-                            ).includes('quiz_type')}
-                          >
-                            Start Exam
-                          </Link>
-                        )
-                      )} */}
                     </div>
                   </div>
                 </Grid.Column>
