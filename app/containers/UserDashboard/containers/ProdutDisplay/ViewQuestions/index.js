@@ -264,9 +264,8 @@ class ViewQuestions extends React.Component {
       is_radio_disabled: false,
     });
   };
-
  
-  handleViewResultButton = (event, mainIdx) => {
+  handleSubmitResultButton = (event, mainIdx) => {
     score_arr = [];
     let attempted_questions = this.state.data.filter(dat => {
       return Object.keys(dat).includes('user_answer');
@@ -390,6 +389,7 @@ class ViewQuestions extends React.Component {
           questionIdx={questionIdx}
           showAnswer={showAnswer}
           handleViewResultButton={this.handleViewResultButton}
+          handleSubmitResultButton={this.handleSubmitResultButton}
           error_msg={error_msg}
           show_final_result={show_final_result}
           score={score}
