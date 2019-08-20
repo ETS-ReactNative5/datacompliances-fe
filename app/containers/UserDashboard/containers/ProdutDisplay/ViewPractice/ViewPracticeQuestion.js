@@ -193,6 +193,13 @@ const ViewPracticeQuestion = props => {
                   <i className="icon-arrow-right ml-1" />
                 </Button>
               )}
+                {questionIdx === data.length - 1 && (
+                <Button
+                  color="teal"
+                  content="Submit"
+                  // onClick={e => handleViewResultButton(e, questionIdx)}
+                />
+              )}
               {/* {questionIdx === data.length - 1 && (
                 <Button
                   color="red"
