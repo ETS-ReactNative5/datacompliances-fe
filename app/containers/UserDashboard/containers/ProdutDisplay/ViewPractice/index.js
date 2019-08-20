@@ -22,22 +22,13 @@ import {
   makeSelectError,
   makeSelectRequesting,
   makeSelectGetQuestion,
-  // makeSelectGetFavoriteQuestion,
   makeSelectExamDisplay,
-  makeSelectTrialQuestions,
   makeSelectResultResponse,
-  makeSelectFavSuccess,
-  makeSelectFavFaliure,
   makeSelectSaveAnswerResponse
 } from './selectors';
 import {
   loadAllQuestionnaireRequest,
-  favoriteQuestionRequest,
-  unfavoriteQuestionRequest,
-  // loadExamByIdRequest,
   clearMessage,
-  loadAllFavoriteQuestionnaireRequest,
-  loadTrialQuestionnaireRequest,
   postResultRequest,
   postQuestionScoreRequest,
   saveAnswerRequest
@@ -51,11 +42,7 @@ const mapStateToProps = createStructuredSelector({
   errorResponse: makeSelectError(),
   getQuestionSucces: makeSelectGetQuestion(),
   examData: makeSelectExamDisplay(),
-  trialQuestions: makeSelectTrialQuestions(),
   resultResponse: makeSelectResultResponse(),
-  // favoriteQuestions: makeSelectGetFavoriteQuestion(),
-  favSuccess: makeSelectFavSuccess(),
-  favFailure: makeSelectFavFaliure(),
   currentUser: makeSelectUser(),
   saveAnswerResponse: makeSelectSaveAnswerResponse()
 
@@ -64,15 +51,6 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   getQuestionRequest: (id, package_id) =>
     dispatch(loadAllQuestionnaireRequest(id, package_id)),
-  // getFavoriteQuestion: (page, perPage, query) =>
-  //   dispatch(loadAllFavoriteQuestionnaireRequest(page, perPage, query)),
-  favoriteQuestionRequest: (question_id, package_id) =>
-    dispatch(favoriteQuestionRequest(question_id, package_id)),
-  unfavoriteQuestionRequest: (question_id, package_id) =>
-    dispatch(unfavoriteQuestionRequest(question_id, package_id)),
-  // examRequest: product_id => dispatch(loadExamByIdRequest(product_id)),
-  fetchTrialQuestions: product_id =>
-    dispatch(loadTrialQuestionnaireRequest(product_id)),
   clearMessage: () => dispatch(clearMessage()),
   postResult: result => dispatch(postResultRequest(result)),
   postQuestionScore: score => dispatch(postQuestionScoreRequest(score)),
@@ -102,7 +80,6 @@ class ViewPractice extends React.Component {
   };
 
   componentDidMount() {
-    console.log('did mount')
     const { page, perPage, query } = this.state;
      const payload ={
           user_id: this.props.currentUser.toJS()._id,
@@ -113,13 +90,6 @@ class ViewPractice extends React.Component {
     let previousState = JSON.parse(
       localStorage.getItem(`previousState>${this.state.previousUrl}`),
     );
-    // let package_id = this.props.location.state
-    //   ? this.props.location.state.id
-    //   : '';
-    // if (package_id) {
-    //   this.setState({ package_id });
-    // }
-    // this.props.getFavoriteQuestion(page, 1000, query);
     if (
       window.location.href ===
       (previousState !== null ? previousState.previousUrl : '')
@@ -143,15 +113,9 @@ class ViewPractice extends React.Component {
       let url = window.location.href.split('/');
       this.setState({ url });
       this.setState({ product_id });
-      // if (product_id && url.includes('trial')) {
-      //   this.props.fetchTrialQuestions(product_id);
-      // }
       if (product_id) {
         this.props.getQuestionRequest(product_id, '111');
       }
-      // if (product_id) {
-      //   this.props.examRequest(product_id);
-      // }
     }
   }
 
@@ -198,40 +162,6 @@ class ViewPractice extends React.Component {
         },
       );
     }
-    if (nextProps.trialQuestions !== this.props.trialQuestions) {
-      this.setState(
-        {
-          data: nextProps.trialQuestions.toJS(),
-        },
-        () => {
-          let correctAnswers = [];
-          let full_score = 0;
-          this.state.data &&
-            this.state.data.length > 0 &&
-            this.state.data.map((data, idx) => {
-              data.answers.map(ans => {
-                if (ans.is_answer_correct_option) {
-                  correctAnswers[idx] = ans.answer;
-                }
-              });
-            });
-          this.setState({ correctAnswers: correctAnswers });
-          if (this.state.data && this.state.data.length > 0)
-            this.state.data.map((dat, idx) => {
-              full_score = full_score + parseInt(dat.point);
-              let newData = this.state.data;
-              if (dat.multi_answer_applicable) {
-                newData[idx].user_answers = [];
-                newData[idx].user_answer_numbers = [];
-              }
-              this.setState({ data: newData });
-            });
-          this.setState({
-            full_score: full_score,
-          });
-        },
-      );
-    }
     if (nextProps.examData !== this.props.examData) {
       this.setState({
         examData: nextProps.examData.toJS(),
@@ -240,28 +170,6 @@ class ViewPractice extends React.Component {
     if (nextProps.resultResponse != this.props.resultResponse) {
       this.setState({ resultResponse: nextProps.resultResponse.toJS() });
     }
-    // if (nextProps.favSuccess != this.props.favSuccess) {
-    //   this.props.getFavoriteQuestion(1, 1000, '');
-    // }
-    if (nextProps.favFailure != this.props.favFailure) {
-      this.setState({ favFailure: nextProps.favFailure });
-    }
-    if (nextProps.favoriteQuestions != this.props.favoriteQuestions) {
-      this.setState(
-        {
-          favoriteQuestions: nextProps.favoriteQuestions
-            ? nextProps.favoriteQuestions.toJS()
-            : [],
-        },
-        () => {
-          let fav_questions = [];
-          this.state.favoriteQuestions.map((questions, idx) => {
-            fav_questions = fav_questions.concat(questions._id);
-          });
-          this.setState({ fav_questions });
-        },
-      );
-    }
   }
 
   componentWillUnmount() {
@@ -269,10 +177,9 @@ class ViewPractice extends React.Component {
   }
 
   saveSubjectiveAnswer = () => {
-    // console.log(this.state.payload,'::::::::')
     this.props.saveAnswerRequest(this.state.payload)
   }
-
+  
   handleAnswerChange = (e, event, answerIdx, mainIdx, questionId) => {
     // console.log(answerIdx,'sssss',mainIdx,'sssss>',event.value,'----',questionId,'=>>pro_id==',this.props.match.params.product_id,'...>',this.props.currentUser.toJS()._id)
     if(event.as != 'textarea' )  {
@@ -295,7 +202,6 @@ class ViewPractice extends React.Component {
     }
     this.setState({payload:payload})
     // this.props.saveAnswerRequest(payload)
-
   }
     let newState = this.state.data;
     newState[mainIdx].user_answer = event.value;
@@ -307,7 +213,6 @@ class ViewPractice extends React.Component {
         error_msg: '',
       },
       () => {
-        // console.log(payload,'>>>><<<')
         localStorage.setItem(
           `previousState>${this.state.previousUrl}`,
           JSON.stringify(this.state),
@@ -354,79 +259,7 @@ class ViewPractice extends React.Component {
     });
   };
 
-  handleCheckButton = (event, mainIdx) => {
-    if (Object.keys(this.state.data[mainIdx]).includes('user_answer')) {
-      let correctAnswers = [];
-      this.state.data[mainIdx].answers.map(ans => {
-        if (ans.is_answer_correct_option) {
-          correctAnswers.push(ans.answer);
-        }
-      });
-      if (this.state.data[mainIdx].multi_answer_applicable) {
-        if (
-          this.state.data[mainIdx].answers.length >
-          this.state.data[mainIdx].user_answers.length
-        ) {
-          check = 0;
-          correctAnswers.map(correct => {
-            if (this.state.data[mainIdx].user_answers.includes(correct)) {
-              this.setState({
-                correctAnswer: 'partial correct',
-              });
-              check += 1;
-            } else {
-              if (check === 0)
-                this.setState({
-                  correctAnswer: 'incorrect',
-                });
-            }
-            if (check == correctAnswers.length) {
-              this.setState({
-                correctAnswer: 'correct',
-              });
-            }
-          });
-        } else {
-          check = 5;
-          this.setState({
-            error_msg: "You Can't Select all Answer",
-          });
-        }
-      } else {
-        if (correctAnswers.includes(this.state.data[mainIdx].user_answer)) {
-          this.setState({
-            correctAnswer: 'correct',
-          });
-        } else {
-          this.setState({
-            correctAnswer: 'incorrect',
-          });
-        }
-      }
-      if (check !== 5) {
-        this.setState({ showAnswer: true, is_radio_disabled: true });
-      }
-    } else {
-      this.setState({ error_msg: 'Please choose an option to continue.' });
-    }
-  };
-
-  handleFavoriteButton = async (event, questionId, mainIdx) => {
-    if (questionId)
-      await this.props.favoriteQuestionRequest(
-        questionId,
-        this.state.package_id,
-      );
-  };
-
-  handleUnfavoriteButton = async (event, questionId, mainIdx) => {
-    if (questionId)
-      await this.props.unfavoriteQuestionRequest(
-        questionId,
-        this.state.package_id,
-      );
-  };
-
+ 
   handleViewResultButton = (event, mainIdx) => {
     score_arr = [];
     let attempted_questions = this.state.data.filter(dat => {
@@ -471,22 +304,10 @@ class ViewPractice extends React.Component {
     });
     this.setState({ count });
     this.setState({ score: total_score }, () => {
-      // if (this.state.url && !this.state.url.includes('trial')) {
-      //   let result = {
-      //     score: this.state.score,
-      //     product_id: this.state.product_id,
-      //   };
-      //   this.props.postResult(result);
-      // }
     });
     localStorage.removeItem(`previousState>${this.state.previousUrl}`);
   };
 
-  // handleTimeOver = (minutes, seconds) => {
-  //   if (minutes == 0 && seconds == 0) {
-  //     this.handleViewResultButton('', this.state.data.length - 1);
-  //   }
-  // };
   handleBackButton = (e, questionIdx) => {
     this.setState({
       questionIdx: questionIdx - 1,
@@ -561,9 +382,6 @@ class ViewPractice extends React.Component {
           saveSubjectiveAnswer={this.saveSubjectiveAnswer}
           handleAnswerChange={this.handleAnswerChange}
           handleNextButton={this.handleNextButton}
-          handleCheckButton={this.handleCheckButton}
-          handleFavoriteButton={this.handleFavoriteButton}
-          handleUnfavoriteButton={this.handleUnfavoriteButton}
           questionIdx={questionIdx}
           showAnswer={showAnswer}
           handleViewResultButton={this.handleViewResultButton}
@@ -572,7 +390,6 @@ class ViewPractice extends React.Component {
           score={score}
           full_score={full_score}
           is_radio_disabled={is_radio_disabled}
-          // handleTimeOver={this.handleTimeOver}
           time={examData && examData.time_limit}
           isCorrect={this.state.correctAnswer}
           count={this.state.count}
