@@ -1,5 +1,5 @@
 import React from 'react';
-import { DOCUMENT_URL_UPDATE } from '../../../../../../../prj_pcsc/client_app/app/containers/App/constants';
+// import { DOCUMENT_URL_UPDATE } from '../../../../../../../prj_pcsc/client_app/app/containers/App/constants';
 
 
 const CreateProductView = (props) => {

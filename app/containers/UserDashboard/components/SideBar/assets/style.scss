@@ -6,6 +6,9 @@
     border-right: 1px solid #eee;
     position:fixed;
     z-index: 10;
+    @media(max-width: 768px){
+        width:220px;
+    }
 }
 .ui.vertical.menu .item:before{
     background:rgba(0,0,0,0) ;
@@ -26,6 +29,7 @@
                 border-left:3px solid #fff;
                 color: #777;
                 text-decoration: none;
+                transition:.4s;
                 
                 &:hover{
                     background: #f6f6f6;
@@ -45,6 +49,7 @@
             .content{
                 a{
                     padding-left:35px;
+                    border-bottom: 1px solid #f6f6f6;
                 }
             }
 
@@ -69,4 +74,18 @@
 }
 .content.active {
     padding: 0px !important;
+}
+
+.dropdown{
+    position: relative;
+    .arrow-wrap{
+        position: absolute;
+        right: 20px;
+        transition: .4s;
+    }
+}
+.dropdown.active{
+    .arrow-wrap{
+        transform: rotate(90deg);
+    }
 }

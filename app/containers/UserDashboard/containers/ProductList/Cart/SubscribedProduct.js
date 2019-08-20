@@ -98,29 +98,35 @@ export class SubscribedPackage extends React.Component {
                 // </div>
                   ))
                   ) : this.props.isRequesting ? (
-                  <Grid columns={3} stackable>
-                    <Grid.Column>
-                      <Segment raised>
-                        <Placeholder>
-                          <Placeholder.Header image>
-                            <Placeholder.Line />
-                            <Placeholder.Line />
-                          </Placeholder.Header>
-                          <Placeholder.Paragraph>
-                            <Placeholder.Line length="medium" />
-                            <Placeholder.Line length="short" />
-                          </Placeholder.Paragraph>
-                        </Placeholder>
-                      </Segment>
-                    </Grid.Column>
-                  </Grid>
+                  // <Grid columns={3} stackable>
+                  //   <Grid.Column>
+                  //     <Segment raised>
+                  //       <Placeholder>
+                  //         <Placeholder.Header image>
+                  //           <Placeholder.Line />
+                  //           <Placeholder.Line />
+                  //         </Placeholder.Header>
+                  //         <Placeholder.Paragraph>
+                  //           <Placeholder.Line length="medium" />
+                  //           <Placeholder.Line length="short" />
+                  //         </Placeholder.Paragraph>
+                  //       </Placeholder>
+                  //     </Segment>
+                  //   </Grid.Column>
+                  // </Grid>
+                      <div className="ui segment">
+                      <div className="ui active inverted dimmer">
+                        <div className="ui small text loader">Loading.....</div>
+                      </div>
+                      <p></p>
+                    </div>
                   ) : (
                   <div className="package_not_found">
                     <div className="package_not_found_grid">
                       <h1>Oops !</h1>
                       <span>
                     Looks like <br />
-                    You haven't purchased any products
+                    You haven't purchased any product
                   </span>
                 </div>
               </div>

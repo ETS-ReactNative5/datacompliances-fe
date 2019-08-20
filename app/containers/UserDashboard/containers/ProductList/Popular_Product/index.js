@@ -1,6 +1,6 @@
 /**
  *
- * PopularPackage
+ * PopularProduct
  *
  */
 
@@ -46,7 +46,7 @@ import reducer from './reducer';
 import saga from './saga';
 import loksewa from 'assets/images/loksewa.jpg';
 /* eslint-disable react/prefer-stateless-function */
-export class PopularPackage extends React.Component {
+export class PopularProduct extends React.Component {
   state = {
     data: [],
     page: 1,
@@ -199,7 +199,7 @@ export class PopularPackage extends React.Component {
                     <span>NRp.{packageData.price}</span>
                     <div className="hover__cart">
                       {/* <button>
-                        <i className="icon-shopping-cart" />
+                        <i class="icon-shopping-cart" />
                         <p>add to cart</p>
                       </button> */}
                       {this.state.cartPackages.includes(packageData._id) ? (
@@ -263,25 +263,31 @@ export class PopularPackage extends React.Component {
               </div>
             ))
           ) : this.props.isRequesting ? (
-            <Grid columns={3} stackable>
-              <Grid.Column>
-                <Segment raised>
-                  <Placeholder>
-                    <Placeholder.Header image>
-                      <Placeholder.Line />
-                      <Placeholder.Line />
-                    </Placeholder.Header>
-                    <Placeholder.Paragraph>
-                      <Placeholder.Line length="medium" />
-                      <Placeholder.Line length="short" />
-                    </Placeholder.Paragraph>
-                  </Placeholder>
-                </Segment>
-              </Grid.Column>
-            </Grid>
+            // <Grid columns={3} stackable>
+            //   <Grid.Column>
+            //     <Segment raised>
+            //       <Placeholder>
+            //         <Placeholder.Header image>
+            //           <Placeholder.Line />
+            //           <Placeholder.Line />
+            //         </Placeholder.Header>
+            //         <Placeholder.Paragraph>
+            //           <Placeholder.Line length="medium" />
+            //           <Placeholder.Line length="short" />
+            //         </Placeholder.Paragraph>
+            //       </Placeholder>
+            //     </Segment>
+            //   </Grid.Column>
+            // </Grid>
+                <div className="ui segment">
+                  <div className="ui active inverted dimmer">
+                    <div className="ui small text loader">Loading.....</div>
+                  </div>
+                  <p></p>
+                </div>
           ) : (
             <Card>
-              <CardContent>Packages Not Found</CardContent>
+              <CardContent>Products Not Found</CardContent>
             </Card>
           )}
         </div>
@@ -311,11 +317,11 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-const withReducer = injectReducer({ key: 'popularPackageList', reducer });
-const withSaga = injectSaga({ key: 'popularPackageList', saga });
+const withReducer = injectReducer({ key: 'popularProductList', reducer });
+const withSaga = injectSaga({ key: 'popularProductList', saga });
 
 export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(PopularPackage);
+)(PopularProduct);
