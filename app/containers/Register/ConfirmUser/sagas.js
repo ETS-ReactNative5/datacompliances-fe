@@ -14,7 +14,6 @@ function* redirectOnSuccess() {
 }
 
 function* confirmUserFlow(action) {
-	debugger
 	const successWatcher = yield fork(redirectOnSuccess);
 	// since confirm use is going to give updated token by invalidating current token,
 	// it makes sense to log out user after server responds success if user is logged in
@@ -26,8 +25,6 @@ function* confirmUserFlow(action) {
 	yield cancel(successWatcher);
 }
 
-function* confirmUserWatcher() {
+export default function* confirmUserWatcher() {
 	yield takeLatest(types.CONFIRM_USER_REQUEST, confirmUserFlow);
 }
-
-export default [ confirmUserWatcher ];
