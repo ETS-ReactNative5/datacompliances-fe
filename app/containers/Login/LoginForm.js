@@ -29,6 +29,7 @@ import {
 import ForgotPassword from './forgot-password/Loadable';
 import { GOOGLE_CLIENT_ID } from '../App/constants';
 import { makeSelectUser } from '../App/selectors';
+import logo from './assets/logo.png';
 import {
   logoutRequest,
   loginRequest,
@@ -193,7 +194,9 @@ class LoginForm extends React.Component {
         <h3>
           {userResp && Object.keys(userResp).length > 1
             ? 'Already Logged in'
-            : 'Login'}
+            : <a href="#" className="pcsc-logo">
+						<img src={logo}/>
+					</a>}
         </h3>
         {userResp && Object.keys(userResp).length < 1 && (
           <Form onSubmit={this.handleSubmit} className="ui form">
