@@ -33,6 +33,7 @@ import saga from './saga';
 import pkgimg from 'assets/images/pkg_lst1.jpg';
 import nt_fnd_img from 'assets/images/not_found_img.png';
 import '../../../assets/card.scss';
+import '../../../assets/breadcrumb.scss';
 
 /* eslint-disable react/prefer-stateless-function */
 export class SubscribedPackage extends React.Component {
@@ -56,6 +57,14 @@ export class SubscribedPackage extends React.Component {
     const { data } = this.state;
     return (
       <div>
+        <div class="ui breadcrumb">
+          <a class="section">Dashoard</a>
+          <div class="divider">/</div>
+          <a class="section">Products</a>
+          <div class="divider">/</div>
+          <div class="active section">My Products</div>
+        </div>
+        {/* breadcrumb */}
         <h1 className="main_title">Your Purchased Product</h1>
         <div className="product-listing">
           <div className="product-grid">
@@ -64,6 +73,7 @@ export class SubscribedPackage extends React.Component {
                 <div key={`subscribed${idx}`} className="product-item">
                   <div className="product-wrap">
                       <p className="product-title">{packageData.product.title}</p>
+                      <p className="profile-title">{packageData.product.profile_name}</p>
                       <ul className="feature-list">
                          <li>
                             <i className="icon-check"/>
@@ -114,7 +124,7 @@ export class SubscribedPackage extends React.Component {
                   //     </Segment>
                   //   </Grid.Column>
                   // </Grid>
-                      <div className="ui segment">
+                    <div className="ui segment">
                       <div className="ui active inverted dimmer">
                         <div className="ui small text loader">Loading.....</div>
                       </div>
