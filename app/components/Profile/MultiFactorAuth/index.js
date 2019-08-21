@@ -10,6 +10,7 @@ import reducer from './reducer';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import { compose } from 'redux';
+import moment from 'moment';
 
 import {
   makeSelectMultiFactorAuth,
@@ -337,7 +338,7 @@ class MultiFactorAuth extends React.Component {
                 }
             </ul>
             <p className="muted mg-btm-md">
-              Generated Time : {this.props.recovery_code_generated_on}
+              Generated Time : {moment(this.props.recovery_code_generated_on, 'YYYY-MM-DD').format('YYYY-MM-DD')}
             </p>
             <div className="print_save mg-top-sm inline-block">
               <Button
