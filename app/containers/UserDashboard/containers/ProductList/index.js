@@ -105,6 +105,22 @@ export class ProductList extends React.Component {
     }
   }
 
+  text_truncate = function(str, length, ending) {
+    if (length == null) {
+      length = 50;
+    }
+    if (ending == null) {
+      ending = '...';
+    }
+    if (str.length > length) {
+      return str.substring(0, length - ending.length) + ending;
+    } else {
+      return str;
+    }
+  };
+
+
+
   render() {
     const { data } = this.state;
     return (
@@ -117,6 +133,7 @@ export class ProductList extends React.Component {
                     <div key={`paidList${idx}`} className="product-item">
                       <div className="product-wrap">
                           <p className="product-title">{packageData.title}</p>
+                          <p className="profile-title">{packageData.profile_name}</p>
                           <p className="product-price">Rs.{packageData.price}</p>
                           <ul className="feature-list">
                             <li>
@@ -131,6 +148,10 @@ export class ProductList extends React.Component {
                                 <i className="icon-check"/>
                               <span>Questionnaire: {packageData.questions.length}</span>
                             </li>
+                            <li>
+                                <i className="icon-check"/>
+                              <span>Summary: {this.text_truncate(packageData.description)}</span>
+                            </li>
                           </ul>
                           <div className="buttons-wrap">
                         <Link
@@ -141,26 +162,14 @@ export class ProductList extends React.Component {
                           View Detail
                         </Link>
                         </div>
+                        {packageData.purchased &&
+                         <span className="ribbon">Purchased
+                         </span>
+                        }
                       </div>
                     </div>
                 )
               ) : this.props.isRequesting ? (
-                // <Grid columns={3} stackable>
-                //   <Grid.Column>
-                //     <Segment raised>
-                //       <Placeholder>
-                //         <Placeholder.Header image>
-                //           <Placeholder.Line />
-                //           <Placeholder.Line />
-                //         </Placeholder.Header>
-                //         <Placeholder.Paragraph>
-                //           <Placeholder.Line length="medium" />
-                //           <Placeholder.Line length="short" />
-                //         </Placeholder.Paragraph>
-                //       </Placeholder>
-                //     </Segment>
-                //   </Grid.Column>
-                // </Grid>
                 <div className="ui segment">
                   <div className="ui active inverted dimmer">
                     <div className="ui small text loader">Loading.....</div>

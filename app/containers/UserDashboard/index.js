@@ -150,6 +150,7 @@ class UserDashboard extends React.Component {
     return (
       <div className="dashboard-wrap">
         <TopNavigation
+            username={this.state.username}
             handleLogout={this.handleLogout}
             showSticky={this.showSticky}
             cartSize={this.state.cartSize}

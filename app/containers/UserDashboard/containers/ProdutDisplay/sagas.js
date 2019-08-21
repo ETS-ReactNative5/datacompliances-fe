@@ -11,7 +11,6 @@ function* redirectOnLoadAllSuccess() {
 }
 
 function* loadAllExamRequestService(action) {
-  debugger
   const token = localStorage.getItem("token");
   const successWatcher = yield fork(redirectOnLoadAllSuccess);
   const {page, perPage, query} = action;

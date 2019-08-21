@@ -46,6 +46,7 @@ class BasicInfo extends React.Component {
       ? `${DOCUMENT_URL_UPDATE}${this.props.user.get('image_name')}`
       : null,
     imageFile: null,
+    cropDialog: false,
     date: null,
     focused: false,
     errors:{}
@@ -130,6 +131,7 @@ class BasicInfo extends React.Component {
       imageFile: imgFile[0],
       avatarImage: imgFile[0].preview,
       newImage: true,
+      cropDialog: true
     });
   };
 
@@ -146,6 +148,7 @@ class BasicInfo extends React.Component {
           this.setState({
             imageFile: file,
             avatarImage: canvas,
+            cropDialog: false
           });
         });
     }
@@ -203,7 +206,7 @@ class BasicInfo extends React.Component {
   isOutsideRange = day => !day.isBefore(moment());
 
   render() {
-    const { data, avatarImage, date, focused, newImage,errors } = this.state;
+    const { data, avatarImage, date, focused, newImage,errors, cropDialog } = this.state;
     const { successResponse, errorResponse, requesting } = this.props;
     let message;
     if (successResponse && typeof successResponse === 'string') {
@@ -221,6 +224,7 @@ class BasicInfo extends React.Component {
               {message && message}
               <BasicInfoForm
                 date={date}
+                cropDialog={cropDialog}
                 focused={focused}
                 onDateChange={this.onDateChange}
                 onFocusChange={this.onFocusChange}

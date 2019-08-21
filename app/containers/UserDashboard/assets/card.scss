@@ -1,16 +1,20 @@
+p{
+   font-family:  'Poppins', sans-serif;
+}
+
+
 .main_title {
     margin-bottom: 30px !important;
     color:#0F1A36;
     font-size: 24px;
 }
 
-.product-title{
-    font-size:18px;
-    color: #43425D; 
-    font-weight:bold;
-    margin-bottom: 15px;
+.product-title {
+    font-size: 20px;
+    color: #43425D;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
-
 .product-listing{
     margin-right: 30px;
     margin-bottom:30px;
@@ -132,4 +136,14 @@
     .ui.segment{
         min-height: 200px;
     }
+}
+
+p.profile-title {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color:rgba(52, 52, 52, 0.56);
+    font-weight: 600;
+}
+a.ui.mini.icon.button.detail-btn {
+    margin: 0px;
 }

@@ -9,7 +9,7 @@ class TopNavigation extends React.Component {
   }
   render() {
     const avatar = <div><Image src={this.props.profilePic} avatar />
-    <span>John Doe</span>
+    <span>{this.props.username}</span>
   </div>;
     return (
       <div className="header-wrap">
