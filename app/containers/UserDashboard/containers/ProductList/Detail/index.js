@@ -91,6 +91,7 @@ export class ProductList extends React.Component {
     }
   }
   buyProduct = () => {
+    debugger
     let id = this.props.match.params.id ? this.props.match.params.id : null;
     const data = {
       user_id: this.state.userInfo._id,

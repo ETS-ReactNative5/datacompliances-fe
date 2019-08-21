@@ -60,8 +60,6 @@ export class SubscribedPackage extends React.Component {
         <div className="ui breadcrumb">
           <a className="section">Dashoard</a>
           <div className="divider">/</div>
-          <a className="section">Products</a>
-          <div className="divider">/</div>
           <div className="active section">My Products</div>
         </div>
         {/* breadcrumb */}
