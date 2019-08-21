@@ -8,6 +8,7 @@ import Captcha from 'components/Captcha';
 import PasswordInputField from 'components/common/Forms/PasswordInputField';
 import FormField from 'components/common/Forms/FormField';
 import PasswordIndicator from 'components/PasswordIndicator';
+import logo from '../assets/logo.png';
 
 import { Link } from 'react-router-dom';
 
@@ -44,7 +45,9 @@ const UserRegistrationForm = ({
 		<Form onSubmit={handleSubmit} className="register-form">
 			<div className="row">
 				<div className="col-md-4">
-					logo
+					<a href="#" className="pcsc-logo">
+						<img src={logo}/>
+					</a>
 				</div>
 				<div className="col-md-6 mb-4">
 					<h3>Create your Account</h3>	
@@ -208,7 +211,7 @@ const UserRegistrationForm = ({
 									/>
 									<div className="custom-control-indicator" />
 									<div className="custom-control-description">
-										I have read and agree to the Terms and Use and the Privacy Policy.
+										I have read and agree to the Terms of Use and the Privacy Policy.
 									</div>
 								</label>
 							</div>
