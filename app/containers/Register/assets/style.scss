@@ -51,3 +51,10 @@ $btn-blue:#068DF8;
 .ui.tiny.progress .bar{
     height: 100%;
 }
+.pcsc-logo{
+    display:inline-block;
+    height: 50px;
+    img{
+        object-fit: contain;
+    }
+}

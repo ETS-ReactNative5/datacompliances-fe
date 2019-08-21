@@ -2,12 +2,13 @@
  * Created by lakhe on 7/5/17.
  */
 import React from 'react';
- import { Dropdown, Form, Button, Icon } from 'semantic-ui-react';
+ import { Dropdown, Form, Button, Checkbox } from 'semantic-ui-react';
 // import { Form, Button } from 'react-bootstrap';
 import Captcha from 'components/Captcha';
 import PasswordInputField from 'components/common/Forms/PasswordInputField';
 import FormField from 'components/common/Forms/FormField';
 import PasswordIndicator from 'components/PasswordIndicator';
+import logo from '../assets/logo.png';
 
 import { Link } from 'react-router-dom';
 
@@ -44,7 +45,9 @@ const UserRegistrationForm = ({
 		<Form onSubmit={handleSubmit} className="register-form">
 			<div className="row">
 				<div className="col-md-4">
-					logo
+					<a href="#" className="pcsc-logo">
+						<img src={logo}/>
+					</a>
 				</div>
 				<div className="col-md-6 mb-4">
 					<h3>Create your Account</h3>	
@@ -145,11 +148,8 @@ const UserRegistrationForm = ({
 						options={Country || []}
 						onChange={handleCountryChange}
 						value={data.country || ''}
+						error={(errors.country == "Can't be blank") ? true : false}
 						/>
-					
-						{errors.country && (
-						<span style={{ color: 'red' }}>{errors.country}</span>
-						)}
 						</Form.Field>
 					</div>
 					
@@ -171,7 +171,6 @@ const UserRegistrationForm = ({
 					<div className="col-md-6">
 						<Form.Field>
 						<label>	Industry *</label>
-							
 								<Dropdown
 									placeholder="Industry"
 									className="form-control"
@@ -182,11 +181,8 @@ const UserRegistrationForm = ({
 									options={industryList || []}
 									onChange={handleDropDown}
 									value={data.industry || ''}
+									error={(errors.industry == "Can't be blank") ? true : false}
 								/>
-			
-								{errors.industry && (
-								<span style={{ color: 'red' }}>{errors.industry}</span>
-								)}
 						
 						</Form.Field>
 					</div>
@@ -196,21 +192,15 @@ const UserRegistrationForm = ({
 				<div className="row">
 					<div className="col-md-6">
 					<div className="inline field">
-			
-							<div className={`field ${errors.agree_terms_condition ? 'error' : ''}`}>
-								<label className="custom-control custom-checkbox mt-1">
-									<input
-										type="checkbox"
-										className="custom-control-input"
-										name="agree_terms_condition"
-										onChange={handleCheckbox}
-										checked={data.agree_terms_condition}
-									/>
-									<div className="custom-control-indicator" />
-									<div className="custom-control-description">
-										I have read and agree to the Terms and Use and the Privacy Policy.
-									</div>
-								</label>
+			              {console.log(errors.agree_terms_condition,';;;;',errors.agree_terms_condition == "Can't be blank")}
+							<div className={`field ${errors.agree_terms_condition == "Can't be blank" ? 'error' : ''}`}>
+							<Checkbox 
+							   name="agree_terms_condition"
+							   value="active"
+							   label='I have read and agree to the Terms of Use and the Privacy Policy.'
+							   onChange={handleCheckbox}
+							//    error={(errors.agree_terms_condition == "Can't be blank") ? true : false}
+							   />
 							</div>
 						</div>
 {/* 

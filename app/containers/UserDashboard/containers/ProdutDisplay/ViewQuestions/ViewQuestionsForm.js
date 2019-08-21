@@ -5,9 +5,6 @@ import {
   Form,
   Button,
   Radio,
-  Icon,
-  Segment,
-  Label,
   TextArea,
   Popup,
 } from 'semantic-ui-react';
@@ -56,7 +53,9 @@ const ViewPracticeQuestion = props => {
     correctAnswers,
     attempted_length,
     saveAnswerResponse,
-    tempValue
+    tempValue,
+    bit,
+    handleRevise
   } = props;
 
    const yesno = [
@@ -67,7 +66,6 @@ const ViewPracticeQuestion = props => {
   return (
     <div>
       <Grid>
-        {/* {console.log(data,'>>>>id',questionIdx)} */}
         {data.length > 0 && !show_final_result && (
           <Grid.Column largeScreen={16} widescreen={16}>
             <div className="question-wrap mr-5">
@@ -75,7 +73,6 @@ const ViewPracticeQuestion = props => {
                 <h4 className="item">
                   {questionIdx + 1} / {data.length}
                 </h4>
-              {/* {console.log(questionIdx,'>>>??')} */}
              { data[questionIdx] && data[questionIdx].type_of_questions == "Objective" &&
               <Form>
                 <div className="wrapper"> <h1 className="question-title">{data[questionIdx].question}</h1><Popup content={data[questionIdx].answer_tip} trigger={<Button className="answer-tip" icon='info' />} /></div>
@@ -83,15 +80,11 @@ const ViewPracticeQuestion = props => {
                   {data[questionIdx].answers.length > 0 &&
                     data[questionIdx].answers.map((ans, idx) =>
                         <div key={`ans${idx}`}>
-                          {/* {console.log(mockData.data.product_id,'=====',productId)} */} 
                           <Radio 
                             disabled={is_radio_disabled}
                             label={`${ans.answer}`}
                             value={ans.answer}
                             name={`ans${questionIdx}`}
-                            // checked={
-                            //   data[questionIdx].user_answer === ans.answer
-                            // }
                             // mockData.data.product_id == this.props.match.params.product_id &&
                             // checked={ mockData.data.product_id == productId &&
                             //         mockData.data.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
@@ -120,15 +113,11 @@ const ViewPracticeQuestion = props => {
                          { yesno.length > 0 &&
                            yesno.map((ans, idx) => (
                            <div key={`ans${idx}`}>
-                             {/* {console.log(ans.answer,'ggghhhjjj', mockData.data.question_answer[data[questionIdx].questionnaire_id])} */}
                            <Radio
                              disabled={is_radio_disabled}
                              label={`${ans.answer}`}
                              value={ans.answer}
                              name={`ans${questionIdx}`}
-                            //  checked={
-                            //    data[questionIdx].user_answer === ans.answer
-                            //  }
                               // checked={
                               //   mockData.data.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
                               //       mockData.data.question_answer[data[questionIdx].questionnaire_id] === ans.answer : false
@@ -158,10 +147,9 @@ const ViewPracticeQuestion = props => {
                        placeholder='Tell us more' 
                        cols={100}
                        rows={5}
-                      //  value={ans.answer || ''}
                         // value ={ mockData.data.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
                         //              mockData.data.question_answer[data[questionIdx].questionnaire_id] : ''}
-                        value ={tempValue == '' && saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
+                        value ={!bit && saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
                                    saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] : tempValue }             
                         onChange={(e, se) =>
                           handleAnswerChange(e, se, '', questionIdx, data[questionIdx].questionnaire_id)}
@@ -181,7 +169,6 @@ const ViewPracticeQuestion = props => {
                   <i className="icon-arrow-left mr-1" /> Previous
                 </Button>
               )}
-              {/* {console.log(data[questionIdx].questionnaire_id,'test')} */}
               {questionIdx < data.length - 1 && (
                 <Button
                   className="buy-btn next-btn"
@@ -197,60 +184,15 @@ const ViewPracticeQuestion = props => {
                   <i className="icon-arrow-right ml-1" />
                 </Button>
               )}
-                {/* {questionIdx === data.length - 1 && (
+                {questionIdx === data.length - 1 && (
                 <Button
                   color="teal"
                   content="Submit"
                   onClick={e => handleSubmitResultButton(e, questionIdx)}
                 />
-              )} */}
-              {/* {questionIdx === data.length - 1 && (
-                <Button
-                  color="red"
-                  content="View Result"
-                  // disabled={
-                  //   !data[questionIdx].user_answer ||
-                  //   (data[questionIdx] &&
-                  //     data[questionIdx].user_answers &&
-                  //     data[questionIdx].user_answers.length < 0)
-                  // }
-                  onClick={e => handleViewResultButton(e, questionIdx)}
-                />
-              )} */}
-              {showAnswer && (
-                <div
-                  className={
-                    isCorrect === 'correct'
-                      ? 'result__dis_correct'
-                      : 'result__dis'
-                  }
-                >
-                  <h1>
-                    You are {isCorrect}
-                    <Icon
-                      name={isCorrect === 'correct' ? 'check' : 'close'}
-                      color={isCorrect === 'correct' ? 'green' : 'red'}
-                    />
-                  </h1>
-                  <p>
-                    {/* {data[questionIdx].multi_answer_applicable ? (
-                      <span>{data[questionIdx].user_answers} </span>
-                    ) : (
-                      <span> {data[questionIdx].user_answer} </span>
-                    )} */}
-                    <span>Correct Answer : {correctAnswers[questionIdx]}</span>
-                  </p>
-                  {data && data.length > 0 && (
-                    <div
-                      className="rationale"
-                      dangerouslySetInnerHTML={{
-                        __html: data[questionIdx].rationale,
-                      }}
-                    />
-                  )}
-                </div>
               )}
-              {/* {data && (
+            {/*               
+              {data && (
                 <div className="pagination">
                   {data &&
                     data.length > 0 &&
@@ -290,37 +232,20 @@ const ViewPracticeQuestion = props => {
                         {/* {console.log(question,'>>>', tempValue == '' && saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
                                    saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] : tempValue )} */}
                           <div className="result_listing">
-                            { question.type_of_questions == "Objective" &&
-                                <div>
-                                <span><b>Q) {indx + 1}</b></span>
-                                <h3>{question.question}</h3>
-                                <p>
-                            
-                                </p>
-                                </div>
-                            }
-                            { question.type_of_questions == "Yes/No" &&
-                                <div>
-                                <span><b>Q) {indx + 1}</b></span>
-                                <h3>{question.question}</h3>
-                                <p>
-                                
-                                </p>
-                                </div>
-                            }
-                            { question.type_of_questions == "Subjective" &&
-                                <div>
-                                <span><b>Q) {indx + 1}</b></span>
-                                <h3>{question.question}</h3>
-                                <p>
-                                  
-                                </p>
-                                </div>
-                            }
+                          <div>
+                            <span><b>Q) {indx + 1}</b></span>
+                            <h3>{question.question}</h3>
+                            <p>
+                            {saveAnswerResponse.question_answer.hasOwnProperty(question.questionnaire_id) ? 
+                                saveAnswerResponse.question_answer[question.questionnaire_id] : '' }
+                            </p>
+                            </div>
                           </div>
                       </div>
                   </Grid.Column>
                 ))}
+                <Button onClick={e => handleRevise()} color="blue">Revise</Button>
+                <Button color="green">Confirm Submit</Button>
             </Grid>
           </div>
         </div>

@@ -47,6 +47,7 @@ const BasicInfoForm = ({
   datechange,
   setEditorRef,
   onCrop,
+  cropDialog,
   newImage,
   errors
 }) => (
@@ -60,7 +61,7 @@ const BasicInfoForm = ({
           alt="profile image"
         />
       </ReactDropzone>
-      {newImage && (
+      {cropDialog && newImage && (
         <div className="img-editor " >
           <AvatarEditor
             className="mb-3"

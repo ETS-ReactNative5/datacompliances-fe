@@ -34,7 +34,7 @@ class Toaster extends Component {
     if (visible) {
       return (
         <Message
-          floating onDismiss={this.handleDismiss} header={'Message from server!'}
+          floating onDismiss={this.handleDismiss} header={'Message from Server!'}
           content={message} positive={success} negative={error} warning={warning} size={size}
         />
       );

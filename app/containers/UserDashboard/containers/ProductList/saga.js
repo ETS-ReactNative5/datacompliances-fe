@@ -126,7 +126,6 @@ function* getQuestionRequest(action) {
 
 function* redirectOnBuySuccess() {
   const action = yield take(types.BUY_PRODUCT_SUCCESS);
-  debugger
   yield put(push(`/user/dashboard/product-display/${action.response.data.product_id}`));
 }
 

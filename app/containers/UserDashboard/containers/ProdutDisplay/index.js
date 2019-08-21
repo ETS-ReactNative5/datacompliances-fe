@@ -181,9 +181,12 @@ class ExamDisplay extends React.Component {
                       <img src={mediquiz} />
                     )}
                     </div>
-                    <div className="">
-                      <h3 className="product-title">{exam.title}</h3>
-                      <p className="product-description">Description: {exam.description}</p>
+                    <div className="right product-detail">
+                      <p className="product-name"><span>Title : </span>{exam.title}</p>
+                      <p className="product-industry"><span>Industry : </span>{exam.industry}</p>
+                      <p className="product-price"><span>Price : </span>{exam.price}</p>
+                      <p className="product-country"><span>Country : </span>{exam.country}</p>
+                      <p className="product-description"><span>Description : </span>{exam.description}</p>
                       <Link
                           className="button buy-btn"
                           to={`/user/dashboard/product-display/questions/${exam._id}`}
@@ -199,23 +202,22 @@ class ExamDisplay extends React.Component {
                 </Grid.Column>
               ))
             ) : isRequesting ? (
-              <div>Loading.....</div>
+                <div className="ui segment loader-wrap">
+                  <div className="ui active inverted dimmer">
+                    <div className="ui small text loader">Loading.....</div>
+                  </div>
+                  <p></p>
+                </div>
             ) : (
               <div>
                 {Object.keys(data).length < 1 &&
-                  (url.includes('trial') ? (
-                    <div>
-                      <Card>
-                        <CardContent>No Trial Questions available!</CardContent>
-                      </Card>
-                    </div>
-                  ) : (
-                    <div>
-                      <Card>
-                        <CardContent>No Questions available!</CardContent>
-                      </Card>
-                    </div>
-                  ))}
+                    <div className="ui segment loader-wrap">
+                     <div className="ui active inverted dimmer">
+                       <div className="ui small text loader">Loading.....</div>
+                     </div>
+                     <p></p>
+                   </div>
+                }
               </div>
             )}
           </Grid>
