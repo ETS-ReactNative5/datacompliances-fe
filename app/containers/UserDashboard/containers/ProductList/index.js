@@ -105,6 +105,22 @@ export class ProductList extends React.Component {
     }
   }
 
+  text_truncate = function(str, length, ending) {
+    if (length == null) {
+      length = 50;
+    }
+    if (ending == null) {
+      ending = '...';
+    }
+    if (str.length > length) {
+      return str.substring(0, length - ending.length) + ending;
+    } else {
+      return str;
+    }
+  };
+
+
+
   render() {
     const { data } = this.state;
     return (
@@ -130,6 +146,10 @@ export class ProductList extends React.Component {
                             <li>
                                 <i className="icon-check"/>
                               <span>Questionnaire: {packageData.questions.length}</span>
+                            </li>
+                            <li>
+                                <i className="icon-check"/>
+                              <span>Summary: {this.text_truncate(packageData.description)}</span>
                             </li>
                           </ul>
                           <div className="buttons-wrap">
