@@ -1,5 +1,8 @@
 import React from 'react';
 import { DOCUMENT_URL_UPDATE } from '../../../../App/constants';
+import {
+    Button
+  } from 'semantic-ui-react';
 
 
 const CreateProductView = (props) => {

@@ -117,7 +117,7 @@ class SideNavigation extends React.Component {
                           </span>
                           <span className="nav__text">{main.title}</span>
                         </span>
-                        <span class="arrow-wrap"><i className="icon-chevron-right"></i></span>
+                        <span className="arrow-wrap"><i className="icon-chevron-right"></i></span>
                       </Accordion.Title>
                       <Accordion.Content active={activeIndex === idx}>
                         {main.subMenues.map((menu, idx) => (

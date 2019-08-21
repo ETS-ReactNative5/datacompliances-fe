@@ -264,9 +264,8 @@ class ViewQuestions extends React.Component {
       is_radio_disabled: false,
     });
   };
-
  
-  handleViewResultButton = (event, mainIdx) => {
+  handleSubmitResultButton = (event, mainIdx) => {
     score_arr = [];
     let attempted_questions = this.state.data.filter(dat => {
       return Object.keys(dat).includes('user_answer');
@@ -340,6 +339,12 @@ class ViewQuestions extends React.Component {
       is_radio_disabled: false,
     });
   };
+  
+  handleRevise = () => {
+    this.setState({
+      show_final_result: false,
+    });
+  }
 
   render() {
     const {
@@ -359,7 +364,8 @@ class ViewQuestions extends React.Component {
       fav_questions,
       favFailure,
       saveAnswerResponse,
-      tempValue
+      tempValue,
+      bit
     } = this.state;
     const { successResponse, errorResponse } = this.props;
     let message = null;
@@ -380,7 +386,9 @@ class ViewQuestions extends React.Component {
         <ViewQuestionsForm
           data={data}
           tempValue={tempValue}
+          bit={bit}
           saveAnswerResponse={saveAnswerResponse}
+          handleRevise={this.handleRevise}
           page={page}
           perPage={perPage}
           productId={this.state.product_id}
@@ -390,6 +398,7 @@ class ViewQuestions extends React.Component {
           questionIdx={questionIdx}
           showAnswer={showAnswer}
           handleViewResultButton={this.handleViewResultButton}
+          handleSubmitResultButton={this.handleSubmitResultButton}
           error_msg={error_msg}
           show_final_result={show_final_result}
           score={score}

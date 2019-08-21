@@ -114,9 +114,9 @@ export class SubscribedPackage extends React.Component {
                   //     </Segment>
                   //   </Grid.Column>
                   // </Grid>
-                      <div class="ui segment">
-                      <div class="ui active inverted dimmer">
-                        <div class="ui small text loader">Loading.....</div>
+                      <div className="ui segment">
+                      <div className="ui active inverted dimmer">
+                        <div className="ui small text loader">Loading.....</div>
                       </div>
                       <p></p>
                     </div>
