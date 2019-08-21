@@ -127,7 +127,7 @@ class PasswordReset extends React.Component {
                     <div className="img-floating round bg-green align-center"><i className="icon-lock" /></div>
                     { errorMessage && <p className="negative message">{errorMessage}</p> }
                     <Form onSubmit={this.handleSubmit}>
-                      <p>Now you can access your XcelTrip account simply setting new password</p>
+                      <p>Now you can access your PCSC account simply setting new password</p>
                       <div className="pos-rel field">
                         <PasswordInputField password={data.password || ''} placeholder="Password"
                                             onChange={this.handleChange} error={errors.password}

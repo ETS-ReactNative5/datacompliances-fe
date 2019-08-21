@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
-import { Form, Button, Checkbox } from 'semantic-ui-react';
+import { Form, Button, Checkbox, Modal, Header, Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import getUserObject from 'utils/getUserInfo';
 import FormField from 'components/common/Forms/FormField';
@@ -227,10 +227,15 @@ class MultiFactorAuth extends React.Component {
                     </Button>
                   </div>
                 )}
+                <br />
                 {showMultiFactorAuthDisable && (
-                  <div>
-                    <p>Do you want to disable two factor auth?</p>
-                    <Button
+                  <Modal open={showMultiFactorAuthDisable} size="mini" style={{leftMargin :  "20%"}} >
+                  <Header icon='question circle' content='Are you sure?' />
+                  <Modal.Content style={{minHeight :  "80px"}}>
+                  <span>Do you want to disable two factor auth?</span>
+                  </Modal.Content>
+                  <Modal.Actions>
+                     <Button
                       className="button positive"
                       onClick={this.disableMultiFactorAuthRequest}
                       loading={isRequesting}
@@ -244,7 +249,8 @@ class MultiFactorAuth extends React.Component {
                     >
                       Cancel
                     </Button>
-                  </div>
+                  </Modal.Actions>
+                </Modal>
                 )}
               </div>
             )}
@@ -325,21 +331,21 @@ class MultiFactorAuth extends React.Component {
               used only once.
             </div>
             <br />
-            <p>Backup verification codes</p>
+            <span>Backup verification codes</span>
             <ul className="ui tag labels">
-              {recoveryCodes
-                // .entrySeq()
-                .map(([key, value]) => (
-                  <li className="label" key={`${key}_${value}`}>
-                    {value}
+              {recoveryCodes &&
+                recoveryCodes.map((each, index) => (
+                  <li className="label" key={`${index}`}>
+                    <h6>{each}</h6>
                   </li>
                 ))
-                // .toArray()
                 }
             </ul>
-            <p className="muted mg-btm-md">
+            <span className="muted mg-btm-md">
               Generated Time : {moment(this.props.recovery_code_generated_on, 'YYYY-MM-DD').format('YYYY-MM-DD')}
-            </p>
+            </span>
+            <br />
+            <br />
             <div className="print_save mg-top-sm inline-block">
               <Button
                 secondary
@@ -351,6 +357,7 @@ class MultiFactorAuth extends React.Component {
                 Send codes to email
               </Button>
             </div>
+            <br />
             <div className="button_wrapper inline-block">
               <Button
                 className="button primary"
