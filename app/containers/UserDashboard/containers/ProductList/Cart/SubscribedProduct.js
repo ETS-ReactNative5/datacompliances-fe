@@ -93,28 +93,12 @@ export class SubscribedPackage extends React.Component {
                       </Link>
                       </div>
                       <span className="ribbon">Purchased
-                    </span>
+                     </span>
                     </div>
                   </div>
                 // </div>
                   ))
                   ) : this.props.isRequesting ? (
-                  // <Grid columns={3} stackable>
-                  //   <Grid.Column>
-                  //     <Segment raised>
-                  //       <Placeholder>
-                  //         <Placeholder.Header image>
-                  //           <Placeholder.Line />
-                  //           <Placeholder.Line />
-                  //         </Placeholder.Header>
-                  //         <Placeholder.Paragraph>
-                  //           <Placeholder.Line length="medium" />
-                  //           <Placeholder.Line length="short" />
-                  //         </Placeholder.Paragraph>
-                  //       </Placeholder>
-                  //     </Segment>
-                  //   </Grid.Column>
-                  // </Grid>
                       <div className="ui segment">
                       <div className="ui active inverted dimmer">
                         <div className="ui small text loader">Loading.....</div>
