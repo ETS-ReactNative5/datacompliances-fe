@@ -33,22 +33,24 @@ const mainMenu = [
    {
       title: 'Dashboard',
       path: '/user/dashboard',
-      icon: "icon-grid",
+      icon: "icon-home",
     },
     {
     title: 'Product',
     path: '/',
-    icon: 'icon-file',
+    icon: 'icon-package',
     subMenues: [
       {
         title: 'My Product',
         path: '/user/dashboard/my-products',
         group_title: 'my-product',
+        icon: "icon-grid",
       },
       {
         title: 'Available Products',
         path: '/user/dashboard/product',
         group_title: 'available-product',
+        icon: "icon-shopping-cart",
       },
     ],
   },
@@ -104,6 +106,7 @@ class SideNavigation extends React.Component {
                   {main.subMenues.length > 0 && (
                     <div>
                       <Accordion.Title
+                        className="dropdown"
                         active={activeIndex === idx}
                         index={idx}
                         onClick={this.handleClick}
@@ -114,6 +117,7 @@ class SideNavigation extends React.Component {
                           </span>
                           <span className="nav__text">{main.title}</span>
                         </span>
+                        <span className="arrow-wrap"><i className="icon-chevron-right"></i></span>
                       </Accordion.Title>
                       <Accordion.Content active={activeIndex === idx}>
                         {main.subMenues.map((menu, idx) => (
@@ -147,7 +151,7 @@ class SideNavigation extends React.Component {
            <Menu.Item>
           <Link className="nav__link" to="/user/dashboard/">
             <span className="nav__icon">
-              <i className="icon-grid" />
+              <i className="icon-file" />
             </span>
             <span className="nav__text">Reports</span>
           </Link>
