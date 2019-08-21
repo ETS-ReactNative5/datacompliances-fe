@@ -9,6 +9,8 @@ import {
   Popup,
 } from 'semantic-ui-react';
 import '../assests/style.scss';
+import logo_next from '../assests/next.svg';
+import logo_previous from '../assests/previous.svg';
 
 // const mockData = {
 //   "status": 200,
@@ -69,7 +71,56 @@ const ViewPracticeQuestion = props => {
         {data.length > 0 && !show_final_result && (
           <Grid.Column largeScreen={16} widescreen={16}>
             <div className="question-wrap mr-5">
-              
+            {questionIdx != 0 && (
+                <span 
+                   className="logo"
+                   onClick={e => handleBackButton(e, questionIdx)}
+                   disabled={
+                    questionIdx == 0 }
+                   >
+                <img className="logo__img" src={logo_previous} alt="" />
+              </span>
+               )} 
+             {questionIdx < data.length - 1 && (
+              <span
+               className="logo"
+               onClick={e => handleNextButton(e, questionIdx, data[questionIdx].questionnaire_id)}
+               disabled={
+                 questionIdx > data.length - 1
+                }
+               >
+                <img className="logo__img" src={logo_next} alt="" />
+              </span>
+             )}
+               {/* {questionIdx != 0 && ( */}
+                {/* <Button 
+                  size="mini"
+                  icon='left chevron'
+                  color="blue"
+                  // className="buy-btn prev-btn"
+                  onClick={e => handleBackButton(e, questionIdx)}
+                  disabled={
+                    questionIdx == 0 }>
+                  <i className="icon-arrow-left mr-1" /> Previous
+                </Button> */}
+              {/* // )} */}
+              {/* {questionIdx < data.length - 1 && ( */}
+                {/* <Button
+                  size="mini"
+                  icon='right chevron'
+                  color="blue"
+                  // className="buy-btn next-btn"
+                  onClick={e => handleNextButton(e, questionIdx, data[questionIdx].questionnaire_id)}
+                    disabled={
+                      questionIdx > data.length - 1
+                  }
+                >
+                  Next
+                  <i className="icon-arrow-right ml-1" />
+                </Button> */}
+              {/* // )} */}
+                <br />
+                <br />
                 <h4 className="item">
                   {questionIdx + 1} / {data.length}
                 </h4>
@@ -162,32 +213,11 @@ const ViewPracticeQuestion = props => {
                     </div>
             
                   }
-              {questionIdx != 0 && (
-                <Button 
-                  className="buy-btn prev-btn"
-                onClick={e => handleBackButton(e, questionIdx)}>
-                  <i className="icon-arrow-left mr-1" /> Previous
-                </Button>
-              )}
-              {questionIdx < data.length - 1 && (
-                <Button
-                  className="buy-btn next-btn"
-                  // disabled={
-                  //   !data[questionIdx].user_answer ||
-                  //   (data[questionIdx] &&
-                  //     data[questionIdx].user_answers &&
-                  //     data[questionIdx].user_answers.length < 0)
-                  // }
-                  onClick={e => handleNextButton(e, questionIdx, data[questionIdx].questionnaire_id)}
-                >
-                  Next
-                  <i className="icon-arrow-right ml-1" />
-                </Button>
-              )}
+             
                 {questionIdx === data.length - 1 && (
                 <Button
                   color="teal"
-                  content="Submit"
+                  content="View Summary"
                   onClick={e => handleSubmitResultButton(e, questionIdx)}
                 />
               )}

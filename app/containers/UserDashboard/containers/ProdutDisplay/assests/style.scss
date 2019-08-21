@@ -1,3 +1,14 @@
+.logo {
+    padding: 10px;
+    border-bottom: 1px dashed #e5e5e5;
+    margin-bottom: 15px;
+    margin: 0 auto 15px auto;
+  }
+  
+  .logo__img {
+    width: 40px;
+  }
+
 .two-col-grid {
     display: grid;
     grid-template-columns: 1fr;
