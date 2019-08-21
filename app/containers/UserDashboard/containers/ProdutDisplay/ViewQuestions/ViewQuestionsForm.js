@@ -235,10 +235,10 @@ const ViewPracticeQuestion = props => {
                           <div>
                             <span><b>Q) {indx + 1}</b></span>
                             <h3>{question.question}</h3>
-                            <p>
+                            <span>
                             {saveAnswerResponse.question_answer.hasOwnProperty(question.questionnaire_id) ? 
-                                saveAnswerResponse.question_answer[question.questionnaire_id] : '' }
-                            </p>
+                                saveAnswerResponse.question_answer[question.questionnaire_id] : 'Not Answered' }
+                            </span>
                             </div>
                           </div>
                       </div>
