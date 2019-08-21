@@ -202,23 +202,22 @@ class ExamDisplay extends React.Component {
                 </Grid.Column>
               ))
             ) : isRequesting ? (
-              <div>Loading.....</div>
+                <div className="ui segment loader-wrap">
+                  <div className="ui active inverted dimmer">
+                    <div className="ui small text loader">Loading.....</div>
+                  </div>
+                  <p></p>
+                </div>
             ) : (
               <div>
                 {Object.keys(data).length < 1 &&
-                  (url.includes('trial') ? (
-                    <div>
-                      <Card>
-                        <CardContent>No Trial Questions available!</CardContent>
-                      </Card>
-                    </div>
-                  ) : (
-                    <div>
-                      <Card>
-                        <CardContent>No Questions available!</CardContent>
-                      </Card>
-                    </div>
-                  ))}
+                    <div className="ui segment loader-wrap">
+                     <div className="ui active inverted dimmer">
+                       <div className="ui small text loader">Loading.....</div>
+                     </div>
+                     <p></p>
+                   </div>
+                }
               </div>
             )}
           </Grid>

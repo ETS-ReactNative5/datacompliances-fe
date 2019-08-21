@@ -92,33 +92,31 @@ class SignupForm extends React.Component {
 		this.props.clearState();
 	}
 
-	handleChange = (e) => {
+	handleChange = (e, se) => {
 		e.persist();
+		let errors = this.state.errors;
+		if (!!errors[e.target.name] && !!e.target.value)
+		  delete errors[e.target.name];
 		this.setState((state) => ({
 			data: { ...state.data, [e.target.name]: e.target.value },
 		}));
 	};
-	handleCheckbox = (e) => {
-		e.persist();
-		this.setState((state) => ({
-			data: {
-				...state.data,
-				[e.target.name]: e.target.checked,
-			},
-		}));
+	handleCheckbox = (e, se) => {
+		if (se.value == 'active') {
+			let errors = this.state.errors;
+			if (!!errors["agree_terms_condition"])
+			delete errors["agree_terms_condition"];
+			this.setState(state => ({
+			  data: { ...state.data, agree_terms_condition: !state.data.agree_terms_condition },
+			}));
+		  }
 	};
 	onRecaptchaChange = (e) => {
 		this.setState((state) => ({
 			data: { ...state.data, reCaptcha: e },
 		}));
 	};
-
-	// handleSemanticChange = (e, { name, value }) => {
-	// 	this.setState((state) => ({
-	// 		data: { ...state.data, [name]: value },
-	// 	}));
-	// };
-
+	
 	handleDropDown = (e, se) => {
 		let errors = this.state.errors;
 		if (!!errors[se.name] && !!se.value) delete errors[se.name];
@@ -145,8 +143,10 @@ class SignupForm extends React.Component {
 		if (data.last_name && !/^[a-zA-Z]+$/.test(data.last_name)) errors.first_name = 'Can only contain letters';
 		if (!data.email) errors.email = "Can't be blank";
 		if (!data.password) errors.password = 'password_error';
-		// if (Object.keys(passwordHelper(data.password)).length > 0) errors.password = "Please secure your account with a strong password";
-		// if (!data.gender) errors.gender = "Can't be blank";
+		if (!data.phone) errors.phone = "Can't be blank";
+		if (!data.company_name) errors.company_name = "Can't be blank";
+		if (!data.industry) errors.industry = "Can't be blank";
+		if (!data.country) errors.country = "Can't be blank";
 		if (!data.agree_terms_condition) errors.agree_terms_condition = "Can't be blank";
 		// if (!data.reCaptcha) errors.reCaptcha = 'Please check I am not a Robot checkbox';
 		// if (!data.mobile_number) errors.mobile_number = "Please input your mobile number";
@@ -158,7 +158,6 @@ class SignupForm extends React.Component {
 		e.preventDefault();
 		const errors = this.validate();
 		this.setState({ errors });
-		console.log(this.state.errors,'fffff', this.state.errors.length)
 		if (Object.keys(errors).length === 0) {
 			this.props.signupRequest(this.state.data);
 		}
