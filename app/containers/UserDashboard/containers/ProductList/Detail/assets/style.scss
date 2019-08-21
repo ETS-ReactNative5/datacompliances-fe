@@ -1,7 +1,10 @@
 .two-col-grid {
     display: grid;
-    grid-template-columns: 300px auto;
+    grid-template-columns: 1fr;
     grid-gap: 20px;
+    @media(min-width: 768px){
+        grid-template-columns: 245px auto;
+    }
     @media(min-width: 1420px){
         grid-template-columns: 300px 700px;
     }
