@@ -199,7 +199,7 @@ export class PopularProduct extends React.Component {
                     <span>NRp.{packageData.price}</span>
                     <div className="hover__cart">
                       {/* <button>
-                        <i class="icon-shopping-cart" />
+                        <i className="icon-shopping-cart" />
                         <p>add to cart</p>
                       </button> */}
                       {this.state.cartPackages.includes(packageData._id) ? (

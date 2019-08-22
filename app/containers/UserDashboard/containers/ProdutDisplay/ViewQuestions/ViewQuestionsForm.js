@@ -7,8 +7,11 @@ import {
   Radio,
   TextArea,
   Popup,
+  Label
 } from 'semantic-ui-react';
 import '../assests/style.scss';
+import logo_next from '../assests/next.svg';
+import logo_previous from '../assests/previous.svg';
 
 // const mockData = {
 //   "status": 200,
@@ -69,7 +72,57 @@ const ViewPracticeQuestion = props => {
         {data.length > 0 && !show_final_result && (
           <Grid.Column largeScreen={16} widescreen={16}>
             <div className="question-wrap mr-5">
-              
+            {/* {questionIdx != 0 && (
+                <span 
+                   className="logo"
+                   onClick={e => handleBackButton(e, questionIdx)}
+                   disabled={
+                    questionIdx == 0 }
+                   >
+                <img className="logo__img" src={logo_previous} alt="" />
+              </span>
+               )} 
+             {questionIdx < data.length - 1 && (
+              <span
+               className="logo"
+               onClick={e => handleNextButton(e, questionIdx, data[questionIdx].questionnaire_id)}
+               disabled={
+                 questionIdx > data.length - 1
+                }
+               >
+                <img className="logo__img" src={logo_next} alt="" />
+              </span>
+             )} */}
+               {questionIdx != 0 && (
+                  <Popup content='Previous Question' trigger={
+                  <Button 
+                    size="mini"
+                    color="blue"
+                    className="buy-btn prev-btn"
+                    onClick={e => handleBackButton(e, questionIdx)}
+                    disabled={
+                      questionIdx == 0 }>
+                    <i className="icon-arrow-left mr-1" />
+                  </Button> } />
+
+                )} 
+               {questionIdx < data.length - 1 && ( 
+                  <Popup content='Next Question' trigger={<Button
+                    size="mini"
+                    color="blue"
+                    className="buy-btn next-btn"
+                    onClick={e => handleNextButton(e, questionIdx, data[questionIdx].questionnaire_id)}
+                      disabled={
+                        questionIdx > data.length - 1
+                    }
+                  >
+                   
+                    <i className="icon-arrow-right ml-1" />
+                  </Button> } />
+                 
+                )} 
+                <br />
+                <br />
                 <h4 className="item">
                   {questionIdx + 1} / {data.length}
                 </h4>
@@ -162,37 +215,16 @@ const ViewPracticeQuestion = props => {
                     </div>
             
                   }
-              {questionIdx != 0 && (
-                <Button 
-                  className="buy-btn prev-btn"
-                onClick={e => handleBackButton(e, questionIdx)}>
-                  <i className="icon-arrow-left mr-1" /> Previous
-                </Button>
-              )}
-              {questionIdx < data.length - 1 && (
-                <Button
-                  className="buy-btn next-btn"
-                  // disabled={
-                  //   !data[questionIdx].user_answer ||
-                  //   (data[questionIdx] &&
-                  //     data[questionIdx].user_answers &&
-                  //     data[questionIdx].user_answers.length < 0)
-                  // }
-                  onClick={e => handleNextButton(e, questionIdx, data[questionIdx].questionnaire_id)}
-                >
-                  Next
-                  <i className="icon-arrow-right ml-1" />
-                </Button>
-              )}
+             
                 {questionIdx === data.length - 1 && (
                 <Button
                   color="teal"
-                  content="Submit"
+                  content="View Summary"
                   onClick={e => handleSubmitResultButton(e, questionIdx)}
                 />
               )}
-            {/*               
-              {data && (
+                          
+               {/* {data && (
                 <div className="pagination">
                   {data &&
                     data.length > 0 &&
@@ -235,10 +267,10 @@ const ViewPracticeQuestion = props => {
                           <div>
                             <span><b>Q) {indx + 1}</b></span>
                             <h3>{question.question}</h3>
-                            <p>
+                            <span>
                             {saveAnswerResponse.question_answer.hasOwnProperty(question.questionnaire_id) ? 
-                                saveAnswerResponse.question_answer[question.questionnaire_id] : '' }
-                            </p>
+                                saveAnswerResponse.question_answer[question.questionnaire_id] : 'Not Answered' }
+                            </span>
                             </div>
                           </div>
                       </div>

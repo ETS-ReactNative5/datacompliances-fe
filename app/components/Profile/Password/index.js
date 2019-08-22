@@ -96,7 +96,7 @@ class Password extends React.Component {
     return (
       <div className="profile_section">
         <div className="row">
-          <div className="col-md-8">
+          <div className="col-md-4">
         <React.Fragment>
           {message && message}
           <Form className="form" onSubmit={this.handleSubmit}>
