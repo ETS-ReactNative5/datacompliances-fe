@@ -31,6 +31,7 @@ function loginReducer(state = initialState, action) {
 			});
 		case types.LOGIN_BY_TOKEN_REQUEST:
 		case types.LOGIN_REQUEST:
+		case types.PRIVATE_KEY_REQUEST:
 		case types.LOGOUT_REQUEST:
 			return state.merge({
 				requesting: true,
@@ -40,6 +41,23 @@ function loginReducer(state = initialState, action) {
 				userId: '',
 				email: '',
 			});
+
+		case types.PRIVATE_KEY_SUCCESS:
+				return state.merge({
+					requesting: false,
+					success: false,
+					response:action.response,
+					error: '',
+				});
+
+		case types.PRIVATE_KEY_FAILURE:
+				return state.merge({
+					requesting: false,
+					success: false,
+					error: action.error.message,
+					response: '',
+				});
+			
 		case types.RESEND_CONFIRMATION_REQUEST:
 			return state.merge({
 				resendEmailRequesting: true,
@@ -94,7 +112,7 @@ function loginReducer(state = initialState, action) {
 			});
 		case SIGNUP_SUCCESS:
 			return state.merge({
-				response: action.response.message,
+				response: action.response.data,
 			});
 
 		case types.LOGIN_SUCCESS:

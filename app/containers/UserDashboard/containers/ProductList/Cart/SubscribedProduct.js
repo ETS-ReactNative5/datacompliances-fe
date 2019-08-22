@@ -57,12 +57,10 @@ export class SubscribedPackage extends React.Component {
     const { data } = this.state;
     return (
       <div>
-        <div class="ui breadcrumb">
-          <a class="section">Dashoard</a>
-          <div class="divider">/</div>
-          <a class="section">Products</a>
-          <div class="divider">/</div>
-          <div class="active section">My Products</div>
+        <div className="ui breadcrumb">
+          <a className="section">Dashoard</a>
+          <div className="divider">/</div>
+          <div className="active section">My Products</div>
         </div>
         {/* breadcrumb */}
         <h1 className="main_title">Your Purchased Product</h1>
@@ -73,8 +71,12 @@ export class SubscribedPackage extends React.Component {
                 <div key={`subscribed${idx}`} className="product-item">
                   <div className="product-wrap">
                       <p className="product-title">{packageData.product.title}</p>
-                      <p className="profile-title">{packageData.product.profile_name}</p>
                       <ul className="feature-list">
+                        
+                        <li>
+                            <i className="icon-check"/>
+                            <span>Profile Name: {packageData.product.profile_name}</span> 
+                         </li>
                          <li>
                             <i className="icon-check"/>
                             <span>Country: { packageData.product.country }</span> 

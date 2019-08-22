@@ -96,20 +96,20 @@ class PasswordReset extends React.Component {
     const { data, errors } = this.state;
     const { requesting, success, resetPasswordRequesting, resetSuccess, errorMessage, successMessage, token } = this.props;
     return (
-      <section className="ptn-1">
+      <section className="reset-password">
         { requesting && <div className="align-center"> <Spinner /> </div>}
         { !requesting && !success && !resetSuccess &&
         <div className="wrapper">
-          <div className="container">
+          
             <div className="card-center card-md mg-btm-md">
               {errorMessage && <p className="negative message">{errorMessage}</p>}
               <Link className="fluid button" to="/">Continue</Link>
             </div>
-          </div>
+         
         </div> }
         {!requesting && success && !resetSuccess &&  (
           <div className="wrapper">
-            <div className="container">
+            
               <div className="card-center card-md mg-btm-md">
                 {!token &&
                 <div className="align-center">
@@ -127,7 +127,7 @@ class PasswordReset extends React.Component {
                     <div className="img-floating round bg-green align-center"><i className="icon-lock" /></div>
                     { errorMessage && <p className="negative message">{errorMessage}</p> }
                     <Form onSubmit={this.handleSubmit}>
-                      <p>Now you can access your XcelTrip account simply setting new password</p>
+                      <p>Now you can access your PCSC account simply setting new password</p>
                       <div className="pos-rel field">
                         <PasswordInputField password={data.password || ''} placeholder="Password"
                                             onChange={this.handleChange} error={errors.password}
@@ -158,7 +158,6 @@ class PasswordReset extends React.Component {
                     </Form>
                   </div>
                 )}
-              </div>
             </div>
           </div>
         )}
