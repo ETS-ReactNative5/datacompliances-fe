@@ -16,6 +16,7 @@ import '../../assets/base/form-base-style.scss';
 import saga from '../App/saga';
 // import GoogleLogin from 'react-google-login';
 import { showDialog } from '../App/actions';
+import {API_BASE} from '../App/constants'
 
 import {
   makeSelectRequesting,
@@ -154,8 +155,40 @@ class LoginForm extends React.Component {
   resendEmail = () => {
     this.props.resendConfirmationEmail(this.props.unverifiedImpUserId);
   };
+  downloadFile = (file) => {
+
+    let data, downloadLink, filename;
+    filename = 'private-key' + new Date().toISOString().slice(-24).replace(/\D/g, '').slice(0, 14) + '.txt';
+    if (!file.match(/^data:text\/csv/i)) {
+      file = 'data:text/csv;charset=utf-8,' + file;
+    }
+
+    data = encodeURI(file);
+
+    downloadLink = document.createElement("a");
+    downloadLink.setAttribute('href', data);
+    downloadLink.setAttribute('download', filename);
+    document.getElementById("privatekey").appendChild(downloadLink)
+    downloadLink.click();
+  }
+
   keyDownload = (id) => {
-    this.props.privateKeyRequest(id)
+    // this.props.privateKeyRequest(id)
+    fetch(`${API_BASE}key-generate/key/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+        "Access-Control-Allow-Origin": "*",
+        // Authorization: token //? `${usertoken}` : undefined
+      }
+    })
+      .then(resp => {
+        return resp.text();
+      })
+      .then(data => {
+        this.downloadFile(data)
+      })
   }
 
   render() {
@@ -199,7 +232,7 @@ class LoginForm extends React.Component {
         {response && 
           <div>
             <div className="positive message">User created successfully. Please check your email inbox for further instructions.</div>
-            <Button onClick={() => this.keyDownload(response._id)} color="blue">Download Key</Button>
+            {/* <Button onClick={() => this.keyDownload(response._id)} color="blue">Download Key</Button> */}
           </div>
           }
         <h3>
@@ -265,6 +298,11 @@ class LoginForm extends React.Component {
                 </a>
               )}
             </p>
+            {response && 
+          <div id="privatekey">
+            <Button className="download-btn" onClick={() => this.keyDownload(response._id)} color="blue">Download Key</Button>
+          </div>
+          }
           </Form>
         )}
         {userResp && ( localStorage.getItem('token') != null ) && Object.keys(userResp).length > 1 && (

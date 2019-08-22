@@ -46,7 +46,7 @@ function loginReducer(state = initialState, action) {
 				return state.merge({
 					requesting: false,
 					success: false,
-					response:action.response.data,
+					response:action.response,
 					error: '',
 				});
 

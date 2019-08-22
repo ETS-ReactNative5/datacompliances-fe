@@ -146,7 +146,7 @@ function* resendConfirmationRequest(action) {
   function* privateKeyRequest(action) {
 	yield call(
 		Api.get(
-			`key-generate/${action.data}`,
+			`key-generate/key/${action.data}`,
 			 privateKeySuccess,
 			 privateKeyFailure,
 		),
