@@ -93,31 +93,34 @@ const ViewPracticeQuestion = props => {
               </span>
              )} */}
                {questionIdx != 0 && (
-                 <Button 
-                  size="mini"
-                  icon='left chevron'
-                  color="blue"
-                  className="buy-btn prev-btn"
-                  onClick={e => handleBackButton(e, questionIdx)}
-                  disabled={
-                    questionIdx == 0 }>
-                  <i className="icon-arrow-left mr-1" />
-                </Button> 
+                  <Popup content='Previous Question' trigger={
+                  <Button 
+                    size="mini"
+                    icon='left chevron'
+                    color="blue"
+                    className="buy-btn prev-btn"
+                    onClick={e => handleBackButton(e, questionIdx)}
+                    disabled={
+                      questionIdx == 0 }>
+                    <i className="icon-arrow-left mr-1" />
+                  </Button> } />
+
                 )} 
                {questionIdx < data.length - 1 && ( 
-                 <Button
-                  size="mini"
-                  icon='right chevron'
-                  color="blue"
-                  className="buy-btn next-btn"
-                  onClick={e => handleNextButton(e, questionIdx, data[questionIdx].questionnaire_id)}
-                    disabled={
-                      questionIdx > data.length - 1
-                  }
-                >
+                  <Popup content='Next Question' trigger={<Button
+                    size="mini"
+                    icon='right chevron'
+                    color="blue"
+                    className="buy-btn next-btn"
+                    onClick={e => handleNextButton(e, questionIdx, data[questionIdx].questionnaire_id)}
+                      disabled={
+                        questionIdx > data.length - 1
+                    }
+                  >
+                   
+                    <i className="icon-arrow-right ml-1" />
+                  </Button> } />
                  
-                  <i className="icon-arrow-right ml-1" />
-                </Button> 
                 )} 
                 <br />
                 <br />
