@@ -342,6 +342,7 @@ class ViewQuestions extends React.Component {
   
   handleRevise = () => {
     this.setState({
+      questionIdx: 0,
       show_final_result: false,
     });
   }

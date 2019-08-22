@@ -7,6 +7,7 @@ import {
   Radio,
   TextArea,
   Popup,
+  Label
 } from 'semantic-ui-react';
 import '../assests/style.scss';
 import logo_next from '../assests/next.svg';
@@ -96,7 +97,6 @@ const ViewPracticeQuestion = props => {
                   <Popup content='Previous Question' trigger={
                   <Button 
                     size="mini"
-                    icon='left chevron'
                     color="blue"
                     className="buy-btn prev-btn"
                     onClick={e => handleBackButton(e, questionIdx)}
@@ -109,7 +109,6 @@ const ViewPracticeQuestion = props => {
                {questionIdx < data.length - 1 && ( 
                   <Popup content='Next Question' trigger={<Button
                     size="mini"
-                    icon='right chevron'
                     color="blue"
                     className="buy-btn next-btn"
                     onClick={e => handleNextButton(e, questionIdx, data[questionIdx].questionnaire_id)}
@@ -224,8 +223,8 @@ const ViewPracticeQuestion = props => {
                   onClick={e => handleSubmitResultButton(e, questionIdx)}
                 />
               )}
-            {/*               
-              {data && (
+                          
+               {/* {data && (
                 <div className="pagination">
                   {data &&
                     data.length > 0 &&
