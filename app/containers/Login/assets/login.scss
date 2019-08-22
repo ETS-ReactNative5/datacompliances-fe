@@ -11,15 +11,19 @@ $btn-blue:#068DF8;
   display: grid;
   align-items: center;
   background: linear-gradient(130deg,$light-green,$light-blue);
+  position:relative;
 
   .login-form{
-    margin: 0 auto;
+    margin: 0;
     width: 360px;
     background: #fff;
     padding: 50px 35px;
     box-shadow: $box-shadow;
     border-radius:10px;
-    position: relative;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
 
     &::before{
       position:absolute;

@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { DOCUMENT_URL_UPDATE } from '../../../../App/constants';
 import {
     Button
@@ -30,7 +30,7 @@ const CreateProductView = (props) => {
               <div>
                 <Button onClick={() => attemptQuestions(viewdata._id)} color="blue">Start your assessment</Button>
                {/* <Link
-                // to={`/user/dashboard/product-display/questions/${viewdata._id}`}
+                to={`/user/dashboard/product-display/questions/${viewdata._id}`}
                 role="button"
                >
                Start your assessment

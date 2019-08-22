@@ -20,10 +20,8 @@ import {
 	loginByTokenFailure,
 	resendConfirmationSuccess,
 	resendConfirmationFailure,
-	linkFacebookSuccess,
-	linkFacebookFailure,
-	linkGoogleSuccess,
-	linkGoogleFailure,
+	privateKeySuccess,
+	privateKeyFailure,
 } from '../Login/actions';
 import MultiFactorAuth from '../Login/multi-factor-login';
 import PasswordSetForm from '../Register/PasswordSetForm';
@@ -145,6 +143,16 @@ function* resendConfirmationRequest(action) {
 	// yield cancel(successWatcher);
   }
 
+  function* privateKeyRequest(action) {
+	yield call(
+		Api.get(
+			`key-generate/${action.data}`,
+			 privateKeySuccess,
+			 privateKeyFailure,
+		),
+	);
+}
+
 // Individual exports for testing
 export default function* defaultSaga() {
 	yield takeLatest(loginTypes.LOGIN_REQUEST, loginFlow);
@@ -153,6 +161,7 @@ export default function* defaultSaga() {
 	yield takeLatest(loginTypes.LOGIN_BY_TOKEN_REQUEST, loginByTokenFlow);
 	yield takeLatest(types.LOAD_CONTENT_TEMPLATE_REQUEST, loadContentTemplateRequest);
 	yield takeLatest(loginTypes.RESEND_CONFIRMATION_REQUEST, resendConfirmationRequest);
+	yield takeLatest(loginTypes.PRIVATE_KEY_REQUEST, privateKeyRequest);
 }
 
 

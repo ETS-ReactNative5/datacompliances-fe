@@ -13,6 +13,10 @@ export const loginRequest = action(types.LOGIN_REQUEST, 'data', 'redirect');
 export const loginSuccess = action(types.LOGIN_SUCCESS, 'user');
 export const loginFailure = action(types.LOGIN_FAILURE, 'error');
 
+export const privateKeyRequest = action(types.PRIVATE_KEY_REQUEST,'data');
+export const privateKeySuccess = action(types.PRIVATE_KEY_SUCCESS, 'response');
+export const privateKeyFailure = action(types.PRIVATE_KEY_FAILURE, 'error');
+
 export const logoutRequest = action(types.LOGOUT_REQUEST);
 export const logoutSuccess = action(types.LOGOUT_SUCCESS, 'response');
 export const logoutFailure = action(types.LOGOUT_FAILURE, 'error');
