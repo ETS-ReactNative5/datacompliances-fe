@@ -7,7 +7,7 @@ import {
 
 
 const CreateProductView = (props) => {
-    const {viewdata, buyProduct}  = props ;
+    const {viewdata, buyProduct, attemptQuestions}  = props ;
     return(
         <div className="two-col-grid mb-5"> 
              <div className="left">
@@ -28,6 +28,7 @@ const CreateProductView = (props) => {
               <Button className="button buy-btn" onClick={buyProduct}>Buy this Product</Button>
                :
               <div>
+                <Button onClick={() => attemptQuestions(viewdata._id)} color="blue">Start your assessment</Button>
                {/* <Link
                 // to={`/user/dashboard/product-display/questions/${viewdata._id}`}
                 role="button"

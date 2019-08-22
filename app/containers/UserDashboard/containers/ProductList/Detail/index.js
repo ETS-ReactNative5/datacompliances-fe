@@ -36,7 +36,8 @@ import QuestionsTable from './QuestionsTable'
 import './assets/style.scss'
 import '../../../assets/table.scss'
 import moment from 'moment';
-
+import { withRouter, Route, Redirect } from 'react-router-dom'
+import { push } from 'react-router-redux';
 
 
 const mapStateToProps = createStructuredSelector({
@@ -59,6 +60,7 @@ const mapDispatchToProps = dispatch => ({
 /* eslint-disable react/prefer-stateless-function */
 export class ProductList extends React.Component {
   state = {
+    redirect: false,
     questions:{},
     data: {},
     page: 1,
@@ -91,7 +93,6 @@ export class ProductList extends React.Component {
     }
   }
   buyProduct = () => {
-    debugger
     let id = this.props.match.params.id ? this.props.match.params.id : null;
     const data = {
       user_id: this.state.userInfo._id,
@@ -101,8 +102,11 @@ export class ProductList extends React.Component {
     this.props.buyProductRequest(data)
 
   }
+  attemptQuestions = () => {
+    this.setState({redirect: true })
+  }
   render() {
-    const { data, questions, userInfo } = this.state;
+    const { data, questions, userInfo, redirect } = this.state;
     const {
       successResponse,
       errorResponse } = this.props
@@ -165,6 +169,9 @@ export class ProductList extends React.Component {
 
     return (
       <div className="mr-4">
+         {redirect &&
+           <Redirect to={`/user/dashboard/product-display/questions/${this.props.match.params.id}`}/>
+          }
         <Helmet>
           <title>Product Details</title>
           <meta name="description" content="Description of PackageList" />
@@ -174,6 +181,7 @@ export class ProductList extends React.Component {
         <ProductView
                 viewdata={this.state.data}
                 buyProduct={this.buyProduct}
+                attemptQuestions={this.attemptQuestions}
         />
         <h1 className="main_title mt-5">Top 5 Questionnaires</h1>
         {questions && questions.size > 0 &&
