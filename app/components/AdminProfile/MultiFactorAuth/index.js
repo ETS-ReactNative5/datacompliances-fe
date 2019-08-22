@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
-import { Form, Button, Checkbox } from 'semantic-ui-react';
+import { Form, Button, Checkbox, Modal } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import getUserObject from 'utils/getUserInfo';
 import FormField from 'components/common/Forms/FormField';
@@ -31,6 +31,7 @@ import {
   loadBasicInfoRequest,
 } from './actions';
 import Toaster from 'components/Toaster';
+import './assests/style.scss';
 
 const mapDispatchToProps = dispatch => ({
   getMultiFactorAuthRequest: () => dispatch(getMultiFactorAuthRequest()),
@@ -227,8 +228,9 @@ class MultiFactorAuth extends React.Component {
                   </div>
                 )}
                 {showMultiFactorAuthDisable && (
-                  <div>
+                  <div className="my-popup">
                     <p>Do you want to disable two factor auth?</p>
+                    
                     <Button
                       className="button positive"
                       onClick={this.disableMultiFactorAuthRequest}
@@ -314,7 +316,7 @@ class MultiFactorAuth extends React.Component {
           </div>
         </div>
         {this.props.user.get('multi_factor_auth_enable') && (
-          <div className="segment">
+          <div className="segment white-bg">
             <h2>Manage Codes</h2>
             <div className="message info">
               These codes can be used to sign into your account if you have
