@@ -7,8 +7,11 @@ import {
   Radio,
   TextArea,
   Popup,
+  Label
 } from 'semantic-ui-react';
 import '../assests/style.scss';
+import logo_next from '../assests/next.svg';
+import logo_previous from '../assests/previous.svg';
 
 // const mockData = {
 //   "status": 200,
@@ -69,13 +72,45 @@ const ViewPracticeQuestion = props => {
         {data.length > 0 && !show_final_result && (
           <Grid.Column largeScreen={16} widescreen={16}>
             <div className="question-wrap mr-5">
-              
+               {questionIdx != 0 && (
+                  <Popup content='Previous Question' trigger={
+                  <Button 
+                    size="mini"
+                    color="blue"
+                    className="buy-btn prev-btn"
+                    onClick={e => handleBackButton(e, questionIdx)}
+                    disabled={
+                      questionIdx == 0 }>
+                    <i className="icon-arrow-left mr-1" />
+                  </Button> } />
+
+                )} 
+               {questionIdx < data.length - 1 && ( 
+                  <Popup content='Next Question' trigger={<Button
+                    size="mini"
+                    color="blue"
+                    className="buy-btn next-btn"
+                    onClick={e => handleNextButton(e, questionIdx, data[questionIdx].questionnaire_id)}
+                      disabled={
+                        questionIdx > data.length - 1
+                    }
+                  >
+                   
+                    <i className="icon-arrow-right ml-1" />
+                  </Button> } />
+                 
+                )} 
+                <span className="float-right">Hint:
+
+                  <Popup header='Answer Tip:' content={data[questionIdx].answer_tip} position='top right' trigger={<Button className="answer-tip" icon='idea' />} /></span>
+                <br />
+                <br />
                 <h4 className="item">
-                  {questionIdx + 1} / {data.length}
+                  
                 </h4>
              { data[questionIdx] && data[questionIdx].type_of_questions == "Objective" &&
               <Form>
-                <div className="wrapper"> <h1 className="question-title">{data[questionIdx].question}</h1><Popup content={data[questionIdx].answer_tip} trigger={<Button className="answer-tip" icon='info' />} /></div>
+                <div className="wrapper"> <h1 className="question-title"><b>Q.No.{questionIdx + 1}</b>  {data[questionIdx].question}</h1></div>
                 <Form.Field>
                   {data[questionIdx].answers.length > 0 &&
                     data[questionIdx].answers.map((ans, idx) =>
@@ -85,11 +120,6 @@ const ViewPracticeQuestion = props => {
                             label={`${ans.answer}`}
                             value={ans.answer}
                             name={`ans${questionIdx}`}
-                            // mockData.data.product_id == this.props.match.params.product_id &&
-                            // checked={ mockData.data.product_id == productId &&
-                            //         mockData.data.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
-                            //       mockData.data.question_answer[data[questionIdx].questionnaire_id] === ans.answer : false
-                            // }
                             checked={
                               saveAnswerResponse.question_answer && saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
                               saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] === ans.answer : false
@@ -106,7 +136,7 @@ const ViewPracticeQuestion = props => {
              }
                 { data[questionIdx] && data[questionIdx].type_of_questions == "Yes/No" &&
                      <div>
-                      <div className="wrapper"> <h1 className="question-title">{data[questionIdx].question}</h1><Popup content={data[questionIdx].answer_tip} trigger={<Button className="answer-tip" icon='info' />} /></div>
+                      <div className="wrapper"> <h1 className="question-title"><b>Q.No.{questionIdx + 1}</b>  {data[questionIdx].question}</h1></div>
                    
                       <Form>
                         <Form.Field>
@@ -139,7 +169,7 @@ const ViewPracticeQuestion = props => {
                   }
                   {data[questionIdx] && data[questionIdx].type_of_questions == "Subjective" &&
                   <div>
-                   <div className="wrapper"> <h1 className="question-title">{data[questionIdx].question}</h1><Popup content={data[questionIdx].answer_tip} trigger={<Button className="answer-tip" icon='info' />} /></div>
+                   <div className="wrapper"> <h1 className="question-title"><b>Q.No.{questionIdx + 1}</b>  {data[questionIdx].question}</h1></div>
                    <Form onSubmit={() =>
                          saveSubjectiveAnswer()}>
                      <Form.Field>
@@ -162,37 +192,16 @@ const ViewPracticeQuestion = props => {
                     </div>
             
                   }
-              {questionIdx != 0 && (
-                <Button 
-                  className="buy-btn prev-btn"
-                onClick={e => handleBackButton(e, questionIdx)}>
-                  <i className="icon-arrow-left mr-1" /> Previous
-                </Button>
-              )}
-              {questionIdx < data.length - 1 && (
-                <Button
-                  className="buy-btn next-btn"
-                  // disabled={
-                  //   !data[questionIdx].user_answer ||
-                  //   (data[questionIdx] &&
-                  //     data[questionIdx].user_answers &&
-                  //     data[questionIdx].user_answers.length < 0)
-                  // }
-                  onClick={e => handleNextButton(e, questionIdx, data[questionIdx].questionnaire_id)}
-                >
-                  Next
-                  <i className="icon-arrow-right ml-1" />
-                </Button>
-              )}
+             
                 {questionIdx === data.length - 1 && (
                 <Button
                   color="teal"
-                  content="Submit"
+                  content="View Summary"
                   onClick={e => handleSubmitResultButton(e, questionIdx)}
                 />
               )}
-            {/*               
-              {data && (
+                          
+               {/* {data && (
                 <div className="pagination">
                   {data &&
                     data.length > 0 &&
@@ -218,7 +227,7 @@ const ViewPracticeQuestion = props => {
           <div className="score_point">
             <h2 className="main_title">Detail</h2>
           </div>
-          <div className="resultdetail">
+          <div className="resultdetail mr-5">
             <Grid>
               {data &&
                 data.length > 0 &&
@@ -233,11 +242,11 @@ const ViewPracticeQuestion = props => {
                                    saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] : tempValue )} */}
                           <div className="result_listing">
                           <div>
-                            <span><b>Q) {indx + 1}</b></span>
-                            <h3>{question.question}</h3>
-                            <p>
+                            
+                            <h3 className="question-title mb-3"><span><b>Q.No.{indx + 1}</b></span> {question.question}</h3>
+                            <p class="your-answer"><b>:</b> 
                             {saveAnswerResponse.question_answer.hasOwnProperty(question.questionnaire_id) ? 
-                                saveAnswerResponse.question_answer[question.questionnaire_id] : '' }
+                                saveAnswerResponse.question_answer[question.questionnaire_id] : 'Not Answered' }
                             </p>
                             </div>
                           </div>

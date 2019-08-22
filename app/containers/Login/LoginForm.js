@@ -16,6 +16,7 @@ import '../../assets/base/form-base-style.scss';
 import saga from '../App/saga';
 // import GoogleLogin from 'react-google-login';
 import { showDialog } from '../App/actions';
+
 import {
   makeSelectRequesting,
   makeSelectError,
@@ -38,6 +39,7 @@ import {
   resendConfirmationRequest,
   linkFacebookRequest,
   linkGoogleRequest,
+  privateKeyRequest
 } from './actions';
 
 const mapDispatchToProps = dispatch => ({
@@ -53,6 +55,7 @@ const mapDispatchToProps = dispatch => ({
   linkGoogleRequest: (token, isImp) =>
     dispatch(linkGoogleRequest(token, isImp)),
   logout: () => dispatch(logoutRequest()),
+  privateKeyRequest: (id) => dispatch(privateKeyRequest(id))
 });
 
 const mapStateToProps = createStructuredSelector({
@@ -151,6 +154,9 @@ class LoginForm extends React.Component {
   resendEmail = () => {
     this.props.resendConfirmationEmail(this.props.unverifiedImpUserId);
   };
+  keyDownload = (id) => {
+    this.props.privateKeyRequest(id)
+  }
 
   render() {
     const { data, errors, loadingFb, loadingGoogle } = this.state;
@@ -190,15 +196,20 @@ class LoginForm extends React.Component {
             )}
           </div>
         )}
-        {response && <div className="positive message">{response}</div>}
+        {response && 
+          <div>
+            <div className="positive message">User created successfully. Please check your email inbox for further instructions.</div>
+            <Button onClick={() => this.keyDownload(response._id)} color="blue">Download Key</Button>
+          </div>
+          }
         <h3>
-          {userResp && Object.keys(userResp).length > 1
+          {( userResp  && ( localStorage.getItem('token') != null ) ) && Object.keys(userResp).length > 1
             ? 'Already Logged in'
             : <a href="#" className="pcsc-logo">
 						<img src={logo}/>
 					</a>}
         </h3>
-        {userResp && Object.keys(userResp).length < 1 && (
+        {((userResp && Object.keys(userResp).length < 1 ) || ( localStorage.getItem('token') == null ))  && (
           <Form onSubmit={this.handleSubmit} className="ui form">
             <InputField
               type="text"
@@ -256,7 +267,7 @@ class LoginForm extends React.Component {
             </p>
           </Form>
         )}
-        {userResp && Object.keys(userResp).length > 1 && (
+        {userResp && ( localStorage.getItem('token') != null ) && Object.keys(userResp).length > 1 && (
           <div>
             <p>
               You are already logged in. Go to{' '}

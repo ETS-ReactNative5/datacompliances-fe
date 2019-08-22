@@ -11,15 +11,19 @@ $btn-blue:#068DF8;
   display: grid;
   align-items: center;
   background: linear-gradient(130deg,$light-green,$light-blue);
+  position:relative;
 
   .login-form{
-    margin: 0 auto;
+    margin: 0;
     width: 360px;
     background: #fff;
     padding: 50px 35px;
     box-shadow: $box-shadow;
     border-radius:10px;
-    position: relative;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
 
     &::before{
       position:absolute;
@@ -142,6 +146,9 @@ p.negative.message{
     transform: rotate(-180deg);
   }
 }
+.modals.dimmer .ui.scrolling.modal.forgot-pass{
+  margin:0 !important;
+}
 
 .indicator_password_container{
   position: absolute;
@@ -186,6 +193,12 @@ p.negative.message{
       text-align: center;
     }
 }
+
+.two-fac-modal.small{
+  max-width:360px;
+  margin:0 !important; 
+}
+
 .pcsc-logo{
   display:inline-block;
   width: 100%;
