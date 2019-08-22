@@ -192,13 +192,13 @@ class LoginForm extends React.Component {
         )}
         {response && <div className="positive message">{response}</div>}
         <h3>
-          {userResp && Object.keys(userResp).length > 1
+          {( userResp  && ( localStorage.getItem('token') != null ) ) && Object.keys(userResp).length > 1
             ? 'Already Logged in'
             : <a href="#" className="pcsc-logo">
 						<img src={logo}/>
 					</a>}
         </h3>
-        {userResp && Object.keys(userResp).length < 1 && (
+        {((userResp && Object.keys(userResp).length < 1 ) || ( localStorage.getItem('token') == null ))  && (
           <Form onSubmit={this.handleSubmit} className="ui form">
             <InputField
               type="text"
@@ -256,7 +256,7 @@ class LoginForm extends React.Component {
             </p>
           </Form>
         )}
-        {userResp && Object.keys(userResp).length > 1 && (
+        {userResp && ( localStorage.getItem('token') != null ) && Object.keys(userResp).length > 1 && (
           <div>
             <p>
               You are already logged in. Go to{' '}
