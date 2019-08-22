@@ -71,7 +71,7 @@ const ViewPracticeQuestion = props => {
         {data.length > 0 && !show_final_result && (
           <Grid.Column largeScreen={16} widescreen={16}>
             <div className="question-wrap mr-5">
-            {questionIdx != 0 && (
+            {/* {questionIdx != 0 && (
                 <span 
                    className="logo"
                    onClick={e => handleBackButton(e, questionIdx)}
@@ -91,34 +91,37 @@ const ViewPracticeQuestion = props => {
                >
                 <img className="logo__img" src={logo_next} alt="" />
               </span>
-             )}
-               {/* {questionIdx != 0 && ( */}
-                {/* <Button 
-                  size="mini"
-                  icon='left chevron'
-                  color="blue"
-                  // className="buy-btn prev-btn"
-                  onClick={e => handleBackButton(e, questionIdx)}
-                  disabled={
-                    questionIdx == 0 }>
-                  <i className="icon-arrow-left mr-1" /> Previous
-                </Button> */}
-              {/* // )} */}
-              {/* {questionIdx < data.length - 1 && ( */}
-                {/* <Button
-                  size="mini"
-                  icon='right chevron'
-                  color="blue"
-                  // className="buy-btn next-btn"
-                  onClick={e => handleNextButton(e, questionIdx, data[questionIdx].questionnaire_id)}
+             )} */}
+               {questionIdx != 0 && (
+                  <Popup content='Previous Question' trigger={
+                  <Button 
+                    size="mini"
+                    icon='left chevron'
+                    color="blue"
+                    className="buy-btn prev-btn"
+                    onClick={e => handleBackButton(e, questionIdx)}
                     disabled={
-                      questionIdx > data.length - 1
-                  }
-                >
-                  Next
-                  <i className="icon-arrow-right ml-1" />
-                </Button> */}
-              {/* // )} */}
+                      questionIdx == 0 }>
+                    <i className="icon-arrow-left mr-1" />
+                  </Button> } />
+
+                )} 
+               {questionIdx < data.length - 1 && ( 
+                  <Popup content='Next Question' trigger={<Button
+                    size="mini"
+                    icon='right chevron'
+                    color="blue"
+                    className="buy-btn next-btn"
+                    onClick={e => handleNextButton(e, questionIdx, data[questionIdx].questionnaire_id)}
+                      disabled={
+                        questionIdx > data.length - 1
+                    }
+                  >
+                   
+                    <i className="icon-arrow-right ml-1" />
+                  </Button> } />
+                 
+                )} 
                 <br />
                 <br />
                 <h4 className="item">

@@ -229,7 +229,7 @@ class MultiFactorAuth extends React.Component {
                 )}
                 <br />
                 {showMultiFactorAuthDisable && (
-                  <Modal open={showMultiFactorAuthDisable} size="mini" style={{leftMargin :  "20%"}} >
+                  <Modal className="multi-fac-modal" open={showMultiFactorAuthDisable} size="mini" style={{leftMargin :  "20%"}} >
                   <Header icon='question circle' content='Are you sure?' />
                   <Modal.Content style={{minHeight :  "80px"}}>
                   <span>Do you want to disable two factor auth?</span>
@@ -305,7 +305,7 @@ class MultiFactorAuth extends React.Component {
                           onChange={this.handleChange}
                           placeholder="Enter the token from authenticator app"
                           error={errors.totp_token && errors.totp_token}
-                        />
+                          className="short-feild"                      />
                         <Button
                           primary
                           type="submit"

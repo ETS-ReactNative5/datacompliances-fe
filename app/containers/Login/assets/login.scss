@@ -146,6 +146,9 @@ p.negative.message{
     transform: rotate(-180deg);
   }
 }
+.modals.dimmer .ui.scrolling.modal.forgot-pass{
+  margin:0 !important;
+}
 
 .indicator_password_container{
   position: absolute;
