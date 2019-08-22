@@ -211,6 +211,16 @@ p.negative.message{
   }
 }
 
+button.ui.blue.button.download-btn {
+  display: inline-block;
+  width: 100%;
+  border-radius: 25px;
+  background: seagreen;
+  &:hover{
+    background:darkolivegreen;
+  }
+}
+
 .ui.mini.modal{
   height: fit-content !important;
 }
