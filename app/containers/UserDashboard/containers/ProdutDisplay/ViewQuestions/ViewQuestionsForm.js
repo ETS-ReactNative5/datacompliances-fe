@@ -245,7 +245,7 @@ const ViewPracticeQuestion = props => {
                           <div>
                             
                             <h3 className="question-title mb-3"><span><b>Q.No.{indx + 1}</b></span> {question.question}</h3>
-                            <p class="your-answer"><b>Your Answer:</b> 
+                            <p class="your-answer"><b>:</b> 
                             {saveAnswerResponse.question_answer.hasOwnProperty(question.questionnaire_id) ? 
                                 saveAnswerResponse.question_answer[question.questionnaire_id] : 'Not Answered' }
                             </p>
