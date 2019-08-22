@@ -133,9 +133,12 @@ export class ProductList extends React.Component {
                     <div key={`paidList${idx}`} className="product-item">
                       <div className="product-wrap">
                           <p className="product-title">{packageData.title}</p>
-                          <p className="profile-title">{packageData.profile_name}</p>
                           <p className="product-price">Rs.{packageData.price}</p>
                           <ul className="feature-list">
+                           <li>
+                            <i className="icon-check"/>
+                            <span>Profile Name: {packageData.profile_name}</span> 
+                           </li>
                             <li>
                                 <i className="icon-check"/>
                               <span>Country: {packageData.country}</span>

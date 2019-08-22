@@ -34,7 +34,6 @@ class ConfirmUser extends React.Component {
   componentDidMount() {
     const { userid } = this.props.match.params;
     if (userid) {
-      console.log(userid,'>>>>')
       this.props.confirmUser(userid);
      }
     }

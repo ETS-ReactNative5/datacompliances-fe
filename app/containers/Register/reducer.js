@@ -9,7 +9,7 @@ const initialState = fromJS({
   success: true,
   mobile_number_validated: false,
   sms_sent: false,
-  is_sms_Requesting: false
+  is_sms_Requesting: false,
 });
 
 function signupReducer(state = initialState, action) {
