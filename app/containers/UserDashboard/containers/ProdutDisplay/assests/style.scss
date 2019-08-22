@@ -83,6 +83,26 @@
     line-height: 17px;
     margin-bottom: 25px
 }
+
+
+button.ui.blue.mini.button.buy-btn {
+    height: 30px;
+    width: 30px;
+    line-height: 28px;
+    background: transparent !important;
+    border: 2px solid #068df8;
+    padding: 0px!important;
+    text-align: center;
+    color: #068df8 !important;
+    font-weight: 800;
+    border-radius: 50% !important;
+    margin-right: 10px;
+    i{
+        margin:0px !important;
+    }
+}
+
+
 button.ui.button.buy-btn.prev-btn {
     opacity: 0.6;
     &:hover{
