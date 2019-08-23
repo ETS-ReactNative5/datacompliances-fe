@@ -3,33 +3,6 @@ import { Link } from 'react-router-dom';
 import { Accordion, Menu } from 'semantic-ui-react';
 
 const mainMenu = [
-  // {
-  //   title: 'My-Packages',
-  //   path: '/user/dashboard/my-packages',
-  //   icon: 'icon-package',
-  // },
-  // {
-  //   title: 'Package List',
-  //   path: '/user/dashboard/package',
-  //   icon: 'icon-heart',
-  // },
-  // {
-  //   title: 'Packages',
-  //   path: '/',
-  //   icon: 'icon-package',
-  //   subMenues: [
-  //     {
-  //       title: 'My-Packages',
-  //       path: '/user/dashboard/my-packages',
-  //       group_title: 'icon-package',
-  //     },
-  //     {
-  //       title: 'Package List',
-  //       path: '/user/dashboard/package',
-  //       group_title: 'icon-package',
-  //     },
-  //   ],
-  // },
    {
       title: 'Dashboard',
       path: '/user/dashboard',
@@ -53,6 +26,11 @@ const mainMenu = [
         icon: "icon-shopping-cart",
       },
     ],
+  },
+  {
+    title: 'Reports',
+    path: '/user/dashboard/reports',
+    icon: "icon-file",
   },
 ];
 
@@ -148,14 +126,6 @@ class SideNavigation extends React.Component {
               );
              
           })}
-           <Menu.Item>
-          <Link className="nav__link" to="/user/dashboard/">
-            <span className="nav__icon">
-              <i className="icon-file" />
-            </span>
-            <span className="nav__text">Reports</span>
-          </Link>
-        </Menu.Item>
       </Accordion>
       </div>
 

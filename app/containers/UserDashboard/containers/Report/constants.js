@@ -1,0 +1,9 @@
+export const LOAD_REFER_CODE_REQUEST = 'app/ReferShare/LOAD_REFER_CODE_REQUEST';
+export const LOAD_REFER_CODE_SUCCESS = 'app/ReferShare/LOAD_REFER_CODE_SUCCESS';
+export const LOAD_REFER_CODE_FAILURE = 'app/ReferShare/LOAD_REFER_CODE_FAILURE';
+
+// export const CHANGE_REFERRAL_REQUEST = "app/ReferShare/CHANGE_REFERRAL_REQUEST";
+// export const CHANGE_REFERRAL_SUCCESS = "app/ReferShare/CHANGE_REFERRAL_SUCCESS";
+// export const CHANGE_REFERRAL_FAILURE = "app/ReferShare/CHANGE_REFERRAL_FAILURE";
+
+export const CLEAR_MESSAGE = 'app/ReferShare/CLEAR_MESSAGE';

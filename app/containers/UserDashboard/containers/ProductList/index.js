@@ -152,8 +152,8 @@ export class ProductList extends React.Component {
                               <span>Questionnaire: {packageData.questions.length}</span>
                             </li>
                             <li>
-                                <i className="icon-check"/>
-                              <span>Summary: {this.text_truncate(packageData.description)}</span>
+                                <i className="icon-info"/>
+                              <span>{this.text_truncate(packageData.description)}</span>
                             </li>
                           </ul>
                           <div className="buttons-wrap">

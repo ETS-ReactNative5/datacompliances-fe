@@ -22,6 +22,7 @@ import injectReducer from 'utils/injectReducer';
 import reducer from './reducer';
 import saga from './sagas';
 import {compose} from "redux";
+import './style.scss'
 
 const mapStateToProps = createStructuredSelector({
   requesting: makeSelectRequesting(),
@@ -114,20 +115,18 @@ class PasswordReset extends React.Component {
                 {!token &&
                 <div className="align-center">
                   <div className="segment message negative card-center card-md has-img-floating">
-                    <div className="img-floating round bg-black">
-                      <i className="icon-users"/>
-                    </div>
-                    { errorMessage && <p className="negative message">{errorMessage}</p> }
-                    <p className="mg-all-md">Link is dead. Token has already been used or it might be invalid token.</p>
+              
+                    { errorMessage && <p className="negative message"><i className="icon-users"/> {errorMessage}</p> }
+                    <p className="mg-all-md text-center">Link is dead. Token has already been used or it might be invalid token.</p>
                     <Link className="fluid button primary" to="/">Continue</Link>
                   </div>
                 </div>}
                 {!!token && (
                   <div className="card-center has-img-floating card-md segment">
-                    <div className="img-floating round bg-green align-center"><i className="icon-lock" /></div>
+                    
                     { errorMessage && <p className="negative message">{errorMessage}</p> }
                     <Form onSubmit={this.handleSubmit}>
-                      <p>Now you can access your PCSC account simply setting new password</p>
+                      <p className="text-center"> <i className="icon-lock" /> Now you can access your PCSC account simply setting new password</p>
                       <div className="pos-rel field">
                         <PasswordInputField password={data.password || ''} placeholder="Password"
                                             onChange={this.handleChange} error={errors.password}
