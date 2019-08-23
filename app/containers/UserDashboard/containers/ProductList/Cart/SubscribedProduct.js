@@ -71,8 +71,12 @@ export class SubscribedPackage extends React.Component {
                 <div key={`subscribed${idx}`} className="product-item">
                   <div className="product-wrap">
                       <p className="product-title">{packageData.product.title}</p>
-                      <p className="profile-title">{packageData.product.profile_name}</p>
                       <ul className="feature-list">
+                        
+                        <li>
+                            <i className="icon-check"/>
+                            <span>Profile Name: {packageData.product.profile_name}</span> 
+                         </li>
                          <li>
                             <i className="icon-check"/>
                             <span>Country: { packageData.product.country }</span> 

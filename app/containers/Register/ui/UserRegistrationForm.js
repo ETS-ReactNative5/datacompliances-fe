@@ -192,7 +192,6 @@ const UserRegistrationForm = ({
 				<div className="row">
 					<div className="col-md-6">
 					<div className="inline field">
-			              {console.log(errors.agree_terms_condition,';;;;',errors.agree_terms_condition == "Can't be blank")}
 							<div className={`field ${errors.agree_terms_condition == "Can't be blank" ? 'error' : ''}`}>
 							<Checkbox 
 							   name="agree_terms_condition"

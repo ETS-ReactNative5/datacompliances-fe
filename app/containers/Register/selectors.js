@@ -12,8 +12,6 @@ const makeSelectMobileNumberValidated = () =>
 	createSelector(selectSignup, (state) => state.get('mobile_number_validated'));
 const makegetCountryData = () => createSelector(selectSignup, state => state.get('countryData'));
 
-
-
 export {
 	makeSelectSuccess,
 	makeSelectResponse,
@@ -22,5 +20,5 @@ export {
 	makeSelectSMSRequesting,
 	makeSelectSmsSent,
 	makeSelectMobileNumberValidated,
-	makegetCountryData
+	makegetCountryData,
 };

@@ -193,6 +193,12 @@ p.negative.message{
       text-align: center;
     }
 }
+
+.two-fac-modal.small{
+  max-width:360px;
+  margin:0 !important; 
+}
+
 .pcsc-logo{
   display:inline-block;
   width: 100%;
@@ -202,6 +208,16 @@ p.negative.message{
   img{
       height: 100%;
       object-fit: contain;
+  }
+}
+
+button.ui.blue.button.download-btn {
+  display: inline-block;
+  width: 100%;
+  border-radius: 25px;
+  background: seagreen;
+  &:hover{
+    background:darkolivegreen;
   }
 }
 
