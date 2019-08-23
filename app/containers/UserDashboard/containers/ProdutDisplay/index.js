@@ -153,12 +153,7 @@ class ExamDisplay extends React.Component {
     return (
       <div className="mr-5">
         {message && message}
-        <h1 className="main_title">
-          {this.props.location && this.props.location.state
-            ? this.props.location.state.title
-            : ''}
-            Product
-        </h1>
+        
         <React.Fragment>
           <Grid>
              {data && data.length > 0 ? (
@@ -168,8 +163,16 @@ class ExamDisplay extends React.Component {
                   key={`exam_${idx}`}
                 >
                   <div className="two-col-grid">
-                    <div className="product-image">
+                    <div >
                     {exam.image_name.document_name ? (
+                       <div>
+                      <h1 className="main_title">
+                        {this.props.location && this.props.location.state
+                          ? this.props.location.state.title
+                          : ''}
+                         {exam.title}
+                      </h1>
+                      <div className="product-image">
                       <img
                         className="product-img"
                         src={`${DOCUMENT_URL_UPDATE}${
@@ -177,12 +180,15 @@ class ExamDisplay extends React.Component {
                         }`}
                         alt={exam.title}
                       />
+                      </div>
+                      </div>
                     ) : (
                       <img src={mediquiz} />
                     )}
                     </div>
                     <div className="right product-detail">
-                      <p className="product-name"><span>Title : </span>{exam.title}</p>
+                      <div className="mt-5">
+                      <p className="product-profile"><span>Profile : </span>{exam.profile_name}</p>
                       <p className="product-industry"><span>Industry : </span>{exam.industry}</p>
                       <p className="product-price"><span>Price : </span>{exam.price}</p>
                       <p className="product-country"><span>Country : </span>{exam.country}</p>
@@ -197,6 +203,7 @@ class ExamDisplay extends React.Component {
                         >
                           Start your assessment
                         </Link>
+                        </div>
                     </div>
                   </div>
                 </Grid.Column>
