@@ -63,7 +63,7 @@ export class SubscribedPackage extends React.Component {
           <div className="active section">My Products</div>
         </div>
         {/* breadcrumb */}
-        <h1 className="main_title">Your Purchased Product</h1>
+        <h1 className="main_title">Your Products</h1>
         <div className="product-listing">
           <div className="product-grid">
             {data.length > 0 ? (
