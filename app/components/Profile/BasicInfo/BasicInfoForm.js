@@ -155,7 +155,7 @@ const BasicInfoForm = ({
             className="ui selection dropdown"
             name="address_country"
             onChange={handleChange}
-            value={user.address_country || ''}
+            value={user.country || ''}
           >
             {countries}
           </select>
