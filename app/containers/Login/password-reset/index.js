@@ -22,6 +22,7 @@ import injectReducer from 'utils/injectReducer';
 import reducer from './reducer';
 import saga from './sagas';
 import {compose} from "redux";
+import './style.scss'
 
 const mapStateToProps = createStructuredSelector({
   requesting: makeSelectRequesting(),

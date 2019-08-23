@@ -30,7 +30,7 @@ import { makeSelectSubscribedPackage, makeSelectRequesting } from './selectors';
 
 import reducer from './reducer';
 import saga from './saga';
-import pkgimg from 'assets/images/pkg_lst1.jpg';
+import noproducts from 'assets/images/product.png';
 import nt_fnd_img from 'assets/images/not_found_img.png';
 import '../../../assets/card.scss';
 import '../../../assets/breadcrumb.scss';
@@ -117,14 +117,10 @@ export class SubscribedPackage extends React.Component {
                       <p></p>
                     </div>
                   ) : (
-                  <div className="package_not_found">
-                    <div className="package_not_found_grid">
-                      <h1>Oops !</h1>
-                      <span>
-                    Looks like <br />
-                    You haven't purchased any product
-                  </span>
-                </div>
+                    <div className="package_not_found">
+                    <div className="no-products">
+                      <img src={noproducts}/>
+                    </div>
               </div>
             )}
           </div>

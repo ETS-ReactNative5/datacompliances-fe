@@ -9,6 +9,7 @@ import reducer from './reducer';
 import saga from './sagas';
 import { compose } from 'redux';
 import Toaster from 'components/Toaster';
+import noreport from 'assets/images/report.png';
 import { loadReferCodeRequest } from './actions';
 import {
 
@@ -42,7 +43,11 @@ class Report extends React.Component {
   
     return (
       <div>
-           <p>dddddddddddd</p>       
+           <div className="package_not_found">
+                   <div className="no-products">
+                     <img src={noreport}/>
+                   </div>
+             </div>   
       </div>
     );
   }
