@@ -1,0 +1,57 @@
+section.reset-password {
+    height: 100vh;
+    background: linear-gradient(130deg, #9AFFD0, #6CC4EB);
+    position: relative;
+    .wrapper{
+        max-width: 360px;
+        background:#fff;
+        padding: 30px 20px;
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        border-radius: 10px;
+        box-shadow: 2px 2px 18px rgba(0,0,0,0.2);
+        &:before{
+            position: absolute;
+            content: '';
+            height: 100px;
+            width:80px;
+            background:url('wave.png');
+            right:0px;
+            top:0;
+          }
+      
+          &:after{
+            position: absolute;
+            content: '';
+            height: 100px;
+            width:80px;
+            background:url('wave.png');
+            left:0px;
+            bottom: 0;
+            transform: rotate(-180deg);
+          }
+          .text-center{
+              font-size:18px;
+              color:#777;
+          }
+    }
+    
+}
+.segment.message.positive.card-center.card-md.has-img-floating{
+    margin:0px;
+}
+.indicator_password_container {
+    position: relative; 
+    width: 100%; 
+}
+.button{
+    margin:20px 0;
+    text-align: center;
+    display: inline-block;
+    background:#007bff;
+    padding: 5px 15px;
+    color:#fff;
+    border-radius:5px;
+}

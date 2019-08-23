@@ -224,6 +224,18 @@ button.ui.blue.button.download-btn {
 .ui.mini.modal{
   height: fit-content !important;
 }
+
+div#privatekey {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 !important;
+  .button{
+    margin:0 !important;
+  }
+}
+
 .form__group input:-webkit-autofill,
 .form__group input:-webkit-autofill:hover,
 .form__group input:-webkit-autofill:focus {

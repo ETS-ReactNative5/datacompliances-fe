@@ -2,9 +2,7 @@ import React from 'react';
 import ReactDropzone from 'react-dropzone';
 import AvatarEditor from 'react-avatar-editor';
 import { Button, Form, Dropdown } from 'semantic-ui-react';
-import InputField from 'components/common/Forms/InputField';
 import FormField from 'components/common/Forms/FormField';
-import DatePicker from 'components/common/DatePicker';
 import DefaultAvatar from 'assets/images/avatar.png';
 import Countries from 'components/common/countries';
 import '../assets/style.scss';
@@ -153,9 +151,9 @@ const BasicInfoForm = ({
             
             style={{ padding: '8px 6px' }}
             className="ui selection dropdown"
-            name="address_country"
+            name="country"
             onChange={handleChange}
-            value={user.address_country || ''}
+            value={user.country || ''}
           >
             {countries}
           </select>
