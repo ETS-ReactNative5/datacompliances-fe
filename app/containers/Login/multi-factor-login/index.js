@@ -73,7 +73,7 @@ class MultiFactorLogin extends React.Component {
     const { errors, data } = this.state;
     const { isRequesting, errorResponse } = this.props;
     return (
-      <Modal open onClose={() => this.props.showDialog(null)} className="two-fac-modal small">
+      <Modal open closeOnDimmerClick={false} onClose={() => this.props.showDialog(null)} className="two-fac-modal small">
         <Modal.Content>
           {errorResponse &&
             <p className="negative message">
