@@ -80,6 +80,8 @@ const ViewPracticeQuestion = props => {
 
   return (
     <div>
+      {!show_final_result && 
+      <div>
         <h4>
           Total Questions : {data.length}
         </h4>
@@ -87,6 +89,8 @@ const ViewPracticeQuestion = props => {
       <br />
       <Progress percent={progress} indicating />
       </div>
+      </div>
+      }
       <Grid>
         {data.length > 0 && !show_final_result && (
           <Grid.Column largeScreen={16} widescreen={16}>
@@ -264,7 +268,8 @@ const ViewPracticeQuestion = props => {
                             
                             <h3 className="question-title mb-3"><span><b>Q.No.{indx + 1}</b></span> {question.question}</h3>
                             <p class="your-answer"><b>:</b> 
-                            {saveAnswerResponse.question_answer.hasOwnProperty(question.questionnaire_id) ? 
+                            {saveAnswerResponse.question_answer.hasOwnProperty(question.questionnaire_id) && 
+                                saveAnswerResponse.question_answer[question.questionnaire_id] != '' ? 
                                 saveAnswerResponse.question_answer[question.questionnaire_id] : 'Not Answered' }
                             </p>
                             </div>
