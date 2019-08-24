@@ -138,13 +138,19 @@ class SignupForm extends React.Component {
 		if (!data.first_name) errors.first_name = "Can't be blank";
 		if (data.first_name && data.first_name.length > 26) errors.first_name = "Can't be more than 26 characters";
 		if (data.first_name && !/^[a-zA-Z]+$/.test(data.first_name)) errors.first_name = 'Can only contain letters';
+		if (data.middle_name && data.middle_name.length > 26) errors.middle_name = "Can't be more than 26 characters";
+		if (data.middle_name && !/^[a-zA-Z]+$/.test(data.middle_name)) errors.middle_name = 'Can only contain letters';
 		if (!data.last_name) errors.last_name = "Can't be blank";
-		if (data.last_name && data.last_name.length > 26) errors.first_name = "Can't be more than 26 characters";
+		if (data.last_name && data.last_name.length > 26) errors.last_name = "Can't be more than 26 characters";
 		if (data.last_name && !/^[a-zA-Z]+$/.test(data.last_name)) errors.first_name = 'Can only contain letters';
 		if (!data.email) errors.email = "Can't be blank";
-		if (!data.password) errors.password = 'password_error';
-		if (!data.phone) errors.phone = "Can't be blank";
+		if(data.email && !this.validateEmail(data.email)){
+			errors.email = "Invalid email address"
+		  }
+		if (!data.password) errors.password = 'Password is required';
+		// if (!data.phone) errors.phone = "Can't be blank";
 		if (!data.company_name) errors.company_name = "Can't be blank";
+		if (data.company_name && data.company_name.length > 40) errors.company_name = "Can't be more than 40 characters";
 		if (!data.industry) errors.industry = "Can't be blank";
 		if (!data.country) errors.country = "Can't be blank";
 		if (!data.agree_terms_condition) errors.agree_terms_condition = "Can't be blank";
@@ -153,6 +159,11 @@ class SignupForm extends React.Component {
 		// if (!data.country_code) errors.country_code = "Please select/enter country code of your mobile network";
 		return errors;
 	};
+
+	validateEmail = email => {
+		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return re.test(String(email).toLowerCase());
+	  };
 
 	handleSubmit = (e) => {
 		e.preventDefault();
