@@ -10,6 +10,10 @@ import PackageList from '../containers/PackageList/';
 import PackageDetails from '../containers/PackageList/Detail/Loadable'
 import MyPackage from '../containers/PackageList/Cart/SubscribedPackage';
 
+import Report from '../containers/Report/Loadable'
+// import ProdDetails from '../containers/ProductList/Detail/Loadable'
+// import SubscribedProducts from '../containers/ProductList/Cart/SubscribedProduct'
+
 import ProductList from '../containers/ProductList/'
 import ProductDetails from '../containers/ProductList/Detail/Loadable'
 import SubscribedProducts from '../containers/ProductList/Cart/SubscribedProduct'
@@ -59,6 +63,8 @@ function UserRoutes({ location, status }) {
 					/>
 				)}
 			/>
+			<Route exact path="/user/dashboard/reports" component={Report} />
+
 			<Route exact path="/user/dashboard/package" component={PackageList} />
 			<Route exact path="/user/dashboard/package/detail/:id" component={PackageDetails} />
 			<Route exact path="/user/dashboard/my-packages" component={MyPackage} />

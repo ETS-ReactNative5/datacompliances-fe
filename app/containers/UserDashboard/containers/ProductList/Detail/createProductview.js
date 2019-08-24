@@ -18,7 +18,7 @@ const CreateProductView = (props) => {
                 </div>}
               </div>
           <div className="right product-detail">
-              <p className="product-name"><span>Title :</span> {viewdata.title}</p>
+              <p className="product-name"><span>Profile :</span> {viewdata.profile_name}</p>
               
               <p className="product-industry"><span>Industry :</span> {viewdata.industry}</p>
               <p className="product-price"><span>Price : </span>{viewdata.price}</p>

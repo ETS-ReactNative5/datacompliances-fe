@@ -151,12 +151,6 @@ export class ProductList extends React.Component {
           )
         },
       },
-      {
-        name: 'Added On',
-        field: 'added_on',
-        key: 3,
-        format: data => moment(data.added_on, 'YYYY-MM-DD').format('YYYY-MM-DD'),
-      },
     ];
 
     let message = null;
