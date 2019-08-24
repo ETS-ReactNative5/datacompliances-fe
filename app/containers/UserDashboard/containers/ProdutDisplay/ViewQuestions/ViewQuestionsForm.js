@@ -83,7 +83,10 @@ const ViewPracticeQuestion = props => {
         <h4>
           Total Questions : {data.length}
         </h4>
+      <div style={{'marginRight' : '10%'}}>  
+      <br />
       <Progress percent={progress} indicating />
+      </div>
       <Grid>
         {data.length > 0 && !show_final_result && (
           <Grid.Column largeScreen={16} widescreen={16}>
