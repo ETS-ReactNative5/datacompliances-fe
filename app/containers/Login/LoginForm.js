@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import { compose } from 'redux';
-import { Form, Button, Icon, Label } from 'semantic-ui-react';
+import { Form, Button, Modal, Header, Icon, Label } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import InputField from 'components/common/Forms/InputField';
@@ -84,6 +84,7 @@ class LoginForm extends React.Component {
   };
 
   state = {
+    modalOpen: true,
     data: {
       username: this.props.email || '',
     },
@@ -93,6 +94,7 @@ class LoginForm extends React.Component {
     loadingFb: false,
     loadingGoogle: false,
     redirectToReferer: false,
+    requestingKey: false
   };
 
   componentDidMount() {
@@ -157,6 +159,7 @@ class LoginForm extends React.Component {
   };
   downloadFile = (file) => {
 
+
     let data, downloadLink, filename;
     filename = 'private-key' + new Date().toISOString().slice(-24).replace(/\D/g, '').slice(0, 14) + '.txt';
     if (!file.match(/^data:text\/csv/i)) {
@@ -170,10 +173,12 @@ class LoginForm extends React.Component {
     downloadLink.setAttribute('download', filename);
     document.getElementById("privatekey").appendChild(downloadLink)
     downloadLink.click();
+    this.setState({modalOpen: false, requestingKey: false})
   }
 
   keyDownload = (id) => {
     // this.props.privateKeyRequest(id)
+    this.setState({requestingKey: true})
     fetch(`${API_BASE}key-generate/key/${id}`, {
       method: "GET",
       headers: {
@@ -192,7 +197,7 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    const { data, errors, loadingFb, loadingGoogle } = this.state;
+    const { data, errors, requestingKey } = this.state;
     const {
       response,
       error,
@@ -229,12 +234,6 @@ class LoginForm extends React.Component {
             )}
           </div>
         )}
-        {response && 
-          <div>
-            <div className="positive message">User created successfully. Please check your email inbox for further instructions.</div>
-            {/* <Button onClick={() => this.keyDownload(response._id)} color="blue">Download Key</Button> */}
-          </div>
-          }
         <h3>
           {( userResp  && ( localStorage.getItem('token') != null ) ) && Object.keys(userResp).length > 1
             ? 'Already Logged in'
@@ -277,8 +276,6 @@ class LoginForm extends React.Component {
               )}
             </div>
 
-            
-
             <Button
               className="btn btn-primary primary"
               type="submit"
@@ -299,8 +296,18 @@ class LoginForm extends React.Component {
               )}
             </p>
             {response && 
-          <div id="privatekey">
-            <Button className="download-btn" onClick={() => this.keyDownload(response._id)} color="blue">Download Key</Button>
+          <div>
+             <Modal id="privatekey" className=" " open={this.state.modalOpen} size="mini" style={{leftMargin :  "20%"}} >
+                  <Header icon='icon info' content='Download Private Key!' />
+                  <Modal.Content style={{minHeight :  "80px"}}>
+                  <span>User created successfully. Please check your email inbox for further instructions.</span><br/>
+                  <br/>
+                  <span><b>Now, you must download your private key and keep it safely. Click on download key button and wait for a few seconds.</b></span>
+                  </Modal.Content>
+                  <Modal.Actions>
+                  <Button loading={requestingKey} className="download-btn" onClick={() => this.keyDownload(response._id)} color="blue">Download Key</Button>
+                  </Modal.Actions>
+                </Modal>
           </div>
           }
           </Form>

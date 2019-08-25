@@ -183,6 +183,7 @@ class ViewQuestions extends React.Component {
   }
 
   saveSubjectiveAnswer = () => {
+    this.setState({bit: false})
     this.props.saveAnswerRequest(this.state.payload)
   }
   
@@ -262,6 +263,7 @@ class ViewQuestions extends React.Component {
       questionIdx: questionIdx,
       showAnswer: false,
       is_radio_disabled: false,
+      bit: false
     });
   };
  
@@ -318,6 +320,7 @@ class ViewQuestions extends React.Component {
       questionIdx: questionIdx - 1,
       showAnswer: false,
       is_radio_disabled: false,
+      bit: false
     });
   };
   handleJump = (e, index, ques_idx) => {
@@ -381,9 +384,9 @@ class ViewQuestions extends React.Component {
     return (
       <div>
         {message && message}
-        {!show_final_result && (
+        {/* {!show_final_result && (
           <h1 className="main_title">Questionnaire</h1>
-        )}
+        )} */}
         <ViewQuestionsForm
           data={data}
           tempValue={tempValue}

@@ -40,6 +40,9 @@ import {
   makeSelectCartPackage,
 } from './selectors';
 
+import { makeSelectLocation } from '../../../App/selectors';
+
+
 import reducer from './reducer';
 import saga from './saga';
 
@@ -50,6 +53,7 @@ const mapStateToProps = createStructuredSelector({
   successResponse: makeSelectPackageResponse(),
   isRequesting: makeSelectRequesting(),
   cart_packages: makeSelectCartPackage(),
+  location: makeSelectLocation(),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -126,6 +130,20 @@ export class ProductList extends React.Component {
     return (
       <React.Fragment>
           <div className="product-listing">
+          {this.props.location.pathname == '/user/dashboard/product' &&
+            <div className="ui breadcrumb">
+              <Link 
+                className="section"
+                to={{
+                  pathname: `/user/dashboard`,
+                }}
+              >
+                Dashoard
+              </Link>
+              <div className="divider">/</div>
+              <div className="active section">Products</div>
+            </div>
+            }
             <h1 className="main_title">Available Products</h1>
             <div className="product-grid">
               {data.length > 0 ? (

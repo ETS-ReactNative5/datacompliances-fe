@@ -27,10 +27,12 @@ import { Link } from 'react-router-dom';
 import { DOCUMENT_URL_UPDATE } from 'containers/App/constants';
 
 import { makeSelectSubscribedPackage, makeSelectRequesting } from './selectors';
+import { makeSelectLocation } from '../../../../App/selectors';
+
 
 import reducer from './reducer';
 import saga from './saga';
-import pkgimg from 'assets/images/pkg_lst1.jpg';
+import noproducts from 'assets/images/product.png';
 import nt_fnd_img from 'assets/images/not_found_img.png';
 import '../../../assets/card.scss';
 import '../../../assets/breadcrumb.scss';
@@ -57,11 +59,20 @@ export class SubscribedPackage extends React.Component {
     const { data } = this.state;
     return (
       <div>
+        {this.props.location.pathname == '/user/dashboard/my-products' &&
         <div className="ui breadcrumb">
-          <a className="section">Dashoard</a>
+          <Link 
+             className="section"
+             to={{
+              pathname: `/user/dashboard`,
+            }}
+          >
+            Dashoard
+          </Link>
           <div className="divider">/</div>
           <div className="active section">My Products</div>
         </div>
+        }
         {/* breadcrumb */}
         <h1 className="main_title">Your Products</h1>
         <div className="product-listing">
@@ -117,14 +128,10 @@ export class SubscribedPackage extends React.Component {
                       <p></p>
                     </div>
                   ) : (
-                  <div className="package_not_found">
-                    <div className="package_not_found_grid">
-                      <h1>Oops !</h1>
-                      <span>
-                    Looks like <br />
-                    You haven't purchased any product
-                  </span>
-                </div>
+                    <div className="package_not_found">
+                    <div className="no-products">
+                      <img src={noproducts}/>
+                    </div>
               </div>
             )}
           </div>
@@ -137,6 +144,7 @@ export class SubscribedPackage extends React.Component {
 const mapStateToProps = createStructuredSelector({
   subscribedPackage: makeSelectSubscribedPackage(),
   isRequesting: makeSelectRequesting(),
+  location: makeSelectLocation(),
 });
 
 const mapDispatchToProps = dispatch => ({
