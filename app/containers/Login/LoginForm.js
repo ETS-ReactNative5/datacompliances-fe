@@ -94,6 +94,7 @@ class LoginForm extends React.Component {
     loadingFb: false,
     loadingGoogle: false,
     redirectToReferer: false,
+    requestingKey: false
   };
 
   componentDidMount() {
@@ -172,11 +173,12 @@ class LoginForm extends React.Component {
     downloadLink.setAttribute('download', filename);
     document.getElementById("privatekey").appendChild(downloadLink)
     downloadLink.click();
-    this.setState({modalOpen: false})
+    this.setState({modalOpen: false, requestingKey: false})
   }
 
   keyDownload = (id) => {
     // this.props.privateKeyRequest(id)
+    this.setState({requestingKey: true})
     fetch(`${API_BASE}key-generate/key/${id}`, {
       method: "GET",
       headers: {
@@ -195,7 +197,7 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    const { data, errors, loadingFb, loadingGoogle } = this.state;
+    const { data, errors, requestingKey } = this.state;
     const {
       response,
       error,
@@ -232,12 +234,6 @@ class LoginForm extends React.Component {
             )}
           </div>
         )}
-        {response && 
-          <div>
-            {/* <div className="positive message">User created successfully. Please check your email inbox for further instructions.</div> */}
-            {/* <Button onClick={() => this.keyDownload(response._id)} color="blue">Download Key</Button> */}
-          </div>
-          }
         <h3>
           {( userResp  && ( localStorage.getItem('token') != null ) ) && Object.keys(userResp).length > 1
             ? 'Already Logged in'
@@ -309,7 +305,7 @@ class LoginForm extends React.Component {
                   <span><b>Now, you must download your private key and keep it safely. Click on download key button and wait for a few seconds.</b></span>
                   </Modal.Content>
                   <Modal.Actions>
-                  <Button className="download-btn" onClick={() => this.keyDownload(response._id)} color="blue">Download Key</Button>
+                  <Button loading={requestingKey} className="download-btn" onClick={() => this.keyDownload(response._id)} color="blue">Download Key</Button>
                   </Modal.Actions>
                 </Modal>
           </div>
