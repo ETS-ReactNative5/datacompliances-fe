@@ -142,15 +142,17 @@ class SignupForm extends React.Component {
 		if (data.middle_name && !/^[a-zA-Z]+$/.test(data.middle_name)) errors.middle_name = 'Can only contain letters';
 		if (!data.last_name) errors.last_name = "Can't be blank";
 		if (data.last_name && data.last_name.length > 26) errors.last_name = "Can't be more than 26 characters";
-		if (data.last_name && !/^[a-zA-Z]+$/.test(data.last_name)) errors.first_name = 'Can only contain letters';
+		if (data.last_name && !/^[a-zA-Z]+$/.test(data.last_name)) errors.last_name = 'Can only contain letters';
 		if (!data.email) errors.email = "Can't be blank";
 		if(data.email && !this.validateEmail(data.email)){
 			errors.email = "Invalid email address"
 		  }
 		if (!data.password) errors.password = 'Password is required';
+		if (data.password !== data.confirmPassword) errors.confirmPassword = "Password doesn't match";
 		// if (!data.phone) errors.phone = "Can't be blank";
 		if (!data.company_name) errors.company_name = "Can't be blank";
-		if (data.company_name && data.company_name.length > 40) errors.company_name = "Can't be more than 40 characters";
+		if (data.company_name && !/^[a-zA-Z]+$/.test(data.company_name)) errors.company_name = 'Can only contain letters';
+		if (data.company_name && data.company_name.length > 26) errors.company_name = "Can't be more than 40 characters";
 		if (!data.industry) errors.industry = "Can't be blank";
 		if (!data.country) errors.country = "Can't be blank";
 		if (!data.agree_terms_condition) errors.agree_terms_condition = "Can't be blank";

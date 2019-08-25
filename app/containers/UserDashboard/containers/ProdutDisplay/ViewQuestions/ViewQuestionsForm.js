@@ -58,7 +58,8 @@ const ViewPracticeQuestion = props => {
     saveAnswerResponse,
     tempValue,
     bit,
-    handleRevise
+    handleRevise,
+    confirmSubmitQuestions
   } = props;
 
    const yesno = [
@@ -278,7 +279,7 @@ const ViewPracticeQuestion = props => {
                   </Grid.Column>
                 ))}
                 <Button onClick={e => handleRevise()} color="blue">Revise</Button>
-                <Button color="green">Confirm Submit</Button>
+                <Button onClick={confirmSubmitQuestions} color="green">Confirm Submit</Button>
             </Grid>
           </div>
         </div>
