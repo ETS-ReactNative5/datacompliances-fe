@@ -17,13 +17,14 @@ const CreateProductView = (props) => {
                    />
                 </div>}
               </div>
+              {console.log(viewdata,'.....',viewdata && viewdata[0] && viewdata[0].OrderInfo.length>0)}
           <div className="right product-detail">
               <p className="product-name"><span>Profile :</span> {viewdata && viewdata[0] && viewdata[0].profile_name}</p>
               <p className="product-industry"><span>Industry :</span> {viewdata && viewdata[0] && viewdata[0].industry}</p>
               <p className="product-price"><span>Price : </span>{viewdata && viewdata[0] && viewdata[0].price}</p>
               <p className="product-country"><span>Country :</span> {viewdata && viewdata[0] && viewdata[0].country}</p>
               <p className="product-desc"> <span>Description :</span>{viewdata && viewdata[0] && viewdata[0].description}</p> 
-              {viewdata && viewdata[0] && viewdata[0].OrderInfo.length > 0 && viewdata[0].OrderInfo[0].purchased != true ?
+              {!(viewdata && viewdata[0] && viewdata[0].OrderInfo.length > 0)  ?
               <Button className="button buy-btn" onClick={buyProduct}>Buy this Product</Button>
                :
               <div>
