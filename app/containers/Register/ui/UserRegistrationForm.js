@@ -64,6 +64,9 @@ const UserRegistrationForm = ({
 						error={errors.first_name}
 						className="form-control"
 						/>
+						{/* {errors.first_name && (
+						<span style={{ color: 'red' }}>{errors.first_name}</span>
+						)} */}
 					</div>
 					<div className="col-md-4">
 						<FormField
@@ -75,6 +78,9 @@ const UserRegistrationForm = ({
 						className="form-control"
 						error={errors.middle_name}
 						/>
+						{/* {errors.middle_name && (
+						<span style={{ color: 'red' }}>{errors.middle_name}</span>
+						)} */}
 					</div>
 					<div className="col-md-4">
 						<FormField
@@ -86,6 +92,9 @@ const UserRegistrationForm = ({
 						className="form-control"
 						error={errors.last_name}
 					/>
+						{/* {errors.last_name && (
+						<span style={{ color: 'red' }}>{errors.last_name}</span>
+						)} */}
 					</div>
 
 				</div>
@@ -97,12 +106,15 @@ const UserRegistrationForm = ({
 							label="Email *"
 							name="email"
 							className="form-control"
-							type="email"
+							type="text"
 							value={data.email || ''}
 							onChange={handleChange}
 							placeholder="Email"
 							error={errors.email}
 						/>
+						{/* {errors.email && (
+						<span style={{ color: 'red' }}>{errors.email}</span>
+						)} */}
 					</div>		
 					<div className="col-md-6">
 						<div className="pos-rel">
@@ -114,24 +126,35 @@ const UserRegistrationForm = ({
 								onChange={handleChange}
 								error={errors.password}
 							/>
-						</div>
 						<PasswordIndicator password={data.password || ''} />
+						</div>
+						{/* {errors.password && (
+						<span style={{ color: 'red' }}>{errors.password}</span>
+						)} */}
 					</div> 		
 				
 					
 				</div>
 				<div className="row">
-				<div className="col-md-6">
-						<FormField
-							label="Phone Number *"
-							name="phone"
-							className="form-control"
-							type="text"
-							value={data.phone || ''}
-							onChange={handleChange}
-							placeholder="Phone number"
-							error={errors.phone}
-						/>
+						<div className="col-md-6">
+					   <Form.Field>		
+						<label>	Industry *</label>
+								<Dropdown
+									placeholder="Industry"
+									className="form-control"
+									name="industry"
+									search
+									selection
+									fluid
+									options={industryList || []}
+									onChange={handleDropDown}
+									value={data.industry || ''}
+									error={(errors.industry == "Can't be blank") ? true : false}
+								/>
+								{/* {errors.industry && (
+								<span style={{ color: 'red' }}>{errors.industry}</span>
+								)} */}
+						</Form.Field>
 					</div>
 					
 					<div className="col-md-6">
@@ -150,6 +173,9 @@ const UserRegistrationForm = ({
 						value={data.country || ''}
 						error={(errors.country == "Can't be blank") ? true : false}
 						/>
+						{/* {errors.country && (
+						  <span style={{ color: 'red' }}>{errors.country}</span>
+						)} */}
 						</Form.Field>
 					</div>
 					
@@ -167,32 +193,16 @@ const UserRegistrationForm = ({
 							className="form-control"
 							error={errors.company_name}
 						/>
+						{/* {errors.company_name && (
+						  <span style={{ color: 'red' }}>{errors.company_name}</span>
+						)} */}
 					</div>
-					<div className="col-md-6">
+						<div className="col-md-6">
 						<Form.Field>
-						<label>	Industry *</label>
-								<Dropdown
-									placeholder="Industry"
-									className="form-control"
-									name="industry"
-									search
-									selection
-									fluid
-									options={industryList || []}
-									onChange={handleDropDown}
-									value={data.industry || ''}
-									error={(errors.industry == "Can't be blank") ? true : false}
-								/>
-						
-						</Form.Field>
-					</div>
-					</div>
-				
-				
-				<div className="row">
-					<div className="col-md-6">
+
 					<div className="inline field">
 							<div className={`field ${errors.agree_terms_condition == "Can't be blank" ? 'error' : ''}`}>
+						     <br />
 							<Checkbox 
 							   name="agree_terms_condition"
 							   value="active"
@@ -201,16 +211,9 @@ const UserRegistrationForm = ({
 							//    error={(errors.agree_terms_condition == "Can't be blank") ? true : false}
 							   />
 							</div>
-						</div>
-{/* 
-						<div className="hasCaptcha field" style={{ height: '76px' }}>
-							<Captcha onChange={onRecaptchaChange} />
-							{errors.reCaptcha && (
-								<span data-tooltip={errors.reCaptcha}>
-									<i className="icon-exclamation-triangle red" />
-								</span>
-							)}
-						</div> */}
+					</div>
+					</Form.Field>
+				
 					</div>
 					<div className="col-md-6">
 						<div className="field">
