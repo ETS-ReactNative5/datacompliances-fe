@@ -148,7 +148,6 @@ const BasicInfoForm = ({
         <Form.Field>
           <label>Country</label>
           <select
-            
             style={{ padding: '8px 6px' }}
             className="ui selection dropdown"
             name="country"

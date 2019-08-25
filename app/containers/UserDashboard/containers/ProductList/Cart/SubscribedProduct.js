@@ -27,6 +27,8 @@ import { Link } from 'react-router-dom';
 import { DOCUMENT_URL_UPDATE } from 'containers/App/constants';
 
 import { makeSelectSubscribedPackage, makeSelectRequesting } from './selectors';
+import { makeSelectLocation } from '../../../../App/selectors';
+
 
 import reducer from './reducer';
 import saga from './saga';
@@ -57,11 +59,20 @@ export class SubscribedPackage extends React.Component {
     const { data } = this.state;
     return (
       <div>
+        {this.props.location.pathname == '/user/dashboard/my-products' &&
         <div className="ui breadcrumb">
-          <a className="section">Dashoard</a>
+          <Link 
+             className="section"
+             to={{
+              pathname: `/user/dashboard`,
+            }}
+          >
+            Dashoard
+          </Link>
           <div className="divider">/</div>
           <div className="active section">My Products</div>
         </div>
+        }
         {/* breadcrumb */}
         <h1 className="main_title">Your Products</h1>
         <div className="product-listing">
@@ -133,6 +144,7 @@ export class SubscribedPackage extends React.Component {
 const mapStateToProps = createStructuredSelector({
   subscribedPackage: makeSelectSubscribedPackage(),
   isRequesting: makeSelectRequesting(),
+  location: makeSelectLocation(),
 });
 
 const mapDispatchToProps = dispatch => ({

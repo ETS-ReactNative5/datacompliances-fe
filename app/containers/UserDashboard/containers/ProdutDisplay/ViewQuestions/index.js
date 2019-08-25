@@ -384,9 +384,9 @@ class ViewQuestions extends React.Component {
     return (
       <div>
         {message && message}
-        {!show_final_result && (
+        {/* {!show_final_result && (
           <h1 className="main_title">Questionnaire</h1>
-        )}
+        )} */}
         <ViewQuestionsForm
           data={data}
           tempValue={tempValue}

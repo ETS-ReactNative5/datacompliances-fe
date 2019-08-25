@@ -7,7 +7,7 @@ import {
   Radio,
   TextArea,
   Popup,
-  Label
+  Label,Progress
 } from 'semantic-ui-react';
 import '../assests/style.scss';
 import logo_next from '../assests/next.svg';
@@ -65,9 +65,32 @@ const ViewPracticeQuestion = props => {
            {answer: 'Yes'},
            {answer: 'No'}
    ]
-   
+
+  var counter
+   if(saveAnswerResponse.question_answer != undefined) {
+  counter = 0
+  Object.values(saveAnswerResponse.question_answer).map((value, index) => {
+    if(value != '') {
+      counter=counter+1
+    }
+  })
+   }
+  
+  const progress = (counter / (data.length)) * 100 
+
   return (
     <div>
+      {!show_final_result && 
+      <div>
+        <h4>
+          Total Questions : {data.length}
+        </h4>
+      <div style={{'marginRight' : '10%'}}>  
+      <br />
+      <Progress percent={progress} indicating />
+      </div>
+      </div>
+      }
       <Grid>
         {data.length > 0 && !show_final_result && (
           <Grid.Column largeScreen={16} widescreen={16}>
@@ -244,8 +267,9 @@ const ViewPracticeQuestion = props => {
                           <div>
                             
                             <h3 className="question-title mb-3"><span><b>Q.No.{indx + 1}</b></span> {question.question}</h3>
-                            <p class="your-answer"><b>:</b> 
-                            {saveAnswerResponse.question_answer.hasOwnProperty(question.questionnaire_id) ? 
+                            <p className="your-answer"><b>:</b> 
+                            {saveAnswerResponse.question_answer.hasOwnProperty(question.questionnaire_id) && 
+                                saveAnswerResponse.question_answer[question.questionnaire_id] != '' ? 
                                 saveAnswerResponse.question_answer[question.questionnaire_id] : 'Not Answered' }
                             </p>
                             </div>
