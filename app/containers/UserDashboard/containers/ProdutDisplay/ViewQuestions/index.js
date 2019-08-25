@@ -184,7 +184,18 @@ class ViewQuestions extends React.Component {
 
   saveSubjectiveAnswer = () => {
     this.setState({bit: false})
-    this.props.saveAnswerRequest(this.state.payload)
+    if(this.state.payload.user_id == undefined) {
+      const payload ={
+        user_id: this.props.currentUser.toJS()._id,
+        product_id: this.props.match.params.product_id,
+        question_answer: {}
+      }
+      this.props.saveAnswerRequest(payload)
+
+    } else {
+      this.props.saveAnswerRequest(this.state.payload)
+
+    }
   }
   
   handleAnswerChange = (e, event, answerIdx, mainIdx, questionId) => {
