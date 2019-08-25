@@ -298,7 +298,7 @@ class LoginForm extends React.Component {
             {response && 
           <div>
              <Modal id="privatekey" className=" " open={this.state.modalOpen} size="mini" style={{leftMargin :  "20%"}} >
-                  <Header icon='icon info' content='Download Private Key!' />
+                  <Header icon='info' content='Download Private Key!' />
                   <Modal.Content style={{minHeight :  "80px"}}>
                   <span>User created successfully. Please check your email inbox for further instructions.</span><br/>
                   <br/>

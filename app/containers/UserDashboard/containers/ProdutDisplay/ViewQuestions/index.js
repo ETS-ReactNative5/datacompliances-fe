@@ -34,6 +34,9 @@ import {
   saveAnswerRequest
 } from './actions';
 import ViewQuestionsForm from './ViewQuestionsForm';
+import ConfirmedPage from './ConfirmedPage';
+import { Redirect } from 'react-router-dom'
+
 
 const mapStateToProps = createStructuredSelector({
   isSuccess: makeSelectSuccess(),
@@ -76,7 +79,9 @@ class ViewQuestions extends React.Component {
     count: 0,
     fav_questions: [],
     previousUrl: window.location.href,
-    saveAnswerResponse:{}
+    saveAnswerResponse:{},
+    confirmedPage: false,
+    redirect: false
   };
 
   componentDidMount() {
@@ -360,6 +365,13 @@ class ViewQuestions extends React.Component {
       show_final_result: false,
     });
   }
+  confirmSubmitQuestions = () => {
+    this.setState({confirmedPage: true})
+  }
+
+  closeClick = () => {
+    this.setState({confirmedPage: false, redirect: true})
+  }
 
   render() {
     const {
@@ -380,7 +392,8 @@ class ViewQuestions extends React.Component {
       favFailure,
       saveAnswerResponse,
       tempValue,
-      bit
+      bit,
+      redirect
     } = this.state;
     const { successResponse, errorResponse } = this.props;
     let message = null;
@@ -398,9 +411,16 @@ class ViewQuestions extends React.Component {
         {/* {!show_final_result && (
           <h1 className="main_title">Questionnaire</h1>
         )} */}
+        {redirect &&
+           <Redirect to={`/user/dashboard`} />
+          }
+        {this.state.confirmedPage && 
+          <ConfirmedPage closeClick={this.closeClick} />
+        }
         <ViewQuestionsForm
           data={data}
           tempValue={tempValue}
+          confirmSubmitQuestions={this.confirmSubmitQuestions}
           bit={bit}
           saveAnswerResponse={saveAnswerResponse}
           handleRevise={this.handleRevise}

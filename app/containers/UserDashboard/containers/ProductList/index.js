@@ -183,7 +183,7 @@ export class ProductList extends React.Component {
                           View Detail
                         </Link>
                         </div>
-                        {packageData.purchased &&
+                        {packageData && packageData.OrderInfo.length > 0 && packageData.OrderInfo[0].purchased &&
                          <span className="ribbon">Purchased
                          </span>
                         }
