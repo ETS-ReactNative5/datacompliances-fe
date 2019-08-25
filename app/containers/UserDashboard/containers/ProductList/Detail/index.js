@@ -97,7 +97,7 @@ export class ProductList extends React.Component {
     const data = {
       user_id: this.state.userInfo._id,
       product_id: id,
-      price: this.state.data.price,
+      price: this.state.data[0].price,
     }
     this.props.buyProductRequest(data)
 
