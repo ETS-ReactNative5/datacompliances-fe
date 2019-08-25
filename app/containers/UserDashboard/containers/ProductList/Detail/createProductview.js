@@ -17,7 +17,6 @@ const CreateProductView = (props) => {
                    />
                 </div>}
               </div>
-              {console.log(viewdata,'.....',viewdata && viewdata[0] && viewdata[0].OrderInfo.length>0)}
           <div className="right product-detail">
               <p className="product-name"><span>Profile :</span> {viewdata && viewdata[0] && viewdata[0].profile_name}</p>
               <p className="product-industry"><span>Industry :</span> {viewdata && viewdata[0] && viewdata[0].industry}</p>
