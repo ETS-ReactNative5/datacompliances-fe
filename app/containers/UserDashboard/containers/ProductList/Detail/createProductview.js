@@ -11,20 +11,19 @@ const CreateProductView = (props) => {
     return(
         <div className="two-col-grid mb-5"> 
              <div className="left">
-                {viewdata.image_name &&
+                {viewdata && viewdata[0] && viewdata[0].image_name &&
                   <div className="product-image">
-                  <img src={`${DOCUMENT_URL_UPDATE}${viewdata.image_name.document_name}`} alt="product image here"
+                  <img src={`${DOCUMENT_URL_UPDATE}${viewdata && viewdata[0] && viewdata[0].image_name.document_name}`} alt="product image here"
                    />
                 </div>}
               </div>
           <div className="right product-detail">
-              <p className="product-name"><span>Profile :</span> {viewdata.profile_name}</p>
-              
-              <p className="product-industry"><span>Industry :</span> {viewdata.industry}</p>
-              <p className="product-price"><span>Price : </span>{viewdata.price}</p>
-              <p className="product-country"><span>Country :</span> {viewdata.country}</p>
-              <p className="product-desc"> <span>Description :</span>{viewdata.description}</p>
-              {viewdata.purchased != true ?
+              <p className="product-name"><span>Profile :</span> {viewdata && viewdata[0] && viewdata[0].profile_name}</p>
+              <p className="product-industry"><span>Industry :</span> {viewdata && viewdata[0] && viewdata[0].industry}</p>
+              <p className="product-price"><span>Price : </span>{viewdata && viewdata[0] && viewdata[0].price}</p>
+              <p className="product-country"><span>Country :</span> {viewdata && viewdata[0] && viewdata[0].country}</p>
+              <p className="product-desc"> <span>Description :</span>{viewdata && viewdata[0] && viewdata[0].description}</p> 
+              {viewdata && viewdata[0] && viewdata[0].OrderInfo.length > 0 && viewdata[0].OrderInfo[0].purchased != true ?
               <Button className="button buy-btn" onClick={buyProduct}>Buy this Product</Button>
                :
               <div>
