@@ -36,7 +36,7 @@ import QuestionsTable from './QuestionsTable'
 import './assets/style.scss'
 import '../../../assets/table.scss'
 import moment from 'moment';
-import { withRouter, Route, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { push } from 'react-router-redux';
 
 

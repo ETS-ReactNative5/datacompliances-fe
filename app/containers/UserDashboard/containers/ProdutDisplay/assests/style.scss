@@ -146,3 +146,10 @@ p.your-answer {
        
     }
 }
+
+.ui.mini.modal.transition.visible.active.confirmed-page {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
