@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types'
-import React, { Component } from 'react'
-import {Helmet} from 'react-helmet';
-import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 import './assets/HomePage.scss';
 import animate from './assets/animated__banner2.svg';
 import client1 from './assets/client/client1.png';
@@ -24,7 +24,7 @@ import step4 from './assets/step/step4.svg';
 import video from './assets/pc.png';
 import cross from './assets/cross.svg';
 import check from './assets/check.svg';
-
+import banner from './assets/banner.png';
 import report from './assets/report2.svg';
 
 import Slider from 'react-slick';
@@ -42,9 +42,9 @@ const settings = {
 /* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
  * such things.
  */
-class HomePage extends React.Component{
-  render(){
-    return(
+class HomePage extends React.Component {
+  render() {
+    return (
       <React.Fragment>
         <Helmet>
           <title>PCSC</title>
@@ -64,8 +64,12 @@ class HomePage extends React.Component{
               <div className="col-md-8 ">
                 <h1></h1>
                 <div className="video__holder">
-                  <img className="video img-fluid" src={video} alt="" />
-                  <iframe
+                  <img
+                    className="video img-fluid"
+                    src={video}
+                    alt="User Dashboard Image"
+                  />
+                  {/* <iframe
                     className="video__screen"
                     width="70%"
                     height="82%"
@@ -73,7 +77,8 @@ class HomePage extends React.Component{
                     frameBorder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
-                  ></iframe>
+                  ></iframe> */}
+                  {/* <img src={banner} alt="User Dashboard Image" /> */}
                 </div>
               </div>
             </div>
@@ -258,13 +263,13 @@ class HomePage extends React.Component{
                   <button className="primary__button">View Detail</button>
                 </div>
               </div>
-              <div className="col-md-5 ml-auto">
+              {/* <div className="col-md-5 ml-auto">
                 <img className="payment__img" src={report} alt="" />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
-        <div className="consult">
+        {/* <div className="consult">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-md-8">
@@ -283,48 +288,9 @@ class HomePage extends React.Component{
               </div>
             </div>
           </div>
-        </div>
-        <div className="customer">
-          <div className="container">
-            <div className="pipe__wrapper">
-              {/* d-flex align-items-center
-               */}
-              <div className="d-flex align-items-center">
-                <h3 className="mr-4">Our Customers</h3>
-                <div className="max1110">
-                  <Slider {...settings}>
-                    <div>
-                      <img src={client4} alt="" />
-                    </div>
-                    <div>
-                      <img src={client3} alt="" />
-                    </div>
-                    <div>
-                      <img src={client4} alt="" />
-                    </div>
-                    <div>
-                      <img src={client5} alt="" />
-                    </div>
-                    <div>
-                      <img src={client3} alt="" />
-                    </div>
-                    <div>
-                      <img src={client4} alt="" />
-                    </div>
-                    <div>
-                      <img src={client5} alt="" />
-                    </div>
-                    <div>
-                      <img src="client1" alt="" />
-                    </div>
-                  </Slider>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        </div> */}
       </React.Fragment>
-    )
+    );
   }
 }
-export default HomePage
+export default HomePage;
