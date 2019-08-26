@@ -26,6 +26,8 @@ import cross from './assets/cross.svg';
 import check from './assets/check.svg';
 import banner from './assets/banner.png';
 import report from './assets/report2.svg';
+import secure from './assets/secure.svg';
+import design from './assets/design.svg';
 
 import Slider from 'react-slick';
 const settings = {
@@ -204,18 +206,21 @@ class HomePage extends React.Component {
         </div>
         <div className="product">
           <div className="container">
-            <div className="mb-4">
-              <h4 className="title__heading">
+            <div className="mb-4 text-center">
+              <h4 className="title__heading d-inline-block">
                 Make smarter decisions using better insights
               </h4>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
-            <div className="row align-items-center">
-              <div className="col-md-3 min__h100">
-                <div className="product__card card inverse">
+            <div className="row  justify-content-center">
+              <div className="col-md-4 ">
+                <div className="product__card card ">
+                  <img className="product__image" src={secure} alt="" />
                   <div className="top__block">
                     <h5>Cyber Security on Demand</h5>
-                    <p>$500</p>
+                    <p>
+                      <small>$</small>500
+                    </p>
                   </div>
                   <ul>
                     <li>
@@ -237,11 +242,14 @@ class HomePage extends React.Component {
                   <button className="primary__button">View Detail</button>
                 </div>
               </div>
-              <div className="col-md-3 min__h100">
+              <div className="col-md-4 ">
                 <div className="product__card card ">
+                  <img className="product__image" src={design} alt="" />
                   <div className="top__block">
                     <h5>Adhoc Consulting and design enhancements</h5>
-                    <p>$1500</p>
+                    <p>
+                      <small>$</small>1500
+                    </p>
                   </div>
                   <ul>
                     <li>
