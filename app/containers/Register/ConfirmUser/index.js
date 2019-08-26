@@ -40,7 +40,7 @@ class ConfirmUser extends React.Component {
   render() {
     const { requesting, success, errorResponse, successResponse, isRequesting } = this.props;
     return (
-      <section className="ptn-1 align-center">
+      <section className="user-confirmation text-center">
         {/*{isRequesting && <Spinner />}*/}
         { isRequesting ? <Spinner /> : (
           <div className="wrapper">
