@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './assets/HomePage.scss';
 // import animate from './assets/animated__banner2.svg';
 // import client1 from './assets/client/client1.png';
@@ -43,6 +43,7 @@ import {
   makeSelectConsultantsResponse
 } from './selectors'
 
+const token = localStorage.getItem('token');
 
 const mapStateToProps = createStructuredSelector({
   // location: makeSelectLocation(),
@@ -163,7 +164,24 @@ consultantClick = (id) => {
               </div>
               <div className="col-md-12  text-center">
                 <div className="step__button">
-                  <button className="primary__button">Go to Dashboard</button>
+                  {/* <button className="primary__button">Go to Dashboard</button> */}
+                  {token != null ?
+                     (
+                     <Link
+                        to={`/user/dashboard/`}
+                        role="button"
+                      >
+                      Go to Dashboard
+                    </Link> 
+                       )  : (
+                        <Link
+                            to={`/login`}
+                            role="button"
+                          >
+                          Go to Dashboard
+                        </Link> 
+                       )
+                       }
                 </div>
               </div>
             </div>
