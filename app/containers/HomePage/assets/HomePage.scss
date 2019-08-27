@@ -188,23 +188,45 @@
   padding: 30px 15px;
   border: none;
   width: 100%;
+  min-height: 100%;
   margin: 0 auto;
   box-shadow: 0 0 10px #e5e5e5;
+  background: linear-gradient(to bottom, #f6fbff 1%, #fff 100%);
+  display: flex;
+  flex-direction: column;
+  transition: all .3s ease-in-out;
+
+  button {
+    margin-top: auto;
+  }
+
+  &:hover {
+    box-shadow: 0 0 15px #d4d4d4;
+    margin: -4px auto;
+  }
 }
 
 .product__card .top__block {
   border-bottom: 1px solid #e5e5e5;
   margin-bottom: 20px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 90px;
 
   h5 {
-    font-size: 14px;
-    margin-bottom: 10px;
+    font-size: 18px;
   }
 
   p {
     font-size: 34px;
     color: #16c172;
+    margin-top: auto;
+    font-weight: 600;
+  }
+
+  small {
+    font-size: 22px;
   }
 }
 
@@ -229,6 +251,11 @@
   }
 }
 
+.product__image {
+  height: 100px;
+  margin-bottom: 10px;
+}
+
 .step__container {
   margin: 80px 0 0 0;
   border: 1px dashed #c9c9c9;
@@ -237,7 +264,7 @@
 
 .step__holder {
   position: relative;
-  background-color: #fff;
+  background-color: #fafafa;
   padding: 10px 20px;
   width: 100px;
   margin: 0 auto;
@@ -278,3 +305,28 @@
 .payment__img {
   width: 100%;
 }
+
+.slick-slide {
+  padding:20px 10px;
+  // background-color:red;
+  text-align:center;
+}
+
+
+// .products-slider{
+
+  button.slick-arrow.slick-prev {
+    position: absolute;
+    left: -50px;
+  }
+  button.slick-arrow.slick-next {
+    right: -50px;
+  }
+  ul.slick-dots {
+    margin: 0px;
+    margin-bottom: 20px;
+    display: block;
+    position: relative;
+  }
+
+// }

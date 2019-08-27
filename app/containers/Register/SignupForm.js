@@ -151,8 +151,7 @@ class SignupForm extends React.Component {
 		if (data.password !== data.confirmPassword) errors.confirmPassword = "Password doesn't match";
 		// if (!data.phone) errors.phone = "Can't be blank";
 		if (!data.company_name) errors.company_name = "Can't be blank";
-		if (data.company_name && !/^[a-zA-Z]+$/.test(data.company_name)) errors.company_name = 'Can only contain letters';
-		if (data.company_name && data.company_name.length > 26) errors.company_name = "Can't be more than 40 characters";
+		// if (data.company_name && data.company_name.length > 40) errors.company_name = "Can't be more than 40 characters";
 		if (!data.industry) errors.industry = "Can't be blank";
 		if (!data.country) errors.country = "Can't be blank";
 		if (!data.agree_terms_condition) errors.agree_terms_condition = "Can't be blank";
