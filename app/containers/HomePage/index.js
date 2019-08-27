@@ -38,7 +38,7 @@ import Slider from 'react-slick/lib';
 var settings = {
   dots: true,
   infinite: true,
-  slidesToShow: 2,
+  slidesToShow: 3,
   slidesToScroll: 1,
   autoplay: false,
       speed: 500,
@@ -286,7 +286,7 @@ class HomePage extends React.Component {
           </div>
         </div> */} 
         <div className="container">
-        <Slider {...settings}>
+        <Slider classnName="products-slider" {...settings}>
              <div className="product-wrap">
                 <div className="product__card card ">
                   <img className="product__image" src={secure} alt="" />
@@ -340,6 +340,35 @@ class HomePage extends React.Component {
                     </li>
                     <li>
                       <img className="pr-1" src={check} alt="check" /> Cyber TM
+                    </li>
+                  </ul>
+                  <button className="primary__button">View Detail</button>
+                </div>
+              </div>
+              <div className="product-wrap">
+                <div className="product__card card ">
+                  <img className="product__image" src={design} alt="" />
+                  <div className="top__block">
+                    <h5>Adhoc Consulting and design enhancements</h5>
+                    <p>
+                      <small>$</small>1500
+                    </p>
+                  </div>
+                  <ul>
+                    <li>
+                      <img className="pr-1" src={check} alt="check" /> Cyber
+                      Privacy
+                    </li>
+                    <li>
+                      <img className="pr-1" src={check} alt="check" /> Cyber
+                      Compliance
+                    </li>
+                    <li>
+                      <img className="pr-1" src={cross} alt="check" /> Cyber
+                      Assessment
+                    </li>
+                    <li>
+                      <img className="pr-1" src={cross} alt="check" /> Cyber TM
                     </li>
                   </ul>
                   <button className="primary__button">View Detail</button>
