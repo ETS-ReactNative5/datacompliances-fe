@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types'
-import React, { Component } from 'react'
-import {Helmet} from 'react-helmet';
-import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 import './assets/HomePage.scss';
 import animate from './assets/animated__banner2.svg';
 import client1 from './assets/client/client1.png';
@@ -24,27 +24,36 @@ import step4 from './assets/step/step4.svg';
 import video from './assets/pc.png';
 import cross from './assets/cross.svg';
 import check from './assets/check.svg';
-
+import banner from './assets/banner.png';
 import report from './assets/report2.svg';
+import secure from './assets/secure.svg';
+import design from './assets/design.svg';
 
-import Slider from 'react-slick';
-const settings = {
-  infinite: true,
-  speed: 500,
-  slidesToShow: 4,
-  slidesToScroll: 4,
-  initialSlide: 0,
+import Slider from 'react-slick/lib';
+
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+
+// import Slider from 'react-slick';
+var settings = {
   dots: true,
-  arrows: false,
+  infinite: true,
+  slidesToShow: 2,
+  slidesToScroll: 1,
+  autoplay: false,
+      speed: 500,
+      autoplaySpeed: 2000,
+      cssEase: "ease-in",
+      centerPadding: 30
 };
 
 /* eslint-disable react/no-multi-comp */
 /* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
  * such things.
  */
-class HomePage extends React.Component{
-  render(){
-    return(
+class HomePage extends React.Component {
+  render() {
+    return (
       <React.Fragment>
         <Helmet>
           <title>PCSC</title>
@@ -64,8 +73,12 @@ class HomePage extends React.Component{
               <div className="col-md-8 ">
                 <h1></h1>
                 <div className="video__holder">
-                  <img className="video img-fluid" src={video} alt="" />
-                  <iframe
+                  <img
+                    className="video img-fluid"
+                    src={video}
+                    alt="User Dashboard Image"
+                  />
+                  {/* <iframe
                     className="video__screen"
                     width="70%"
                     height="82%"
@@ -73,12 +86,14 @@ class HomePage extends React.Component{
                     frameBorder="0"
                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
-                  ></iframe>
+                  ></iframe> */}
+                  {/* <img src={banner} alt="User Dashboard Image" /> */}
                 </div>
               </div>
             </div>
           </div>
         </div>
+
         <div className="consultant">
           <div className="container">
             <h4 className="mb-5 title__heading">Our Consultants</h4>
@@ -197,20 +212,23 @@ class HomePage extends React.Component{
             </div>
           </div>
         </div>
-        <div className="product">
+        {/* <div className="product">
           <div className="container">
-            <div className="mb-4">
-              <h4 className="title__heading">
+            <div className="mb-4 text-center">
+              <h4 className="title__heading d-inline-block">
                 Make smarter decisions using better insights
               </h4>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
-            <div className="row align-items-center">
-              <div className="col-md-3 min__h100">
-                <div className="product__card card inverse">
+            <div className="row  justify-content-center">
+              <div className="col-md-4 ">
+                <div className="product__card card ">
+                  <img className="product__image" src={secure} alt="" />
                   <div className="top__block">
                     <h5>Cyber Security on Demand</h5>
-                    <p>$500</p>
+                    <p>
+                      <small>$</small>500
+                    </p>
                   </div>
                   <ul>
                     <li>
@@ -232,11 +250,14 @@ class HomePage extends React.Component{
                   <button className="primary__button">View Detail</button>
                 </div>
               </div>
-              <div className="col-md-3 min__h100">
+              <div className="col-md-4 ">
                 <div className="product__card card ">
+                  <img className="product__image" src={design} alt="" />
                   <div className="top__block">
                     <h5>Adhoc Consulting and design enhancements</h5>
-                    <p>$1500</p>
+                    <p>
+                      <small>$</small>1500
+                    </p>
                   </div>
                   <ul>
                     <li>
@@ -258,13 +279,104 @@ class HomePage extends React.Component{
                   <button className="primary__button">View Detail</button>
                 </div>
               </div>
-              <div className="col-md-5 ml-auto">
+              {/* <div className="col-md-5 ml-auto">
                 <img className="payment__img" src={report} alt="" />
-              </div>
-            </div>
+              </div> */}
+            {/* </div>
           </div>
-        </div>
-        <div className="consult">
+        </div> */} 
+        <div className="container">
+        <Slider {...settings}>
+             <div className="product-wrap">
+                <div className="product__card card ">
+                  <img className="product__image" src={secure} alt="" />
+                  <div className="top__block">
+                    <h5>Cyber Security on Demand</h5>
+                    <p>
+                      <small>$</small>500
+                    </p>
+                  </div>
+                  <ul>
+                    <li>
+                      <img className="pr-1" src={check} alt="check" /> Cyber
+                      Privacy
+                    </li>
+                    <li>
+                      <img className="pr-1" src={check} alt="check" /> Cyber
+                      Compliance
+                    </li>
+                    <li>
+                      <img className="pr-1" src={check} alt="check" /> Cyber
+                      Assessment
+                    </li>
+                    <li>
+                      <img className="pr-1" src={check} alt="check" /> Cyber TM
+                    </li>
+                  </ul>
+                  <button className="primary__button">View Detail</button>
+                </div>
+              </div>
+              <div className="product-wrap">
+                <div className="product__card card ">
+                  <img className="product__image" src={secure} alt="" />
+                  <div className="top__block">
+                    <h5>Cyber Security on Demand</h5>
+                    <p>
+                      <small>$</small>500
+                    </p>
+                  </div>
+                  <ul>
+                    <li>
+                      <img className="pr-1" src={check} alt="check" /> Cyber
+                      Privacy
+                    </li>
+                    <li>
+                      <img className="pr-1" src={check} alt="check" /> Cyber
+                      Compliance
+                    </li>
+                    <li>
+                      <img className="pr-1" src={check} alt="check" /> Cyber
+                      Assessment
+                    </li>
+                    <li>
+                      <img className="pr-1" src={check} alt="check" /> Cyber TM
+                    </li>
+                  </ul>
+                  <button className="primary__button">View Detail</button>
+                </div>
+              </div>
+              <div className="product-wrap">
+                <div className="product__card card ">
+                  <img className="product__image" src={design} alt="" />
+                  <div className="top__block">
+                    <h5>Adhoc Consulting and design enhancements</h5>
+                    <p>
+                      <small>$</small>1500
+                    </p>
+                  </div>
+                  <ul>
+                    <li>
+                      <img className="pr-1" src={check} alt="check" /> Cyber
+                      Privacy
+                    </li>
+                    <li>
+                      <img className="pr-1" src={check} alt="check" /> Cyber
+                      Compliance
+                    </li>
+                    <li>
+                      <img className="pr-1" src={cross} alt="check" /> Cyber
+                      Assessment
+                    </li>
+                    <li>
+                      <img className="pr-1" src={cross} alt="check" /> Cyber TM
+                    </li>
+                  </ul>
+                  <button className="primary__button">View Detail</button>
+                </div>
+              </div>
+      </Slider>
+      </div>
+        {/* <div className="consult">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-md-8">
@@ -283,48 +395,9 @@ class HomePage extends React.Component{
               </div>
             </div>
           </div>
-        </div>
-        <div className="customer">
-          <div className="container">
-            <div className="pipe__wrapper">
-              {/* d-flex align-items-center
-               */}
-              <div className="d-flex align-items-center">
-                <h3 className="mr-4">Our Customers</h3>
-                <div className="max1110">
-                  <Slider {...settings}>
-                    <div>
-                      <img src={client4} alt="" />
-                    </div>
-                    <div>
-                      <img src={client3} alt="" />
-                    </div>
-                    <div>
-                      <img src={client4} alt="" />
-                    </div>
-                    <div>
-                      <img src={client5} alt="" />
-                    </div>
-                    <div>
-                      <img src={client3} alt="" />
-                    </div>
-                    <div>
-                      <img src={client4} alt="" />
-                    </div>
-                    <div>
-                      <img src={client5} alt="" />
-                    </div>
-                    <div>
-                      <img src="client1" alt="" />
-                    </div>
-                  </Slider>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        </div> */}
       </React.Fragment>
-    )
+    );
   }
 }
-export default HomePage
+export default HomePage;
