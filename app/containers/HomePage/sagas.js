@@ -6,25 +6,30 @@ import getToken from 'utils/getToken';
 import * as types from './constants';
 import * as actions from './actions';
 
-// function* redirectOnResendConfirmationSuccess() {
-//   yield take(types.RESEND_CONFIRMATION_SUCCESS);
-// }
 
-// function* resendConfirmationFlow() {
-//   const successWatcher = yield fork(redirectOnResendConfirmationSuccess);
-//   yield fork(
-//     XcelTrip.post(
-//       'api/user/resend-confirm-email',
-//       actions.resendConfirmationSuccess,
-//       actions.resendConfirmationFailure,
-//       { 'confirm-resend': '' },
-//       getToken()
-//     )
-//   );
-//   yield take([LOCATION_CHANGE, types.RESEND_CONFIRMATION_FAILURE]);
-//   yield cancel(successWatcher);
-// }
+function* getConsultantsRequests() {
+  yield fork(
+    XcelTrip.get(
+      `team`,
+      actions.getConsultantsSuccess,
+      actions.getConsultantsFailure,
+      // token
+    )
+  );
+}
 
-export default function* userDashboardSaga() {
-  // yield takeLatest(types.RESEND_CONFIRMATION_REQUEST, resendConfirmationFlow);
+function* getProductsRequests() {
+  const token = localStorage.getItem('token');
+  yield fork(
+    XcelTrip.get(
+      `product`,
+      actions.getProductsListSuccess,
+      actions.getProductsListFailure,
+      token,
+    )
+  );
+}
+export default function* homepageSaga() {
+  yield takeLatest(types.GET_CONSULTANTS_REQUEST, getConsultantsRequests);
+  yield takeLatest(types.GET_PRODUCTS_REQUEST, getProductsRequests);
 }

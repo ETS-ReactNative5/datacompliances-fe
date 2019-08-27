@@ -29,7 +29,7 @@ class Header extends React.PureComponent {
                 <NavLink exact className="nav-link" to="/">
                   Services
                 </NavLink>
-                <a exact className="nav-link" href="https://www.esrtech.io/" target="_blank">
+                <a className="nav-link" href="https://www.esrtech.io/" target="_blank">
                   ABOUT US
                 </a>
                 <NavLink exact className="nav-link" to="/register">
