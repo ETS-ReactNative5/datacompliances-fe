@@ -190,10 +190,10 @@ class MultiFactorAuth extends React.Component {
     } = this.props;
     let message;
     if (successResponse && typeof successResponse === 'string') {
-      message = <Toaster message={successResponse} timeout={1000} success />;
+      message = <Toaster message={successResponse} timeout={5000} success />;
     }
     if (errorResponse && typeof errorResponse === 'string') {
-      message = <Toaster message={errorResponse} timeout={1000} error />;
+      message = <Toaster message={errorResponse} timeout={5000} error />;
     }
     return (
       <div className="profile_section">
