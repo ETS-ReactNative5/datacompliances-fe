@@ -21,7 +21,7 @@ import step1 from './assets/step/step1.svg';
 import step2 from './assets/step/step2.svg';
 import step3 from './assets/step/step3.svg';
 import step4 from './assets/step/step4.svg';
-import video from './assets/pc.png';
+import video from './assets/pc.svg';
 import cross from './assets/cross.svg';
 import check from './assets/check.svg';
 import banner from './assets/banner.png';
