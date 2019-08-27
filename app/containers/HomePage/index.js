@@ -28,13 +28,28 @@ import banner from './assets/banner.png';
 import report from './assets/report2.svg';
 import secure from './assets/secure.svg';
 import design from './assets/design.svg';
-
 import Slider from 'react-slick/lib';
 
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
+import injectSaga from 'utils/injectSaga';
+import injectReducer from 'utils/injectReducer';
+import reducer from './reducer';
+import saga from './sagas';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
-// import Slider from 'react-slick';
+
+
+const mapStateToProps = createStructuredSelector({
+  // location: makeSelectLocation(),
+  // successResponse: makeSelectResponse(),
+  // errorResponse: makeSelectError(),
+  // isRequesting: makeSelectRequesting(),
+});
+
+const mapDispatchToProps = dispatch => ({
+});
+
 var settings = {
   dots: true,
   infinite: true,
@@ -47,10 +62,6 @@ var settings = {
       centerPadding: 30
 };
 
-/* eslint-disable react/no-multi-comp */
-/* Heads up! HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled components for
- * such things.
- */
 class HomePage extends React.Component {
   render() {
     return (
@@ -429,4 +440,18 @@ class HomePage extends React.Component {
     );
   }
 }
-export default HomePage;
+// export default HomePage;
+
+
+const withReducer = injectReducer({ key: 'homepage', reducer });
+const withSaga = injectSaga({ key: 'homepage', saga });
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect,
+)(HomePage);

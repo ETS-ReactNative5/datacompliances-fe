@@ -24,24 +24,14 @@ class Header extends React.PureComponent {
                 <img className="brand__logo" src={logo} alt="PCSC logo" />
               </div>
             </Link>
-            {/* <Navbar.Collapse id="basic-navbar-nav">
-              <Nav>
-                <NavLink exact className="nav-link" to="/">
-                  Services
-                </NavLink>
-                <NavLink exact className="nav-link" to="/about-us">
-                  ABOUT US
-                </NavLink>
-              </Nav>
-            </Navbar.Collapse> */}
             <Navbar.Collapse id="basic-navbar-nav ">
               <Nav className="ml-auto align-items-center">
                 <NavLink exact className="nav-link" to="/">
                   Services
                 </NavLink>
-                <NavLink exact className="nav-link" to="/about-us">
+                <a exact className="nav-link" href="https://www.esrtech.io/" target="_blank">
                   ABOUT US
-                </NavLink>
+                </a>
                 <NavLink exact className="nav-link" to="/register">
                   Register
                 </NavLink>
