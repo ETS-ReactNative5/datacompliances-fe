@@ -9,4 +9,8 @@ export const getProductsListRequest = action(types.GET_PRODUCTS_REQUEST);
 export const getProductsListSuccess = action(types.GET_PRODUCTS_SUCCESS, 'response');
 export const getProductsListFailure = action(types.GET_PRODUCTS_FAILURE, 'error');
 
+export const getProductDetailsRequest = action(types.GET_PRODUCTS_DETAILS_REQUEST, "productId");
+export const getProductDetailsSuccess = action(types.GET_PRODUCTS_DETAILS_SUCCESS, 'response');
+export const getProductDetailsFailure = action(types.GET_PRODUCTS_DETAILS_FAILURE, 'error');
+
 // export const clearState = action(types.CLEAR_STATE);

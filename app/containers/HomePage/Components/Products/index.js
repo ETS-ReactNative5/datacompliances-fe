@@ -21,7 +21,7 @@ var settings = {
   };
 
 const Products = (props) => {
-  const { productList } = props;
+  const { productList, productDetailsClick } = props;
    return(
     <div className="container">
     <Slider classnName="products-slider" {...settings}>
@@ -44,22 +44,19 @@ const Products = (props) => {
                     </div>
                     <ul>
                       <li>
-                        <img className="pr-1" src={check} alt="check" /> Cyber
-                        Privacy
+                        <img className="pr-1" src={check} alt="check" />Profile Name: {item.profile_name}
                       </li>
                       <li>
-                        <img className="pr-1" src={check} alt="check" /> Cyber
-                        Compliance
+                        <img className="pr-1" src={check} alt="check" />Country: {item.country}
                       </li>
                       <li>
-                        <img className="pr-1" src={check} alt="check" /> Cyber
-                        Assessment
+                        <img className="pr-1" src={check} alt="check" />Industry: {item.industry}
                       </li>
                       <li>
-                        <img className="pr-1" src={check} alt="check" /> Cyber TM
+                        <img className="pr-1" src={check} alt="check" />Questions: {item.questions.length}
                       </li>
                     </ul>
-                    <button className="primary__button">View Detail</button>
+                    <button onClick={() => productDetailsClick(item._id)} className="primary__button">View Detail</button>
                   </div>
                 </div>
            )

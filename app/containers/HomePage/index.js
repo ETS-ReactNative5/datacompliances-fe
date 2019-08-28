@@ -17,27 +17,25 @@ import StepFlow from './Components/StepFlow';
 
 import {
  getConsultantsRequests,
- getProductsListRequest
+ getProductsListRequest,
+ getProductDetailsRequest
 } from './actions';
 
 import {
-  makeSelectResponse,
   makeSelectProductResponse,
   makeSelectConsultantsResponse
 } from './selectors'
 
 
 const mapStateToProps = createStructuredSelector({
-  // location: makeSelectLocation(),
   consultantsResponse: makeSelectConsultantsResponse(),
   productListResponse:makeSelectProductResponse()
-  // errorResponse: makeSelectError(),
-  // isRequesting: makeSelectRequesting(),
 });
 
 const mapDispatchToProps = dispatch => ({
   getConsultantsRequests: () => dispatch(getConsultantsRequests()),
-  getProductsListRequest: () => dispatch(getProductsListRequest())
+  getProductsListRequest: () => dispatch(getProductsListRequest()),
+  getProductDetailsRequest: () => dispatch(getProductDetailsRequest())
 });
 
 class HomePage extends React.Component {
@@ -67,9 +65,13 @@ componentWillReceiveProps(nextProps) {
   }
 }
 
-consultantClick = (id) => {
-  this.setState({consultantId: id})
-} 
+  consultantClick = (id) => {
+    this.setState({consultantId: id})
+  } 
+
+  productDetailsClick = (id) => {
+    // this.props.getProductDetailsRequest(id)
+  }
 
   render() {
     const { consultants, consultantId, productList } = this.state;
@@ -111,7 +113,7 @@ consultantClick = (id) => {
             consultantId={consultantId}
            />
           <StepFlow />      
-          <Products productList={productList} />
+          <Products productList={productList} productDetailsClick={this.productDetailsClick}/>
         {/* <div className="consult">
           <div className="container">
             <div className="row justify-content-center">
