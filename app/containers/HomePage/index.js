@@ -21,7 +21,7 @@ import step1 from './assets/step/step1.svg';
 import step2 from './assets/step/step2.svg';
 import step3 from './assets/step/step3.svg';
 import step4 from './assets/step/step4.svg';
-import video from './assets/pc.svg';
+import video from './assets/pc.png';
 import cross from './assets/cross.svg';
 import check from './assets/check.svg';
 import banner from './assets/banner.png';
@@ -98,7 +98,7 @@ class HomePage extends React.Component {
           <div className="container">
             <div className="row justify-content-end banner__row align-items-end ">
               <div className="col-md-8 ">
-                <h1></h1>
+                <h1 className="banner-text">Enabling privacy, cyber security compliance as a platform</h1>
                 <div className="video__holder">
                   <img
                     className="video img-fluid"
