@@ -7,7 +7,7 @@ import Search from 'containers/Search/Loadable';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
-import logo from './assets/pcsc__white.svg';
+import logo from './assets/logo-1.png';
 class Header extends React.PureComponent {
   render() {
     const { orgInfo } = this.props;

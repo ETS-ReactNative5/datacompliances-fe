@@ -11,7 +11,7 @@ import design from '../../assets/design.svg';
 var settings = {
     dots: true,
     infinite: true,
-    slidesToShow: 2,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: false,
         speed: 500,
