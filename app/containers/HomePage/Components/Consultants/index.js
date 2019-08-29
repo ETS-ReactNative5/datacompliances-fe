@@ -1,8 +1,10 @@
 import React from 'react'
 import { DOCUMENT_URL_UPDATE } from '../../../App/constants';
+import noimage from '../../assets/no-image.png';
+import { Button } from 'semantic-ui-react'
 
 const Consultants = (props) => {
-   const { consultants, consultantClick, consultantId } = props;
+   const { consultants, consultantClick, consultantId, textTruncate, consultantContentExpand } = props;
     return (
         <div className="consultant">
           <div className="container">
@@ -15,9 +17,13 @@ const Consultants = (props) => {
                             <div key={index} className="col-lg-4">
                             <h5 className="blue">{value.full_name}</h5>
                             <p className="dark__grey">{value.designation}</p>
-                            <p>
-                             {value.summary_information}
-                            </p>
+                            <span>{textTruncate(value.summary_information)}</span>
+                            <div>
+                            <br />
+                            {value.summary_information.length >250 &&
+                            <Button color="blue" onClick={() => consultantContentExpand(value.summary_information)}>Read More</Button>
+                            }
+                            </div>
                           </div>
                            )
                    } 
@@ -31,7 +37,12 @@ const Consultants = (props) => {
                         <div key={index} className="col-md-6 mb-4">
                           <div className="media align-items-center">
                               {value && value.image &&
-                                <img onClick={() => consultantClick(value._id)} className="mb-2 img-fluid team__img active"  src={`${DOCUMENT_URL_UPDATE}${value && value.image.document_name}`} alt="product image here"
+                                <img 
+                                   onClick={() => consultantClick(value._id)} 
+                                   className="mb-2 img-fluid team__img active"  
+                                   src={`${DOCUMENT_URL_UPDATE}${value && value.image.document_name}`} 
+                                   alt="product image here"
+                                   onError={(e)=>{e.target.onerror = null; e.target.src=noimage}}
                                 />
                               }
                             <div className="media-body pl-3">

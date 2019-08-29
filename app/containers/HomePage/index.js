@@ -14,6 +14,7 @@ import { createStructuredSelector } from 'reselect';
 import Consultants from './Components/Consultants';
 import Products from './Components/Products';
 import StepFlow from './Components/StepFlow';
+import SummaryDetail from './Components/SummaryDetail'
 
 import {
  getConsultantsRequests,
@@ -43,7 +44,9 @@ class HomePage extends React.Component {
   state ={
     consultants: [],
     consultantId: '',
-    productList: []
+    productList: [],
+    showDetailSummary: false,
+    summary: ''
   }
 
  componentDidMount() {
@@ -73,8 +76,28 @@ componentWillReceiveProps(nextProps) {
     // this.props.getProductDetailsRequest(id)
   }
 
+  textTruncate = function(str, length, ending) {
+    if (length == null) {
+      length = 250;
+    }
+    if (ending == null) {
+      ending = '...';
+    }
+    if (str.length > length) {
+      return str.substring(0, length - ending.length) + ending;
+    } else {
+      return str;
+    }
+  };
+  consultantContentExpand = (summary) => {
+    this.setState({showDetailSummary: true, summary: summary})
+  }
+  modelOpen = () => {
+    this.setState({showDetailSummary : false})
+  }
+
   render() {
-    const { consultants, consultantId, productList } = this.state;
+    const { consultants, consultantId, productList, showDetailSummary, summary } = this.state;
     return (
       <React.Fragment>
           <Helmet>
@@ -107,11 +130,19 @@ componentWillReceiveProps(nextProps) {
               </div>
             </div>
           </div>
-          <Consultants 
+          <Consultants
+            consultantContentExpand={this.consultantContentExpand} 
+            textTruncate={this.textTruncate}
             consultants={consultants}  
             consultantClick={this.consultantClick}
             consultantId={consultantId}
            />
+           {showDetailSummary &&
+              <SummaryDetail 
+                summary={summary}
+                modelOpen={this.modelOpen}
+              />
+            }
           {/* <StepFlow />       */}
           <Products productList={productList} productDetailsClick={this.productDetailsClick}/>
         {/* <div className="consult">

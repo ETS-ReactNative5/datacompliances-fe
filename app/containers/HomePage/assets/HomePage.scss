@@ -317,6 +317,16 @@
   padding:20px 10px;
   // background-color:red;
   text-align:center;
+  ul{
+    li{
+      text-align: left;
+      line-height: 30px;
+      img{
+        display: inline-block;
+        margin-right: 5px;
+      }
+    }
+  }
 }
 
 
@@ -375,3 +385,24 @@
   max-width: 500px;
   margin:0 auto;
 }
+.product-slider-wrap{
+  background:#fff;
+  padding: 40px 0px;
+  padding-top: 80px;
+}
+.team_description {
+  height: fit-content !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+p{
+  color:#777;
+}
+.dark__grey{
+  color:#333 !important;
+} 
+.product__card .product-img {
+  height: 160px;
+  object-fit: contain;
+} 
