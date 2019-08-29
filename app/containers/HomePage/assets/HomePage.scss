@@ -317,6 +317,16 @@
   padding:20px 10px;
   // background-color:red;
   text-align:center;
+  ul{
+    li{
+      text-align: left;
+      line-height: 30px;
+      img{
+        display: inline-block;
+        margin-right: 5px;
+      }
+    }
+  }
 }
 
 
@@ -374,4 +384,9 @@
 .products-slider.length_one {
   max-width: 500px;
   margin:0 auto;
+}
+.product-slider-wrap{
+  background:#fff;
+  padding: 40px 0px;
+  padding-top: 80px;
 }
