@@ -7,7 +7,7 @@ import Search from 'containers/Search/Loadable';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
-import logo from './assets/logo-1.png';
+import logo from './assets/new-logo.png';
 class Header extends React.PureComponent {
   render() {
     const { orgInfo } = this.props;
@@ -35,8 +35,8 @@ class Header extends React.PureComponent {
                 <NavLink exact className="nav-link" to="/register">
                   Register
                 </NavLink>
-                <NavLink className="nav-link" to="/login">
-                  <Button className="btn__primary">Login</Button>
+                <NavLink className="nav-link btn-primary" to="/login">
+                  Login 
                 </NavLink>
               </Nav>
             </Navbar.Collapse>

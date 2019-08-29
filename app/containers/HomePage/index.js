@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import './assets/HomePage.scss';
 // import consult from './assets/consult.svg';
-import video from './assets/pc.png';
+import video from './assets/pc-1.png';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -84,8 +84,8 @@ componentWillReceiveProps(nextProps) {
           <div className="banner">
             <div className="container">
               <div className="row justify-content-end banner__row align-items-end ">
-                <div className="col-md-8 ">
-                  <h1></h1>
+                <div className="col-md-8 text-center">
+                  <h1>"Enabling privacy, cyber security compliance as a platform."</h1>
                   <div className="video__holder">
                     <img
                       className="video img-fluid"
