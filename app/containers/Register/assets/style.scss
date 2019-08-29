@@ -90,3 +90,13 @@ $btn-blue:#068DF8;
         transform: translate(-50%,-50%);
     }
  }
+ .checkbox-inline {
+    display: grid;
+    /* align-items: center; */
+    grid-template-columns: 30px 1fr;
+    label{
+        margin:0 !important;
+        font-size: 15px !important;
+        font-weight: 400;
+    }
+}
