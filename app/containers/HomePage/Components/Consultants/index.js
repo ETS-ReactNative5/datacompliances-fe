@@ -1,5 +1,6 @@
 import React from 'react'
 import { DOCUMENT_URL_UPDATE } from '../../../App/constants';
+import noimage from '../../assets/no-image.png';
 
 const Consultants = (props) => {
    const { consultants, consultantClick, consultantId } = props;
@@ -31,7 +32,12 @@ const Consultants = (props) => {
                         <div key={index} className="col-md-6 mb-4">
                           <div className="media align-items-center">
                               {value && value.image &&
-                                <img onClick={() => consultantClick(value._id)} className="mb-2 img-fluid team__img active"  src={`${DOCUMENT_URL_UPDATE}${value && value.image.document_name}`} alt="product image here"
+                                <img 
+                                   onClick={() => consultantClick(value._id)} 
+                                   className="mb-2 img-fluid team__img active"  
+                                   src={`${DOCUMENT_URL_UPDATE}${value && value.image.document_name}`} 
+                                   alt="product image here"
+                                   onError={(e)=>{e.target.onerror = null; e.target.src=noimage}}
                                 />
                               }
                             <div className="media-body pl-3">

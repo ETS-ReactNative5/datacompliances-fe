@@ -5,6 +5,7 @@ import cross from '../../assets/cross.svg';
 import check from '../../assets/check.svg';
 import secure from '../../assets/secure.svg';
 import design from '../../assets/design.svg';
+import noimage from '../../assets/design.png';
 
 
 const Products = (props) => {
@@ -60,9 +61,10 @@ const Products = (props) => {
                   <div className="product__card card ">
                     {/* <img className="product__image" src={secure} alt="" /> */}
                     <img 
-                        className="mb-2 img-fluid team__img active"  
+                        className="mb-2 img-fluid product-img active"  
                         src={`${DOCUMENT_URL_UPDATE}${item.image_name  && item.image_name.document_name}`} 
-                        alt="product image here"
+                        alt={'noproduct'}
+                        onError={(e)=>{e.target.onerror = null; e.target.src=noimage}}
                     />
                     <div className="top__block">
                       <h5>{item.title}</h5>
