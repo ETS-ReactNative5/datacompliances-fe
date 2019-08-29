@@ -41,10 +41,37 @@ var settings = {
   slidesToShow: 3,
   slidesToScroll: 1,
   autoplay: false,
-      speed: 500,
-      autoplaySpeed: 2000,
-      cssEase: "ease-in",
-      centerPadding: 30
+  speed: 500,
+  autoplaySpeed: 2000,
+  cssEase: "ease-in",
+  responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            initialSlide: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]  
+
+
 };
 
 /* eslint-disable react/no-multi-comp */
@@ -71,7 +98,7 @@ class HomePage extends React.Component {
           <div className="container">
             <div className="row justify-content-end banner__row align-items-end ">
               <div className="col-md-8 ">
-                <h1></h1>
+                <h1 className="banner-text">Enabling privacy, cyber security compliance as a platform</h1>
                 <div className="video__holder">
                   <img
                     className="video img-fluid"
