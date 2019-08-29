@@ -26,7 +26,7 @@ export class Footer extends React.PureComponent {
             <div>Copyright(2019)</div>
 
             <div>
-              <a href="https://www.esrtech.io/privacy-policy.html" target="_blank"> Privacy </a>/ <a href="https://www.esrtech.io/term-of-use.html" target="_blank"> Notice </a>
+              <a href="https://www.esrtech.io/privacy-policy.html" target="_blank"> Privacy </a>/ <a href="https://www.esrtech.io/term-of-use.html" target="_blank"> Terms of use </a>
             </div>
           </div>
         </footer>
