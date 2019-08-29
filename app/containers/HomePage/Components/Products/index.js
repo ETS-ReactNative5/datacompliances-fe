@@ -7,24 +7,51 @@ import secure from '../../assets/secure.svg';
 import design from '../../assets/design.svg';
 
 
-
-var settings = {
+const Products = (props) => {
+  const { productList, productDetailsClick } = props;
+  var settings = {
     dots: true,
     infinite: true,
-    slidesToShow: 2,
+    slidesToShow: productList.length > 2 ? 3 : productList.length,
     slidesToScroll: 1,
     autoplay: false,
         speed: 500,
         autoplaySpeed: 2000,
         cssEase: "ease-in",
-        centerPadding: 30
+        initialSlide: 0,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              infinite: true,
+              dots: true
+            }
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              initialSlide: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
   };
-
-const Products = (props) => {
-  const { productList } = props;
+  console.log(productList.length)
    return(
     <div className="container">
-    <Slider classnName="products-slider" {...settings}>
+    <Slider className={productList.length == 2 ? 'products-slider length_two' :
+                             productList.length == 1 ? 'products-slider length_one' : 
+                                                            'products-slider'} {...settings}>
       {productList && productList.length>0 &&
          productList.map((item, index) => {
            return(
@@ -44,22 +71,19 @@ const Products = (props) => {
                     </div>
                     <ul>
                       <li>
-                        <img className="pr-1" src={check} alt="check" /> Cyber
-                        Privacy
+                        <img className="pr-1" src={check} alt="check" />Profile Name: {item.profile_name}
                       </li>
                       <li>
-                        <img className="pr-1" src={check} alt="check" /> Cyber
-                        Compliance
+                        <img className="pr-1" src={check} alt="check" />Country: {item.country}
                       </li>
                       <li>
-                        <img className="pr-1" src={check} alt="check" /> Cyber
-                        Assessment
+                        <img className="pr-1" src={check} alt="check" />Industry: {item.industry}
                       </li>
                       <li>
-                        <img className="pr-1" src={check} alt="check" /> Cyber TM
+                        <img className="pr-1" src={check} alt="check" />Questions: {item.questions.length}
                       </li>
                     </ul>
-                    <button className="primary__button">View Detail</button>
+                    {/* <button onClick={() => productDetailsClick(item._id)} className="primary__button">View Detail</button> */}
                   </div>
                 </div>
            )
