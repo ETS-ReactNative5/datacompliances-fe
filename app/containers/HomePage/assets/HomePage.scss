@@ -337,3 +337,22 @@
 
 
 // }
+  .slick-slide {
+    padding:20px 10px;
+    // background-color:red;
+    text-align:center;
+  }
+  
+    button.slick-arrow.slick-prev {
+      position: absolute;
+      left: -50px;
+    }
+    button.slick-arrow.slick-next {
+      right: -50px;
+    }
+    ul.slick-dots {
+      margin: 0px;
+      margin-bottom: 20px;
+      display: block;
+      position: relative;
+    }
