@@ -26,6 +26,7 @@ import logo_previous from '../assests/previous.svg';
 //     }
 //   }
 // }
+var complete;
 
 const ViewPracticeQuestion = props => {
   const {
@@ -250,20 +251,27 @@ const ViewPracticeQuestion = props => {
         <div>
           <div className="score_point">
             <h2 className="main_title">Detail</h2>
+            <span>Note: Please answer every questions to submit for report generation.</span>
           </div>
           <div className="resultdetail mr-5">
             <Grid>
               {data &&
                 data.length > 0 &&
-                data.map((question, indx) => (
+                data.map((question, indx) => {
+
+                  if(true){
+                    complete = saveAnswerResponse.question_answer.hasOwnProperty(question.questionnaire_id) && 
+                     saveAnswerResponse.question_answer[question.questionnaire_id] != '' ? 
+                       saveAnswerResponse.question_answer[question.questionnaire_id] : 'Not Answered'
+                   }
+                  
+                  return(
                   <Grid.Column
                     largeScreen={16}
                     widescreen={16}
                     key={`que${indx}`}
                   >
                       <div>
-                        {/* {console.log(question,'>>>', tempValue == '' && saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
-                                   saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] : tempValue )} */}
                           <div className="result_listing">
                           <div>
                             
@@ -277,9 +285,10 @@ const ViewPracticeQuestion = props => {
                           </div>
                       </div>
                   </Grid.Column>
-                ))}
+                )
+                })}
                 <Button onClick={e => handleRevise()} color="blue">Revise</Button>
-                <Button onClick={confirmSubmitQuestions} color="green">Confirm Submit</Button>
+                <Button disabled= {complete == 'Not Answered'} onClick={confirmSubmitQuestions} color="green">Confirm Submit</Button>
             </Grid>
           </div>
         </div>

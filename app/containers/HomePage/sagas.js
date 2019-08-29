@@ -22,7 +22,7 @@ function* getProductsRequests() {
   const token = localStorage.getItem('token');
   yield fork(
     XcelTrip.get(
-      `product`,
+      `product/top`,
       actions.getProductsListSuccess,
       actions.getProductsListFailure,
       token,

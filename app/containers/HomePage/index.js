@@ -112,7 +112,7 @@ componentWillReceiveProps(nextProps) {
             consultantClick={this.consultantClick}
             consultantId={consultantId}
            />
-          <StepFlow />      
+          {/* <StepFlow />       */}
           <Products productList={productList} productDetailsClick={this.productDetailsClick}/>
         {/* <div className="consult">
           <div className="container">
