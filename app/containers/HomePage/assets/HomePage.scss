@@ -396,3 +396,7 @@ p{
 .dark__grey{
   color:#333 !important;
 } 
+.product__card .product-img {
+  height: 160px;
+  object-fit: contain;
+} 
