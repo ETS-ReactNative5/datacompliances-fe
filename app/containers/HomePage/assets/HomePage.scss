@@ -17,6 +17,12 @@
   position: relative;
   height: 500px;
 
+  h1{
+    font-size:18px;
+    color:rgba(254,254,254,0.8);
+    margin-top: 45px;
+  }
+
   &::before {
     content: '';
     background-image: url('./animated__banner2.svg');
@@ -37,11 +43,12 @@
 
 .video {
   position: relative;
-  bottom: -40px;
+ 
 }
 
 .video__holder {
   position: relative;
+  bottom: -20px;
 }
 
 .video__screen {
@@ -313,7 +320,6 @@
 }
 
 
-// .products-slider{
 
   button.slick-arrow.slick-prev {
     position: absolute;
@@ -329,6 +335,14 @@
     position: relative;
   }
 
+  h1.banner-text {
+    margin-top: 50px !important;
+    font-size: 22px;
+    color: #fff;
+}
+
+
+// }
   .slick-slide {
     padding:20px 10px;
     // background-color:red;
@@ -353,6 +367,11 @@
     font-size: 22px;
     color: #fff;
 }
-
-
-// }
+.products-slider.length_two {
+  max-width: 800px;
+  margin:0 auto;
+}
+.products-slider.length_one {
+  max-width: 500px;
+  margin:0 auto;
+}

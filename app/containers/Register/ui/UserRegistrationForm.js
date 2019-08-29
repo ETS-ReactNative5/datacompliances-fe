@@ -186,17 +186,17 @@ const UserRegistrationForm = ({
                 
                 <div className="row">
                     <div className="col-md-6">
-                    <div className="inline field">
-                            <div className={`field ${errors.agree_terms_condition == "Can't be blank" ? 'error' : ''}`}>
+                    
+                            <div className={`checkbox-inline ${errors.agree_terms_condition == "Can't be blank" ? 'error' : ''}`}>
                             <Checkbox 
                                name="agree_terms_condition"
                                value="active"
-                               label='I have read and agree to the Terms of Use and the Privacy Policy.'
+                            //    label='I have read and agree to the  Terms of Use and the Privacy Policy.'
                                onChange={handleCheckbox}
                             //    error={(errors.agree_terms_condition == "Can't be blank") ? true : false}
                                />
+                                <label>I have read and agree to the <a href="https://www.esrtech.io/term-of-use.html" target="_blank"><b>Terms of Use</b></a> and the  <a href="https://www.esrtech.io/privacy-policy.html" target="_blank"><b>Privacy Policy.</b></a></label>
                             </div>
-                        </div>
 {/* 
                         <div className="hasCaptcha field" style={{ height: '76px' }}>
                             <Captcha onChange={onRecaptchaChange} />

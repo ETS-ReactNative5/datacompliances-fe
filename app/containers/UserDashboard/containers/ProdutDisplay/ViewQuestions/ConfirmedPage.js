@@ -9,11 +9,11 @@ class DeleteConfirmation extends React.PureComponent {
     return (
       <Modal closeOnDimmerClick={false} className="confirmed-page" dimmer="blurring" size="mini" open >
         <Modal.Header>
-          Assesment submitted for analysis.      
+          Assessment submitted for analysis.      
         </Modal.Header>
         <Modal.Content>
           <span>
-           It will around 3-4 days to prepare a detailed report of the assesment. 
+           It will take around 3-4 business days to prepare a detailed report of the assessment. 
            To view the report, you will need the private key to decrypt the report.
           </span>
         </Modal.Content>
