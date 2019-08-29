@@ -46,7 +46,6 @@ const Products = (props) => {
           }
         ]
   };
-  console.log(productList.length)
    return(
     <div className="container">
     <Slider className={productList.length == 2 ? 'products-slider length_two' :
