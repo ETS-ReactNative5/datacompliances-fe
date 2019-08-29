@@ -313,7 +313,6 @@
 }
 
 
-// .products-slider{
 
   button.slick-arrow.slick-prev {
     position: absolute;
@@ -353,6 +352,11 @@
     font-size: 22px;
     color: #fff;
 }
-
-
-// }
+.products-slider.length_two {
+  max-width: 800px;
+  margin:0 auto;
+}
+.products-slider.length_one {
+  max-width: 500px;
+  margin:0 auto;
+}
