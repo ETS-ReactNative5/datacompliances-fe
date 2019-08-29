@@ -111,7 +111,7 @@ export class ProductList extends React.Component {
 
   text_truncate = function(str, length, ending) {
     if (length == null) {
-      length = 50;
+      length = 200;
     }
     if (ending == null) {
       ending = '...';

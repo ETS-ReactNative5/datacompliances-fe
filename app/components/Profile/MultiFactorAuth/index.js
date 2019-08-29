@@ -285,8 +285,8 @@ class MultiFactorAuth extends React.Component {
                     </div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      width="255"
-                      height="255"
+                      width="280"
+                      height="280"
                     >
                       <path
                         transform="scale(5)"
