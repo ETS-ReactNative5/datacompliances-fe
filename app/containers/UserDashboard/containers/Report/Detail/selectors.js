@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-export const selectMyProfile = state => state.get('newReferral');
+export const selectMyProfile = state => state.reportDetail;
 
 const makeSelectResponse = () =>
   createSelector(
@@ -17,15 +17,9 @@ const makeSelectLoading = () =>
     selectMyProfile,
     myProfileState => myProfileState.get('loading'),
   );
-const makeSelectRequestingReferralChange = () =>
-  createSelector(
-    selectMyProfile,
-    myProfileState => myProfileState.get('requestingReferralChange'),
-  );
 
 export {
   makeSelectResponse,
   makeSelectError,
   makeSelectLoading,
-  makeSelectRequestingReferralChange,
 };

@@ -411,11 +411,12 @@ class ViewQuestions extends React.Component {
         {/* {!show_final_result && (
           <h1 className="main_title">Questionnaire</h1>
         )} */}
-        {redirect &&
+        {/* {redirect &&
            <Redirect to={`/user/dashboard`} />
-          }
+          } */}
         {this.state.confirmedPage && 
-          <ConfirmedPage closeClick={this.closeClick} />
+          // <ConfirmedPage closeClick={this.closeClick} />
+          <Redirect to={`/user/dashboard/reports`} />
         }
         <ViewQuestionsForm
           data={data}
