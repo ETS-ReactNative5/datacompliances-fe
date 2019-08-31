@@ -58,3 +58,45 @@ $btn-blue:#068DF8;
         object-fit: contain;
     }
 }
+
+.user-confirmation{
+    position: relative;
+    height: 100vh;
+    .wrapper {
+        height: fit-content;
+        width: 360px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    .button {
+        margin: 20px 0;
+        text-align: center;
+        display: inline-block;
+        background: #007bff;
+        padding: 5px 15px;
+        color: #fff;
+        border-radius: 5px;
+        &:hover{
+            color:#fff;
+            background:#005ec4;
+        }
+    }
+    .spinner{
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+    }
+ }
+ .checkbox-inline {
+    display: grid;
+    /* align-items: center; */
+    grid-template-columns: 30px 1fr;
+    label{
+        margin:0 !important;
+        font-size: 15px !important;
+        font-weight: 400;
+    }
+}

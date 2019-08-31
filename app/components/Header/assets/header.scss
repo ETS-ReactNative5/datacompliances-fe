@@ -7,11 +7,12 @@
 
   .navbar {
     .nav-link {
-      font-weight: 500;
       color: #fff;
       position: relative;
       text-transform: uppercase;
-      font-size: 0.9rem;
+      font-size: 16px;
+      padding: 5px 15px;
+      font-family:Poppins , sans-serif;
 
       // &::before {
       //   content: '';
@@ -28,7 +29,9 @@
       //     margin-top: -4px;
       //   }
       // }
-
+        &:hover{
+          opacity: 0.8;
+        }
       &.active {
         &::before {
           max-width: 100%;
@@ -49,5 +52,13 @@
 }
 
 .brand__logo {
-  height: 40px;
+  height: 50px;
+  padding:2px 0;
+}
+.nav-link.btn-primary{
+  margin-left: 5px;
+  border-radius:5px;
+  // &:hover{
+  //   background-color: #0065d0;
+  // }
 }

@@ -80,8 +80,8 @@ class PasswordReset extends React.Component {
   validate = () => {
     const { data } = this.state;
     const errors = {};
-    if (!data.password) errors.password = "password_error";
-    if (data.password !== data.confirmPassword) errors.confirmPassword = "password_error";
+    if (!data.password) errors.password = "Password is required";
+    if (data.password !== data.confirmPassword) errors.confirmPassword = "Password doesn't match";
     return errors;
   };
   handleSubmit = e => {
@@ -137,6 +137,7 @@ class PasswordReset extends React.Component {
                         <PasswordInputField password={data.confirmPassword || ''} label="Confirm Password" placeholder="Confirm Password"
                                             onChange={this.handleChange} error={errors.confirmPassword} name="confirmPassword"
                         />
+                       {errors.confirmPassword && <span style={{ color: 'red' }}>{errors.confirmPassword}</span>}
                       </div>
                       <div className="field">
                         <label className="custom-control custom-checkbox">

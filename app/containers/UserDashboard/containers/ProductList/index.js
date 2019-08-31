@@ -111,7 +111,7 @@ export class ProductList extends React.Component {
 
   text_truncate = function(str, length, ending) {
     if (length == null) {
-      length = 50;
+      length = 200;
     }
     if (ending == null) {
       ending = '...';
@@ -183,7 +183,7 @@ export class ProductList extends React.Component {
                           View Detail
                         </Link>
                         </div>
-                        {packageData.purchased &&
+                        {packageData && packageData.OrderInfo.length > 0 && packageData.OrderInfo[0].purchased &&
                          <span className="ribbon">Purchased
                          </span>
                         }
