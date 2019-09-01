@@ -20,8 +20,11 @@ import { makeSelectLocation } from '../../../App/selectors';
 
 
 // import C3Chart from 'react-c3js';
-import 'c3/c3.css';
-import c3 from 'c3';
+
+
+// import 'c3/c3.css';
+// import c3 from 'c3';
+
 
 // import {
 //   BarChart,
