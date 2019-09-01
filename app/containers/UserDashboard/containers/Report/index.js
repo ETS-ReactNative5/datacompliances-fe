@@ -15,7 +15,7 @@ import { loadReferCodeRequest } from './actions';
 import {
   makeSelectLoading
 } from './selectors';
-import {  } from 'semantic-ui-react';
+import { Card, CardContent  } from 'semantic-ui-react';
 import { makeSelectLocation } from '../../../App/selectors';
 
 
@@ -55,11 +55,11 @@ const confirmedSubmit = true
 // ];
 
 const data = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
-  { name: 'Group D', value: 250 },
+  // { name: 'Group A', value: 400 },
+  // { name: 'Group B', value: 300 },
+  // { name: 'Group C', value: 300 },
+  // { name: 'Group D', value: 200 },
+  // { name: 'Group D', value: 250 },
 ];
 
 
@@ -152,7 +152,7 @@ class Report extends React.Component {
                 </div>
               ) : (
                 <Card>
-                  <CardContent>Products Not Found</CardContent>
+                  <CardContent>Reports Not Found</CardContent>
                 </Card>
               )}
             </div>

@@ -58,7 +58,7 @@ componentWillReceiveProps(nextProps) {
   if (this.props.consultantsResponse !== nextProps.consultantsResponse) {
     this.setState({
                    consultants: nextProps.consultantsResponse, 
-                   consultantId: nextProps.consultantsResponse && nextProps.consultantsResponse[0]._id
+                   consultantId: nextProps.consultantsResponse && nextProps.consultantsResponse[0] && nextProps.consultantsResponse[0]._id
                   })
   }
   if (this.props.productListResponse !== nextProps.productListResponse && nextProps.productListResponse != undefined) {
