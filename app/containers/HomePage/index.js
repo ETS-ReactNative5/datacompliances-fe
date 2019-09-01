@@ -108,7 +108,7 @@ componentWillReceiveProps(nextProps) {
             <div className="container">
               <div className="row justify-content-end banner__row">
                 <div className="col-md-8 col-sm-8 col-8  text-center">
-                  <h1>"Enabling privacy, cyber security and a compliance as a platform."</h1>
+                  <h1>"Enabling privacy, cyber security and compliance as a platform."</h1>
                   <div className="video__holder">
                     <img
                       className="video img-fluid"
