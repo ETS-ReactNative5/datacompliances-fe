@@ -15,7 +15,7 @@ import { loadReferCodeRequest } from './actions';
 import {
   makeSelectLoading
 } from './selectors';
-import { Card, CardContent  } from 'semantic-ui-react';
+import {  } from 'semantic-ui-react';
 import { makeSelectLocation } from '../../../App/selectors';
 
 
@@ -151,9 +151,9 @@ class Report extends React.Component {
                   <p></p>
                 </div>
               ) : (
-                <Card>
-                  <CardContent>Reports Not Found</CardContent>
-                </Card>
+                <div className="no-products">
+                <img src={noreport}/>
+              </div>
               )}
             </div>
           </div>
