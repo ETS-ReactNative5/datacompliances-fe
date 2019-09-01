@@ -1,12 +1,12 @@
 import { createSelector } from 'reselect';
 
-export const selectMyProfile = state => state.get('report');
+export const selectMyProfile = state => state.report;
 
-const makeSelectReferCode = () =>
-  createSelector(
-    selectMyProfile,
-    myProfileState => myProfileState.get('referCode'),
-  );
+// const makeSelectReferCode = () =>
+//   createSelector(
+//     selectMyProfile,
+//     myProfileState => myProfileState.get('referCode'),
+  // );
 const makeSelectResponse = () =>
   createSelector(
     selectMyProfile,
@@ -26,7 +26,7 @@ const makeSelectLoading = () =>
 //   createSelector(selectMyProfile, myProfileState => myProfileState.get('requestingReferralChange'));
 
 export {
-  makeSelectReferCode,
+  // makeSelectReferCode,
   makeSelectResponse,
   makeSelectError,
   makeSelectLoading,

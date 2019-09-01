@@ -20,3 +20,17 @@
         height: 100%;
     }
  }
+
+ .doughnut-item {
+    width: 100%
+  }
+  
+  .doughnut-graph {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .doughnut-graph>div {
+    flex: 0 50%;
+    box-sizing:border-box
+  }

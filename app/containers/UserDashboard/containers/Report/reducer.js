@@ -4,6 +4,7 @@ import { LOGOUT_SUCCESS } from 'containers/Login/constants';
 
 const initialState = fromJS({
   loading: false,
+  requesting: false,
   referCode: '',
   response: '',
   error: '',
