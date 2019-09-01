@@ -16,9 +16,9 @@ import { Link } from 'react-router-dom';
 import DoughnutChart from './DoughnutChart'
 
 
-// import 'c3/c3.css';
-// import c3 from 'c3';
-
+import 'c3/c3.css';
+import c3 from 'c3';
+import './style.scss';
 
 //......................................mock data c3js...........................................
 
@@ -144,15 +144,25 @@ class NewReferral extends React.Component {
     const { isRequesting, errorResponse, successResponse } = this.props;
 
     return (
-      <div>
-           <div style={{width: '50%'}} id="chart">hi</div>
-           <div className="doughnut-graph">
+      <div className="graphs">
+          <div className="clearfix">
+            <div className="bar-graph mb-5 mr-3" >
+              <p className="chart-title">Number of NIST and PCI Controls Assessed</p>
+              <div style={{width: '100%'}} id="chart">Bar Graph</div>
+            </div>
+            <div className="gauge-chart mb-5"> 
+              <p className="chart-title">Gauge Chart Title</p>
+              <div style={{width: '100%'}} id="chart2">Gauge Graph</div>   
+            </div>
+          </div>
+          <div className="doughnut-graph">
+             
            { dataC3doughnut.map((item, index) => {
               return <DoughnutChart key={index} each={item} /> ;
            })
            }
            </div>
-           <div style={{width: '50%'}} id="chart2">hi</div>   
+    
       </div>
     );
   }
