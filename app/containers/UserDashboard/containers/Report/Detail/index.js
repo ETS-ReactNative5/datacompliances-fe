@@ -36,11 +36,11 @@ const dataC3doughnut = [
 // ];
 
 const dataBar = [
-  { _id: 1111, value: 4, tag_name: 'tag1' },
-  { _id: 2222, value: 6, tag_name: 'tag2' },
-  { _id: 3333, value: 14, tag_name: 'tag3' },
-  { _id: 4444, value: 10, tag_name: 'tag4' },
-  { _id: 5555, value: 7, tag_name: 'tag5' },
+  { _id: 1111, total: 4, tag_name: 'tag1' },
+  { _id: 2222, total: 6, tag_name: 'tag2' },
+  { _id: 3333, total: 14, tag_name: 'tag3' },
+  { _id: 4444, total: 10, tag_name: 'tag4' },
+  { _id: 5555, total: 7, tag_name: 'tag5' },
 ]
 
 
@@ -123,15 +123,23 @@ class NewReferral extends React.Component {
         }
       })
     })
-
+  var colorScale = d3.scale.category10();
   const chart = c3.generate({
     bindto: '#chart',
     data: {
       json: dataBar,
       // columns: [arrC3],
       type: 'bar',
+      color: function(inColor, data) {
+        if(data.index !== undefined) {
+          console.log(data)
+          return colorScale(data.index);
+        }
+        // inColor == colorScale(data.index)
+        // return inColor;
+      },
       keys: {
-        value: ['value'],
+        value: ['total'],
     },
     },
     axis: {
@@ -139,6 +147,9 @@ class NewReferral extends React.Component {
           type: 'category',
           categories: arrC3
       }
+  },
+  legend: {
+    show: false
   }
   });
 }
