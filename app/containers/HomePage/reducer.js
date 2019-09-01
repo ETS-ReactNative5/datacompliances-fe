@@ -2,7 +2,7 @@ import { fromJS } from 'immutable';
 import * as types from './constants';
 import { LOGOUT_SUCCESS } from '../Login/constants';
 
-const initialState = fromJS({
+export const initialState = fromJS({
   response: null,
   error: null,
   requesting: false,

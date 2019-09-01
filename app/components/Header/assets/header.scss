@@ -40,6 +40,11 @@
     }
   }
 
+  .navbar-nav{
+    @media (max-width:768px) {
+      float: right;
+    }
+  }
   .top__header {
     padding: 5px 0;
     background-color: $blue;
@@ -61,4 +66,11 @@
   // &:hover{
   //   background-color: #0065d0;
   // }
+}
+button.navbar-toggler {
+  background: rgba(255, 255, 255, 0.93) !important;
+  margin-top: 10px;
+  &:hover{
+    cursor: pointer !important;
+  }
 }
