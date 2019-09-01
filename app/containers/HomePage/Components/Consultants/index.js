@@ -39,7 +39,7 @@ const Consultants = (props) => {
                               {value && value.image &&
                                 <img 
                                    onClick={() => consultantClick(value._id)} 
-                                   className="mb-2 img-fluid team__img active"  
+                                   className={value._id === consultantId ? "mb-2 img-fluid team__img active" : "mb-2 img-fluid team__img" }  
                                    src={`${DOCUMENT_URL_UPDATE}${value && value.image.document_name}`} 
                                    alt="product image here"
                                    onError={(e)=>{e.target.onerror = null; e.target.src=noimage}}
