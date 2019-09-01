@@ -92,6 +92,13 @@ class NewReferral extends React.Component {
           type: 'gauge',
       
       },
+      gauge: {
+        label:{
+        format: function(value, ratio){
+          return value; //returning here the value and not the ratio
+          },
+        },
+        },
       color: {
           pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
           threshold: {
@@ -102,7 +109,7 @@ class NewReferral extends React.Component {
       },
       size: {
           height: 180
-      }
+      },
   });
 
   }
