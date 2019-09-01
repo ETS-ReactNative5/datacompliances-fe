@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+
+
 import c3 from 'c3';
 
-
+import './style.scss';
 
 const dataC3doughnut = [
     { total: 10, compliant: 4, tag_name: 'tag1' },
@@ -65,7 +67,8 @@ export class DoughnutChart extends Component {
       const { each } = this.props;
         return (
             <div className = "doughnut-item">
-                  <div style={{width: '50%'}} id={`chart`+each._id}>hi</div>
+                <p className="chart-title">Pie Chart Title</p>
+                <div style={{width: '100%'}} id={`chart`+each._id}>hi</div>
             </div>
         )
     }
