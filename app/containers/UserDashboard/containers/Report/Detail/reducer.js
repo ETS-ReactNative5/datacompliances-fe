@@ -7,29 +7,29 @@ const initialState = fromJS({
   referCode: '',
   response: '',
   error: '',
-  requestingReferralChange: false,
+  requesting: false,
+  graphData: ''
 });
 
-function agentSettings(state = initialState, action) {
+function graphData(state = initialState, action) {
   switch (action.type) {
-    case types.CHANGE_REFERRAL_REQUEST:
+    case types.GET_GRAPH_REQUEST:
       return state.merge({
-        requestingReferralChange: true,
+        requesting: true,
         response: '',
         error: '',
+        graphData: ''
       });
-    case types.CHANGE_REFERRAL_SUCCESS:
+    case types.GET_GRAPH_SUCCESS:
       return state.merge({
         response: action.response.message,
         error: '',
-        requestingReferralChange: false,
-        referCode:
-          action.response.data.refer_code ||
-          action.response.data.global_refer_code,
+        requesting: false,
+        graphData: action.response.data
       });
-    case types.CHANGE_REFERRAL_FAILURE:
+    case types.GET_GRAPH_FAILURE:
       return state.merge({
-        requestingReferralChange: false,
+        requesting: false,
         error: action.error.message,
       });
     case types.CLEAR_MESSAGE:
@@ -44,4 +44,4 @@ function agentSettings(state = initialState, action) {
   }
 }
 
-export default agentSettings;
+export default graphData;

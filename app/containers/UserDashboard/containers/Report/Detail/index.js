@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import {  } from 'semantic-ui-react';
 import { changeReferralRequest, clearMessage } from './actions';
-import {
-  makeSelectError,
-  makeSelectResponse,
-} from './selectors';
+
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import reducer from './reducer';
@@ -46,16 +43,41 @@ const dataBar = [
 
 //......................................mock data c3js...........................................
 
+import {
+  makeSelectError,
+  makeSelectResponse,
+  makeSelectGraphData
+} from './selectors';
+
+import {
+  getGraphDataRequest
+} from './actions'
+
+const mapStateToProps = createStructuredSelector({
+  successResponse: makeSelectResponse(),
+  errorResponse: makeSelectError(),
+  graphData:makeSelectGraphData()
+});
+
+const mapDispatchToProps = dispatch => ({
+  setReferral: data => dispatch(changeReferralRequest(data)),
+  clearMessage: () => dispatch(clearMessage()),
+  getGraphDataRequest: () => dispatch(getGraphDataRequest())
+});
+
 class NewReferral extends React.Component {
   state = {
     data: {},
     errors: {},
     close: true,
+    graphData: ''
   };
 
   componentDidMount() {
     this.updateChart();
     this.updateChart2();
+    this.props.getGraphDataRequest()
+
   }
   componentDidUpdate() {
     this.updateChart();
@@ -67,6 +89,11 @@ class NewReferral extends React.Component {
     this.props.clearMessage();
   }
   componentWillReceiveProps(nextProps) {
+    if (nextProps.graphData != this.props.graphData) {
+      this.setState({
+        graphData: nextProps.graphData ? nextProps.graphData : '',
+      });
+    }
     // if (nextProps.errorResponse != this.props.errorResponse) {
     //   this.setState({
     //     errorResponse: nextProps.errorResponse ? nextProps.errorResponse : '',
@@ -132,7 +159,6 @@ class NewReferral extends React.Component {
       type: 'bar',
       color: function(inColor, data) {
         if(data.index !== undefined) {
-          console.log(data)
           return colorScale(data.index);
         }
         // inColor == colorScale(data.index)
@@ -186,15 +212,7 @@ class NewReferral extends React.Component {
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  successResponse: makeSelectResponse(),
-  errorResponse: makeSelectError(),
-});
 
-const mapDispatchToProps = dispatch => ({
-  setReferral: data => dispatch(changeReferralRequest(data)),
-  clearMessage: () => dispatch(clearMessage()),
-});
 
 const withReducer = injectReducer({ key: 'reportDetail', reducer });
 const withSaga = injectSaga({ key: 'reportDetail', saga });
