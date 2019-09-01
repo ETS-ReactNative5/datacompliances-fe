@@ -14,8 +14,10 @@ import saga from './sagas';
 import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 import DoughnutChart from './DoughnutChart'
-import 'c3/c3.css';
-import c3 from 'c3';
+
+
+// import 'c3/c3.css';
+// import c3 from 'c3';
 
 
 //......................................mock data c3js...........................................

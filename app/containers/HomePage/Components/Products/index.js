@@ -82,9 +82,7 @@ const Products = (props) => {
                       <li>
                         <img className="pr-1" src={check} alt="check" />Industry: {item.industry}
                       </li>
-                      <li>
-                        <img className="pr-1" src={check} alt="check" />Questions: {item.questions.length}
-                      </li>
+                     
                     </ul>
                     {/* <button onClick={() => productDetailsClick(item._id)} className="primary__button">View Detail</button> */}
                   </div>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import c3 from 'c3';
+
+
+// import c3 from 'c3';
 
 
 
