@@ -108,7 +108,7 @@ class NewReferral extends React.Component {
   }
 
   updateChart = () => {
-    var arrC3 = ['Tags']
+    var arrC3 = []
     dataBar.map((item, index) => {
       Object.keys(item).map((val, idx) => {
         if(val === 'tag_name') {
