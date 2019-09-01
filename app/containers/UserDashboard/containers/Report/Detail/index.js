@@ -23,11 +23,11 @@ import './style.scss';
 //......................................mock data c3js...........................................
 
 const dataC3doughnut = [
-  { _id: 1111, total: 10, compliant: 4, tag_name: 'tag1' },
-  { _id: 2222, total: 12, compliant: 6, tag_name: 'tag2' },
-  { _id: 3333, total: 15, compliant: 14, tag_name: 'tag3' },
-  { _id: 4444, total: 14, compliant: 10, tag_name: 'tag4' },
-  { _id: 5555, total: 9, compliant: 7, tag_name: 'tag5' },
+  { _id: 1111, total: 10, compliant: 4, tag_name: 'Identify' },
+  { _id: 2222, total: 12, compliant: 6, tag_name: 'Protect' },
+  { _id: 3333, total: 15, compliant: 14, tag_name: 'Detect' },
+  { _id: 4444, total: 14, compliant: 10, tag_name: 'Respond' },
+  { _id: 5555, total: 9, compliant: 7, tag_name: 'Recover' },
 ];
 
 
@@ -36,11 +36,11 @@ const dataC3doughnut = [
 // ];
 
 const dataBar = [
-  { _id: 1111, value: 4, tag_name: 'tag1' },
-  { _id: 2222, value: 6, tag_name: 'tag2' },
-  { _id: 3333, value: 14, tag_name: 'tag3' },
-  { _id: 4444, value: 10, tag_name: 'tag4' },
-  { _id: 5555, value: 7, tag_name: 'tag5' },
+  { _id: 1111, value: 4, tag_name: 'Identify' },
+  { _id: 2222, value: 6, tag_name: 'Protect' },
+  { _id: 3333, value: 14, tag_name: 'Detect' },
+  { _id: 4444, value: 10, tag_name: 'Respond' },
+  { _id: 5555, value: 7, tag_name: 'Recover' },
 ]
 
 
@@ -151,7 +151,7 @@ class NewReferral extends React.Component {
               <div style={{width: '100%'}} id="chart">Bar Graph</div>
             </div>
             <div className="gauge-chart mb-5"> 
-              <p className="chart-title">Gauge Chart Title</p>
+              <p className="chart-title">Privacy and Cyber Security Score</p>
               <div style={{width: '100%'}} id="chart2">Gauge Graph</div>   
             </div>
           </div>

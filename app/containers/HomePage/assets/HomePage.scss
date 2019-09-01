@@ -420,3 +420,17 @@ p{
   height: 160px;
   object-fit: contain;
 } 
+a.linked-in {
+  background: #489bff;
+  text-align: center;
+  color: #fff;
+  display: inline-block;
+  padding: 5px 8px;
+  border-radius: 5px;
+  &:hover{
+    background:#3a86e2;
+  }
+  i{
+    margin:0px;
+  }
+}
