@@ -74,15 +74,16 @@ class NewReferral extends React.Component {
   };
 
   componentDidMount() {
-    this.updateChart();
-    this.updateChart2();
+    // this.updateChart();
+    // this.updateChart2();
     this.props.getGraphDataRequest()
 
   }
-  componentDidUpdate() {
-    this.updateChart();
-    this.updateChart2();
-  }
+  // componentDidUpdate() {
+  //   // this.props.getGraphDataRequest()
+  //   this.updateChart(this.props.graphData);
+  //   // this.updateChart2();
+  // }
 
 
   componentWillUnmount() {
@@ -90,9 +91,12 @@ class NewReferral extends React.Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.graphData != this.props.graphData) {
-      this.setState({
-        graphData: nextProps.graphData ? nextProps.graphData : '',
-      });
+      // this.setState({
+      //   graphData: nextProps.graphData ? nextProps.graphData : '',
+      // });
+      this.updateChart(nextProps.graphData);
+      this.updateChart2();
+
     }
     // if (nextProps.errorResponse != this.props.errorResponse) {
     //   this.setState({
@@ -140,11 +144,12 @@ class NewReferral extends React.Component {
   });
 
   }
-
-  updateChart = () => {
+//
+  updateChart = (data) => {
+    if(data) {
     var arrC3 = []
-    dataBar.map((item, index) => {
-      Object.keys(item).map((val, idx) => {
+    dataBar.map((item) => {
+      Object.keys(item).map((val) => {
         if(val === 'tag_name') {
             arrC3.push(item.tag_name)
         }
@@ -154,7 +159,7 @@ class NewReferral extends React.Component {
   const chart = c3.generate({
     bindto: '#chart',
     data: {
-      json: dataBar,
+      json: data && data.dataList,
       // columns: [arrC3],
       type: 'bar',
       color: function(inColor, data) {
@@ -165,7 +170,7 @@ class NewReferral extends React.Component {
         // return inColor;
       },
       keys: {
-        value: ['value'],
+        value: ['total'],
     },
     },
     axis: {
@@ -179,15 +184,17 @@ class NewReferral extends React.Component {
   }
   });
 }
+}
 
 
 
 
   render() {
-    const { data, errors } = this.state;
+    const { data, errors, graphData } = this.state;
     const { isRequesting, errorResponse, successResponse } = this.props;
 
     return (
+      <div>
       <div className="graphs">
           <div className="clearfix">
             <div className="bar-graph mb-5 mr-3" >
@@ -207,6 +214,7 @@ class NewReferral extends React.Component {
            }
            </div>
 
+      </div>
       </div>
     );
   }

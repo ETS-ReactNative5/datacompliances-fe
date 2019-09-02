@@ -9,7 +9,7 @@ function* getGraphDataRequest(action) {
   const token = getToken();
   yield call(
     PCSC.get(
-      `tag`,
+      `questionnaires/tag`,
       actions.getGraphDataSuccess,
       actions.getGraphDataSuccess,
       token,
