@@ -1,8 +1,8 @@
 const isProdEnv = process.env.NODE_ENV === 'production';
 
 export const API_BASE = isProdEnv
-  ? 'https://www.datacompliances.com/api/'
-  : 'https://www.datacompliances.com/api/';
+  ? 'http://dev.datacompliances.com/api/'
+  : 'http://localhost:4001/api/';
 
 export const GOOGLE_CLIENT_ID =
   '632673995527-997dv6bet048loapcqgtfpfbqubslr2l.apps.googleusercontent.com';
