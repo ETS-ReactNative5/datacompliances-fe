@@ -31,10 +31,10 @@ export class DoughnutChart extends Component {
         //   })
         // })
         this.props.each && Object.keys(this.props.each).map((val, idx) => {
-            if(val == 'compliant') {
+            if(val == 'compliance') {
             id= this.props.each._id
-            compliant_value = this.props.each.compliant
-            non_compliant = this.props.each.total - this.props.each.compliant
+            compliant_value = this.props.each.compliance
+            non_compliant = this.props.each.total - this.props.each.compliance
             // arrC3.push(item.value)
             this.updateChart3(compliant_value, non_compliant, id, this.props.each.tag_name);
          }
@@ -48,10 +48,10 @@ export class DoughnutChart extends Component {
         var non_compliant
         var id
         this.props.each && Object.keys(this.props.each).map((val, idx) => {
-            if(val == 'compliant') {
+            if(val == 'compliance') {
             id= this.props.each._id
-            compliant_value = this.props.each.compliant
-            non_compliant = this.props.each.total - this.props.each.compliant
+            compliant_value = this.props.each.compliance
+            non_compliant = this.props.each.total - this.props.each.compliance
             // arrC3.push(item.value)
             this.updateChart3(compliant_value, non_compliant, id, this.props.each.tag_name);
          }
