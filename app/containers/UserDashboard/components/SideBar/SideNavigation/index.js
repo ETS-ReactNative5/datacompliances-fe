@@ -41,12 +41,12 @@ class SideNavigation extends React.Component {
     // this.componentRef = React.createRef(null);
     }
 
-  state = { activeIndex: 0, submenu_content: 0 };
+  state = { activeIndex: 0, submenu_content: 0, setActive: '', subTitle: '' };
   handleClick = (e, titleProps) => {
     const { index } = titleProps;
     const { activeIndex } = this.state;
     const newIndex = activeIndex === index ? -1 : index;
-    this.setState({ activeIndex: newIndex });
+    this.setState({ activeIndex: newIndex, setActive: ''});
   };
 
   componentRef = React.createRef(null);
@@ -66,8 +66,12 @@ class SideNavigation extends React.Component {
       this.componentRef.current.removeEventListener('wheel', this.handleWheel);
     }
   }
-  contentClick = (idx) => {
-    this.setState({submenu_content : idx})
+  contentClick = (idx, sub_title) => {
+    this.setState({submenu_content : idx, setActive: '', subTitle: sub_title})
+  }
+
+  handleClickActive = (title) => {
+       this.setState({setActive: title, subTitle: ''})
   }
 
   render() {
@@ -99,7 +103,7 @@ class SideNavigation extends React.Component {
                       </Accordion.Title>
                       <Accordion.Content active={activeIndex === idx}>
                         {main.subMenues.map((menu, idx) => (
-                          <div className={submenu_content === idx ? 'active' : ''} onClick={() => this.contentClick(idx)} key={idx}>
+                          <div className={this.state.subTitle == menu.title ? 'active' : ''} onClick={() => this.contentClick(idx, menu.title)} key={idx}>
                             <Link className="nav__link" to={menu.path}>
                               <span className="nav__icon">
                                 <i className={menu.icon} />
@@ -115,7 +119,8 @@ class SideNavigation extends React.Component {
               );
             } else
               return (
-                <Menu.Item key={`main${idx}`}>
+                <div onClick={() => this.handleClickActive(main.title)} className={this.state.setActive == main.title ? 'active' : ''} key={`main${idx}`} >
+                <Menu.Item>
                   <Link className="nav__link" to={main.path}>
                     <span className="nav__icon">
                       <i className={main.icon} />
@@ -123,6 +128,7 @@ class SideNavigation extends React.Component {
                     <span className="nav__text">{main.title}</span>
                   </Link>
                 </Menu.Item>
+                </div>
               );
              
           })}
