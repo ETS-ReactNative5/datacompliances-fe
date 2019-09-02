@@ -9,14 +9,14 @@ function* getGraphDataRequest(action) {
   const token = getToken();
   yield call(
     PCSC.get(
-      `graph`,
+      `graph/${action.product_id}`,
       actions.getGraphDataSuccess,
       actions.getGraphDataSuccess,
       token,
     ),
   );
 }
-// ${action.product_id}
+
 export default function* agentSettingsWatcher() {
   yield takeLatest(types.GET_GRAPH_REQUEST, getGraphDataRequest);
 }
