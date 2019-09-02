@@ -165,7 +165,7 @@ class NewReferral extends React.Component {
         // return inColor;
       },
       keys: {
-        value: ['total'],
+        value: ['value'],
     },
     },
     axis: {
