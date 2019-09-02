@@ -416,7 +416,7 @@ class ViewQuestions extends React.Component {
           } */}
         {this.state.confirmedPage && 
           // <ConfirmedPage closeClick={this.closeClick} />
-          <Redirect to={`/user/dashboard/reports`} />
+          <Redirect to={`/user/dashboard/report/detail/${this.props.match.params.product_id}`} />
         }
         <ViewQuestionsForm
           data={data}

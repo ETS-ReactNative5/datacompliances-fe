@@ -1,18 +1,21 @@
 import action from 'utils/action';
 import * as types from './constants';
 
-export const changeReferralRequest = action(
-  types.CHANGE_REFERRAL_REQUEST,
-  'newReferral',
+export const getGraphDataRequest = action(
+  types. GET_GRAPH_REQUEST,
+  'data',
 );
-export const changeReferralSuccess = action(
-  types.CHANGE_REFERRAL_SUCCESS,
+export const getGraphDataSuccess = action(
+  types. GET_GRAPH_SUCCESS,
   'response',
 );
-export const changeReferralFailure = action(
-  types.CHANGE_REFERRAL_FAILURE,
+export const getGraphDataFailure = action(
+  types. GET_GRAPH_FAILURE,
   'error',
 );
+
+
+
 
 export const clearMessage = action(types.CLEAR_MESSAGE);
 
