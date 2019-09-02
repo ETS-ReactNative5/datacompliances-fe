@@ -70,19 +70,20 @@ class NewReferral extends React.Component {
     data: {},
     errors: {},
     close: true,
-    graphData: ''
+    graphData: []
   };
 
   componentDidMount() {
-    this.updateChart();
+    // this.updateChart();
     this.updateChart2();
     this.props.getGraphDataRequest()
 
   }
-  componentDidUpdate() {
-    this.updateChart();
-    this.updateChart2();
-  }
+  // componentDidUpdate() {
+  //   // this.props.getGraphDataRequest()
+  //   this.updateChart(this.props.graphData);
+  //   // this.updateChart2();
+  // }
 
 
   componentWillUnmount() {
@@ -93,6 +94,19 @@ class NewReferral extends React.Component {
       this.setState({
         graphData: nextProps.graphData ? nextProps.graphData : '',
       });
+      this.updateChart(nextProps.graphData);
+           var a = 0
+           var b = 0
+           nextProps.graphData.dataList && nextProps.graphData.dataList.map((item) => {
+           a = a + item.compliance
+           b = b + item.total
+
+      })
+      const total_compliance = ((a*100) / b)
+      // console.log(a,'....',b,'.....',total_compliance)
+
+      this.updateChart2(total_compliance);
+
     }
     // if (nextProps.errorResponse != this.props.errorResponse) {
     //   this.setState({
@@ -109,12 +123,15 @@ class NewReferral extends React.Component {
   }
 
 
-  updateChart2 = () => {
+  updateChart2 = (data) => {
+    if(true) {
+    // if(!Number.isNaN(data) && data !== undefined) {
+    const rValue = Math.round(data)
     var chart2 = c3.generate({
     bindto: '#chart2',
       data: {
           columns: [
-              ['compliant', 91.4]
+              ['compliant', rValue]
           ],
           type: 'gauge',
 
@@ -138,13 +155,14 @@ class NewReferral extends React.Component {
           height: 180
       },
   });
-
+    }
   }
-
-  updateChart = () => {
+//
+  updateChart = (data) => {
+    if(data) {
     var arrC3 = []
-    dataBar.map((item, index) => {
-      Object.keys(item).map((val, idx) => {
+    dataBar.map((item) => {
+      Object.keys(item).map((val) => {
         if(val === 'tag_name') {
             arrC3.push(item.tag_name)
         }
@@ -154,7 +172,7 @@ class NewReferral extends React.Component {
   const chart = c3.generate({
     bindto: '#chart',
     data: {
-      json: dataBar,
+      json: data && data.dataList,
       // columns: [arrC3],
       type: 'bar',
       color: function(inColor, data) {
@@ -165,7 +183,7 @@ class NewReferral extends React.Component {
         // return inColor;
       },
       keys: {
-        value: ['value'],
+        value: ['total'],
     },
     },
     axis: {
@@ -179,15 +197,17 @@ class NewReferral extends React.Component {
   }
   });
 }
+}
 
 
 
 
   render() {
-    const { data, errors } = this.state;
+    const { data, errors, graphData } = this.state;
     const { isRequesting, errorResponse, successResponse } = this.props;
 
     return (
+      <div>
       <div className="graphs">
           <div className="clearfix">
             <div className="bar-graph mb-5 mr-3" >
@@ -200,13 +220,13 @@ class NewReferral extends React.Component {
             </div>
           </div>
           <div className="doughnut-graph">
-
-           { dataC3doughnut.map((item, index) => {
+           {graphData && graphData.dataList && graphData.dataList.map((item, index) => {
               return <DoughnutChart key={index} each={item} /> ;
            })
            }
            </div>
 
+      </div>
       </div>
     );
   }

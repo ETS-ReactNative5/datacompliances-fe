@@ -190,7 +190,7 @@ class ExamDisplay extends React.Component {
                       <div className="mt-5">
                       <p className="product-profile"><span>Profile : </span>{exam.profile_name}</p>
                       <p className="product-industry"><span>Industry : </span>{exam.industry}</p>
-                      <p className="product-price"><span>Price : </span>{exam.price}</p>
+                      <p className="product-price"><span>Price : </span><small>$</small>{exam.price}</p>
                       <p className="product-country"><span>Country : </span>{exam.country}</p>
                       <p className="product-description"><span>Description : </span>{exam.description}</p>
                       <Link
