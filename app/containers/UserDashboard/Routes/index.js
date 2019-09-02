@@ -64,7 +64,7 @@ function UserRoutes({ location, status }) {
 				)}
 			/>
 			<Route exact path="/user/dashboard/reports" component={Report} />
-			<Route exact path="/user/dashboard/report/detail/" component={ReportDetails} />
+			<Route exact path="/user/dashboard/report/detail/:id" component={ReportDetails} />
 
 			<Route exact path="/user/dashboard/package" component={PackageList} />
 			<Route exact path="/user/dashboard/package/detail/:id" component={PackageDetails} />

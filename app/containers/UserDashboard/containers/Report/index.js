@@ -58,11 +58,11 @@ const confirmedSubmit = true
 // ];
 
 const data = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
-  { name: 'Group D', value: 250 },
+  // { name: 'Group A', value: 400 },
+  // { name: 'Group B', value: 300 },
+  // { name: 'Group C', value: 300 },
+  // { name: 'Group D', value: 200 },
+  // { name: 'Group D', value: 250 },
 ];
 
 
@@ -154,9 +154,9 @@ class Report extends React.Component {
                   <p></p>
                 </div>
               ) : (
-                <Card>
-                  <CardContent>Products Not Found</CardContent>
-                </Card>
+                <div className="no-products">
+                <img src={noreport}/>
+              </div>
               )}
             </div>
           </div>

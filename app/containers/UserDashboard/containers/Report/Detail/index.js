@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import {  } from 'semantic-ui-react';
 import { changeReferralRequest, clearMessage } from './actions';
-import {
-  makeSelectError,
-  makeSelectResponse,
-} from './selectors';
+
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import reducer from './reducer';
@@ -46,16 +43,41 @@ const dataBar = [
 
 //......................................mock data c3js...........................................
 
+import {
+  makeSelectError,
+  makeSelectResponse,
+  makeSelectGraphData
+} from './selectors';
+
+import {
+  getGraphDataRequest
+} from './actions'
+
+const mapStateToProps = createStructuredSelector({
+  successResponse: makeSelectResponse(),
+  errorResponse: makeSelectError(),
+  graphData:makeSelectGraphData()
+});
+
+const mapDispatchToProps = dispatch => ({
+  setReferral: data => dispatch(changeReferralRequest(data)),
+  clearMessage: () => dispatch(clearMessage()),
+  getGraphDataRequest: () => dispatch(getGraphDataRequest())
+});
+
 class NewReferral extends React.Component {
   state = {
     data: {},
     errors: {},
     close: true,
+    graphData: ''
   };
 
   componentDidMount() {
     this.updateChart();
     this.updateChart2();
+    this.props.getGraphDataRequest()
+
   }
   componentDidUpdate() {
     this.updateChart();
@@ -67,6 +89,11 @@ class NewReferral extends React.Component {
     this.props.clearMessage();
   }
   componentWillReceiveProps(nextProps) {
+    if (nextProps.graphData != this.props.graphData) {
+      this.setState({
+        graphData: nextProps.graphData ? nextProps.graphData : '',
+      });
+    }
     // if (nextProps.errorResponse != this.props.errorResponse) {
     //   this.setState({
     //     errorResponse: nextProps.errorResponse ? nextProps.errorResponse : '',
@@ -90,8 +117,15 @@ class NewReferral extends React.Component {
               ['compliant', 91.4]
           ],
           type: 'gauge',
-      
+
       },
+      gauge: {
+        label:{
+        format: function(value, ratio){
+          return value; //returning here the value and not the ratio
+          },
+        },
+        },
       color: {
           pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
           threshold: {
@@ -102,7 +136,7 @@ class NewReferral extends React.Component {
       },
       size: {
           height: 180
-      }
+      },
   });
 
   }
@@ -116,15 +150,22 @@ class NewReferral extends React.Component {
         }
       })
     })
-
+  var colorScale = d3.scale.category10();
   const chart = c3.generate({
     bindto: '#chart',
     data: {
       json: dataBar,
       // columns: [arrC3],
       type: 'bar',
+      color: function(inColor, data) {
+        if(data.index !== undefined) {
+          return colorScale(data.index);
+        }
+        // inColor == colorScale(data.index)
+        // return inColor;
+      },
       keys: {
-        value: ['value'],
+        value: ['total'],
     },
     },
     axis: {
@@ -132,6 +173,9 @@ class NewReferral extends React.Component {
           type: 'category',
           categories: arrC3
       }
+  },
+  legend: {
+    show: false
   }
   });
 }
@@ -150,33 +194,25 @@ class NewReferral extends React.Component {
               <p className="chart-title">Number of NIST and PCI Controls Assessed</p>
               <div style={{width: '100%'}} id="chart">Bar Graph</div>
             </div>
-            <div className="gauge-chart mb-5"> 
+            <div className="gauge-chart mb-5">
               <p className="chart-title">Privacy and Cyber Security Score</p>
-              <div style={{width: '100%'}} id="chart2">Gauge Graph</div>   
+              <div style={{width: '100%'}} id="chart2">Gauge Graph</div>
             </div>
           </div>
           <div className="doughnut-graph">
-             
+
            { dataC3doughnut.map((item, index) => {
               return <DoughnutChart key={index} each={item} /> ;
            })
            }
            </div>
-    
+
       </div>
     );
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  successResponse: makeSelectResponse(),
-  errorResponse: makeSelectError(),
-});
 
-const mapDispatchToProps = dispatch => ({
-  setReferral: data => dispatch(changeReferralRequest(data)),
-  clearMessage: () => dispatch(clearMessage()),
-});
 
 const withReducer = injectReducer({ key: 'reportDetail', reducer });
 const withSaga = injectSaga({ key: 'reportDetail', saga });
