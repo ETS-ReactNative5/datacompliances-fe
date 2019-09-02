@@ -220,13 +220,13 @@ const ViewPracticeQuestion = props => {
             
                   }
              
-                {questionIdx === data.length - 1 && (
+                {/* {questionIdx === data.length - 1 && (
                 <Button
                   color="teal"
                   content="View Summary"
                   onClick={e => handleSubmitResultButton(e, questionIdx)}
                 />
-              )}
+              )} */}
                           
                {/* {data && (
                 <div className="pagination">
