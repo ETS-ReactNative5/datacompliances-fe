@@ -16,7 +16,7 @@ function* getGraphDataRequest(action) {
     ),
   );
 }
-
+// ${action.product_id}
 export default function* agentSettingsWatcher() {
   yield takeLatest(types.GET_GRAPH_REQUEST, getGraphDataRequest);
 }
