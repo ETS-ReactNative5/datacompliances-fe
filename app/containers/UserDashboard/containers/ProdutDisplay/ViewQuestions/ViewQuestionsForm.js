@@ -125,10 +125,12 @@ const ViewPracticeQuestion = props => {
                   </Button> } />
                  
                 )} 
+                {data && data[questionIdx] && data[questionIdx].answer_tip != '' &&
                 <span className="float-right">Hint:
 
                   <Popup header='Answer Tip:' content={data[questionIdx].answer_tip} position='top right' trigger={<Button className="answer-tip" icon='idea' />} /></span>
-                <br />
+                }
+               <br />
                 <br />
                 <h4 className="item">
                   
@@ -218,13 +220,13 @@ const ViewPracticeQuestion = props => {
             
                   }
              
-                {questionIdx === data.length - 1 && (
+                {/* {questionIdx === data.length - 1 && (
                 <Button
                   color="teal"
                   content="View Summary"
                   onClick={e => handleSubmitResultButton(e, questionIdx)}
                 />
-              )}
+              )} */}
                           
                {/* {data && (
                 <div className="pagination">
@@ -246,6 +248,28 @@ const ViewPracticeQuestion = props => {
           </Grid.Column>
         )}
       </Grid>
+      <br />
+      <br />
+      {data &&
+                data.length > 0 &&
+                data.map((question, indx) => {
+                  if(true){
+                    complete = saveAnswerResponse && saveAnswerResponse.question_answer && saveAnswerResponse.question_answer.hasOwnProperty(question.questionnaire_id) && 
+                     saveAnswerResponse.question_answer[question.questionnaire_id] != '' ? 
+                       saveAnswerResponse.question_answer[question.questionnaire_id] : 'Not Answered'
+                   }
+                })
+               }
+               {!show_final_result &&
+               <div>
+                  <Button
+                  color="teal"
+                  content="View Summary"
+                  onClick={e => handleSubmitResultButton(e, questionIdx)}
+                />
+                <Button disabled= {complete == 'Not Answered'} onClick={confirmSubmitQuestions} color="green">Confirm Submit</Button>
+                </div>
+               }
 
       {show_final_result && (
         <div>

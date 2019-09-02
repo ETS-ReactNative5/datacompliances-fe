@@ -46,4 +46,4 @@ export const LOAD_CONTENT_TEMPLATE_FAILURE =
 export const DOCUMENT_URL_UPDATE =
   process.env.NODE_ENV === 'production'
     ? 'https://prod-s3-pcsc-bucket.s3-us-west-2.amazonaws.com/'
-    : 'https://dev-bitsbeat-s3.s3.amazonaws.com/';
+    : 'https://prod-s3-pcsc-bucket.s3-us-west-2.amazonaws.com/';
