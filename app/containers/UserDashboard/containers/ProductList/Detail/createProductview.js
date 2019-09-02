@@ -20,7 +20,7 @@ const CreateProductView = (props) => {
           <div className="right product-detail">
               <p className="product-name"><span>Profile :</span> {viewdata && viewdata.profile_name}</p>
               <p className="product-industry"><span>Industry :</span> {viewdata && viewdata.industry}</p>
-              <p className="product-price"><span>Price : </span>{viewdata && viewdata.price}</p>
+              <p className="product-price"><span>Price : </span><small>$</small>{viewdata && viewdata.price}</p>
               <p className="product-country"><span>Country :</span> {viewdata && viewdata.country}</p>
               <p className="product-desc"> <span>Description :</span>{viewdata && viewdata.description}</p> 
               {!(viewdata && viewdata.OrderInfo && viewdata.OrderInfo.length > 0)  ?
