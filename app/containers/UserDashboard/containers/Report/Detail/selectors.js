@@ -1,25 +1,32 @@
 import { createSelector } from 'reselect';
 
-export const selectMyProfile = state => state.reportDetail;
+export const graphData = state => state.reportDetail;
 
 const makeSelectResponse = () =>
   createSelector(
-    selectMyProfile,
-    myProfileState => myProfileState.get('response'),
+    graphData,
+    state => state.get('response'),
   );
 const makeSelectError = () =>
   createSelector(
-    selectMyProfile,
-    myProfileState => myProfileState.get('error'),
+    graphData,
+    state => state.get('error'),
   );
 const makeSelectLoading = () =>
   createSelector(
-    selectMyProfile,
-    myProfileState => myProfileState.get('loading'),
+    graphData,
+    state => state.get('loading'),
   );
+
+const makeSelectGraphData = () =>
+createSelector(
+  graphData,
+  state => state.get('graphData'),
+);  
 
 export {
   makeSelectResponse,
   makeSelectError,
   makeSelectLoading,
+  makeSelectGraphData
 };
