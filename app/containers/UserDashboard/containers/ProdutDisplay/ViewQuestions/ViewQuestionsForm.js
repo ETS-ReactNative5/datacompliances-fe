@@ -125,10 +125,12 @@ const ViewPracticeQuestion = props => {
                   </Button> } />
                  
                 )} 
+                {data && data[questionIdx] && data[questionIdx].answer_tip != '' &&
                 <span className="float-right">Hint:
 
                   <Popup header='Answer Tip:' content={data[questionIdx].answer_tip} position='top right' trigger={<Button className="answer-tip" icon='idea' />} /></span>
-                <br />
+                }
+               <br />
                 <br />
                 <h4 className="item">
                   
