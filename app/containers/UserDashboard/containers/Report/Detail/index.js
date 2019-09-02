@@ -124,7 +124,8 @@ class NewReferral extends React.Component {
 
 
   updateChart2 = (data) => {
-    if(!Number.isNaN(data) && data !== undefined) {
+    if(true) {
+    // if(!Number.isNaN(data) && data !== undefined) {
     const rValue = Math.round(data)
     var chart2 = c3.generate({
     bindto: '#chart2',
