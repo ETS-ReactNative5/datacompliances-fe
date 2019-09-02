@@ -39,7 +39,7 @@ const Consultants = (props) => {
                               {value && value.image &&
                                 <img 
                                    onClick={() => consultantClick(value._id)} 
-                                   className="mb-2 img-fluid team__img active"  
+                                   className={value._id === consultantId ? "mb-2 img-fluid team__img active" : "mb-2 img-fluid team__img" }  
                                    src={`${DOCUMENT_URL_UPDATE}${value && value.image.document_name}`} 
                                    alt="product image here"
                                    onError={(e)=>{e.target.onerror = null; e.target.src=noimage}}
@@ -48,6 +48,7 @@ const Consultants = (props) => {
                             <div className="media-body pl-3">
                               <h5>{value.full_name}</h5>
                               <p>{value.designation}</p>
+                              {(value && value.social_media_links && value.social_media_links.linkedin) &&  <span><a className="linked-in" href={`${value.social_media_links.linkedin}`}><i className="icon icon-linkedin"></i></a></span>}
                             </div>
                           </div>
                         </div>

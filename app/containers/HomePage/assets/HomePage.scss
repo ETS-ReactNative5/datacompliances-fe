@@ -1,7 +1,9 @@
 @import '../../../assets/base/variables.scss';
 
 .team__img {
-  height: 150px;
+  height: 165px;
+  width:150px;
+  object-fit: contain;
   cursor: pointer;
   filter: grayscale(100%);
   transition: all 0.2s ease-in-out;
@@ -16,11 +18,20 @@
   margin-bottom: 60px;
   position: relative;
   height: 500px;
-
+  @media(max-width:768px){
+    height: 385px;
+    margin-bottom:10px;
+  }
+  @media(max-width:475px){
+    height:265px;
+  }
   h1{
     font-size:18px;
     color:rgba(254,254,254,0.8);
     margin-top: 45px;
+    @media(max-width:475px){
+      font-size: 14px;
+    }
   }
 
   &::before {
@@ -49,6 +60,9 @@
 .video__holder {
   position: relative;
   bottom: -20px;
+  @media (max-width:768px) {
+    bottom:-40px;
+  }
 }
 
 .video__screen {
@@ -406,3 +420,17 @@ p{
   height: 160px;
   object-fit: contain;
 } 
+a.linked-in {
+  background: #489bff;
+  text-align: center;
+  color: #fff;
+  display: inline-block;
+  padding: 5px 8px;
+  border-radius: 5px;
+  &:hover{
+    background:#3a86e2;
+  }
+  i{
+    margin:0px;
+  }
+}

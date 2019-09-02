@@ -58,7 +58,7 @@ componentWillReceiveProps(nextProps) {
   if (this.props.consultantsResponse !== nextProps.consultantsResponse) {
     this.setState({
                    consultants: nextProps.consultantsResponse, 
-                   consultantId: nextProps.consultantsResponse && nextProps.consultantsResponse[0]._id
+                   consultantId: nextProps.consultantsResponse && nextProps.consultantsResponse[0] && nextProps.consultantsResponse[0]._id
                   })
   }
   if (this.props.productListResponse !== nextProps.productListResponse && nextProps.productListResponse != undefined) {
@@ -106,9 +106,9 @@ componentWillReceiveProps(nextProps) {
           </Helmet>
           <div className="banner">
             <div className="container">
-              <div className="row justify-content-end banner__row align-items-end ">
-                <div className="col-md-8 text-center">
-                  <h1>"Enabling privacy, cyber security compliance as a platform."</h1>
+              <div className="row justify-content-end banner__row">
+                <div className="col-md-8 col-sm-8 col-8  text-center">
+                  <h1>"Enabling privacy, cyber security and compliance as a platform."</h1>
                   <div className="video__holder">
                     <img
                       className="video img-fluid"

@@ -39,6 +39,8 @@ import {
   makeSelectDataObj,
   makeSelectCartPackage,
 } from './selectors';
+import noproducts from 'assets/images/product.png';
+
 
 import { makeSelectLocation } from '../../../App/selectors';
 
@@ -198,9 +200,11 @@ export class ProductList extends React.Component {
                   <p></p>
                 </div>
               ) : (
-                <Card>
-                  <CardContent>Products Not Found</CardContent>
-                </Card>
+                <div className="package_not_found">
+                    <div className="no-products">
+                      <img src={noproducts}/>
+                    </div>
+                </div>
               )}
             </div>
           </div>

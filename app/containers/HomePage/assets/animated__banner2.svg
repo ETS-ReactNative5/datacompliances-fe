@@ -321,7 +321,7 @@
     <text id="PCIDSS" transform="translate(262 487)" fill="#fff" font-size="18" font-family="Poppins-Regular, Poppins"><tspan x="0" y="0">PCIDSS</tspan></text>
     <text id="HIPAA" transform="translate(169 585)" fill="#fff" font-size="18" font-family="Poppins-Regular, Poppins"><tspan x="0" y="0">HIPAA</tspan></text>
     <text id="GDRR" transform="translate(109 433)" fill="#fff" font-size="18" font-family="Poppins-Regular, Poppins"><tspan x="0" y="0">GDPR</tspan></text>
-    <text id="ISO_2700_C7" data-name="ISO 2700/C7" transform="translate(508 585)" fill="#fff" font-size="18" font-family="Poppins-Regular, Poppins"><tspan x="0" y="0">ISO 2700/27002</tspan><tspan x="0" y="27"></tspan></text>
+    <text id="ISO_2700_C7" data-name="ISO 2700/C7" transform="translate(508 585)" fill="#fff" font-size="18" font-family="Poppins-Regular, Poppins"><tspan x="0" y="0">ISO 27001/27002</tspan><tspan x="0" y="27"></tspan></text>
     <text id="NIST" transform="translate(346 585)" fill="#fff" font-size="18" font-family="Poppins-Regular, Poppins"><tspan x="0" y="0">NIST</tspan></text>
   </g>
 </svg>
