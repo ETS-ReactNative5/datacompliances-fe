@@ -222,6 +222,14 @@ class NewReferral extends React.Component {
             <div className="gauge-chart mb-5 mt-5">
               <p className="chart-title">Privacy and Cyber Security Score</p>
               <div style={{width: '100%'}} id="chart2">Gauge Graph</div>
+              <div class="legion">
+                <p><b>Index</b></p> 
+                <p><span class="poor"></span>Poor</p>
+                <p><span class="fair"></span>fair</p>
+                <p><span class="good"></span>Good</p>
+                <p><span class="execellent"></span>Excellent</p>
+                
+              </div>
             </div>
           </div>
         </div>
