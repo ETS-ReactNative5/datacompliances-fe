@@ -168,10 +168,6 @@ export class ProductList extends React.Component {
                               <span>Industry: {packageData.industry} </span> 
                             </li>
                             <li>
-                                <i className="icon-check"/>
-                              <span>Questionnaire: {packageData.questions.length}</span>
-                            </li>
-                            <li>
                                 <i className="icon-info"/>
                               <span>{this.text_truncate(packageData.description)}</span>
                             </li>

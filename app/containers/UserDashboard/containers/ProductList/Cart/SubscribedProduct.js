@@ -96,11 +96,6 @@ export class SubscribedPackage extends React.Component {
                              <i className="icon-check"/>
                              <span>Industry: { packageData.product.industry }</span> 
                           </li>
-                       
-                          <li>
-                             <i className="icon-check"/>
-                             <span>Questionnaire: { packageData.product.questions.length }</span>
-                          </li>
                       </ul>
                       <div className="buttons-wrap">
                       <Link 
