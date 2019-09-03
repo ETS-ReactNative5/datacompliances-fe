@@ -77,16 +77,16 @@ class NewReferral extends React.Component {
   };
 
   componentDidMount() {
-    this.updateChart();
-    this.updateChart2();
-    // this.props.getGraphDataRequest(this.props.match.params.id)
+    // this.updateChart();
+    // this.updateChart2();
+    this.props.getGraphDataRequest(this.props.match.params.id)
 
   }
-  // componentDidUpdate() {
-  //   // this.props.getGraphDataRequest()
-  //   this.updateChart(this.props.graphData);
-  //   // this.updateChart2();
-  // }
+  componentDidUpdate() {
+     // this.props.getGraphDataRequest()
+    // this.updateChart(this.props.graphData);
+     // this.updateChart2();
+  }
 
 
   componentWillUnmount() {
@@ -131,7 +131,7 @@ class NewReferral extends React.Component {
     bindto: '#chart2',
       data: {
           columns: [
-              ['Score', 91]
+              ['Score', rValue]
           ],
           type: 'gauge',
 
@@ -160,7 +160,7 @@ class NewReferral extends React.Component {
 //
   updateChart = (data) => {
     var arrC3 = []
-    dataC3doughnut.map((item) => {
+    data.dataList.map((item) => {
       Object.keys(item).map((val) => {
         if(val === 'tag_name') {
             arrC3.push(item.tag_name)
@@ -171,7 +171,7 @@ class NewReferral extends React.Component {
   const chart = c3.generate({
     bindto: '#chart',
     data: {
-      json: dataC3doughnut,
+      json: data.dataList,
       // columns: [arrC3],
       type: 'bar',
       color: function(inColor, data) {
@@ -213,7 +213,7 @@ class NewReferral extends React.Component {
             </div>
           </div>
           <div className="doughnut-graph">
-           {dataC3doughnut.map((item, index) => {
+           {graphData && graphData.dataList && graphData.dataList.map((item, index) => {
               return <DoughnutChart key={index} each={item} /> ;
            })
            }
