@@ -63,9 +63,39 @@ p.chart-title{
     margin-right:40px;
 }
 
-#chart2{
-  
+  .gauge-chart #chart2{
+    width: 80% !important; 
+    float:left;
+  }
+  .gauge-chart .legion {
+    width: 20%;
+    /* display: inline-block; */
+    float: left;
 }
+.gauge-chart .legion p{
+    color :#333;
+}
+.gauge-chart .legion span {
+    height: 15px;
+    width: 15px;
+    background: #aaa;
+    display: inline-block;
+    margin-right: 5px;
+}
+.gauge-chart .legion span.poor{
+    background:#ff0000;
+}
+.gauge-chart .legion span.fair{
+    background:#f97600;
+}
+.gauge-chart .legion span.good{
+    background:#f6c600;
+}
+.gauge-chart .legion span.execellent{
+    background:#60b044;
+}
+
+
 .doughnut-graph{
     display: grid !important;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;

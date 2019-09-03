@@ -186,8 +186,7 @@ const UserRegistrationForm = ({
                 
                 <div className="row">
                     <div className="col-md-6">
-                    
-                            <div className={`checkbox-inline ${errors.agree_terms_condition == "Can't be blank" ? 'error' : ''}`}>
+                            <div className={`checkbox-inline ${errors && errors.agree_terms_condition && errors.agree_terms_condition == "Can't be blank" ? 'error' : ''}`}>
                             <Checkbox 
                                name="agree_terms_condition"
                                value="active"

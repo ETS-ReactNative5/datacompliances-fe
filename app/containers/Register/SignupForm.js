@@ -144,11 +144,15 @@ class SignupForm extends React.Component {
 		if (data.last_name && data.last_name.length > 26) errors.last_name = "Can't be more than 26 characters";
 		if (data.last_name && !/^[a-zA-Z]+$/.test(data.last_name)) errors.last_name = 'Can only contain letters';
 		if (!data.email) errors.email = "Can't be blank";
+
 		if(data.email && !this.validateEmail(data.email)){
 			errors.email = "Invalid email address"
 		  }
 		if (!data.password) errors.password = 'Password is required';
 		if (data.password !== data.confirmPassword) errors.confirmPassword = "Password doesn't match";
+		if (data.password && !(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{6,}$/).test(data.password)) errors.password = 'Must contain one special character, on capital letter, one small letter, and a number';
+		// "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+
 		// if (!data.phone) errors.phone = "Can't be blank";
 		if (!data.company_name) errors.company_name = "Can't be blank";
 		// if (data.company_name && data.company_name.length > 40) errors.company_name = "Can't be more than 40 characters";

@@ -1,7 +1,7 @@
 const isProdEnv = process.env.NODE_ENV === 'production';
 
 export const API_BASE = isProdEnv
-  ? 'http://dev.datacompliances.com/api/'
+  ? 'http://52.43.164.220/api/'
   : 'http://localhost:4001/api/';
 
 export const GOOGLE_CLIENT_ID =
