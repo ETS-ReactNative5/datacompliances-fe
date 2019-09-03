@@ -79,7 +79,7 @@ export class DoughnutChart extends Component {
       const { each } = this.props;
         return (
             <div className = "doughnut-item">
-                <p className="chart-title">Pie Chart - {each.tag_name}</p>
+                {/* <p className="chart-title">Pie Chart - {each.tag_name}</p> */}
                 <div style={{width: '100%'}} id={`chart`+each._id}>hi</div>
             </div>
         )
