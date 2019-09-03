@@ -211,10 +211,6 @@ class NewReferral extends React.Component {
               <p className="chart-title">Number of NIST and PCI Controls Assessed</p>
               <div style={{width: '100%'}} id="chart">Bar Graph</div>
             </div>
-            <div className="gauge-chart mb-5">
-              <p className="chart-title">Privacy and Cyber Security Score</p>
-              <div style={{width: '100%'}} id="chart2">Gauge Graph</div>
-            </div>
           </div>
           <div className="doughnut-graph">
            {dataC3doughnut.map((item, index) => {
@@ -222,6 +218,12 @@ class NewReferral extends React.Component {
            })
            }
            </div>
+          <div className="clearfix">
+            <div className="gauge-chart mb-5 mt-5">
+              <p className="chart-title">Privacy and Cyber Security Score</p>
+              <div style={{width: '100%'}} id="chart2">Gauge Graph</div>
+            </div>
+          </div>
         </div>
       </div>
     );

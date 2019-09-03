@@ -163,7 +163,7 @@ class ExamDisplay extends React.Component {
                   key={`exam_${idx}`}
                 >
                   <div className="two-col-grid">
-                    <div >
+                    <div className="obt-fit">
                     {exam.image_name.document_name ? (
                        <div>
                       <h1 className="main_title">
@@ -187,7 +187,7 @@ class ExamDisplay extends React.Component {
                     )}
                     </div>
                     <div className="right product-detail">
-                      <div className="mt-5">
+                      <div className="">
                       <p className="product-profile"><span>Profile : </span>{exam.profile_name}</p>
                       <p className="product-industry"><span>Industry : </span>{exam.industry}</p>
                       <p className="product-price"><span>Price : </span><small>$</small>{exam.price}</p>
