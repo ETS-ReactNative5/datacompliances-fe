@@ -33,13 +33,20 @@ function* redirectOnLoginByTokenSuccess() {
 	yield take(loginTypes.LOGIN_BY_TOKEN_SUCCESS);
 }
 
+function* redirectOnLoginByTokenFailure() {
+	yield take(loginTypes.LOGIN_BY_TOKEN_FAILURE);
+	yield put(push('/'));
+}
+
 function* loginByTokenFlow(action) {
 	const successWatcher = yield fork(redirectOnLoginByTokenSuccess);
+	const failureWatcher = yield fork(redirectOnLoginByTokenFailure)
 	const { userId } = action;
 	const token = localStorage.getItem('token');
 	yield fork(Api.get(`user/data/${userId}`, loginByTokenSuccess, loginByTokenFailure, token));
 	yield take(loginTypes.LOGIN_BY_TOKEN_FAILURE);
 	yield cancel(successWatcher);
+	yield cancel(failureWatcher);
 }
 
 const checkIfMultiFactor = (response) => {

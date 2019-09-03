@@ -4,6 +4,9 @@ import * as types from './constants';
 import { SIGNUP_SUCCESS } from '../Register/constants'; // for getting success message of sign up
 import { MULTI_FACTOR_AUTH_LOGIN_FAILURE } from './multi-factor-login/constants';
 import { SET_PASSWORD_FAILURE } from '../Register/PasswordSetForm/constants';
+import { Redirect } from 'react-router-dom';
+import {  push } from 'react-router-redux'
+
 // import {LOGOUT_SUCCESS} from '../App/constants';
 
 // todo: handle user confirmation email resend flow in here
@@ -74,6 +77,7 @@ function loginReducer(state = initialState, action) {
 				resendEmailRequesting: false,
 			});
 		case types.LOGIN_BY_TOKEN_FAILURE:
+			localStorage.clear()
 			return state.merge({
 				requesting: false,
 				success: false,
