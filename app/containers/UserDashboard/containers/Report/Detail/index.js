@@ -21,11 +21,11 @@ import './style.scss';
 
 const dataC3doughnut = [
   { _id: 1111, total: 10, compliance: 4, tag_name: 'Identify' },
-  { _id: 2222, total: 12, compliance: 6, tag_name: 'Protect' },
-  { _id: 3333, total: 15, compliance: 14, tag_name: 'Detect' },
-  { _id: 4444, total: 14, compliance: 10, tag_name: 'Respond' },
-  { _id: 5555, total: 9, compliance: 7, tag_name: 'Recover' },
-  { _id: 6666, total: 14, compliance: 6, tag_name: 'PCI' },
+  { _id: 2222, total: 5, compliance: 6, tag_name: 'Protect' },
+  { _id: 3333, total: 8, compliance: 14, tag_name: 'Detect' },
+  { _id: 4444, total: 5, compliance: 10, tag_name: 'Respond' },
+  { _id: 5555, total: 4, compliance: 7, tag_name: 'Recover' },
+  { _id: 6666, total: 62, compliance: 6, tag_name: 'PCI' },
 ];
 
 
@@ -131,7 +131,7 @@ class NewReferral extends React.Component {
     bindto: '#chart2',
       data: {
           columns: [
-              ['compliant', 40]
+              ['Score', 40]
           ],
           type: 'gauge',
 
