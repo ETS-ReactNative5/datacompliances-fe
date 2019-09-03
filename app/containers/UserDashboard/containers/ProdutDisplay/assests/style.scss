@@ -158,3 +158,11 @@ p.your-answer {
         font-weight: 400 !important;
     }
 }
+
+.obt-fit{
+    img{
+        // height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+}

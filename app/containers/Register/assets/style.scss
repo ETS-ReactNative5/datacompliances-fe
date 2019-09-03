@@ -100,3 +100,16 @@ $btn-blue:#068DF8;
         font-weight: 400;
     }
 }
+
+.checkbox-inline.error{
+    .ui.fitted.checkbox{
+        label{
+            &:before{
+                border-color:#af6666;
+                background:#fff6f6;
+            }
+            
+        }
+    }
+
+}
