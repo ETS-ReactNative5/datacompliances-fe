@@ -207,6 +207,7 @@ class NewReferral extends React.Component {
     const { isRequesting, errorResponse, successResponse } = this.props;
     return (
       <div>
+        {!isRequesting ? 
         <div className="graphs">
           <div className="clearfix">
             <div className="bar-graph mb-5 mr-3" >
@@ -235,6 +236,16 @@ class NewReferral extends React.Component {
             </div>
           </div>
         </div>
+        :
+        <div className="product-grid">
+          <div className="ui segment">
+          <div className="ui active inverted dimmer">
+            <div className="ui small text loader">Loading.....</div>
+          </div>
+          <p></p>
+        </div>
+        </div>
+        }
       </div>
     );
   }
@@ -254,3 +265,6 @@ export default compose(
   withSaga,
   withConnect,
 )(NewReferral);
+
+
+
