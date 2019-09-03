@@ -159,8 +159,9 @@ class NewReferral extends React.Component {
   }
 //
   updateChart = (data) => {
+    if(data) {
     var arrC3 = []
-    data.dataList.map((item) => {
+    data && data.dataList && data.dataList.map((item) => {
       Object.keys(item).map((val) => {
         if(val === 'tag_name') {
             arrC3.push(item.tag_name)
@@ -195,6 +196,7 @@ class NewReferral extends React.Component {
     show: false
   }
   });
+}
 }
 
 
