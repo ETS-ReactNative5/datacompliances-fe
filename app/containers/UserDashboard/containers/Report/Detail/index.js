@@ -20,11 +20,12 @@ import './style.scss';
 //......................................mock data c3js...........................................
 
 const dataC3doughnut = [
-  { _id: 1111, total: 10, compliant: 4, tag_name: 'Identify' },
-  { _id: 2222, total: 12, compliant: 6, tag_name: 'Protect' },
-  { _id: 3333, total: 15, compliant: 14, tag_name: 'Detect' },
-  { _id: 4444, total: 14, compliant: 10, tag_name: 'Respond' },
-  { _id: 5555, total: 9, compliant: 7, tag_name: 'Recover' },
+  { _id: 1111, total: 10, compliance: 4, tag_name: 'Identify' },
+  { _id: 2222, total: 12, compliance: 6, tag_name: 'Protect' },
+  { _id: 3333, total: 15, compliance: 14, tag_name: 'Detect' },
+  { _id: 4444, total: 14, compliance: 10, tag_name: 'Respond' },
+  { _id: 5555, total: 9, compliance: 7, tag_name: 'Recover' },
+  { _id: 6666, total: 14, compliance: 6, tag_name: 'PCI' },
 ];
 
 
@@ -46,7 +47,8 @@ const dataBar = [
 import {
   makeSelectError,
   makeSelectResponse,
-  makeSelectGraphData
+  makeSelectGraphData,
+  makeSelectLoading
 } from './selectors';
 
 import {
@@ -55,6 +57,7 @@ import {
 
 const mapStateToProps = createStructuredSelector({
   successResponse: makeSelectResponse(),
+  isRequesting: makeSelectLoading(),
   errorResponse: makeSelectError(),
   graphData:makeSelectGraphData()
 });
@@ -62,7 +65,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   setReferral: data => dispatch(changeReferralRequest(data)),
   clearMessage: () => dispatch(clearMessage()),
-  getGraphDataRequest: () => dispatch(getGraphDataRequest())
+  getGraphDataRequest: (id) => dispatch(getGraphDataRequest(id))
 });
 
 class NewReferral extends React.Component {
@@ -74,9 +77,9 @@ class NewReferral extends React.Component {
   };
 
   componentDidMount() {
-    // this.updateChart();
+    this.updateChart();
     this.updateChart2();
-    this.props.getGraphDataRequest()
+    // this.props.getGraphDataRequest(this.props.match.params.id)
 
   }
   // componentDidUpdate() {
@@ -93,20 +96,17 @@ class NewReferral extends React.Component {
     if (nextProps.graphData != this.props.graphData) {
       this.setState({
         graphData: nextProps.graphData ? nextProps.graphData : '',
+      }, () => {
+         !this.props.isRequesting && this.updateChart(this.state.graphData);
+         var a = 0
+         var b = 0
+         nextProps.graphData && nextProps.graphData.dataList && nextProps.graphData.dataList.map((item) => {
+         a = a + item.compliance
+         b = b + item.total
+     })
+         const total_compliance = ((a*100) / b)
+          !this.props.isRequesting && this.updateChart2(total_compliance);
       });
-      this.updateChart(nextProps.graphData);
-           var a = 0
-           var b = 0
-           nextProps.graphData.dataList && nextProps.graphData.dataList.map((item) => {
-           a = a + item.compliance
-           b = b + item.total
-
-      })
-      const total_compliance = ((a*100) / b)
-      // console.log(a,'....',b,'.....',total_compliance)
-
-      this.updateChart2(total_compliance);
-
     }
     // if (nextProps.errorResponse != this.props.errorResponse) {
     //   this.setState({
@@ -131,7 +131,7 @@ class NewReferral extends React.Component {
     bindto: '#chart2',
       data: {
           columns: [
-              ['compliant', rValue]
+              ['compliant', 40]
           ],
           type: 'gauge',
 
@@ -159,9 +159,8 @@ class NewReferral extends React.Component {
   }
 //
   updateChart = (data) => {
-    if(data) {
     var arrC3 = []
-    dataBar.map((item) => {
+    dataC3doughnut.map((item) => {
       Object.keys(item).map((val) => {
         if(val === 'tag_name') {
             arrC3.push(item.tag_name)
@@ -172,7 +171,7 @@ class NewReferral extends React.Component {
   const chart = c3.generate({
     bindto: '#chart',
     data: {
-      json: data && data.dataList,
+      json: dataC3doughnut,
       // columns: [arrC3],
       type: 'bar',
       color: function(inColor, data) {
@@ -197,7 +196,6 @@ class NewReferral extends React.Component {
   }
   });
 }
-}
 
 
 
@@ -205,10 +203,9 @@ class NewReferral extends React.Component {
   render() {
     const { data, errors, graphData } = this.state;
     const { isRequesting, errorResponse, successResponse } = this.props;
-
     return (
       <div>
-      <div className="graphs">
+        <div className="graphs">
           <div className="clearfix">
             <div className="bar-graph mb-5 mr-3" >
               <p className="chart-title">Number of NIST and PCI Controls Assessed</p>
@@ -220,13 +217,12 @@ class NewReferral extends React.Component {
             </div>
           </div>
           <div className="doughnut-graph">
-           {graphData && graphData.dataList && graphData.dataList.map((item, index) => {
+           {dataC3doughnut.map((item, index) => {
               return <DoughnutChart key={index} each={item} /> ;
            })
            }
            </div>
-
-      </div>
+        </div>
       </div>
     );
   }

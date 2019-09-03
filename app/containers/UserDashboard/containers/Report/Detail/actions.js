@@ -3,7 +3,7 @@ import * as types from './constants';
 
 export const getGraphDataRequest = action(
   types. GET_GRAPH_REQUEST,
-  'data',
+  'product_id',
 );
 export const getGraphDataSuccess = action(
   types. GET_GRAPH_SUCCESS,

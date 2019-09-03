@@ -7,14 +7,14 @@ import getToken from 'utils/getToken';
 
 function* getGraphDataRequest(action) {
   const token = getToken();
-  yield call(
-    PCSC.get(
-      `graph`,
-      actions.getGraphDataSuccess,
-      actions.getGraphDataSuccess,
-      token,
-    ),
-  );
+  // yield call(
+  //   PCSC.get(
+  //     `graph/${action.product_id}`,
+  //     actions.getGraphDataSuccess,
+  //     actions.getGraphDataSuccess,
+  //     token,
+  //   ),
+  // );
 }
 
 export default function* agentSettingsWatcher() {

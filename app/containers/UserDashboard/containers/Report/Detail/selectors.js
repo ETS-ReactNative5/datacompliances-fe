@@ -15,7 +15,7 @@ const makeSelectError = () =>
 const makeSelectLoading = () =>
   createSelector(
     graphData,
-    state => state.get('loading'),
+    state => state.get('requesting'),
   );
 
 const makeSelectGraphData = () =>
