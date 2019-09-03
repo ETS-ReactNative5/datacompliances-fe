@@ -260,7 +260,7 @@ const ViewPracticeQuestion = props => {
                    }
                 })
                }
-               {!show_final_result &&
+               {data.length > 0 && !show_final_result &&
                <div>
                   <Button
                   color="teal"
