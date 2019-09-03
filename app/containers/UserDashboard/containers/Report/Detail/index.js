@@ -131,7 +131,10 @@ class NewReferral extends React.Component {
     bindto: '#chart2',
       data: {
           columns: [
-              ['Score', rValue]
+            rValue < 29 ? ['Poor', rValue] : 
+            (rValue > 29 && rValue < 60) ? ['Fair', rValue] :
+             (rValue > 59 && rValue < 90) ? ['Good',rValue] :
+              ['Excellent', rValue]
           ],
           type: 'gauge',
 
