@@ -100,12 +100,20 @@ class NewReferral extends React.Component {
          !this.props.isRequesting && this.updateChart(this.state.graphData);
          var a = 0
          var b = 0
+         var pciA = 0
+         var pciB = 0
          nextProps.graphData && nextProps.graphData.dataList && nextProps.graphData.dataList.map((item) => {
          a = a + item.compliance
          b = b + item.total
+         if(item.tag_name == 'PCI') {
+           pciA = pciA + item.compliance
+           pciB = pciB + item.total
+         }
      })
          const total_compliance = ((a*100) / b)
+         const pci_compliance = ((pciA*100) / pciB)
           !this.props.isRequesting && this.updateChart2(total_compliance);
+          !this.props.isRequesting && this.updateChart3(pci_compliance);
       });
     }
     // if (nextProps.errorResponse != this.props.errorResponse) {
@@ -129,6 +137,44 @@ class NewReferral extends React.Component {
     const rValue = Math.round(data)
     var chart2 = c3.generate({
     bindto: '#chart2',
+      data: {
+          columns: [
+            rValue < 29 ? ['Poor', rValue] : 
+            (rValue > 29 && rValue < 60) ? ['Fair', rValue] :
+             (rValue > 59 && rValue < 90) ? ['Good',rValue] :
+              ['Excellent', rValue]
+          ],
+          type: 'gauge',
+
+      },
+      gauge: {
+        label:{
+        format: function(value, ratio){
+          return value; //returning here the value and not the ratio
+          },
+        },
+        },
+      color: {
+          pattern: ['#FF0000', '#F97600', '#F6C600', '#60B044'], // the three color levels for the percentage values.
+          threshold: {
+  //            unit: 'value', // percentage is default
+  //            max: 200, // 100 is default
+              values: [30, 60, 90, 100]
+          }
+      },
+      size: {
+          height: 180
+      },
+  });
+    }
+  }
+
+  updateChart3 = (data) => {
+    if(true) {
+    // if(!Number.isNaN(data) && data !== undefined) {
+    const rValue = Math.round(data)
+    var chart2 = c3.generate({
+    bindto: '#chart3',
       data: {
           columns: [
             rValue < 29 ? ['Poor', rValue] : 
@@ -223,18 +269,16 @@ class NewReferral extends React.Component {
            })
            }
            </div>
+           <div className="clearfix">
+            <div className="gauge-chart mb-5 mt-5">
+              <p className="chart-title">PCI Score</p>
+              <div style={{width: '100%'}} id="chart3">Gauge Graph</div>
+            </div>
+          </div>
           <div className="clearfix">
             <div className="gauge-chart mb-5 mt-5">
               <p className="chart-title">Privacy and Cyber Security Score</p>
               <div style={{width: '100%'}} id="chart2">Gauge Graph</div>
-              <div className="legion">
-                <p><b>Index</b></p> 
-                <p><span className="poor"></span>Poor</p>
-                <p><span className="fair"></span>fair</p>
-                <p><span className="good"></span>Good</p>
-                <p><span className="execellent"></span>Excellent</p>
-                
-              </div>
             </div>
           </div>
         </div>
