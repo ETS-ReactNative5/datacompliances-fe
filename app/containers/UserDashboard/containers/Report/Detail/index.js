@@ -25,6 +25,7 @@ const dataC3doughnut = [
   { _id: 3333, total: 15, compliance: 14, tag_name: 'Detect' },
   { _id: 4444, total: 14, compliance: 10, tag_name: 'Respond' },
   { _id: 5555, total: 9, compliance: 7, tag_name: 'Recover' },
+  { _id: 6666, total: 14, compliance: 6, tag_name: 'PCI' },
 ];
 
 
