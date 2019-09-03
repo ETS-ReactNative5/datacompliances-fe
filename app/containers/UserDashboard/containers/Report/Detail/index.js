@@ -168,23 +168,25 @@ class NewReferral extends React.Component {
         }
       })
     })
-  var colorScale = d3.scale.category10();
+  // var colorScale = d3.scale.category10();
   const chart = c3.generate({
     bindto: '#chart',
+    color: {
+      pattern: ['#FABF62', '#ED16DF','#50EF0B', '#FFA500','#FFFF00', '#7F8A18']
+    },
     data: {
       json: data.dataList,
       // columns: [arrC3],
       type: 'bar',
       color: function(inColor, data) {
+        var colors = ['#FABF62', '#ED16DF','#50EF0B', '#FFA500','#FFFF00', '#7F8A18'];
         if(data.index !== undefined) {
-          return colorScale(data.index);
+            return colors[data.index];
         }
-        // inColor == colorScale(data.index)
-        // return inColor;
       },
       keys: {
         value: ['total'],
-    },
+      },
     },
     axis: {
       x: {
@@ -198,9 +200,6 @@ class NewReferral extends React.Component {
   });
 }
 }
-
-
-
 
   render() {
     const { data, errors, graphData } = this.state;
