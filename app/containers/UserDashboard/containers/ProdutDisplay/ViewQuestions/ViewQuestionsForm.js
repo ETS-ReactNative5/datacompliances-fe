@@ -58,6 +58,7 @@ const ViewPracticeQuestion = props => {
     attempted_length,
     saveAnswerResponse,
     tempValue,
+    subjectiveQuesId,
     bit,
     handleRevise,
     confirmSubmitQuestions
@@ -207,7 +208,8 @@ const ViewPracticeQuestion = props => {
                         // value ={ mockData.data.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
                         //              mockData.data.question_answer[data[questionIdx].questionnaire_id] : ''}
                         value ={!bit && saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
-                                   saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] : tempValue }             
+                                   saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] : 
+                                          data[questionIdx].questionnaire_id === subjectiveQuesId ? tempValue : '' }             
                         onChange={(e, se) =>
                           handleAnswerChange(e, se, '', questionIdx, data[questionIdx].questionnaire_id)}
                        />

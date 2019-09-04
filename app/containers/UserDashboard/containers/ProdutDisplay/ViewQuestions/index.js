@@ -81,7 +81,8 @@ class ViewQuestions extends React.Component {
     previousUrl: window.location.href,
     saveAnswerResponse:{},
     confirmedPage: false,
-    redirect: false
+    redirect: false,
+    subjectiveQuesId: ''
   };
 
   componentDidMount() {
@@ -215,7 +216,7 @@ class ViewQuestions extends React.Component {
     }
     this.props.saveAnswerRequest(payload)
   } else {
-    this.setState({bit:true, tempValue: event.value})
+    this.setState({bit:true, tempValue: event.value, subjectiveQuesId: questionId})
     const payload ={
       user_id: this.props.currentUser.toJS()._id,
       product_id: this.props.match.params.product_id,
@@ -392,6 +393,7 @@ class ViewQuestions extends React.Component {
       favFailure,
       saveAnswerResponse,
       tempValue,
+      subjectiveQuesId,
       bit,
       redirect
     } = this.state;
@@ -421,6 +423,7 @@ class ViewQuestions extends React.Component {
         <ViewQuestionsForm
           data={data}
           tempValue={tempValue}
+          subjectiveQuesId={subjectiveQuesId}
           confirmSubmitQuestions={this.confirmSubmitQuestions}
           bit={bit}
           saveAnswerResponse={saveAnswerResponse}
