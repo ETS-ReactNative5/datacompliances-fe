@@ -189,7 +189,7 @@ class ViewQuestions extends React.Component {
   }
 
   saveSubjectiveAnswer = () => {
-    this.setState({bit: false})
+    this.setState({bit: false, saveAnswerResponse: {}})
     if(this.state.payload.user_id == undefined) {
       const payload ={
         user_id: this.props.currentUser.toJS()._id,
@@ -200,7 +200,6 @@ class ViewQuestions extends React.Component {
 
     } else {
       this.props.saveAnswerRequest(this.state.payload)
-
     }
   }
   
