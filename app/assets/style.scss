@@ -26,6 +26,11 @@
   overflow: hidden;
   min-height: 100vh;
 }
+.mr-5{
+  @media (max-width:475px) {
+      margin-right:1rem !important;
+  }
+}
 
 @import 'base/variables.scss';
 @import 'base/base.scss';

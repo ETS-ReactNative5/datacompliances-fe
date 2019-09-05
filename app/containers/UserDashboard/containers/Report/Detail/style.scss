@@ -125,3 +125,9 @@ p.chart-title{
         font-size: 18px;
     }
 }
+
+.mr-5{
+    @media (max-width:475px) {
+        margin-right:1rem !important;
+    }
+  }

@@ -7,7 +7,10 @@
     position:fixed;
     z-index: 10;
     @media(max-width: 768px){
-        width:220px;
+        width:100px;
+    }
+    @media(max-width: 475px){
+        width:60px;
     }
 }
 .ui.vertical.menu .item:before{
@@ -35,6 +38,12 @@
                     background: #f6f6f6;
                     border-color:#39A3ED;
                 }
+                @media(max-width: 768px){
+                    font-size: 22px;
+                }
+                @media(max-width: 475px){
+                    font-size: 18px;
+                }
             }
             .title{
                 width: 100%;
@@ -45,11 +54,20 @@
                     background: #f6f6f6;
                     border-color:#39A3ED;
                 }
+                @media(max-width: 768px){
+                    font-size: 22px;
+                }
+                @media(max-width: 475px){
+                    font-size: 18px;
+                }
             }
             .content{
                 a{
                     padding-left:35px;
                     border-bottom: 1px solid #f6f6f6;
+                    @media(max-width: 475px){
+                        padding-left: 15px;
+                    }
                 }
             }
 
@@ -66,6 +84,9 @@
         padding: 10px 15px;
         height: 64px !important;
         object-fit: contain;
+        @media(max-width: 475px){
+            padding: 5px;
+        }
     }
 }
 
@@ -82,6 +103,10 @@
         position: absolute;
         right: 20px;
         transition: .4s;
+
+        @media(max-width: 475px){
+            right:3px;
+        }
     }
 }
 .dropdown.active{
@@ -93,4 +118,10 @@
 .active .item a, .active > .active > a{
     background: #f6f6f6 !important;
     border-left-color: #39A3ED !important;
+}
+
+.nav__text{
+    @media(max-width: 768px){
+        display: none;
+    }
 }

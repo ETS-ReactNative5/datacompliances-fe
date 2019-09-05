@@ -41,11 +41,16 @@
 }
 .button {
     padding: 15px 25px !important;
-    font-size: 16px !important;
+    font-size: 16px;
     border-radius: 0px !important;
     color:#fff !important;
     box-shadow:0px 0px 0px rgba(0,0,0,0);
     display: inline-block;
+    @media(max-width: 768px){
+        font-size: 14px !important;
+        padding: 8px 15px !important;
+        font-weight: 400 !important;
+    }
 }
 .buy-btn{
     background:#068DF8 !important;
@@ -62,6 +67,10 @@
     color: #43425D;
     margin-bottom: 25px;
     font-weight:400;
+    @media(max-width: 768px){
+        font-size: 14px;
+        text-align: justify;
+    }
 }
 .question-wrap{
     padding:20px;
