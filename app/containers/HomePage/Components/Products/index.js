@@ -18,7 +18,7 @@ const Products = (props) => {
     autoplay: false,
         speed: 500,
         autoplaySpeed: 2000,
-        cssEase: "ease-in",
+        // cssEase: "ease-in",
         initialSlide: 0,
         responsive: [
           {
