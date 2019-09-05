@@ -286,6 +286,7 @@ class LoginForm extends React.Component {
             </Button>
             <p className="forgot-password"> 
               {window.location.pathname.split('/')[1] != 'guest-detail' && (
+                <div>
                 <a
                   tabIndex=""
                   onClick={this.showForgotPasswordForm}
@@ -293,6 +294,14 @@ class LoginForm extends React.Component {
                 >
                   Forgot Password ?
                 </a>
+                <br />
+                <Link
+                to={`/register`}
+                role="button"
+               >
+               <b>Register here</b>
+             </Link> 
+             </div>
               )}
             </p>
             {response && 
