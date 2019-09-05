@@ -142,7 +142,7 @@ const ViewPracticeQuestion = props => {
                 </h4>
              { data[questionIdx] && data[questionIdx].type_of_questions == "Objective" &&
               <Form>
-                <div className="wrapper"> <h1 className="question-title"><b>Q.No.{questionIdx + 1}</b>  {data[questionIdx].question}</h1></div>
+                <div className="wrapper"> <h1 className="question-title"><b>Q.{questionIdx + 1}</b>  {data[questionIdx].question}</h1></div>
                 <Form.Field>
                   {data[questionIdx].answers.length > 0 &&
                     data[questionIdx].answers.map((ans, idx) =>
@@ -168,7 +168,7 @@ const ViewPracticeQuestion = props => {
              }
                 { data[questionIdx] && data[questionIdx].type_of_questions == "Yes/No" &&
                      <div>
-                      <div className="wrapper"> <h1 className="question-title"><b>Q.No.{questionIdx + 1}</b>  {data[questionIdx].question}</h1></div>
+                      <div className="wrapper"> <h1 className="question-title"><b>Q.{questionIdx + 1}</b>  {data[questionIdx].question}</h1></div>
                    
                       <Form>
                         <Form.Field>
@@ -201,7 +201,7 @@ const ViewPracticeQuestion = props => {
                   }
                   {data[questionIdx] && data[questionIdx].type_of_questions == "Subjective" &&
                   <div>
-                   <div className="wrapper"> <h1 className="question-title"><b>Q.No.{questionIdx + 1}</b>  {data[questionIdx].question}</h1></div>
+                   <div className="wrapper"> <h1 className="question-title"><b>Q.{questionIdx + 1}</b>  {data[questionIdx].question}</h1></div>
                    <Form onSubmit={() =>
                          saveSubjectiveAnswer(progress)}>
                      <Form.Field>
@@ -305,7 +305,7 @@ const ViewPracticeQuestion = props => {
                           <div className="result_listing">
                           <div>
                             
-                            <h3 className="question-title mb-3"><span><b>Q.No.{indx + 1}</b></span> {question.question}</h3>
+                            <h3 className="question-title mb-3"><span><b>Q.{indx + 1}</b></span> {question.question}</h3>
                             <p className="your-answer"><b>:</b> 
                             {saveAnswerResponse.question_answer.hasOwnProperty(question.questionnaire_id) && 
                                 saveAnswerResponse.question_answer[question.questionnaire_id] != '' ? 
