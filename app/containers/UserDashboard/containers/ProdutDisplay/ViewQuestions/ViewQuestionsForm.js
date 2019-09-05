@@ -58,17 +58,19 @@ const ViewPracticeQuestion = props => {
     attempted_length,
     saveAnswerResponse,
     tempValue,
+    subjectiveQuesId,
     bit,
     handleRevise,
-    confirmSubmitQuestions
+    confirmSubmitQuestions,
+    progressBar
   } = props;
 
    const yesno = [
            {answer: 'Yes'},
            {answer: 'No'}
    ]
-
-  var counter
+   var final = progressBar
+   var counter
    if(saveAnswerResponse.question_answer != undefined) {
   counter = 0
   Object.values(saveAnswerResponse.question_answer).map((value, index) => {
@@ -76,9 +78,12 @@ const ViewPracticeQuestion = props => {
       counter=counter+1
     }
   })
+  final = (counter / (data.length)) * 100 
+   } else if(saveAnswerResponse.question_answer != undefined) {
+     final = progressBar
    }
   
-  const progress = (counter / (data.length)) * 100 
+  const progress = final
 
   return (
     <div>
@@ -89,7 +94,7 @@ const ViewPracticeQuestion = props => {
         </h4>
       <div style={{'marginRight' : '10%'}}>  
       <br />
-      <Progress percent={progress} indicating />
+      <Progress percent={progress != 0 ? progress : 0 } indicating />
       </div>
       </div>
       }
@@ -137,7 +142,7 @@ const ViewPracticeQuestion = props => {
                 </h4>
              { data[questionIdx] && data[questionIdx].type_of_questions == "Objective" &&
               <Form>
-                <div className="wrapper"> <h1 className="question-title"><b>Q.No.{questionIdx + 1}</b>  {data[questionIdx].question}</h1></div>
+                <div className="wrapper"> <h1 className="question-title"><b>Q.{questionIdx + 1}</b>  {data[questionIdx].question}</h1></div>
                 <Form.Field>
                   {data[questionIdx].answers.length > 0 &&
                     data[questionIdx].answers.map((ans, idx) =>
@@ -163,7 +168,7 @@ const ViewPracticeQuestion = props => {
              }
                 { data[questionIdx] && data[questionIdx].type_of_questions == "Yes/No" &&
                      <div>
-                      <div className="wrapper"> <h1 className="question-title"><b>Q.No.{questionIdx + 1}</b>  {data[questionIdx].question}</h1></div>
+                      <div className="wrapper"> <h1 className="question-title"><b>Q.{questionIdx + 1}</b>  {data[questionIdx].question}</h1></div>
                    
                       <Form>
                         <Form.Field>
@@ -196,9 +201,9 @@ const ViewPracticeQuestion = props => {
                   }
                   {data[questionIdx] && data[questionIdx].type_of_questions == "Subjective" &&
                   <div>
-                   <div className="wrapper"> <h1 className="question-title"><b>Q.No.{questionIdx + 1}</b>  {data[questionIdx].question}</h1></div>
+                   <div className="wrapper"> <h1 className="question-title"><b>Q.{questionIdx + 1}</b>  {data[questionIdx].question}</h1></div>
                    <Form onSubmit={() =>
-                         saveSubjectiveAnswer()}>
+                         saveSubjectiveAnswer(progress)}>
                      <Form.Field>
                     <TextArea 
                        placeholder='Tell us more' 
@@ -206,8 +211,9 @@ const ViewPracticeQuestion = props => {
                        rows={5}
                         // value ={ mockData.data.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
                         //              mockData.data.question_answer[data[questionIdx].questionnaire_id] : ''}
-                        value ={!bit && saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
-                                   saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] : tempValue }             
+                        value ={!bit && saveAnswerResponse && saveAnswerResponse.question_answer && saveAnswerResponse.question_answer.hasOwnProperty(data[questionIdx].questionnaire_id) ? 
+                                   saveAnswerResponse.question_answer[data[questionIdx].questionnaire_id] : 
+                                          data[questionIdx].questionnaire_id === subjectiveQuesId ? tempValue : '' }             
                         onChange={(e, se) =>
                           handleAnswerChange(e, se, '', questionIdx, data[questionIdx].questionnaire_id)}
                        />
@@ -299,7 +305,7 @@ const ViewPracticeQuestion = props => {
                           <div className="result_listing">
                           <div>
                             
-                            <h3 className="question-title mb-3"><span><b>Q.No.{indx + 1}</b></span> {question.question}</h3>
+                            <h3 className="question-title mb-3"><span><b>Q.{indx + 1}</b></span> {question.question}</h3>
                             <p className="your-answer"><b>:</b> 
                             {saveAnswerResponse.question_answer.hasOwnProperty(question.questionnaire_id) && 
                                 saveAnswerResponse.question_answer[question.questionnaire_id] != '' ? 
