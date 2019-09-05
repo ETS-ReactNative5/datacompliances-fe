@@ -82,7 +82,8 @@ class ViewQuestions extends React.Component {
     saveAnswerResponse:{},
     confirmedPage: false,
     redirect: false,
-    subjectiveQuesId: ''
+    subjectiveQuesId: '',
+    progressBar: 0
   };
 
   componentDidMount() {
@@ -188,8 +189,8 @@ class ViewQuestions extends React.Component {
     this.props.clearMessage();
   }
 
-  saveSubjectiveAnswer = () => {
-    this.setState({bit: false, saveAnswerResponse: {}})
+  saveSubjectiveAnswer = (progress) => {
+    this.setState({bit: false, saveAnswerResponse: {}, progressBar: progress })
     if(this.state.payload.user_id == undefined) {
       const payload ={
         user_id: this.props.currentUser.toJS()._id,
@@ -394,6 +395,7 @@ class ViewQuestions extends React.Component {
       tempValue,
       subjectiveQuesId,
       bit,
+      progressBar,
       redirect
     } = this.state;
     const { successResponse, errorResponse } = this.props;
@@ -422,6 +424,7 @@ class ViewQuestions extends React.Component {
         <ViewQuestionsForm
           data={data}
           tempValue={tempValue}
+          progressBar={progressBar}
           subjectiveQuesId={subjectiveQuesId}
           confirmSubmitQuestions={this.confirmSubmitQuestions}
           bit={bit}

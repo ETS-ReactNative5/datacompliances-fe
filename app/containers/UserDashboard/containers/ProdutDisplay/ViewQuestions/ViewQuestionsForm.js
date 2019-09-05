@@ -61,15 +61,16 @@ const ViewPracticeQuestion = props => {
     subjectiveQuesId,
     bit,
     handleRevise,
-    confirmSubmitQuestions
+    confirmSubmitQuestions,
+    progressBar
   } = props;
 
    const yesno = [
            {answer: 'Yes'},
            {answer: 'No'}
    ]
-
-  var counter
+   var final = progressBar
+   var counter
    if(saveAnswerResponse.question_answer != undefined) {
   counter = 0
   Object.values(saveAnswerResponse.question_answer).map((value, index) => {
@@ -77,9 +78,12 @@ const ViewPracticeQuestion = props => {
       counter=counter+1
     }
   })
+  final = (counter / (data.length)) * 100 
+   } else if(saveAnswerResponse.question_answer != undefined) {
+     final = progressBar
    }
   
-  const progress = (counter / (data.length)) * 100 
+  const progress = final
 
   return (
     <div>
@@ -90,7 +94,7 @@ const ViewPracticeQuestion = props => {
         </h4>
       <div style={{'marginRight' : '10%'}}>  
       <br />
-      <Progress percent={progress} indicating />
+      <Progress percent={progress != 0 ? progress : 0 } indicating />
       </div>
       </div>
       }
@@ -199,7 +203,7 @@ const ViewPracticeQuestion = props => {
                   <div>
                    <div className="wrapper"> <h1 className="question-title"><b>Q.No.{questionIdx + 1}</b>  {data[questionIdx].question}</h1></div>
                    <Form onSubmit={() =>
-                         saveSubjectiveAnswer()}>
+                         saveSubjectiveAnswer(progress)}>
                      <Form.Field>
                     <TextArea 
                        placeholder='Tell us more' 
