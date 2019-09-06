@@ -221,14 +221,14 @@ class NewReferral extends React.Component {
   const chart = c3.generate({
     bindto: '#chart',
     color: {
-      pattern: ['#FABF62', '#ED16DF','#50EF0B', '#FFA500','#FFFF00', '#7F8A18']
+      pattern: ['#008080', '#ff6347','#50EF0B', '#FFA500','#27C3E3 ', '#ffa500']
     },
     data: {
       json: data.dataList,
       // columns: [arrC3],
       type: 'bar',
       color: function(inColor, data) {
-        var colors = ['#FABF62', '#ED16DF','#50EF0B', '#FFA500','#FFFF00', '#7F8A18'];
+        var colors = ['#008080', '#ff6347','#50EF0B', '#FFA500','#27C3E3 ', '#ffa500'];
         if(data.index !== undefined) {
             return colors[data.index];
         }
