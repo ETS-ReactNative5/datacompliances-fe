@@ -70,6 +70,8 @@ const mapDispatchToProps = dispatch => ({
 
 class NewReferral extends React.Component {
   state = {
+    complianceTotal: 0,
+    pciTotal: 0,
     data: {},
     errors: {},
     close: true,
@@ -112,8 +114,14 @@ class NewReferral extends React.Component {
      })
          const total_compliance = ((a*100) / b)
          const pci_compliance = ((pciA*100) / pciB)
-          !this.props.isRequesting && this.updateChart2(total_compliance);
-          !this.props.isRequesting && this.updateChart3(pci_compliance);
+         
+          if(b != 0){
+            this.setState({complianceTotal: b}, ()=> {!this.props.isRequesting && this.updateChart2(total_compliance);})
+            
+          }
+          if(pciB != 0) {
+            this.setState({pciTotal: pciB}, ()=> { !this.props.isRequesting && this.updateChart3(pci_compliance);})
+          }
       });
     }
     // if (nextProps.errorResponse != this.props.errorResponse) {
@@ -133,6 +141,7 @@ class NewReferral extends React.Component {
 
   updateChart2 = (data) => {
     if(true) {
+      
     // if(!Number.isNaN(data) && data !== undefined) {
     const rValue = Math.round(data)
     var chart2 = c3.generate({
@@ -251,7 +260,7 @@ class NewReferral extends React.Component {
 }
 
   render() {
-    const { data, errors, graphData } = this.state;
+    const { data, errors, graphData, pciTotal, complianceTotal } = this.state;
     const { isRequesting, errorResponse, successResponse } = this.props;
     return (
       <div>
@@ -269,19 +278,24 @@ class NewReferral extends React.Component {
            })
            }
            </div>
+           {pciTotal != 0 &&
            <div className="clearfix">
             <div className="gauge-chart mb-5 mt-5">
               <p className="chart-title">PCI Score</p>
-              <div style={{width: '100%'}} id="chart3">Gauge Graph</div>
+              <div style={{width: '100%'}} id="chart3">No PCI score available</div>
             </div>
           </div>
+           }
+           {complianceTotal &&
           <div className="clearfix">
             <div className="gauge-chart mb-5 mt-5">
               <p className="chart-title">Privacy and Cyber Security Score</p>
               <div style={{width: '100%'}} id="chart2">Gauge Graph</div>
             </div>
           </div>
+            }
         </div>
+           
         :
         <div className="product-grid">
           <div className="ui segment">

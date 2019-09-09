@@ -17,6 +17,7 @@ import {
 } from './selectors';
 import {  } from 'semantic-ui-react';
 import { makeSelectLocation } from '../../../App/selectors';
+import { Button } from 'semantic-ui-react'
 
 
 // import C3Chart from 'react-c3js';
@@ -58,11 +59,11 @@ const confirmedSubmit = true
 // ];
 
 const data = [
-  // { name: 'Group A', value: 400 },
-  // { name: 'Group B', value: 300 },
-  // { name: 'Group C', value: 300 },
-  // { name: 'Group D', value: 200 },
-  // { name: 'Group D', value: 250 },
+  { name: 'Group A', value: 400 },
+  { name: 'Group B', value: 300 },
+  { name: 'Group C', value: 300 },
+  { name: 'Group D', value: 200 },
+  { name: 'Group D', value: 250 },
 ];
 
 
@@ -142,6 +143,9 @@ class Report extends React.Component {
                           >
                           View Detail
                         </Link>
+                        <br />
+                        <br />
+                        <Button color="green">Download Report</Button>
                         </div>
                       </div>
                     </div>
