@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import {  } from 'semantic-ui-react';
-import { changeReferralRequest, clearMessage } from './actions';
+import { clearMessage } from './actions';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -63,7 +63,6 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setReferral: data => dispatch(changeReferralRequest(data)),
   clearMessage: () => dispatch(clearMessage()),
   getGraphDataRequest: (id) => dispatch(getGraphDataRequest(id))
 });

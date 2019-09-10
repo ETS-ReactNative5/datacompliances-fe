@@ -25,6 +25,7 @@ const initialState = fromJS({
 
 function viewPracticeReducer(state = initialState, action = {}) {
   switch (action.type) {
+    case types.CREATE_REPORT_REQUEST:
     case types.SAVE_ANSWER_REQUEST:
     case types.LOAD_ALL_QUESTIONNAIRE_REQUEST:
     case types.POST_RESULT_REQUEST:
@@ -72,10 +73,19 @@ function viewPracticeReducer(state = initialState, action = {}) {
       saveAnswerResponse: fromJS(action.response.data),
     });  
 
+    case types.CREATE_REPORT_SUCCESS:
+        return state.merge({
+          requesting: false,
+          success: true,
+          response: action.response.message,
+          error: null,
+    }); 
+
     case types.SAVE_ANSWER_FAILURE:  
     case types.LOAD_ALL_QUESTIONNAIRE_FAILURE:
     case types.POST_RESULT_FAILURE:
     case types.POST_QUESTION_SCORE_FAILURE:
+    case types.CREATE_REPORT_FAILURE:
       return state.merge({
         requesting: false,
         success: false,
