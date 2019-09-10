@@ -13,50 +13,23 @@ import noreport from 'assets/images/report.png';
 import { Link } from 'react-router-dom'
 import { loadReferCodeRequest } from './actions';
 import {
-  makeSelectLoading
+  makeSelectLoading,
+  makeSelectResponse,
 } from './selectors';
 import {  } from 'semantic-ui-react';
 import { makeSelectLocation } from '../../../App/selectors';
 import { Button } from 'semantic-ui-react'
 
+import {
+  getReportsListingRequest
+} from './actions'
 
-// import C3Chart from 'react-c3js';
-
-
-// import 'c3/c3.css';
-// import c3 from 'c3';
-
-
-// import {
-//   BarChart,
-//   Bar,
-//   XAxis,
-//   YAxis,
-//   CartesianGrid,
-//   Tooltip,
-//   Legend,
-//   ResponsiveContainer,
-//   PieChart, Pie, Sector, Cell,
-// } from 'recharts';
 
 //...................................mock confirmed submit response............................
 
 const confirmedSubmit = true
 
-
 //...................................mock confirmed submit response............................
-
-
-//..................................mock for recharts if needed....................................
-// const data03 = [
-//   {name: 'Page A', value: 40},
-//   {name: 'Page B', value: 30},
-//   {name: 'Page C', value: 20},
-//   {name: 'Page D', value: 24},
-//   {name: 'Page E', value: 10},
-//   {name: 'Page F', value: 20},
-//   {name: 'Page G', value: 30},
-// ];
 
 const data = [
   { name: 'Group A', value: 400 },
@@ -76,15 +49,25 @@ const data = [
 const mapStateToProps = createStructuredSelector({
   isRequesting: makeSelectLoading(),
   location: makeSelectLocation(),
+  reportsList: makeSelectResponse()
 });
 
 const mapDispatchToProps = dispatch => ({
   loadReferCode: id => dispatch(loadReferCodeRequest(id)),
   showDialog: dialog => dispatch(showDialog(dialog)),
+  getReportsListingRequest: () => dispatch(getReportsListingRequest())
 });
 
 class Report extends React.Component {
   state = { showCopyMsg: false, newreferral: false };
+
+  componentDidMount() {
+    this.props.getReportsListingRequest()
+  }
+
+  componentWillReceiveProps() {
+
+  }
 
   render() {
     const {  } = this.props;
