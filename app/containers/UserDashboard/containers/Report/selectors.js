@@ -5,17 +5,28 @@ export const getMyReports = state => state.report;
 const makeSelectResponse = () =>
   createSelector(
     getMyReports,
-    myProfileState => myProfileState.get('response'),
+    state => state.get('response'),
+  );
+  const makeSelectReportList = () =>
+  createSelector(
+    getMyReports,
+    state => state.get('reportList'),
   );
 const makeSelectError = () =>
   createSelector(
     getMyReports,
-    myProfileState => myProfileState.get('error'),
+    state => state.get('error'),
   );
 const makeSelectLoading = () =>
   createSelector(
     getMyReports,
-    myProfileState => myProfileState.get('loading'),
+    state => state.get('loading'),
+  );
+
+  const makeSelectPublicURL = () =>
+  createSelector(
+    getMyReports,
+    state => state.get('public_url'),
   );
 
 
@@ -23,4 +34,6 @@ export {
   makeSelectResponse,
   makeSelectError,
   makeSelectLoading,
+  makeSelectReportList,
+  makeSelectPublicURL
 };

@@ -1,7 +1,7 @@
 import { call, takeLatest } from 'redux-saga/effects';
 import * as types from './constants';
 import * as actions from './actions';
-import XcelTrip from 'utils/apiHelper';
+import PCSC from 'utils/apiHelper';
 import getToken from 'utils/getToken';
 // import jwtDecode from 'jwt-decode';
 
@@ -9,7 +9,7 @@ import getToken from 'utils/getToken';
 function* getReportsListingRequest(action) {
   const token = getToken();
   yield call(
-    XcelTrip.get(
+    PCSC.get(
       `report`,
       actions.getReportsListingSuccess,
       actions.getReportsListingFailure,
@@ -18,7 +18,21 @@ function* getReportsListingRequest(action) {
   );
 }
 
+function* downloadReportRequest(action) {
+  const token = getToken();
+  yield call(
+    PCSC.post(
+      `report/download/${action.product_id}/${action.key}`,
+      actions.downloadReportSuccess,
+      actions.downloadReportFailure,
+      {},
+      token,
+    ),
+  );
+}
+
 export default function* reportsWatcher() {
   yield takeLatest(types.GET_REPORT_LISTING_REQUEST, getReportsListingRequest);
+  yield takeLatest(types.DOWNLOAD_REPORT_REQUEST, downloadReportRequest);
   // yield takeLatest(types.CHANGE_REFERRAL_REQUEST, updateReferral);
 }

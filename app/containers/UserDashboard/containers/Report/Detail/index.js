@@ -150,9 +150,9 @@ class NewReferral extends React.Component {
     bindto: '#chart2',
       data: {
           columns: [
-            rValue < 29 ? ['Poor', rValue] : 
-            (rValue > 29 && rValue < 60) ? ['Fair', rValue] :
-             (rValue > 59 && rValue < 90) ? ['Good',rValue] :
+            rValue <= 29 ? ['Poor', rValue] : 
+            (rValue > 29 && rValue <= 60) ? ['Fair', rValue] :
+             (rValue > 60 && rValue < 90) ? ['Good',rValue] :
               ['Excellent', rValue]
           ],
           type: 'gauge',
@@ -272,7 +272,7 @@ class NewReferral extends React.Component {
       <div>
         {!isRequesting ? 
         <div className="graphs">
-          <Button color="green" onClick={this.downloadReport}>Download Report</Button>
+          {/* <Button color="green" onClick={this.downloadReport}>Download Report</Button> */}
           <div className="clearfix">
             <div className="bar-graph mb-5 mr-3" >
               <p className="chart-title">Number of NIST and PCI Controls Assessed</p>

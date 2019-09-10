@@ -13,5 +13,18 @@ export const getReportsListingFailure = action(
   'error',
 );
 
-export const clearMessage = action(types.CLEAR_MESSAGE);
+export const downloadReportRequest = action(
+  types.DOWNLOAD_REPORT_REQUEST,
+  'key',
+  'product_id'
+);
+export const downloadReportSuccess = action(
+  types.DOWNLOAD_REPORT_SUCCESS,
+  'response',
+);
+export const downloadReportFailure = action(
+  types.DOWNLOAD_REPORT_FAILURE,
+  'error',
+);
 
+export const clearMessage = action(types.CLEAR_MESSAGE);

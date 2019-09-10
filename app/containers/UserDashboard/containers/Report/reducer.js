@@ -6,7 +6,9 @@ const initialState = fromJS({
   loading: false,
   requesting: false,
   response: '',
+  reportList: '',
   error: '',
+  public_url: ''
 });
 
 function agentSettings(state = initialState, action) {
@@ -15,15 +17,34 @@ function agentSettings(state = initialState, action) {
       return state.merge({
         loading: true,
         response: '',
+        reportList: '',
         error: '',
       });
+
+    case types.DOWNLOAD_REPORT_REQUEST:
+        return state.merge({
+          loading: true,
+          response: '',
+          error: '',
+          public_url: ''
+        });   
     case types.GET_REPORT_LISTING_SUCCESS:
       return state.merge({
         loading: false,
-        response: fromJS(action.response.data),
+        response: '',
+        reportList: fromJS(action.response.data)
+      });
+
+      case types.DOWNLOAD_REPORT_SUCCESS:
+      return state.merge({
+        loading: false,
+        response: action.response.message,
+        error: '',
+        public_url: action.response.public_url
       });
    
       case types.GET_REPORT_LISTING_FAILURE:
+      case types.DOWNLOAD_REPORT_FAILURE:
       return state.merge({
         error: action.error.message,
         response: '',
