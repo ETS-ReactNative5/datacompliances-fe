@@ -14,6 +14,19 @@ export const getGraphDataFailure = action(
   'error',
 );
 
+export const downloadReportRequest = action(
+  types. DOWNLOAD_REPORT_REQUEST,
+  'product_id',
+);
+export const downloadReportSuccess = action(
+  types.DOWNLOAD_REPORT_SUCCESS,
+  'response',
+);
+export const downloadReportFailure = action(
+  types. DOWNLOAD_REPORT_FAILURE,
+  'error',
+);
+
 
 
 

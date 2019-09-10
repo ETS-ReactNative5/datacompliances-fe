@@ -108,10 +108,11 @@ function* createReportRequest(action) {
   const token = localStorage.getItem('token');
   const { product_id } = action;
   yield fork(
-    TenderKo.get(
+    TenderKo.post(
       `report/create/${product_id}`,
       actions.createReportSuccess,
       actions.createReportFailure,
+      {},
       token,
     ),
   );

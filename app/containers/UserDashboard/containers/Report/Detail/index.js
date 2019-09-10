@@ -11,6 +11,7 @@ import saga from './sagas';
 import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 import DoughnutChart from './DoughnutChart'
+import { Button } from 'semantic-ui-react'
 
 
 import 'c3/c3.css';
@@ -52,7 +53,8 @@ import {
 } from './selectors';
 
 import {
-  getGraphDataRequest
+  getGraphDataRequest,
+  downloadReportRequest
 } from './actions'
 
 const mapStateToProps = createStructuredSelector({
@@ -64,7 +66,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   clearMessage: () => dispatch(clearMessage()),
-  getGraphDataRequest: (id) => dispatch(getGraphDataRequest(id))
+  getGraphDataRequest: (id) => dispatch(getGraphDataRequest(id)),
+  downloadReportRequest: (id) => dispatch(downloadReportRequest(id))
 });
 
 class NewReferral extends React.Component {
@@ -258,6 +261,10 @@ class NewReferral extends React.Component {
 }
 }
 
+ downloadReport = () => {
+    this.props.downloadReportRequest(this.props.match.params.id)
+ }
+
   render() {
     const { data, errors, graphData, pciTotal, complianceTotal } = this.state;
     const { isRequesting, errorResponse, successResponse } = this.props;
@@ -265,6 +272,7 @@ class NewReferral extends React.Component {
       <div>
         {!isRequesting ? 
         <div className="graphs">
+          <Button color="green" onClick={this.downloadReport}>Download Report</Button>
           <div className="clearfix">
             <div className="bar-graph mb-5 mr-3" >
               <p className="chart-title">Number of NIST and PCI Controls Assessed</p>

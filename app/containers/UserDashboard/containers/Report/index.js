@@ -11,7 +11,6 @@ import { compose } from 'redux';
 import Toaster from 'components/Toaster';
 import noreport from 'assets/images/report.png';
 import { Link } from 'react-router-dom'
-import { loadReferCodeRequest } from './actions';
 import {
   makeSelectLoading,
   makeSelectResponse,
@@ -53,7 +52,6 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadReferCode: id => dispatch(loadReferCodeRequest(id)),
   showDialog: dialog => dispatch(showDialog(dialog)),
   getReportsListingRequest: () => dispatch(getReportsListingRequest())
 });
