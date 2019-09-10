@@ -7,6 +7,19 @@
 import action from 'utils/action';
 import * as types from './constants';
 
+export const createReportRequest = action(
+  types.CREATE_REPORT_REQUEST,
+  'product_id',
+);
+export const createReportSuccess = action(
+  types.CREATE_REPORT_SUCCESS,
+  'response',
+);
+export const createReportFailure = action(
+  types.CREATE_REPORT_FAILURE,
+  'error',
+);
+
 
 export const saveAnswerRequest = action(
   types.SAVE_ANSWER_REQUEST,

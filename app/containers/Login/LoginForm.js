@@ -284,7 +284,9 @@ class LoginForm extends React.Component {
             >
               Login
             </Button>
-            <p className="forgot-password"> 
+            <br />
+            <br />
+            <div className="forgot-password"> 
               {window.location.pathname.split('/')[1] != 'guest-detail' && (
                 <div>
                 <a
@@ -303,7 +305,7 @@ class LoginForm extends React.Component {
              </Link> 
              </div>
               )}
-            </p>
+            </div>
             {response && 
           <div>
              <Modal id="privatekey" className=" " open={this.state.modalOpen} size="mini" style={{leftMargin :  "20%"}} >

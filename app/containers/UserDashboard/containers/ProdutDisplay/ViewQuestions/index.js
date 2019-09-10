@@ -31,10 +31,11 @@ import {
   clearMessage,
   postResultRequest,
   postQuestionScoreRequest,
-  saveAnswerRequest
+  saveAnswerRequest,
+  createReportRequest
 } from './actions';
 import ViewQuestionsForm from './ViewQuestionsForm';
-import ConfirmedPage from './ConfirmedPage';
+// import ConfirmedPage from './ConfirmedPage';
 import { Redirect } from 'react-router-dom'
 
 
@@ -57,7 +58,8 @@ const mapDispatchToProps = dispatch => ({
   clearMessage: () => dispatch(clearMessage()),
   postResult: result => dispatch(postResultRequest(result)),
   postQuestionScore: score => dispatch(postQuestionScoreRequest(score)),
-  saveAnswerRequest: payload => dispatch(saveAnswerRequest(payload))
+  saveAnswerRequest: payload => dispatch(saveAnswerRequest(payload)),
+  createReportRequest: (product_id) => dispatch(createReportRequest(product_id))
 });
 var check = 0;
 let score_arr = [];
@@ -368,6 +370,7 @@ class ViewQuestions extends React.Component {
   }
   confirmSubmitQuestions = () => {
     this.setState({confirmedPage: true})
+    this.props.createReportRequest(this.props.match.params.product_id)
   }
 
   closeClick = () => {

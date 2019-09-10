@@ -14,6 +14,7 @@ const initialState = fromJS({
 function graphData(state = initialState, action) {
   switch (action.type) {
     case types.GET_GRAPH_REQUEST:
+    case types.DOWNLOAD_REPORT_REQUEST:
       return state.merge({
         requesting: true,
         response: '',
@@ -27,7 +28,16 @@ function graphData(state = initialState, action) {
         requesting: false,
         graphData: action.response.data
       });
+
+    case types.DOWNLOAD_REPORT_SUCCESS:
+      return state.merge({
+        response: action.response.message,
+        error: '',
+        requesting: false,
+      });
+
     case types.GET_GRAPH_FAILURE:
+    case types.DOWNLOAD_REPORT_FAILURE:
       return state.merge({
         requesting: false,
         error: action.error.message,

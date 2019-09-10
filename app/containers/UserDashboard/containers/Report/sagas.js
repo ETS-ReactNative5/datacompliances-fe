@@ -1,40 +1,38 @@
 import { call, takeLatest } from 'redux-saga/effects';
 import * as types from './constants';
 import * as actions from './actions';
-import XcelTrip from 'utils/apiHelper';
+import PCSC from 'utils/apiHelper';
 import getToken from 'utils/getToken';
 // import jwtDecode from 'jwt-decode';
 
-function* loadReferCode(action) {
+
+function* getReportsListingRequest(action) {
   const token = getToken();
   yield call(
-    XcelTrip.get(
-      `beneficiary/fetch/referral/code/${action.userId}`,
-      actions.loadReferCodeSuccess,
-      actions.loadReferCodeFailure,
+    PCSC.get(
+      `report`,
+      actions.getReportsListingSuccess,
+      actions.getReportsListingFailure,
       token,
     ),
   );
 }
 
-// function* updateReferral(action) {
-//   const token = getToken();
-//   // const userId = jwtDecode(token).user._id
-//   const {
-//     newReferral: { newCode },
-//   } = action;
-//   yield call(
-//     XcelTrip.post(
-//       `beneficiary/customize/referral/code`,
-//       actions.changeReferralSuccess,
-//       actions.changeReferralFailure,
-//       { new_referral_code: newCode },
-//       token,
-//     ),
-//   );
-// }
+function* downloadReportRequest(action) {
+  const token = getToken();
+  yield call(
+    PCSC.post(
+      `report/download/${action.product_id}/${action.key}`,
+      actions.downloadReportSuccess,
+      actions.downloadReportFailure,
+      {},
+      token,
+    ),
+  );
+}
 
-export default function* agentSettingsWatcher() {
-  yield takeLatest(types.LOAD_REFER_CODE_REQUEST, loadReferCode);
+export default function* reportsWatcher() {
+  yield takeLatest(types.GET_REPORT_LISTING_REQUEST, getReportsListingRequest);
+  yield takeLatest(types.DOWNLOAD_REPORT_REQUEST, downloadReportRequest);
   // yield takeLatest(types.CHANGE_REFERRAL_REQUEST, updateReferral);
 }

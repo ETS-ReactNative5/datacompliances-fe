@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import {  } from 'semantic-ui-react';
-import { changeReferralRequest, clearMessage } from './actions';
+import { clearMessage } from './actions';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -11,6 +11,7 @@ import saga from './sagas';
 import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 import DoughnutChart from './DoughnutChart'
+import { Button } from 'semantic-ui-react'
 
 
 import 'c3/c3.css';
@@ -52,7 +53,8 @@ import {
 } from './selectors';
 
 import {
-  getGraphDataRequest
+  getGraphDataRequest,
+  downloadReportRequest
 } from './actions'
 
 const mapStateToProps = createStructuredSelector({
@@ -63,13 +65,15 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setReferral: data => dispatch(changeReferralRequest(data)),
   clearMessage: () => dispatch(clearMessage()),
-  getGraphDataRequest: (id) => dispatch(getGraphDataRequest(id))
+  getGraphDataRequest: (id) => dispatch(getGraphDataRequest(id)),
+  downloadReportRequest: (id) => dispatch(downloadReportRequest(id))
 });
 
 class NewReferral extends React.Component {
   state = {
+    complianceTotal: 0,
+    pciTotal: 0,
     data: {},
     errors: {},
     close: true,
@@ -112,8 +116,14 @@ class NewReferral extends React.Component {
      })
          const total_compliance = ((a*100) / b)
          const pci_compliance = ((pciA*100) / pciB)
-          !this.props.isRequesting && this.updateChart2(total_compliance);
-          !this.props.isRequesting && this.updateChart3(pci_compliance);
+         
+          if(b != 0){
+            this.setState({complianceTotal: b}, ()=> {!this.props.isRequesting && this.updateChart2(total_compliance);})
+            
+          }
+          if(pciB != 0) {
+            this.setState({pciTotal: pciB}, ()=> { !this.props.isRequesting && this.updateChart3(pci_compliance);})
+          }
       });
     }
     // if (nextProps.errorResponse != this.props.errorResponse) {
@@ -133,15 +143,16 @@ class NewReferral extends React.Component {
 
   updateChart2 = (data) => {
     if(true) {
+      
     // if(!Number.isNaN(data) && data !== undefined) {
     const rValue = Math.round(data)
     var chart2 = c3.generate({
     bindto: '#chart2',
       data: {
           columns: [
-            rValue < 29 ? ['Poor', rValue] : 
-            (rValue > 29 && rValue < 60) ? ['Fair', rValue] :
-             (rValue > 59 && rValue < 90) ? ['Good',rValue] :
+            rValue <= 29 ? ['Poor', rValue] : 
+            (rValue > 29 && rValue <= 60) ? ['Fair', rValue] :
+             (rValue > 60 && rValue < 90) ? ['Good',rValue] :
               ['Excellent', rValue]
           ],
           type: 'gauge',
@@ -250,13 +261,18 @@ class NewReferral extends React.Component {
 }
 }
 
+ downloadReport = () => {
+    this.props.downloadReportRequest(this.props.match.params.id)
+ }
+
   render() {
-    const { data, errors, graphData } = this.state;
+    const { data, errors, graphData, pciTotal, complianceTotal } = this.state;
     const { isRequesting, errorResponse, successResponse } = this.props;
     return (
       <div>
         {!isRequesting ? 
         <div className="graphs">
+          {/* <Button color="green" onClick={this.downloadReport}>Download Report</Button> */}
           <div className="clearfix">
             <div className="bar-graph mb-5 mr-3" >
               <p className="chart-title">Number of NIST and PCI Controls Assessed</p>
@@ -269,19 +285,24 @@ class NewReferral extends React.Component {
            })
            }
            </div>
+           {pciTotal != 0 &&
            <div className="clearfix">
             <div className="gauge-chart mb-5 mt-5">
               <p className="chart-title">PCI Score</p>
-              <div style={{width: '100%'}} id="chart3">Gauge Graph</div>
+              <div style={{width: '100%'}} id="chart3">No PCI score available</div>
             </div>
           </div>
+           }
+           {complianceTotal &&
           <div className="clearfix">
             <div className="gauge-chart mb-5 mt-5">
               <p className="chart-title">Privacy and Cyber Security Score</p>
               <div style={{width: '100%'}} id="chart2">Gauge Graph</div>
             </div>
           </div>
+            }
         </div>
+           
         :
         <div className="product-grid">
           <div className="ui segment">

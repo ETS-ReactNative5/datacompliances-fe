@@ -104,6 +104,21 @@ function* saveAnswerRequest(action) {
   yield cancel(successWatcher);
 }
 
+function* createReportRequest(action) {
+  const token = localStorage.getItem('token');
+  const { product_id } = action;
+  yield fork(
+    TenderKo.post(
+      `report/create/${product_id}`,
+      actions.createReportSuccess,
+      actions.createReportFailure,
+      {},
+      token,
+    ),
+  );
+}
+
+
 // Individual exports for testing
 export default function* viewPracticeWatcher() {
   yield takeLatest(
@@ -113,4 +128,5 @@ export default function* viewPracticeWatcher() {
   yield takeLatest(types.POST_RESULT_REQUEST, postResultRequest);
   yield takeLatest(types.POST_QUESTION_SCORE_REQUEST, postQuestionScoreRequest);
   yield takeLatest(types.SAVE_ANSWER_REQUEST, saveAnswerRequest);
+  yield takeLatest(types.CREATE_REPORT_REQUEST, createReportRequest);
 }

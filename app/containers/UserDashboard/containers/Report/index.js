@@ -11,84 +11,85 @@ import { compose } from 'redux';
 import Toaster from 'components/Toaster';
 import noreport from 'assets/images/report.png';
 import { Link } from 'react-router-dom'
-import { loadReferCodeRequest } from './actions';
 import {
-  makeSelectLoading
+  makeSelectLoading,
+  makeSelectReportList,
+  makeSelectPublicURL
 } from './selectors';
-import {  } from 'semantic-ui-react';
+import { Button, Modal, Header } from 'semantic-ui-react';
 import { makeSelectLocation } from '../../../App/selectors';
 
-
-// import C3Chart from 'react-c3js';
-
-
-// import 'c3/c3.css';
-// import c3 from 'c3';
-
-
-// import {
-//   BarChart,
-//   Bar,
-//   XAxis,
-//   YAxis,
-//   CartesianGrid,
-//   Tooltip,
-//   Legend,
-//   ResponsiveContainer,
-//   PieChart, Pie, Sector, Cell,
-// } from 'recharts';
-
-//...................................mock confirmed submit response............................
-
-const confirmedSubmit = true
-
-
-//...................................mock confirmed submit response............................
-
-
-//..................................mock for recharts if needed....................................
-// const data03 = [
-//   {name: 'Page A', value: 40},
-//   {name: 'Page B', value: 30},
-//   {name: 'Page C', value: 20},
-//   {name: 'Page D', value: 24},
-//   {name: 'Page E', value: 10},
-//   {name: 'Page F', value: 20},
-//   {name: 'Page G', value: 30},
-// ];
-
-const data = [
-  // { name: 'Group A', value: 400 },
-  // { name: 'Group B', value: 300 },
-  // { name: 'Group C', value: 300 },
-  // { name: 'Group D', value: 200 },
-  // { name: 'Group D', value: 250 },
-];
-
-
-
-// const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
-//..................................mock for recharts if needed....................................
-
+import {
+  getReportsListingRequest,
+  downloadReportRequest
+} from './actions'
 
 const mapStateToProps = createStructuredSelector({
   isRequesting: makeSelectLoading(),
   location: makeSelectLocation(),
+  reportsList:makeSelectReportList(),
+   publicURL:makeSelectPublicURL()
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadReferCode: id => dispatch(loadReferCodeRequest(id)),
   showDialog: dialog => dispatch(showDialog(dialog)),
+  getReportsListingRequest: () => dispatch(getReportsListingRequest()),
+  downloadReportRequest: (key, id) => dispatch(downloadReportRequest(key, id))
 });
 
 class Report extends React.Component {
-  state = { showCopyMsg: false, newreferral: false };
+  constructor(props) {
+    super(props);
+      this.state = { showCopyMsg: false, newreferral: false, allReportsList: '', downloadURL: '', showModal: false };
+  }
+  componentDidMount() {
+    this.props.getReportsListingRequest()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.reportsList != nextProps.reportsList) {
+      this.setState({
+        allReportsList: nextProps.reportsList && nextProps.reportsList.toJS(),
+      });
+    }
+    if (this.props.publicURL != nextProps.publicURL) {
+      this.setState({
+        downloadURL: nextProps.publicURL && nextProps.publicURL,
+      });
+    }
+  }
+  downloadReport = (filename, productId) => {
+    this.props.downloadReportRequest(filename, productId)
+  }
+
+  closeModal = () => {
+    this.setState({downloadURL: ''})
+  }
 
   render() {
     const {  } = this.props;
+    const { allReportsList, downloadURL, showModal } = this.state
     return (
       <div>
+        {downloadURL != '' && 
+           <Modal className="multi-fac-modal" open={downloadURL != ''} size="mini" style={{leftMargin :  "20%"}} >
+           <Header icon='info circle' content='PDF report' />
+           <Modal.Content style={{minHeight :  "80px"}}>
+           <span>Click download to get PDF report.</span>
+           </Modal.Content>
+           <Modal.Actions>
+           <a className="ui green button" href={downloadURL} target="_blank">Download</a>
+             <Button
+               color="red"
+               className="button"
+               onClick={this.closeModal}
+             >
+               Cancel
+             </Button>
+           </Modal.Actions>
+         </Modal>
+        
+        }
         <div className="package_not_found">
           {this.props.location.pathname == '/user/dashboard/reports' &&
             <div className="ui breadcrumb">
@@ -104,44 +105,45 @@ class Report extends React.Component {
               <div className="active section">Reports</div>
             </div>
           }
-          
-          {confirmedSubmit == false &&
-            <div className="no-products">
-                  <img src={noreport}/>
-                </div>
-          }
           <div className="product-listing">
             <h1 className="main_title">Your Reports</h1>
              <div className="product-grid">
-              {data.length > 0 ? (
-                data.map((packageData, idx) =>
+              {allReportsList && allReportsList.dataList && allReportsList.dataList.length > 0 ? (
+                allReportsList.dataList.map((item, idx) =>
                     <div key={`paidList${idx}`} className="product-item">
                       <div className="product-wrap">
-                          <span className="product-title">Report Name</span>
+                          <span className="product-title">Report</span>
                           <br />
                           <br />
                           <ul className="feature-list">
                            <li>
                             <i className="icon-check"/>
-                            <span>Report Of: Product Name</span> 
+                            <span>Report Of: {item && item.product && item.product[0].title}</span> 
                            </li>
                             <li>
                                 <i className="icon-check"/>
-                              <span>Country: Country Name </span>
+                              <span>Country: {item && item.product && item.product[0].country} </span>
                             </li>
                             <li>
                                 <i className="icon-check"/>
-                              <span>Industry: Industry Name </span> 
+                              <span>Industry: {item && item.product && item.product[0].industry} </span> 
                             </li>
                           </ul>
                           <div className="buttons-wrap">
                         <Link
-                            className="ui mini icon button detail-btn"
-                            to={`/user/dashboard/report/detail/`}
+                            className="ui blue button basic "
+                            to={`/user/dashboard/report/detail/${item && item.product_id}`}
                             key={`view__1`}
                           >
                           View Detail
                         </Link>
+                          <Button 
+                          className="ui green button basic"
+                              
+                              onClick={() => 
+                                      this.downloadReport(item && item.report_data && item.report_data.Key, item && item.product_id)}>
+                                    Download Report
+                          </Button>
                         </div>
                       </div>
                     </div>
