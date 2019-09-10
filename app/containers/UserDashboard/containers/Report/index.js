@@ -131,16 +131,14 @@ class Report extends React.Component {
                           </ul>
                           <div className="buttons-wrap">
                         <Link
-                            className="ui blue button "
+                            className="ui blue button basic "
                             to={`/user/dashboard/report/detail/${item && item.product_id}`}
                             key={`view__1`}
                           >
                           View Detail
                         </Link>
-                        <br />
-                        <br />
                           <Button 
-                          className="ui green button"
+                          className="ui green button basic"
                               
                               onClick={() => 
                                       this.downloadReport(item && item.report_data && item.report_data.Key, item && item.product_id)}>
