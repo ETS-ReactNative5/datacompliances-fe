@@ -104,6 +104,11 @@ function UserRoutes({ location, status }) {
         path="/user/dashboard/product-display/questions/:product_id"
         component={ViewProductQuestions}
       />
+	   <Route
+        exact
+        path="/user/dashboard/product-display/questions/summary/:product_id"
+        component={ViewProductQuestions}
+      />
       <Route
         exact
         path="/user/dashboard/product-display/practice-quiz/:exam_id"

@@ -26,7 +26,7 @@ function* loadAllExamRequestService(action) {
   yield cancel(successWatcher);
 }
 
-function* loadAllPackageExams(action) {
+function* getProductDetails(action) {
   const token = localStorage.getItem("token");
   const {package_id} = action;
   yield fork(
@@ -66,5 +66,5 @@ export default function* examDisplayWatcher() {
   // See example in containers/HomePage/sagas.js
   yield takeLatest(types.LOAD_ALL_EXAM_REQUEST, loadAllExamRequestService);
   yield takeLatest(types.LOAD_EXAM_BY_ID_REQUEST, loadExamByIdService);
-  yield takeLatest(types.LOAD_PACKAGE_EXAMS_REQUEST, loadAllPackageExams);
+  yield takeLatest(types.LOAD_PACKAGE_EXAMS_REQUEST, getProductDetails);
 }

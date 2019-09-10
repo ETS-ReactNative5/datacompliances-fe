@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   Grid,
@@ -10,22 +11,7 @@ import {
   Label,Progress
 } from 'semantic-ui-react';
 import '../assests/style.scss';
-import logo_next from '../assests/next.svg';
-import logo_previous from '../assests/previous.svg';
 
-// const mockData = {
-//   "status": 200,
-//   "data": {
-//     "_id": "d1519df0-bfdf-11e9-9022-197a96d8b532",
-//     "user_id": "dc5275e0-ba5c-11e9-a6c7-31c1c9cd3aec",
-//     "product_id": "50637d80-b9fe-11e9-b0d4-1b64d2910f02",
-//     "question_answer": {
-//       // "317854b0-b907-11e9-910c-5db73aa5a3fa": "Yes",
-//       // "19d7d910-be53-11e9-94d7-a5e0e6414811": "Option 4 is this",
-//       // "26471ec0-be5a-11e9-94d7-a5e0e6414811": "Sarik"
-//     }
-//   }
-// }
 var complete;
 
 const ViewPracticeQuestion = props => {
@@ -62,7 +48,8 @@ const ViewPracticeQuestion = props => {
     bit,
     handleRevise,
     confirmSubmitQuestions,
-    progressBar
+    progressBar,
+    summaryPage
   } = props;
 
    const yesno = [
@@ -281,7 +268,9 @@ const ViewPracticeQuestion = props => {
         <div>
           <div className="score_point">
             <h2 className="main_title">Detail</h2>
+            {summaryPage != true &&
             <span>Note: Please answer every questions to submit for report generation.</span>
+            }
           </div>
           <div className="resultdetail mr-5">
             <Grid>
@@ -290,9 +279,10 @@ const ViewPracticeQuestion = props => {
                 data.map((question, indx) => {
 
                   if(true){
-                    complete = saveAnswerResponse.question_answer.hasOwnProperty(question.questionnaire_id) && 
-                     saveAnswerResponse.question_answer[question.questionnaire_id] != '' ? 
-                       saveAnswerResponse.question_answer[question.questionnaire_id] : 'Not Answered'
+                    complete = saveAnswerResponse && saveAnswerResponse.question_answer && 
+                      saveAnswerResponse.question_answer.hasOwnProperty(question.questionnaire_id) && 
+                        saveAnswerResponse.question_answer[question.questionnaire_id] != '' ? 
+                          saveAnswerResponse.question_answer[question.questionnaire_id] : 'Not Answered'
                    }
                   
                   return(
@@ -307,7 +297,8 @@ const ViewPracticeQuestion = props => {
                             
                             <h3 className="question-title mb-3"><span><b>Q.{indx + 1}</b></span> {question.question}</h3>
                             <p className="your-answer"><b>:</b> 
-                            {saveAnswerResponse.question_answer.hasOwnProperty(question.questionnaire_id) && 
+                            { saveAnswerResponse && saveAnswerResponse.question_answer && 
+                              saveAnswerResponse.question_answer.hasOwnProperty(question.questionnaire_id) && 
                                 saveAnswerResponse.question_answer[question.questionnaire_id] != '' ? 
                                 saveAnswerResponse.question_answer[question.questionnaire_id] : 'Not Answered' }
                             </p>
@@ -317,9 +308,22 @@ const ViewPracticeQuestion = props => {
                   </Grid.Column>
                 )
                 })}
-                <Button onClick={e => handleRevise()} color="blue">Revise</Button>
-                <Button disabled= {complete == 'Not Answered'} onClick={confirmSubmitQuestions} color="green">Confirm Submit</Button>
-            </Grid>
+                {summaryPage != true &&
+                  <div>
+                  <Button onClick={e => handleRevise()} color="blue">Revise</Button>
+                  <Button disabled= {complete == 'Not Answered'} onClick={confirmSubmitQuestions} color="green">Confirm Submit</Button>
+                  </div>
+                 }
+                 {summaryPage == true &&
+                    <Link
+                    className="button buy-btn"
+                    to={`/user/dashboard/product-display/${productId}`}
+                    role="button"
+                    >
+                    Back
+                  </Link>
+                 }
+                </Grid>
           </div>
         </div>
       )}

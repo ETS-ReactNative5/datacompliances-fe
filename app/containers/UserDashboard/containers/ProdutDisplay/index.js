@@ -10,16 +10,10 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import Toaster from 'components/Toaster';
 import {
-  Form,
   Grid,
-  Card,
-  Icon,
-  CardContent,
-  Radio,
-  Button,
 } from 'semantic-ui-react';
 import moment from 'moment';
-import { Link, Push } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import reducer from './reducer';
@@ -28,14 +22,9 @@ import { compose } from 'redux';
 import { DOCUMENT_URL_UPDATE } from 'containers/App/constants';
 import mediquiz from 'assets/images/pkg_lst2.jpg';
 import {
-  makeSelectRequesting,
-  makeSelectResponse,
-  makeSelectError,
   makeSelectSuccess,
-  makeSelectDataObj,
-  makeSelectXResponse,
-  makeSelectExamDisplay,
   makeSelectExams,
+  makeSelectReportInfo
 } from './selectors';
 import {
   loadAllExamRequest,
@@ -47,12 +36,8 @@ import './assests/style.scss';
 
 const mapStateToProps = createStructuredSelector({
   isSuccess: makeSelectSuccess(),
-  // isRequesting: makeSelectRequesting(),
-  // successResponse: makeSelectResponse(),
-  // errorResponse: makeSelectError(),
-  // xresponse: makeSelectXResponse(),
-  // data: makeSelectDataObj(),
   exams: makeSelectExams(),
+  reportInfo:makeSelectReportInfo()
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -64,13 +49,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class ExamDisplay extends React.Component {
-  // eslint-disable-line react/prefer-stateless-function
-  // static propTypes = {
-  //   isSuccess: PropTypes.bool.isRequired,
-  //   isRequesting: PropTypes.bool.isRequired,
-  //   successResponse: PropTypes.string.isRequired,
-  //   errorResponse: PropTypes.string.isRequired,
-  // };
 
   state = {
     page: 1,
@@ -95,8 +73,11 @@ class ExamDisplay extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.reportInfo !== this.props.reportInfo) {
+      this.setState({ reportSubmitted: nextProps.reportInfo && nextProps.reportInfo.toJS().assessment_submission_confirmed });
+    }
     if (nextProps.data !== this.props.data) {
-      this.setState({ data: nextProps.data.toJS() });
+      this.setState({ data: nextProps.data && nextProps.data.toJS() });
     }
     if (nextProps.exams !== this.props.exams) {
       this.setState({ data: nextProps.exams.toJS() }, () => {
@@ -133,7 +114,7 @@ class ExamDisplay extends React.Component {
   };
 
   render() {
-    const { page, perPage, data } = this.state;
+    const { page, perPage, data, reportSubmitted } = this.state;
     let url = window.location.href.split('/');
     const {
       successResponse,
@@ -193,16 +174,29 @@ class ExamDisplay extends React.Component {
                       <p className="product-price"><span>Price : </span><small>$</small>{exam.price}</p>
                       <p className="product-country"><span>Country : </span>{exam.country}</p>
                       <p className="product-description"><span>Description : </span>{exam.description}</p>
+                     { reportSubmitted == true ? 
                       <Link
                           className="button buy-btn"
-                          to={`/user/dashboard/product-display/questions/${exam._id}`}
+                          to={`/user/dashboard/product-display/questions/summary/${exam._id}`}
                           role="button"
                           disabled={Object.keys(this.state.data[idx]).includes(
                             'quiz_type',
                           )}
                         >
-                          Start your assessment
+                          View Summary
                         </Link>
+                        :
+                        <Link
+                        className="button buy-btn"
+                        to={`/user/dashboard/product-display/questions/${exam._id}`}
+                        role="button"
+                        disabled={Object.keys(this.state.data[idx]).includes(
+                          'quiz_type',
+                        )}
+                      >
+                        Start your assessment
+                      </Link>
+                     }
                         </div>
                     </div>
                   </div>

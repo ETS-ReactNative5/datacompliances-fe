@@ -85,10 +85,17 @@ class ViewQuestions extends React.Component {
     confirmedPage: false,
     redirect: false,
     subjectiveQuesId: '',
-    progressBar: 0
+    progressBar: 0,
+    summaryPage: false
   };
 
   componentDidMount() {
+    const summaryPage = this.props.location && 
+                             this.props.location.pathname && 
+                                    this.props.location.pathname.split("/").includes("summary")
+    if(summaryPage) {
+      this.setState({summaryPage: true, show_final_result: true })
+    }          
     const { page, perPage, query } = this.state;
      const payload ={
           user_id: this.props.currentUser.toJS()._id,
@@ -137,7 +144,6 @@ class ViewQuestions extends React.Component {
   componentWillReceiveProps(nextProps) {
 
     if ((nextProps.saveAnswerResponse !== this.props.saveAnswerResponse) && nextProps.saveAnswerResponse.size > 0) {
-      // console.log(nextProps.saveAnswerResponse && nextProps.saveAnswerResponse.toJS(),'>>>>>>>>>>>>>',this.props.saveAnswerResponse,'.......',nextProps.saveAnswerResponse == {})
       this.setState({
         saveAnswerResponse: nextProps.saveAnswerResponse && nextProps.saveAnswerResponse.toJS(),
       });
@@ -207,7 +213,6 @@ class ViewQuestions extends React.Component {
   }
   
   handleAnswerChange = (e, event, answerIdx, mainIdx, questionId) => {
-    // console.log(answerIdx,'sssss',mainIdx,'sssss>',event.value,'----',questionId,'=>>pro_id==',this.props.match.params.product_id,'...>',this.props.currentUser.toJS()._id)
     if(event.as != 'textarea' )  {
     const payload ={
       user_id: this.props.currentUser.toJS()._id,
@@ -399,7 +404,8 @@ class ViewQuestions extends React.Component {
       subjectiveQuesId,
       bit,
       progressBar,
-      redirect
+      redirect,
+      summaryPage
     } = this.state;
     const { successResponse, errorResponse } = this.props;
     let message = null;
@@ -426,6 +432,7 @@ class ViewQuestions extends React.Component {
         }
         <ViewQuestionsForm
           data={data}
+          summaryPage={summaryPage}
           tempValue={tempValue}
           progressBar={progressBar}
           subjectiveQuesId={subjectiveQuesId}
@@ -435,7 +442,7 @@ class ViewQuestions extends React.Component {
           handleRevise={this.handleRevise}
           page={page}
           perPage={perPage}
-          productId={this.state.product_id}
+          productId={this.props.match.params.product_id}
           saveSubjectiveAnswer={this.saveSubjectiveAnswer}
           handleAnswerChange={this.handleAnswerChange}
           handleNextButton={this.handleNextButton}
