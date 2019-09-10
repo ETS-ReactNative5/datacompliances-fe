@@ -17,6 +17,20 @@ function* getGraphDataRequest(action) {
   );
 }
 
-export default function* agentSettingsWatcher() {
+function* downloadReportRequest(action) {
+  const token = getToken();
+  yield call(
+    PCSC.post(
+      `report/download/${action.product_id}`,
+      actions.downloadReportSuccess,
+      actions.downloadReportFailure,
+      {},
+      token,
+    ),
+  );
+}
+
+export default function* reportDetailWatcher() {
   yield takeLatest(types.GET_GRAPH_REQUEST, getGraphDataRequest);
+  yield takeLatest(types.DOWNLOAD_REPORT_REQUEST, downloadReportRequest);
 }

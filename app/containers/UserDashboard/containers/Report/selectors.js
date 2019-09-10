@@ -1,34 +1,39 @@
 import { createSelector } from 'reselect';
 
-export const selectMyProfile = state => state.report;
+export const getMyReports = state => state.report;
 
-// const makeSelectReferCode = () =>
-//   createSelector(
-//     selectMyProfile,
-//     myProfileState => myProfileState.get('referCode'),
-  // );
 const makeSelectResponse = () =>
   createSelector(
-    selectMyProfile,
-    myProfileState => myProfileState.get('response'),
+    getMyReports,
+    state => state.get('response'),
+  );
+  const makeSelectReportList = () =>
+  createSelector(
+    getMyReports,
+    state => state.get('reportList'),
   );
 const makeSelectError = () =>
   createSelector(
-    selectMyProfile,
-    myProfileState => myProfileState.get('error'),
+    getMyReports,
+    state => state.get('error'),
   );
 const makeSelectLoading = () =>
   createSelector(
-    selectMyProfile,
-    myProfileState => myProfileState.get('loading'),
+    getMyReports,
+    state => state.get('loading'),
   );
-// const makeSelectRequestingReferralChange = () =>
-//   createSelector(selectMyProfile, myProfileState => myProfileState.get('requestingReferralChange'));
+
+  const makeSelectPublicURL = () =>
+  createSelector(
+    getMyReports,
+    state => state.get('public_url'),
+  );
+
 
 export {
-  // makeSelectReferCode,
   makeSelectResponse,
   makeSelectError,
   makeSelectLoading,
-  // makeSelectRequestingReferralChange,
+  makeSelectReportList,
+  makeSelectPublicURL
 };

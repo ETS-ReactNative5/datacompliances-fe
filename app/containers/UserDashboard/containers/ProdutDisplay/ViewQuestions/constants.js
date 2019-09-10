@@ -3,10 +3,13 @@
  * ViewPractice constants
  *
  */
-
 export const SAVE_ANSWER_REQUEST = 'app/ViewPractice/SAVE_ANSWER_REQUEST';
 export const SAVE_ANSWER_SUCCESS = 'app/ViewPractice/SAVE_ANSWER_SUCCESS';
 export const SAVE_ANSWER_FAILURE = 'app/ViewPractice/SAVE_ANSWER_FAILURE';
+
+export const CREATE_REPORT_REQUEST = 'app/ViewPractice/CREATE_REPORT_REQUEST';
+export const CREATE_REPORT_SUCCESS = 'app/ViewPractice/CREATE_REPORT_SUCCESS';
+export const CREATE_REPORT_FAILURE = 'app/ViewPractice/CREATE_REPORT_FAILURE';
 
 export const DEFAULT_ACTION_REQUEST = 'app/ViewPractice/DEFAULT_ACTION_REQUEST';
 export const DEFAULT_ACTION_SUCCESS = 'app/ViewPractice/DEFAULT_ACTION_SUCCESS';
