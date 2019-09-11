@@ -14,6 +14,8 @@ import Report from '../containers/Report/Loadable'
  import ReportDetails from '../containers/Report/Detail'
 // import SubscribedProducts from '../containers/ProductList/Cart/SubscribedProduct'
 
+import Cart from '../containers/Cart/Loadable'
+
 import ProductList from '../containers/ProductList/'
 import ProductDetails from '../containers/ProductList/Detail/Loadable'
 import SubscribedProducts from '../containers/ProductList/Cart/SubscribedProduct'
@@ -63,6 +65,9 @@ function UserRoutes({ location, status }) {
 					/>
 				)}
 			/>
+
+            <Route exact path="/user/dashboard/cart" component={Cart} />
+
 			<Route exact path="/user/dashboard/reports" component={Report} />
 			<Route exact path="/user/dashboard/report/detail/:id" component={ReportDetails} />
 
