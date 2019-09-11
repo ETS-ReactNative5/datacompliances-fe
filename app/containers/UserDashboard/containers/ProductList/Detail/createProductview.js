@@ -24,7 +24,7 @@ const CreateProductView = (props) => {
               <p className="product-country"><span>Country :</span> {viewdata && viewdata.country}</p>
               <p className="product-desc"> <span>Description :</span>{viewdata && viewdata.description}</p> 
               {!(viewdata && viewdata.OrderInfo && viewdata.OrderInfo.length > 0)  ?
-              <Button className="button buy-btn" onClick={buyProduct}>Buy this Product</Button>
+              <Button className="button buy-btn" onClick={buyProduct}>Add to Cart</Button>
                :
               <div>
                 <Button onClick={() => attemptQuestions(viewdata._id)} color="blue">Start your assessment</Button>

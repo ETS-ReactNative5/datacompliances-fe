@@ -6,45 +6,29 @@ const initialState = fromJS({
   loading: false,
   requesting: false,
   response: '',
-  reportList: '',
+  cartProductList: '',
   error: '',
   public_url: ''
 });
 
 function agentSettings(state = initialState, action) {
   switch (action.type) {
-    case types.GET_REPORT_LISTING_REQUEST:
+    case types.GET_PRODUCTS_IN_CART_REQUEST:
       return state.merge({
         loading: true,
         response: '',
-        reportList: '',
+        cartProductList: '',
         error: '',
       });
 
-    case types.DOWNLOAD_REPORT_REQUEST:
-        return state.merge({
-          loading: true,
-          response: '',
-          error: '',
-          public_url: ''
-        });   
-    case types.GET_REPORT_LISTING_SUCCESS:
+      case types.GET_PRODUCTS_IN_CART_SUCCESS:
       return state.merge({
         loading: false,
         response: '',
-        reportList: fromJS(action.response.data)
+        cartProductList: fromJS(action.response.data)
       });
 
-      case types.DOWNLOAD_REPORT_SUCCESS:
-      return state.merge({
-        loading: false,
-        response: action.response.message,
-        error: '',
-        public_url: action.response.public_url
-      });
-   
-      case types.GET_REPORT_LISTING_FAILURE:
-      case types.DOWNLOAD_REPORT_FAILURE:
+      case types.GET_PRODUCTS_IN_CART_FAILURE:
       return state.merge({
         error: action.error.message,
         response: '',

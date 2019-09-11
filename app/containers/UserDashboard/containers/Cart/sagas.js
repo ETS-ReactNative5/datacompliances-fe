@@ -6,33 +6,19 @@ import getToken from 'utils/getToken';
 // import jwtDecode from 'jwt-decode';
 
 
-function* getReportsListingRequest(action) {
+function* getProductsInCartRequest(action) {
   const token = getToken();
   yield call(
     PCSC.get(
-      `report`,
-      actions.getReportsListingSuccess,
-      actions.getReportsListingFailure,
+      `cart`,
+      actions.getProductsInCartSuccess,
+      actions.getProductsInCartFailure,
       token,
     ),
   );
 }
 
-function* downloadReportRequest(action) {
-  const token = getToken();
-  yield call(
-    PCSC.post(
-      `report/download/${action.product_id}/${action.key}`,
-      actions.downloadReportSuccess,
-      actions.downloadReportFailure,
-      {},
-      token,
-    ),
-  );
-}
 
 export default function* reportsWatcher() {
-  yield takeLatest(types.GET_REPORT_LISTING_REQUEST, getReportsListingRequest);
-  yield takeLatest(types.DOWNLOAD_REPORT_REQUEST, downloadReportRequest);
-  // yield takeLatest(types.CHANGE_REFERRAL_REQUEST, updateReferral);
+  yield takeLatest(types.GET_PRODUCTS_IN_CART_REQUEST, getProductsInCartRequest);
 }

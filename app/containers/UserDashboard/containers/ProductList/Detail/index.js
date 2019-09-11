@@ -14,7 +14,7 @@ import { Icon } from 'semantic-ui-react';
 import Toaster from 'components/Toaster';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import { loadProductByIdRequest, getQuestionRequest, buyProductRequest} from '../actions';
+import { loadProductByIdRequest, getQuestionRequest, addToCartRequest} from '../actions';
 import {
   makeSelectError,
   makeSelectRequesting,
@@ -54,7 +54,7 @@ const mapDispatchToProps = dispatch => ({
   fetchProduct: id => dispatch(loadProductByIdRequest(id)),
   getQuestionRequest: (page, perPage, query,) =>
    dispatch(getQuestionRequest(page, perPage, query)),
-   buyProductRequest: data => dispatch(buyProductRequest(data)),
+   addToCartRequest: data => dispatch(addToCartRequest(data)),
 });
 
 /* eslint-disable react/prefer-stateless-function */
@@ -99,7 +99,7 @@ export class ProductList extends React.Component {
       product_id: id,
       price: this.state.data.price,
     }
-    this.props.buyProductRequest(data)
+    this.props.addToCartRequest(data)
 
   }
   attemptQuestions = () => {

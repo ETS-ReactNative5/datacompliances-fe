@@ -20,7 +20,7 @@ import {
 // import { makeSelectLocation } from '../../../App/selectors';
 
 import {
-
+  getProductsInCartRequest
 } from './actions'
 
 const mapStateToProps = createStructuredSelector({
@@ -30,14 +30,23 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   showDialog: dialog => dispatch(showDialog(dialog)),
+  getProductsInCartRequest: () => dispatch(getProductsInCartRequest())
 });
 
-class Report extends React.Component {
+class Cart extends React.Component {
   constructor(props) {
     super(props);
       this.state = { 
 
       };
+  }
+
+  componentDidMount() {
+    this.props.getProductsInCartRequest()
+  }
+
+  componentWillReceiveProps(nextProps) {
+
   }
 
   render() {
@@ -112,4 +121,4 @@ export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(Report);
+)(Cart);
