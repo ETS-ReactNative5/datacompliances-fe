@@ -19,15 +19,15 @@ export const getQuestionSuccess = action(
 );
 export const getQuestionFailure = action(types.GET_QUESTION_FAILURE, 'error');
 
-export const buyProductRequest = action(
-  types.BUY_PRODUCT_REQUEST,
+export const addToCartRequest = action(
+  types.ADD_TO_CART_REQUEST,
   'payload'
 );
-export const buyProductSuccess = action(
-  types.BUY_PRODUCT_SUCCESS,
+export const addToCartSuccess = action(
+  types.ADD_TO_CART_SUCCESS,
   'response',
 );
-export const buyProductFailure = action(types.BUY_PRODUCT_FAILURE, 'error');
+export const addToCartFailure = action(types.ADD_TO_CART_FAILURE, 'error');
 
 export const loadAllProductRequest = action(
   types.LOAD_PRODUCT_REQUEST,

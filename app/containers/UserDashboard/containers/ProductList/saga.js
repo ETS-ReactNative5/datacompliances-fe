@@ -125,30 +125,30 @@ function* getQuestionRequest(action) {
 }
 
 function* redirectOnBuySuccess() {
-  const action = yield take(types.BUY_PRODUCT_SUCCESS);
+  const action = yield take(types.ADD_TO_CART_SUCCESS);
   yield put(push(`/user/dashboard/product-display/${action.response.data.product_id}`));
 }
 
-function* buyProductRequest(action) {
+function* addToCartRequest(action) {
   const token = localStorage.getItem('token');
   const { payload } = action;
   const successWatcher = yield fork(redirectOnBuySuccess);
 
   yield fork(
     Api.post(
-      `order`,
-      actions.buyProductSuccess,
-      actions.buyProductFailure,
+      `cart`,
+      actions.addToCartSuccess,
+      actions.addToCartFailure,
       payload,
       token,
     ),
   );
-  yield take([LOCATION_CHANGE, types.BUY_PRODUCT_FAILURE]);
+  yield take([LOCATION_CHANGE, types.ADD_TO_CART_FAILURE]);
   yield cancel(successWatcher);
 }
 
 export default function* packageWatcher() {
-  yield takeLatest(types.BUY_PRODUCT_REQUEST, buyProductRequest);
+  yield takeLatest(types.ADD_TO_CART_REQUEST, addToCartRequest);
   yield takeLatest(types.LOAD_PRODUCT_REQUEST, loadAllProduct);
   yield takeLatest(types.LOAD_PACKGE_BY_ID_REQUEST, loadProductByIdRequest);
   yield takeLatest(types.POST_CART_REQUEST, postCartRequest);
