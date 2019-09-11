@@ -64,7 +64,7 @@ class Cart extends React.Component {
     <div class="content">
       <p class="header">Product Name</p>
       <div class="meta">
-      <span class="price">$1200</span>
+      <span class="price">Price: $1200</span>
        
         {/* <span class="tag">Profile Name </span> */}
       </div>
@@ -73,31 +73,8 @@ class Cart extends React.Component {
         <p>  This is a description</p> 
         <br/>  
       </div>
-      <button class="ui basic red labeled icon button delete-button">
-        <i class="delete icon"></i>
-        Remove from Cart
-      </button>
-    </div>
-  </div>
-
-  <div class="item">
-    <div class="image">
-      <img src={placeholder}/>
-    </div>
-    <div class="content">
-      <p class="header">Product Name</p>
-      <div class="meta">
-      <span class="price">$1200</span>
-       
-        {/* <span class="tag">Profile Name </span> */}
-      </div>
-      <div class="description">
-        <p> Profile Name : $333  </p>
-        <p>  This is a description</p> 
-        <br/>
-      </div>
-      <button class="ui basic red labeled icon button delete-button">
-        <i class="delete icon"></i>
+      <button class="ui basic labeled icon button delete-button">
+      <i class="icon trash alternate"></i>
         Remove from Cart
       </button>
     </div>
