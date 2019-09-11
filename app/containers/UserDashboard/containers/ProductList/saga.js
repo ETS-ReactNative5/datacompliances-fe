@@ -67,27 +67,27 @@ function* loadAllCartPackageRequest() {
   );
 }
 
-function* redirectOnPostCartSuccess() {
-  const action = yield take(types.POST_CART_SUCCESS);
-  yield put(push(`/user/dashboard`));
-}
-function* postCartRequest(action) {
-  const token = localStorage.getItem('token');
-  const { cart } = action;
-  const successWatcher = yield fork(redirectOnPostCartSuccess);
+// function* redirectOnPostCartSuccess() {
+//   const action = yield take(types.POST_CART_SUCCESS);
+//   yield put(push(`/user/dashboard`));
+// }
+// function* postCartRequest(action) {
+//   const token = localStorage.getItem('token');
+//   const { cart } = action;
+//   const successWatcher = yield fork(redirectOnPostCartSuccess);
 
-  yield fork(
-    Api.post(
-      `cart`,
-      actions.postCartSuccess,
-      actions.postCartFailure,
-      cart,
-      token,
-    ),
-  );
-  yield take([LOCATION_CHANGE, types.POST_CART_FAILURE]);
-  yield cancel(successWatcher);
-}
+//   yield fork(
+//     Api.post(
+//       `cart`,
+//       actions.postCartSuccess,
+//       actions.postCartFailure,
+//       cart,
+//       token,
+//     ),
+//   );
+//   yield take([LOCATION_CHANGE, types.POST_CART_FAILURE]);
+//   yield cancel(successWatcher);
+// }
 
 function* redirectOnDeleteCartSuccess() {
   const action = yield take(types.REMOVE_CART_SUCCESS);
@@ -124,15 +124,15 @@ function* getQuestionRequest(action) {
   yield take([LOCATION_CHANGE, types.GET_QUESTION_FAILURE]);
 }
 
-function* redirectOnBuySuccess() {
+function* redirectOnCartSuccess() {
   const action = yield take(types.ADD_TO_CART_SUCCESS);
-  yield put(push(`/user/dashboard/product-display/${action.response.data.product_id}`));
+  yield put(push(`/user/dashboard/cart`));
 }
 
 function* addToCartRequest(action) {
   const token = localStorage.getItem('token');
   const { payload } = action;
-  const successWatcher = yield fork(redirectOnBuySuccess);
+  const successWatcher = yield fork(redirectOnCartSuccess);
 
   yield fork(
     Api.post(
@@ -151,7 +151,7 @@ export default function* packageWatcher() {
   yield takeLatest(types.ADD_TO_CART_REQUEST, addToCartRequest);
   yield takeLatest(types.LOAD_PRODUCT_REQUEST, loadAllProduct);
   yield takeLatest(types.LOAD_PACKGE_BY_ID_REQUEST, loadProductByIdRequest);
-  yield takeLatest(types.POST_CART_REQUEST, postCartRequest);
+  // yield takeLatest(types.POST_CART_REQUEST, postCartRequest);
   yield takeLatest(
     types.LOAD_ALL_CART_PACKAGE_REQUEST,
     loadAllCartPackageRequest,
