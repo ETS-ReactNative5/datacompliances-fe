@@ -35,7 +35,7 @@ const mainMenu = [
   {
     title: 'Cart',
     path: '/user/dashboard/cart',
-    icon: "icon-file",
+    icon: "icon-shopping-cart",
   },
 ];
 
@@ -100,7 +100,7 @@ class SideNavigation extends React.Component {
                       >
                         <span className="nav__link">
                           <span className="nav__icon">
-                            <i className={main.icon} />
+                            <i className={main.icon} />&nbsp;
                           </span>
                           <span className="nav__text">{main.title}</span>
                         </span>
@@ -111,7 +111,7 @@ class SideNavigation extends React.Component {
                           <div className={this.state.subTitle == menu.title ? 'active' : ''} onClick={() => this.contentClick(idx, menu.title)} key={idx}>
                             <Link className="nav__link" to={menu.path}>
                               <span className="nav__icon">
-                                <i className={menu.icon} />
+                                <i className={menu.icon} />&nbsp;
                               </span>
                               <span className="nav__text">{menu.title}</span>
                             </Link>
@@ -128,7 +128,7 @@ class SideNavigation extends React.Component {
                 <Menu.Item>
                   <Link className="nav__link" to={main.path}>
                     <span className="nav__icon">
-                      <i className={main.icon} />
+                      <i className={main.icon} />&nbsp;
                     </span>
                     <span className="nav__text">{main.title}</span>
                   </Link>

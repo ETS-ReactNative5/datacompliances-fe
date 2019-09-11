@@ -11,6 +11,9 @@ import { compose } from 'redux';
 import Toaster from 'components/Toaster';
 import noreport from 'assets/images/report.png';
 import { Link } from 'react-router-dom'
+import './style.scss';
+import placeholder from './placeholder.png';
+
 import {
   
 } from './selectors';
@@ -41,9 +44,59 @@ class Report extends React.Component {
     const {  } = this.props;
     const { } = this.state
     return (
-      <div>
-       <p>Here</p>
+
+
+
+<div class="ui divided items">
+  <div class="item">
+    <div class="image">
+      <img src={placeholder}/>
+    </div>
+    <div class="content">
+      <a class="header">Product Name</a>
+      <div class="meta">
+      <span class="price">$1200</span>
+       
+        {/* <span class="tag">Profile Name </span> */}
       </div>
+      <div class="description">
+        <p> Prodile Name : $333  </p>
+        <p>Industry : Financial</p>   
+        <p> Country : Afghanistan</p>
+        <p>  This is a description</p> 
+      </div>
+      <button class="ui basic red labeled icon button delete-button">
+        <i class="delete icon"></i>
+        Remove from Cart
+      </button>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="image">
+      <img src={placeholder}/>
+    </div>
+    <div class="content">
+      <a class="header">Product Name</a>
+      <div class="meta">
+      <span class="price">$1200</span>
+       
+        {/* <span class="tag">Profile Name </span> */}
+      </div>
+      <div class="description">
+        <p> Profile Name : $333  </p>
+        <p>Industry : Financial</p>   
+        <p> Country : Afghanistan</p>
+        <p>  This is a description</p> 
+      </div>
+      <button class="ui basic red labeled icon button delete-button">
+        <i class="delete icon"></i>
+        Remove from Cart
+      </button>
+    </div>
+  </div>
+
+</div>
     );
   }
 }
