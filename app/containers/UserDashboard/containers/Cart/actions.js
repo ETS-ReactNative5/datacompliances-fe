@@ -1,29 +1,15 @@
 import action from 'utils/action';
 import * as types from './constants';
 
-export const getReportsListingRequest = action(
-  types.GET_REPORT_LISTING_REQUEST,
+export const getProductsInCartRequest = action(
+  types.GET_PRODUCTS_IN_CART_REQUEST,
 );
-export const getReportsListingSuccess = action(
-  types.GET_REPORT_LISTING_SUCCESS,
+export const getProductsInCartSuccess = action(
+  types.GET_PRODUCTS_IN_CART_SUCCESS,
   'response',
 );
-export const getReportsListingFailure = action(
-  types.GET_REPORT_LISTING_FAILURE,
-  'error',
-);
-
-export const downloadReportRequest = action(
-  types.DOWNLOAD_REPORT_REQUEST,
-  'key',
-  'product_id'
-);
-export const downloadReportSuccess = action(
-  types.DOWNLOAD_REPORT_SUCCESS,
-  'response',
-);
-export const downloadReportFailure = action(
-  types.DOWNLOAD_REPORT_FAILURE,
+export const getProductsInCartFailure = action(
+  types.GET_PRODUCTS_IN_CART_FAILURE,
   'error',
 );
 
