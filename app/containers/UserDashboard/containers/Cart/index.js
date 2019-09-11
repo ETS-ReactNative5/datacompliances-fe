@@ -62,17 +62,16 @@ class Cart extends React.Component {
       <img src={placeholder}/>
     </div>
     <div class="content">
-      <a class="header">Product Name</a>
+      <p class="header">Product Name</p>
       <div class="meta">
       <span class="price">$1200</span>
        
         {/* <span class="tag">Profile Name </span> */}
       </div>
       <div class="description">
-        <p> Prodile Name : $333  </p>
-        <p>Industry : Financial</p>   
-        <p> Country : Afghanistan</p>
+        <p> Profile Name : $333  </p>
         <p>  This is a description</p> 
+        <br/>  
       </div>
       <button class="ui basic red labeled icon button delete-button">
         <i class="delete icon"></i>
@@ -86,7 +85,7 @@ class Cart extends React.Component {
       <img src={placeholder}/>
     </div>
     <div class="content">
-      <a class="header">Product Name</a>
+      <p class="header">Product Name</p>
       <div class="meta">
       <span class="price">$1200</span>
        
@@ -94,9 +93,8 @@ class Cart extends React.Component {
       </div>
       <div class="description">
         <p> Profile Name : $333  </p>
-        <p>Industry : Financial</p>   
-        <p> Country : Afghanistan</p>
         <p>  This is a description</p> 
+        <br/>
       </div>
       <button class="ui basic red labeled icon button delete-button">
         <i class="delete icon"></i>

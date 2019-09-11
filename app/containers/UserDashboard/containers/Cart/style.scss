@@ -7,3 +7,22 @@
         background: #feeeee  none!important;
     }
 }
+
+.description  p{
+    font-size: 14px;
+    color: #333333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.header{
+    font-size: 18px;
+}
+
+.item{
+    .image{
+        width: 275px !important;
+        img{
+           height: 100%;
+    
+        }
+    }
+}
