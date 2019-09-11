@@ -16,6 +16,7 @@ const initialState = fromJS({
   dataObj: [],
   exams: [],
   examDisplay: null,
+  reportInfo: null
 });
 
 function examDisplayReducer(state = initialState, action = {}) {
@@ -31,6 +32,7 @@ function examDisplayReducer(state = initialState, action = {}) {
         response: xresponse,
         xresponse: null,
         error: null,
+        reportInfo: null
       });
 
     case types.LOAD_ALL_EXAM_SUCCESS:
@@ -49,6 +51,7 @@ function examDisplayReducer(state = initialState, action = {}) {
         response: xresponse,
         error: null,
         exams: fromJS(action.response.data.dataList),
+        reportInfo: fromJS(action.response.data.reportInfo)
       });
 
     case types.LOAD_EXAM_BY_ID_SUCCESS:
