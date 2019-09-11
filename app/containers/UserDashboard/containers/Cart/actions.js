@@ -13,4 +13,21 @@ export const getProductsInCartFailure = action(
   'error',
 );
 
+
+export const removeCartRequest = action(
+  types.REMOVE_CART_REQUEST,
+  'product_id'
+);
+export const removeCartSuccess = action(
+  types.REMOVE_CART_SUCCESS,
+  'response',
+);
+export const removeCartFailure = action(
+  types.REMOVE_CART_FAILURE,
+  'error',
+);
+
+
+
+
 export const clearMessage = action(types.CLEAR_MESSAGE);

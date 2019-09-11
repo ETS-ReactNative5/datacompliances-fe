@@ -16,23 +16,27 @@ import placeholder from './placeholder.png';
 import { DOCUMENT_URL_UPDATE } from '../../../App/constants';
 
 import {
-  makeSelectCartProducts
+  makeSelectCartProducts,
+  makeSelectResponse
 } from './selectors';
 // import { makeSelectLocation } from '../../../App/selectors';
 
 import {
-  getProductsInCartRequest
+  getProductsInCartRequest,
+  removeCartRequest
 } from './actions'
 
 
 const mapStateToProps = createStructuredSelector({
   // isRequesting: makeSelectLoading(),
-  cartProducts:makeSelectCartProducts()
+  cartProducts:makeSelectCartProducts(),
+  response:makeSelectResponse()
 });
 
 const mapDispatchToProps = dispatch => ({
   showDialog: dialog => dispatch(showDialog(dialog)),
-  getProductsInCartRequest: () => dispatch(getProductsInCartRequest())
+  getProductsInCartRequest: () => dispatch(getProductsInCartRequest()),
+  removeCartRequest: (id) => dispatch(removeCartRequest(id))
 });
 
 class Cart extends React.Component {
@@ -41,6 +45,11 @@ class Cart extends React.Component {
       this.state = { 
         data: {}
       };
+  }
+
+  componentDidMount() {
+    debugger
+    this.props.getProductsInCartRequest()
   }
 
   componentDidMount() {
@@ -53,6 +62,15 @@ class Cart extends React.Component {
         data: nextProps.cartProducts && nextProps.cartProducts.toJS(),
       });
     }
+    if (this.props.response != nextProps.response) {
+      this.setState({
+        response_message: nextProps.response && nextProps.response,
+      });
+    }
+  }
+
+  removeCart = (id) => {
+    this.props.removeCartRequest(id)
   }
 
   render() {
@@ -81,7 +99,7 @@ class Cart extends React.Component {
                   <p>{item.product.description}</p> 
                   <br/>  
                 </div>
-                <button onClick={this.removeCart} className="ui basic red labeled icon button delete-button">
+                <button onClick={() => this.removeCart(item._id) } className="ui basic red labeled icon button delete-button">
                   <i className="delete icon"></i>
                     Remove from Cart
                 </button>

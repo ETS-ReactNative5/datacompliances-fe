@@ -6,7 +6,11 @@ const initialState = fromJS({
   loading: false,
   requesting: false,
   response: '',
-  cartProductList: '',
+  cartProductList: {
+    dataList: [],
+    totalItems: 0,
+    currentPage: 1
+  },
   error: '',
   public_url: ''
 });
@@ -21,6 +25,13 @@ function agentSettings(state = initialState, action) {
         error: '',
       });
 
+    case types.REMOVE_CART_REQUEST:
+        return state.merge({
+          loading: true,
+          response: '',
+          error: '',
+        });  
+
       case types.GET_PRODUCTS_IN_CART_SUCCESS:
       return state.merge({
         loading: false,
@@ -28,7 +39,37 @@ function agentSettings(state = initialState, action) {
         cartProductList: fromJS(action.response.data)
       });
 
+      case types.REMOVE_CART_SUCCESS:
+          return state
+            .merge({
+              loading: false,
+              response: action.response.message,
+              error: null,
+            })
+            .set(
+              'cartProductList',
+              fromJS({
+                dataList: state
+                  .get('cartProductList')
+                  .get('dataList')
+                  .filter(eachRule => {
+                    return eachRule.get('_id') !== action.response.data._id;
+                  }),
+                totalItems: 10,
+                currentPage: 1,
+              }),
+            );
+
+      // case types.REMOVE_CART_SUCCESS:
+      //   return state
+      //     .merge({
+      //       loading: false,
+      //       response: action.response.message,
+      //       error: null,
+      //     })
+
       case types.GET_PRODUCTS_IN_CART_FAILURE:
+      case types.REMOVE_CART_FAILURE:
       return state.merge({
         error: action.error.message,
         response: '',
