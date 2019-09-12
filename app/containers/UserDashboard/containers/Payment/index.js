@@ -56,7 +56,7 @@ class Payment extends React.Component {
 
 
   componentDidMount() {
-    // this.props.getProductsInCartRequest()
+    this.props.getProductsInCartRequest()
       paymentForm = new SqPaymentForm({
       //TODO: Replace with your sandbox application ID
       applicationId: "sandbox-sq0idb-uMCOPGva0o2SCGWsuBcdkA",
@@ -185,6 +185,7 @@ class Payment extends React.Component {
         <div>dddddddd</div>
         <div>dddddddd</div>
         <div>dddddddd</div>
+            <span className="right">Total: ${totalPrice}</span>
         <div id="form-container">
               <div id="sq-card-number"></div>
               <div className="third" id="sq-expiration-date"></div>
