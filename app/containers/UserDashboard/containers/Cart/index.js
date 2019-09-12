@@ -43,7 +43,8 @@ class Cart extends React.Component {
   constructor(props) {
     super(props);
       this.state = { 
-        data: {}
+        data: {},
+        totalPrice: null
       };
   }
 
@@ -58,8 +59,13 @@ class Cart extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.cartProducts != nextProps.cartProducts) {
+      var tot = 0
+      nextProps.cartProducts && nextProps.cartProducts.toJS().dataList.map((item, index) => {
+         tot = tot + item.product.price
+        })
       this.setState({
         data: nextProps.cartProducts && nextProps.cartProducts.toJS(),
+        totalPrice: tot
       });
     }
     if (this.props.response != nextProps.response) {
@@ -75,13 +81,13 @@ class Cart extends React.Component {
 
   render() {
     const {  } = this.props;
-    const { data } = this.state
+    const { data, totalPrice } = this.state
     return (
       <div className="cart-grid">
       <div>
       <div className="ui top attached header cart-heading">
-            <span> My Cart Items (2)</span>
-            <span className="right">Total: $666</span>
+            <span> My Cart Items: ({data && data.dataList && data.dataList.length }) </span>
+            <span className="right">Total: ${totalPrice}</span>
           </div>
 
           <div className="ui  divided items">
