@@ -131,23 +131,7 @@ class Cart extends React.Component {
     <div className="content">
       <div className="pricing-grid">
         <span className="">Order Total</span>
-        <span className="right">$666</span>
-      </div>
-      <div className="pricing-grid">
-        <span className="">Tax Payable</span>
-        <span className="right">$6</span>
-      </div>
-      <div className="pricing-grid">
-        <span className="">Discount</span>
-        <span className="right">N/A</span>
-      </div>
-      <div className="pricing-grid">
-        <span className="">Delivery Charge</span>
-        <span className="right">N/A</span>
-      </div>
-      <div className="pricing-grid total">
-        <span className="">Total</span>
-        <span className="right">$672</span>
+        <span className="right"> ${totalPrice}</span>
       </div>
     </div>
 
