@@ -77,7 +77,7 @@ class Cart extends React.Component {
     const {  } = this.props;
     const { data } = this.state
     return (
-      <div class="cart-grid">
+      <div className="cart-grid">
       <div>
       <div className="ui top attached header cart-heading">
             <span> My Cart Items (2)</span>
