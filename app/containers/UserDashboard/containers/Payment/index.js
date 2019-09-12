@@ -96,7 +96,7 @@ class Payment extends React.Component {
           cardNonceResponseReceived: function (errors, nonce, cardData) {
           if (errors) {
               // Log errors from nonce generation to the browser developer console.
-              console.error('Encountered errors:');
+              // console.error('Encountered errors:');
               errors.forEach(function (error) {
                   console.error('  ' + error.message);
               });
@@ -129,11 +129,11 @@ class Payment extends React.Component {
                     return response.text();
                   })
                   .then(data => {
-                    console.log(JSON.stringify(data));
-                    alert('Payment complete successfully!\nCheck browser developer consolf form more details');
+                    // console.log(JSON.stringify(data));
+                    // alert('Payment complete successfully!\nCheck browser developer consolf form more details');
                   })
                   .catch(err => {
-                    console.error(err);
+                    // console.error(err);
                     alert('Payment failed to complete!\nCheck browser developer consolf form more details');
                   });
           }
@@ -152,6 +152,13 @@ class Payment extends React.Component {
       this.setState({
         data: nextProps.cartProducts && nextProps.cartProducts.toJS(),
         totalPrice: tot
+      }, () => {
+
+
+
+
+
+
       });
     }
     if (this.props.response != nextProps.response) {
