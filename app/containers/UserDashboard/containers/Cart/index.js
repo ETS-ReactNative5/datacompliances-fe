@@ -12,8 +12,11 @@ import Toaster from 'components/Toaster';
 import noreport from 'assets/images/report.png';
 import { Link } from 'react-router-dom'
 import './style.scss';
+import './assets/mysqpaymentform.css'
 import placeholder from './placeholder.png';
-import { DOCUMENT_URL_UPDATE } from '../../../App/constants';
+import { DOCUMENT_URL_UPDATE, API_BASE  } from '../../../App/constants';
+import { Redirect } from 'react-router-dom'
+
 
 import {
   makeSelectCartProducts,
@@ -25,6 +28,10 @@ import {
   getProductsInCartRequest,
   removeCartRequest
 } from './actions'
+
+
+var paymentForm
+
 
 
 const mapStateToProps = createStructuredSelector({
@@ -44,14 +51,11 @@ class Cart extends React.Component {
     super(props);
       this.state = { 
         data: {},
-        totalPrice: null
+        totalPrice: null,
+        redirectToPayment: false
       };
   }
 
-  componentDidMount() {
-    debugger
-    this.props.getProductsInCartRequest()
-  }
 
   componentDidMount() {
     this.props.getProductsInCartRequest()
@@ -78,12 +82,28 @@ class Cart extends React.Component {
   removeCart = (id) => {
     this.props.removeCartRequest(id)
   }
+  placeOrder = () => {
+    this.setState({redirectToPayment: true})
+    // this.props.placeOrderRequest()
+  }
+
+  onGetCardNonce = (event) => {
+    // Don't submit the form until SqPaymentForm returns with a nonce
+    event.preventDefault();
+    // Request a nonce from the SqPaymentForm object
+    paymentForm.requestCardNonce();
+  }
 
   render() {
     const {  } = this.props;
-    const { data, totalPrice } = this.state
+    const { data, totalPrice, redirectToPayment } = this.state
+
     return (
       <div className="cart-grid">
+        {redirectToPayment && 
+           <Redirect to={`/user/dashboard/payment-form`} />
+        }
+    
       <div>
       <div className="ui top attached header cart-heading">
             <span> My Cart Items: ({data && data.dataList && data.dataList.length }) </span>
@@ -120,7 +140,6 @@ class Cart extends React.Component {
                 </div>
             )
           })}
-
 </div>
 </div>
 <div className="order-detail">
