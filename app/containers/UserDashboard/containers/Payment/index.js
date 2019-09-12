@@ -106,6 +106,7 @@ class Payment extends React.Component {
              alert(`The generated nonce is:\n${nonce}`);
              //TODO: Replace alert with code in step 2.1
                    // alert(`The generated nonce is:\n${nonce}`);
+                  const token = localStorage.getItem('token'); 
                   fetch(`${API_BASE}payment`, {
                     method: 'POST',
                     headers: {
@@ -114,6 +115,7 @@ class Payment extends React.Component {
                     },
                     body: JSON.stringify({
                       nonce: nonce,
+                      token: token,
                       price: 200
                     })
                   })
