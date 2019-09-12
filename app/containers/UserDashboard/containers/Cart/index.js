@@ -136,7 +136,7 @@ class Cart extends React.Component {
     </div>
 
     <div className="extra content">
-      <button className="ui green labeled icon  button"><i className="cart arrow down icon"></i>Place Order</button>
+      <button onClick={this.placeOrder} className="ui green labeled icon  button"><i className="cart arrow down icon"></i>Place Order</button>
     </div>
   </div>
 </div>
