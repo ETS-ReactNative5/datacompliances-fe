@@ -12,15 +12,21 @@ import Toaster from 'components/Toaster';
 import noreport from 'assets/images/report.png';
 import { Link } from 'react-router-dom'
 import './style.scss';
+import './assets/mysqpaymentform.css'
 import placeholder from './placeholder.png';
+import { DOCUMENT_URL_UPDATE, API_BASE  } from '../../../App/constants';
+import { Redirect } from 'react-router-dom'
+
 
 import {
-  
+  makeSelectCartProducts,
+  makeSelectResponse
 } from './selectors';
 // import { makeSelectLocation } from '../../../App/selectors';
 
 import {
-  getProductsInCartRequest
+  getProductsInCartRequest,
+  removeCartRequest
 } from './actions'
 
 const mockData = {
@@ -115,74 +121,117 @@ const mockData = {
   }
 }
 
+var paymentForm
+
+
+
 const mapStateToProps = createStructuredSelector({
   // isRequesting: makeSelectLoading(),
-  
+  cartProducts:makeSelectCartProducts(),
+  response:makeSelectResponse()
 });
 
 const mapDispatchToProps = dispatch => ({
   showDialog: dialog => dispatch(showDialog(dialog)),
-  getProductsInCartRequest: () => dispatch(getProductsInCartRequest())
+  getProductsInCartRequest: () => dispatch(getProductsInCartRequest()),
+  removeCartRequest: (id) => dispatch(removeCartRequest(id))
 });
 
 class Cart extends React.Component {
   constructor(props) {
     super(props);
       this.state = { 
-
+        data: {},
+        totalPrice: null,
+        redirectToPayment: false
       };
   }
+
 
   componentDidMount() {
     this.props.getProductsInCartRequest()
   }
 
   componentWillReceiveProps(nextProps) {
+    if (this.props.cartProducts != nextProps.cartProducts) {
+      var tot = 0
+      nextProps.cartProducts && nextProps.cartProducts.toJS().dataList.map((item, index) => {
+         tot = tot + item.product.price
+        })
+      this.setState({
+        data: nextProps.cartProducts && nextProps.cartProducts.toJS(),
+        totalPrice: tot
+      });
+    }
+    if (this.props.response != nextProps.response) {
+      this.setState({
+        response_message: nextProps.response && nextProps.response,
+      });
+    }
+  }
 
+  removeCart = (id) => {
+    this.props.removeCartRequest(id)
+  }
+  placeOrder = () => {
+    this.setState({redirectToPayment: true})
+    // this.props.placeOrderRequest()
+  }
+
+  onGetCardNonce = (event) => {
+    // Don't submit the form until SqPaymentForm returns with a nonce
+    event.preventDefault();
+    // Request a nonce from the SqPaymentForm object
+    paymentForm.requestCardNonce();
   }
 
   render() {
     const {  } = this.props;
-    const { } = this.state
+    const { data, totalPrice, redirectToPayment } = this.state
+
     return (
-        <div class="cart-grid">
-        <div className="">
-          <div className="ui top attached header cart-heading">
-            <span> My Cart Items (2)</span>
-            <span className="right">Total: $666</span>
+      <div className="cart-grid">
+        {redirectToPayment && 
+           <Redirect to={`/user/dashboard/payment-form`} />
+        }
+    
+      <div>
+      <div className="ui top attached header cart-heading">
+            <span> My Cart Items: ({data && data.dataList && data.dataList.length }) </span>
+            <span className="right">Total: ${totalPrice}</span>
           </div>
 
-        
           <div className="ui  divided items">
-            
-            {mockData.data.dataList.map((item, index) => {
+            {data && data.dataList && data.dataList.map((item, index) => {
               return (
                 <div className="item" key={index}>
-              <div className="image">
-                <img src={placeholder}/>
-              </div>
-              <div className="content">
-                <p className="header">Product Name</p>
-                <div className="meta">
-                <span className="price">$1200</span>
-                
-                  {/* <span className="tag">Profile Name </span> */}
+                  <div className="image">
+                  <img src={`${DOCUMENT_URL_UPDATE}${item && 
+                                    item.product.image_name && 
+                                        item.product.image_name.document_name}`} 
+                                            alt="product image here" />
+                  </div>
+                  <div className="content">
+                    <p className="header">{item.product.title}</p>
+                    <div className="meta">
+                    <span className="price">${item.product.price}</span>
+                    
+                      {/* <span className="tag">Profile Name </span> */}
+                    </div>
+                    <div className="description">
+                      <p> Profile Name :{item.product.profile_name} </p>
+                      <p>{item.product.description}</p> 
+                    </div>
+                    <button onClick={() => this.removeCart(item._id) } className="ui basic labeled icon button delete-button">
+                      <i className="trash alternate icon"></i>
+                        Remove from Cart
+                    </button>
+                  </div>
                 </div>
-                <div className="description">
-                  <p> Profile Name : $333  </p>
-                  <p>  This is a description</p> 
-                </div>
-                <button className="ui basic labeled icon button delete-button">
-                  <i className="trash alternate icon"></i>
-                  Remove from Cart
-                </button>
-              </div>
-            </div>
-    )
-  })}
-
+            )
+          })}
 </div>
-</div> 
+</div>
 <div className="order-detail">
   <div className="ui card">
     <div className="content grey-bg">
@@ -191,33 +240,17 @@ class Cart extends React.Component {
     <div className="content">
       <div className="pricing-grid">
         <span className="">Order Total</span>
-        <span className="right">$666</span>
-      </div>
-      <div className="pricing-grid">
-        <span className="">Tax Payable</span>
-        <span className="right">$6</span>
-      </div>
-      <div className="pricing-grid">
-        <span className="">Discount</span>
-        <span className="right">N/A</span>
-      </div>
-      <div className="pricing-grid">
-        <span className="">Delivery Charge</span>
-        <span className="right">N/A</span>
-      </div>
-      <div className="pricing-grid total">
-        <span className="">Total</span>
-        <span className="right">$672</span>
+        <span className="right"> ${totalPrice}</span>
       </div>
     </div>
 
     <div className="extra content">
-      <button className="ui green labeled icon  button"><i className="cart arrow down icon"></i>Place Order</button>
+      <button onClick={this.placeOrder} className="ui green labeled icon  button"><i className="cart arrow down icon"></i>Place Order</button>
     </div>
   </div>
 </div>
-
 </div>
+
     );
   }
 }

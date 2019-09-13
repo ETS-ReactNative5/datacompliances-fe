@@ -17,6 +17,7 @@ const initialState = fromJS({
   dataObj: [],
   newData: {},
   packages: [],
+  addCartSuccessdata: ''
 });
 
 function PackageListReducer(state = initialState, action) {
@@ -36,7 +37,8 @@ function PackageListReducer(state = initialState, action) {
         response: xresponse,
         xresponse: null,
         error: null,
-        questionsSuccess:''
+        questionsSuccess:'',
+        addCartSuccessdata: ''
       });
 
     case types.GET_QUESTION_SUCCESS:
@@ -51,11 +53,13 @@ function PackageListReducer(state = initialState, action) {
     case types.ADD_TO_CART_SUCCESS:
       xresponse =
         state.get('response') != null ? state.get('response') : null;
+      console.log(action.response)
     return state.merge({
       requesting: false,
       success: true,
       response: xresponse,
       error: null,
+      addCartSuccessdata: action.response.data
       // dataObj: fromJS(action.response.data.dataList),
     });  
 

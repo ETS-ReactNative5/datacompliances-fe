@@ -21,7 +21,8 @@ import {
   makeSelectPackageResponse,
   makeSelectSuccess,
   makeSelectNewData,
-  makeSelectQuestions
+  makeSelectQuestions,
+  makeSelectCartSuccessdata
 } from '../selectors';
 
 import {
@@ -48,6 +49,7 @@ const mapStateToProps = createStructuredSelector({
   singlePackage: makeSelectNewData(),
   questions:makeSelectQuestions(),
   userInfo:makeSelectUserInfo(),
+  // cartSuccessdata:makeSelectCartSuccessdata()
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -76,6 +78,11 @@ export class ProductList extends React.Component {
     }
   }
   componentWillReceiveProps(nextProps) {
+    // if (this.props.cartSuccessdata != nextProps.cartSuccessdata) {
+    //   this.setState({
+    //     cartPostData: nextProps.cartSuccessdata && nextProps.cartSuccessdata,
+    //   });
+    // }
     if (this.props.singlePackage != nextProps.singlePackage) {
       this.setState({
         data: nextProps.singlePackage.toJS(),
@@ -106,7 +113,7 @@ export class ProductList extends React.Component {
     this.setState({redirect: true })
   }
   render() {
-    const { data, questions, userInfo, redirect } = this.state;
+    const { data, questions, userInfo, redirect, cartPostData } = this.state;
     const {
       successResponse,
       errorResponse } = this.props
@@ -173,6 +180,7 @@ export class ProductList extends React.Component {
         {message && message}
         <h1 className="main_title">{data.title}</h1>
         <ProductView
+                // cartPostData={cartPostData}
                 viewdata={this.state.data}
                 buyProduct={this.buyProduct}
                 attemptQuestions={this.attemptQuestions}

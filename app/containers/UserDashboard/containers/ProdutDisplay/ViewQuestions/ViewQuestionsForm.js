@@ -315,6 +315,7 @@ const ViewPracticeQuestion = props => {
                   </div>
                  }
                  {summaryPage == true &&
+                 <div>
                     <Link
                     className="button buy-btn"
                     to={`/user/dashboard/product-display/${productId}`}
@@ -322,6 +323,14 @@ const ViewPracticeQuestion = props => {
                     >
                     Back
                   </Link>
+                  <Link
+                  className="button buy-btn"
+                  to={`/user/dashboard/report/detail/${productId}`}
+                  role="button"
+                  >
+                  Go to graph
+                </Link>
+                </div>
                  }
                 </Grid>
           </div>
