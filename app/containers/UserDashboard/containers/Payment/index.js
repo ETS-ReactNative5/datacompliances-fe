@@ -145,20 +145,19 @@ class Payment extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.cartProducts != nextProps.cartProducts) {
-      var tot = 0
+      var tot = 0;
+      var arrayProductId = new Array();
       nextProps.cartProducts && nextProps.cartProducts.toJS().dataList.map((item, index) => {
          tot = tot + item.product.price
+         arrayProductId.push(item.product._id)
         })
+      
       this.setState({
         data: nextProps.cartProducts && nextProps.cartProducts.toJS(),
-        totalPrice: tot
+        totalPrice: tot,
+        arrayPIds: arrayProductId
       }, () => {
-
-
-
-
-
-
+        console.log(this.state.arrayPIds,'fff',)
       });
     }
     if (this.props.response != nextProps.response) {
