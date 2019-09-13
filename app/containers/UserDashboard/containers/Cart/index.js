@@ -16,6 +16,7 @@ import './assets/mysqpaymentform.css'
 import placeholder from './placeholder.png';
 import { DOCUMENT_URL_UPDATE, API_BASE  } from '../../../App/constants';
 import { Redirect } from 'react-router-dom'
+import PayWithCard from  './PayWithCard'
 
 
 import {
@@ -191,10 +192,13 @@ class Cart extends React.Component {
 
     return (
       <div className="cart-grid">
-        {redirectToPayment && 
+        {/* {redirectToPayment && 
            <Redirect to={`/user/dashboard/payment-form`} />
+        } */}
+        {redirectToPayment && 
+          <PayWithCard totalPrice = {totalPrice} />
         }
-    
+     {!redirectToPayment && 
       <div>
       <div className="ui top attached header cart-heading">
             <span> My Cart Items: ({data && data.dataList && data.dataList.length }) </span>
@@ -232,6 +236,7 @@ class Cart extends React.Component {
           })}
 </div>
 </div>
+     }
 <div className="order-detail">
   <div className="ui card">
     <div className="content grey-bg">
@@ -250,6 +255,7 @@ class Cart extends React.Component {
   </div>
 </div>
 </div>
+        
 
     );
   }
