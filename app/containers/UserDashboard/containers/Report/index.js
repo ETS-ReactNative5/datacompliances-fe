@@ -138,7 +138,7 @@ class Report extends React.Component {
                           View Detail
                         </Link>
                           <Button 
-                          className="ui green button basic"
+                          className="ui button detail-btn"
                               
                               onClick={() => 
                                       this.downloadReport(item && item.report_data && item.report_data.Key, item && item.product_id)}>
