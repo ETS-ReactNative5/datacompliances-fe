@@ -12,7 +12,6 @@ body{
     }
 }
 .main_title {
-    margin-bottom: 10px !important;
     color:#0F1A36;
     font-size: 16px;
     @media(min-width:575px){
@@ -79,6 +78,7 @@ body{
     position: relative;
     top: 0;
     transition:.4s ease-in-out;
+    margin-bottom:20px;
     &:hover{
         top:-5px;
         box-shadow: 0px 0px 28px rgba(0,0,0,0.2); 
@@ -92,12 +92,13 @@ body{
 
     @media(min-width:769px){
         padding: 40px 20px;
+        padding-bottom:20px;
     }
     .product-price{
         font-size:20px;
         color:#16C172;
         font-weight:bold;
-
+        margin-bottom: 20px;
         @media(min-width:575px){
             font-size: 24px;
            
@@ -108,7 +109,6 @@ body{
         }
         @media(min-width:1420px){
             font-size: 36px;
-           
         }
     }
     .ribbon{
@@ -117,7 +117,7 @@ body{
         color:#fff;
         padding:5px 15px;
         position: absolute;
-        top:0;
+        top:5px;
         left:-6px;
         font-size:12px;
 
@@ -149,35 +149,43 @@ body{
         
     }
 }
+button{
+    border-radius: 5px !important;
+    font-weight: 400 !important;
+}
 .buttons-wrap{
-    // display:grid;
-    // grid-template-columns:1fr 1fr;
-    // grid-gap:10px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top:1px solid #efefef;
     .button {
         padding:8px 15px;
         font-size: 16px !important;
         border-radius: 0px;
-        color:#fff;
+        border-radius: 5px;
         box-shadow:0px 0px 0px rgba(0,0,0,0);
         @media(min-width:768px){
             padding:10px 20px;
         }
         @media(min-width:1420px){
-            padding: 15px 25px !important;
+            padding: 12px 25px !important;
         }
     }
     .buy-btn{
         background:#068DF8;
+        border-radius: 5px !important;
         &:hover{
             background:#0077d6;
             color:#fff;
         }
     }
     .detail-btn{
-        background:#16C172;
+        background: transparent;
+        border-radius: 5px !important;
+        border: 1px solid #16C172;
+        color: #16C172 !important;
         &:hover{
             background:#07a25b;
-            color:#fff;
+            color:#fff !important;
         }
     }
 

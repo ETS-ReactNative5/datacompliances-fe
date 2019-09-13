@@ -204,7 +204,7 @@ class Cart extends React.Component {
         }
       
      {!redirectToPayment && data && data.dataList && data.dataList.length > 0 &&
-      <div>
+      <div className="p-4 white-bg">
       <div className="ui top attached header cart-heading">
             <span> My Cart Items: ({data && data.dataList && data.dataList.length }) </span>
             <span className="right">Total: ${totalPrice}</span>
@@ -250,14 +250,21 @@ class Cart extends React.Component {
               <div className="header">Price Details</div>
             </div>
             <div className="content">
+
               <div className="pricing-grid">
+                <span className="">Product 1</span>
+                <span className="right"> ${totalPrice}</span>
+              </div>
+              
+              <div className="pricing-grid total">
                 <span className="">Order Total</span>
                 <span className="right"> ${totalPrice}</span>
               </div>
+
             </div>
 
             <div className="extra content">
-              <button onClick={this.placeOrder} className="ui green labeled icon  button"><i className="cart arrow down icon"></i>Place Order</button>
+              <button onClick={this.placeOrder} className="ui green labeled icon  button order-btn"><i className="cart arrow down icon"></i>Place Order</button>
             </div>
           </div>
         </div>
