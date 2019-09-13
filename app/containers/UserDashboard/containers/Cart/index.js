@@ -186,6 +186,10 @@ class Cart extends React.Component {
     paymentForm.requestCardNonce();
   }
 
+  cartSection = () => {
+    this.setState({redirectToPayment: false})
+  }
+
   render() {
     const {  } = this.props;
     const { data, totalPrice, redirectToPayment } = this.state
@@ -196,9 +200,10 @@ class Cart extends React.Component {
            <Redirect to={`/user/dashboard/payment-form`} />
         } */}
         {redirectToPayment && 
-          <PayWithCard totalPrice = {totalPrice} />
+          <PayWithCard cartSection={this.cartSection} totalPrice = {totalPrice} />
         }
-     {!redirectToPayment && 
+      
+     {!redirectToPayment && data && data.dataList && data.dataList.length > 0 &&
       <div>
       <div className="ui top attached header cart-heading">
             <span> My Cart Items: ({data && data.dataList && data.dataList.length }) </span>
@@ -234,26 +239,32 @@ class Cart extends React.Component {
                 </div>
             )
           })}
+          
 </div>
 </div>
      }
-<div className="order-detail">
-  <div className="ui card">
-    <div className="content grey-bg">
-      <div className="header">Price Details</div>
-    </div>
-    <div className="content">
-      <div className="pricing-grid">
-        <span className="">Order Total</span>
-        <span className="right"> ${totalPrice}</span>
-      </div>
-    </div>
+     {!redirectToPayment && data && data.dataList && data.dataList.length > 0 &&     
+        <div className="order-detail">
+          <div className="ui card">
+            <div className="content grey-bg">
+              <div className="header">Price Details</div>
+            </div>
+            <div className="content">
+              <div className="pricing-grid">
+                <span className="">Order Total</span>
+                <span className="right"> ${totalPrice}</span>
+              </div>
+            </div>
 
-    <div className="extra content">
-      <button onClick={this.placeOrder} className="ui green labeled icon  button"><i className="cart arrow down icon"></i>Place Order</button>
-    </div>
-  </div>
-</div>
+            <div className="extra content">
+              <button onClick={this.placeOrder} className="ui green labeled icon  button"><i className="cart arrow down icon"></i>Place Order</button>
+            </div>
+          </div>
+        </div>
+     }
+          {data && data.dataList && data.dataList.length < 1 &&
+            <div>No Items On Cart...</div>
+          }     
 </div>
         
 
