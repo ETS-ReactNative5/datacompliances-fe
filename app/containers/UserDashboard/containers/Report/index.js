@@ -131,7 +131,7 @@ class Report extends React.Component {
                           </ul>
                           <div className="buttons-wrap">
                         <Link
-                            className="ui blue button basic "
+                            className="ui blue-button button"
                             to={`/user/dashboard/report/detail/${item && item.product_id}`}
                             key={`view__1`}
                           >
