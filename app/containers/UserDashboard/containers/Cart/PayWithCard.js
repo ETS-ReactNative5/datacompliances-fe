@@ -102,7 +102,7 @@ export class PayWithCard extends Component {
       }
 
     render() {
-        const { totalPrice } = this.props;
+        const { totalPrice, cartSection } = this.props;
         return (
                 <div className="cart-grid">
                   <div><br ></br><br /><br /><br /><br /><br /></div>
@@ -113,6 +113,7 @@ export class PayWithCard extends Component {
                     <div className="third" id="sq-postal-code"></div>
                     <button id="sq-creditcard" className="button-credit-card" onClick={() => this.onGetCardNonce(event)}>Pay With Card</button>
                    </div>
+                   <button onClick={cartSection}>Back to Cart</button>
                </div>
                 
         )
