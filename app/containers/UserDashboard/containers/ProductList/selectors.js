@@ -4,58 +4,64 @@ import { createSelector } from 'reselect';
  * Direct selector to the productList state domain
  */
 
-const selectPackageListDomain = state => state.productList;
+const selectProductListDomain = state => state.productList;
 
 const makeSelectSuccess = () =>
   createSelector(
-    selectPackageListDomain,
+    selectProductListDomain,
     state => state.get('success'),
   );
 const makeSelectPackageResponse = () =>
   createSelector(
-    selectPackageListDomain,
+    selectProductListDomain,
     state => state.get('response'),
   );
 const makeSelectXResponse = () =>
   createSelector(
-    selectPackageListDomain,
+    selectProductListDomain,
     state => state.get('xresponse'),
   );
 const makeSelectError = () =>
   createSelector(
-    selectPackageListDomain,
+    selectProductListDomain,
     state => state.get('error'),
   );
 const makeSelectRequesting = () =>
   createSelector(
-    selectPackageListDomain,
+    selectProductListDomain,
     state => state.get('requesting'),
   );
 const makeSelectDataObj = () =>
   createSelector(
-    selectPackageListDomain,
+    selectProductListDomain,
     state => state.get('dataObj'),
   );
 const makeSelectNewData = () =>
   createSelector(
-    selectPackageListDomain,
+    selectProductListDomain,
     state => state.get('newData'),
   );
 const makeSelectCartPackage = () =>
   createSelector(
-    selectPackageListDomain,
+    selectProductListDomain,
     state => state.get('packages'),
   );
 const makeSelectPopularPackage = () =>
   createSelector(
-    selectPackageListDomain,
+    selectProductListDomain,
     state => state.get('popularPackage'),
   );
 
   const makeSelectQuestions = () =>
   createSelector(
-    selectPackageListDomain,
+    selectProductListDomain,
     state => state.get('questionsSuccess'),
+  );
+
+  const makeSelectCartSuccessdata = () =>
+  createSelector(
+    selectProductListDomain,
+    state => state.get('addCartSuccessdata'),
   );
 
 export {
@@ -68,5 +74,6 @@ export {
   makeSelectNewData,
   makeSelectCartPackage,
   makeSelectPopularPackage,
-  makeSelectQuestions
+  makeSelectQuestions,
+  makeSelectCartSuccessdata
 };

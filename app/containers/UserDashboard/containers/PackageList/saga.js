@@ -68,8 +68,8 @@ function* loadAllCartPackageRequest() {
 }
 
 function* redirectOnPostCartSuccess() {
-  const action = yield take(types.POST_CART_SUCCESS);
-  yield put(push(`/user/dashboard`));
+  // const action = yield take(types.POST_CART_SUCCESS);
+  // yield put(push(`/user/dashboard`));
 }
 function* postCartRequest(action) {
   const token = localStorage.getItem('token');

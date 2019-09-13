@@ -1,0 +1,28 @@
+.ui.basic.button.delete-button{
+    i{
+        background:rgb(222, 61, 61) !important;
+        color: #fff;
+    }
+    &:hover{
+        background: #feeeee  none!important;
+    }
+}
+
+.description  p{
+    font-size: 14px;
+    color: #333333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.header{
+    font-size: 18px;
+}
+
+.item{
+    .image{
+        width: 275px !important;
+        img{
+           height: 100%;
+    
+        }
+    }
+}
