@@ -188,10 +188,7 @@ class Payment extends React.Component {
     const { data, totalPrice, redirectToPayment } = this.state
     return (
       <div className="cart-grid">
-        <div>ddddddd</div>
-        <div>dddddddd</div>
-        <div>dddddddd</div>
-        <div>dddddddd</div>
+        <div><br ></br><br /><br /><br /><br /><br /></div>
             <span className="right">Total: ${totalPrice}</span>
         <div id="form-container">
               <div id="sq-card-number"></div>
