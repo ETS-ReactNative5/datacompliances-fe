@@ -1,10 +1,13 @@
 .ui.basic.button.delete-button{
     transition:.3s;
     margin-top: 10px;
+    border-radius: 5px !important;
+    background:#fbfbfb !important;
     &:hover{     
         
         box-shadow: 0 0 0 1px rgb(222, 61, 61) inset;
         color:rgb(222, 61, 61) !important;
+        background:#fff !important; 
         i{
             background:rgb(222, 61, 61) !important;
             color: #fff;
@@ -29,6 +32,8 @@
     .image{
         img{
            height: 100% !important;
+           padding: 5px;
+           border:1px dashed #aaa !important;
         }
     }
     .price{
@@ -75,4 +80,11 @@
 .pricing-grid.total{
     font-weight: bold;
     color:#000;
+}
+
+.white-bg{
+    background:#fff;
+}
+.order-btn{
+    border-radius: 5px !important;
 }
