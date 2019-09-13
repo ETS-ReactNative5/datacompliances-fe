@@ -81,10 +81,8 @@ export class PayWithCard extends Component {
                         })
                       })
                       .then(response => {
-                          debugger
                           console.log(data,'....',data && data.message)
                         //   this.setState({success:true}, () => {
-                        //       debugger
 
                         //   })
                           // console.log(JSON.stringify(data));
@@ -106,7 +104,6 @@ export class PayWithCard extends Component {
           }
         });
         paymentForm.build();
-        console.log(paymentForm,'??>>>>>>')
     
       }
 
