@@ -11,6 +11,7 @@ const makeSelectXResponse = () => createSelector(selectDomain, state => state.ge
 const makeSelectDataObj = () => createSelector(selectDomain, state => state.get('dataObj'));
 const makeSelectExamDisplay = () => createSelector(selectDomain, state => state.get('examDisplay'));
 const makeSelectExams = () => createSelector(selectDomain, state => state.get('exams'));
+const makeSelectReportInfo = () => createSelector(selectDomain, state => state.get('reportInfo'));
 
 export {
   makeSelectSuccess,
@@ -20,5 +21,6 @@ export {
   makeSelectXResponse,
   makeSelectDataObj,
   makeSelectExamDisplay,
-  makeSelectExams
+  makeSelectExams,
+  makeSelectReportInfo
 };

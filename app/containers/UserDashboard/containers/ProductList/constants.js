@@ -4,12 +4,12 @@
  *
  */
 /*Order Product*/ 
-export const BUY_PRODUCT_REQUEST =
-'app/containers/UserDashboard/containers/ProductList/BUY_PRODUCT_REQUEST';
-export const BUY_PRODUCT_SUCCESS =
-'app/containers/UserDashboard/containers/ProductList/BUY_PRODUCT_SUCCESS';
-export const BUY_PRODUCT_FAILURE =
-'app/containers/UserDashboard/containers/ProductList/BUY_PRODUCT_FAILURE';
+export const ADD_TO_CART_REQUEST =
+'app/containers/UserDashboard/containers/ProductList/ADD_TO_CART_REQUEST';
+export const ADD_TO_CART_SUCCESS =
+'app/containers/UserDashboard/containers/ProductList/ADD_TO_CART_SUCCESS';
+export const ADD_TO_CART_FAILURE =
+'app/containers/UserDashboard/containers/ProductList/ADD_TO_CART_FAILURE';
 
  /* GET Top 5 QUESTIONNAIRES */
 export const GET_QUESTION_REQUEST =
