@@ -10,9 +10,35 @@
     border-bottom: 1px solid #eee;
     padding-right: 35px;
     li.nav__item{
-        padding-top: 15px;
+        height: 65px;
+        line-height: 65px;
+        display:inline-block;
     }
 }
+
+li.nav__item.cart-icon a{
+    color:#000;
+    font-weight: 800;
+    position:relative;
+    font-size: 18px;
+    margin-right:10px;
+
+    .cart-number {
+        position: absolute;
+        top: -5px;
+        height: 15px;
+        width: 15px;
+        background: red;
+        line-height: 15px;
+        font-size: 10px;
+        color: #fff;
+        z-index: 99;
+        text-align: center;
+        border-radius: 50%;
+        right: 0px;
+    }
+}
+
 .ui.dropdown.nav__link > div{
     float:left;
     i{
