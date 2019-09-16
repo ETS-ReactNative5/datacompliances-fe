@@ -42,7 +42,6 @@ function agentSettings(state = initialState, action) {
     }); 
 
     case types.PAY_THROUGH_CARD_SUCCESS:
-      console.log(action.response.data,'ddd')
       return state.merge({
         loading: false,
         response: action.response.message,

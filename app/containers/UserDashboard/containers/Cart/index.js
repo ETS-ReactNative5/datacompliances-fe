@@ -85,14 +85,13 @@ class Cart extends React.Component {
     if (this.props.response != nextProps.response) {
       this.setState({
         response_message: nextProps.response && nextProps.response,
-      },()=>{  console.log(this.state.response_message,'ggg')});
+      });
     }
     if (this.props.paymentSuccessData != nextProps.paymentSuccessData) {
       this.setState({
         payment_data: nextProps.paymentSuccessData && nextProps.paymentSuccessData,
       }, ()=> {
         if(this.state.payment_data && this.state.payment_data.status == "COMPLETED") {
-          console.log(this.state.payment_data)
             this.setState({paymentSuccessPage: true})
         }
       });
@@ -136,9 +135,8 @@ class Cart extends React.Component {
         {paymentSuccessPage && 
            <Redirect 
               to={
-                {pathname: `/user/dashboard/payment-form`,
+                {pathname: `/user/dashboard/payment-info`,
                  state: payment_data
-            
             }} />
         }
         {redirectToPayment && 
