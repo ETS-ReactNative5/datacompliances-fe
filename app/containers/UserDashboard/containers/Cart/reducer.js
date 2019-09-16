@@ -47,12 +47,12 @@ function agentSettings(state = initialState, action) {
         cartProductList: fromJS(action.response.data)
       });
 
-      case types.REMOVE_CART_SUCCESS:
-        return state.merge({
-          loading: false,
-          response: '',
-          response: action.response.message
-        }); 
+      // case types.REMOVE_CART_SUCCESS:
+      //   return state.merge({
+      //     loading: false,
+      //     response: '',
+      //     response: action.response.message
+      //   }); 
 
       case types.REMOVE_CART_SUCCESS:
           return state
@@ -75,13 +75,13 @@ function agentSettings(state = initialState, action) {
               }),
             );
 
-      // case types.REMOVE_CART_SUCCESS:
-      //   return state
-      //     .merge({
-      //       loading: false,
-      //       response: action.response.message,
-      //       error: null,
-      //     })
+      case types.PLACE_ORDER_SUCCESS:
+        return state
+          .merge({
+            loading: false,
+            response: action.response.message,
+            error: null,
+          })
 
       case types.GET_PRODUCTS_IN_CART_FAILURE:
       case types.REMOVE_CART_FAILURE:
