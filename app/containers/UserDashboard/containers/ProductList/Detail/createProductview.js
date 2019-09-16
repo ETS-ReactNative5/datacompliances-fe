@@ -23,11 +23,12 @@ const CreateProductView = (props) => {
               <p className="product-price"><span>Price : </span><small>$</small>{viewdata && viewdata.price}</p>
               <p className="product-country"><span>Country :</span> {viewdata && viewdata.country}</p>
               <p className="product-desc"> <span>Description :</span>{viewdata && viewdata.description}</p> 
-              {!(viewdata && viewdata.OrderInfo && viewdata.OrderInfo.length > 0)  ?
+              {/* {console.log(viewdata && viewdata.Cart && viewdata.Cart[0],'lllkkk', viewdata && viewdata.OrderInfo )} */}
+              {!(viewdata && viewdata.Cart && viewdata.Cart[0] && viewdata.Cart[0].cart_added)  ?
               <Button className="button buy-btn" onClick={buyProduct}>Add to Cart</Button>
                :
               <div>
-                <Button onClick={() => attemptQuestions(viewdata._id)} color="blue">Start your assessment</Button>
+                <Button onClick={() => attemptQuestions(viewdata._id)} color="blue">Go to Cart</Button>
                {/* <Link
                 to={`/user/dashboard/product-display/questions/${viewdata._id}`}
                 role="button"

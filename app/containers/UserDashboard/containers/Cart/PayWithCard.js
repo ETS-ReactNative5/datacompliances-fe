@@ -67,7 +67,6 @@ export class PayWithCard extends Component {
                  //TODO: Replace alert with code in step 2.1
                        // alert(`The generated nonce is:\n${nonce}`);
                       const token = localStorage.getItem('token'); 
-
                       fetch(`${API_BASE}payment`, {
                         method: 'POST',
                         headers: {
@@ -81,18 +80,9 @@ export class PayWithCard extends Component {
                         })
                       })
                       .then(response => {
-                          console.log(data,'....',data && data.message)
-                        //   this.setState({success:true}, () => {
-
-                        //   })
-                          // console.log(JSON.stringify(data));
                         if (!response.ok) {
                           return response.text().then(errorInfo => Promise.reject(errorInfo));
                         }
-                        // this.state = {
-                        //     success: true
-                        // }
-                        // console.log(this.state.success);
                         return response;
 
                       })
