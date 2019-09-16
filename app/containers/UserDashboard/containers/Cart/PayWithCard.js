@@ -16,6 +16,7 @@ export class PayWithCard extends Component {
     }
 
     componentDidMount() {
+      var temp = this
           // const price = this.props.totalPrice
               paymentForm = new SqPaymentForm({
                 //TODO: Replace with your sandbox application ID
@@ -63,32 +64,35 @@ export class PayWithCard extends Component {
                         alert('Encountered errors, check browser developer console for more details');
                         return;
                     }
-                      //  alert(`The generated nonce is:\n${nonce}`);
-                       //TODO: Replace alert with code in step 2.1
+                             //  alert(`The generated nonce is:\n${nonce}`);
+                             //TODO: Replace alert with code in step 2.1
                              // alert(`The generated nonce is:\n${nonce}`);
-                            const token = localStorage.getItem('token'); 
-                            fetch(`${API_BASE}payment`, {
-                              method: 'POST',
-                              headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json'
-                              },
-                              body: JSON.stringify({
-                                nonce: nonce,
-                                token: token,
-                              })
-                            })
-                            .then(response => {
-                              if (!response.ok) {
-                                return response.text().then(errorInfo => Promise.reject(errorInfo));
-                              }
-                              return response;
+                             console.log(temp,'gg')
+                             temp.props.payFromCardRequest(nonce)
+
+                            // const token = localStorage.getItem('token'); 
+                            // fetch(`${API_BASE}payment`, {
+                            //   method: 'POST',
+                            //   headers: {
+                            //     'Accept': 'application/json',
+                            //     'Content-Type': 'application/json'
+                            //   },
+                            //   body: JSON.stringify({
+                            //     nonce: nonce,
+                            //     token: token,
+                            //   })
+                            // })
+                            // .then(response => {
+                            //   if (!response.ok) {
+                            //     return response.text().then(errorInfo => Promise.reject(errorInfo));
+                            //   }
+                            //   return response;
       
-                            })
-                            .catch(err => {
-                              // console.error(err);
-                              alert('Payment failed to complete!\nCheck browser developer consolf form more details');
-                            });
+                            // })
+                            // .catch(err => {
+                            //   // console.error(err);
+                            //   alert('Payment failed to complete!\nCheck browser developer consolf form more details');
+                            // });
                     }
                 }
               });
@@ -96,6 +100,7 @@ export class PayWithCard extends Component {
       }
 
       componentWillReceiveProps(nextProps) {
+        const temp = this
           if(nextProps.showModal == true) {
             // const price = nextProps.totalPrice
               paymentForm = new SqPaymentForm({
@@ -144,32 +149,34 @@ export class PayWithCard extends Component {
                         alert('Encountered errors, check browser developer console for more details');
                         return;
                     }
-                      //  alert(`The generated nonce is:\n${nonce}`);
-                       //TODO: Replace alert with code in step 2.1
+                              //alert(`The generated nonce is:\n${nonce}`);
+                             //TODO: Replace alert with code in step 2.1
                              // alert(`The generated nonce is:\n${nonce}`);
-                            const token = localStorage.getItem('token'); 
-                            fetch(`${API_BASE}payment`, {
-                              method: 'POST',
-                              headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json'
-                              },
-                              body: JSON.stringify({
-                                nonce: nonce,
-                                token: token,
-                              })
-                            })
-                            .then(response => {
-                              if (!response.ok) {
-                                return response.text().then(errorInfo => Promise.reject(errorInfo));
-                              }
-                              return response;
+                             console.log(temp)
+                             temp.props.payFromCardRequest(nonce)
+                            // const token = localStorage.getItem('token'); 
+                            // fetch(`${API_BASE}payment`, {
+                            //   method: 'POST',
+                            //   headers: {
+                            //     'Accept': 'application/json',
+                            //     'Content-Type': 'application/json'
+                            //   },
+                            //   body: JSON.stringify({
+                            //     nonce: nonce,
+                            //     token: token,
+                            //   })
+                            // })
+                            // .then(response => {
+                            //   if (!response.ok) {
+                            //     return response.text().then(errorInfo => Promise.reject(errorInfo));
+                            //   }
+                            //   return response;
       
-                            })
-                            .catch(err => {
-                              // console.error(err);
-                              alert('Payment failed to complete!\nCheck browser developer consolf form more details');
-                            });
+                            // })
+                            // .catch(err => {
+                            //   // console.error(err);
+                            //   alert('Payment failed to complete!\nCheck browser developer consolf form more details');
+                            // });
                     }
                 }
               });

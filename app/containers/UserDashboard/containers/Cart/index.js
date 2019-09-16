@@ -21,14 +21,16 @@ import PayWithCard from  './PayWithCard'
 
 import {
   makeSelectCartProducts,
-  makeSelectResponse
+  makeSelectResponse,
+  makeSelectpaymentSuccessData
 } from './selectors';
 // import { makeSelectLocation } from '../../../App/selectors';
 
 import {
   getProductsInCartRequest,
   removeCartRequest,
-  placeOrderRequest
+  placeOrderRequest,
+  payThroughCardRequest
 } from './actions'
 
 var paymentForm
@@ -36,14 +38,16 @@ var paymentForm
 const mapStateToProps = createStructuredSelector({
   // isRequesting: makeSelectLoading(),
   cartProducts:makeSelectCartProducts(),
-  response:makeSelectResponse()
+  response:makeSelectResponse(),
+  paymentSuccessData:makeSelectpaymentSuccessData()
 });
 
 const mapDispatchToProps = dispatch => ({
   showDialog: dialog => dispatch(showDialog(dialog)),
   getProductsInCartRequest: () => dispatch(getProductsInCartRequest()),
   removeCartRequest: (id) => dispatch(removeCartRequest(id)),
-  placeOrderRequest: (ids) => dispatch(placeOrderRequest(ids))
+  placeOrderRequest: (ids) => dispatch(placeOrderRequest(ids)),
+  payThroughCardRequest: (data) => dispatch(payThroughCardRequest(data))
 });
 
 class Cart extends React.Component {
@@ -80,6 +84,11 @@ class Cart extends React.Component {
     if (this.props.response != nextProps.response) {
       this.setState({
         response_message: nextProps.response && nextProps.response,
+      },()=>{  console.log(this.state.response_message,'ggg')});
+    }
+    if (this.props.paymentSuccessData != nextProps.paymentSuccessData) {
+      this.setState({
+        payment_data: nextProps.paymentSuccessData && nextProps.paymentSuccessData,
       });
     }
   }
@@ -107,9 +116,15 @@ class Cart extends React.Component {
       this.setState({ showModal: false })
     }  
 
+    payFromCardRequest = (nonce) => {
+      console.log('ffgg',nonce)
+      this.setState({showModal: false})
+      this.props.payThroughCardRequest(nonce)
+    }  
+
   render() {
     const {  } = this.props;
-    const { data, totalPrice, redirectToPayment, arrayPIds, showModal } = this.state
+    const { data, totalPrice, redirectToPayment, arrayPIds, showModal, payment_data } = this.state
 
     return (
       <div className="cart-grid">
@@ -117,7 +132,7 @@ class Cart extends React.Component {
            <Redirect to={`/user/dashboard/payment-form`} />
         } */}
         {redirectToPayment && 
-          <PayWithCard closeModal={this.closeModal} showModal={showModal} cartSection={this.cartSection} totalPrice = {totalPrice} />
+          <PayWithCard payFromCardRequest={this.payFromCardRequest} closeModal={this.closeModal} showModal={showModal} cartSection={this.cartSection} totalPrice = {totalPrice} />
         }
       
      {/* {!redirectToPayment && data && data.dataList && data.dataList.length > 0 && */}
