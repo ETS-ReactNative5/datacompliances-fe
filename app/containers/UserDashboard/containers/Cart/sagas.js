@@ -59,7 +59,6 @@ function* placeOrderRequest(action) {
 function* payThroughCardRequest(action) {
   const token = getToken();
   const { nonce } = action;
-  console.log('dddd')
   yield call(
     PCSC.post(
       `payment`,
