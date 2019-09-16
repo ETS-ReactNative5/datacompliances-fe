@@ -53,7 +53,8 @@ class Cart extends React.Component {
         data: {},
         totalPrice: null,
         arrayPIds: [],
-        redirectToPayment: false
+        redirectToPayment: false,
+        showModal: false
       };
   }
 
@@ -87,7 +88,7 @@ class Cart extends React.Component {
     this.props.removeCartRequest(id)
   }
   placeOrder = (ids) => {
-    this.setState({redirectToPayment: true})
+    this.setState({redirectToPayment: true, showModal: true})
     this.props.placeOrderRequest(ids)
   }
 
@@ -101,10 +102,14 @@ class Cart extends React.Component {
   cartSection = () => {
     this.setState({redirectToPayment: false})
   }
+ 
+  closeModal = () => {
+      this.setState({ showModal: false })
+    }  
 
   render() {
     const {  } = this.props;
-    const { data, totalPrice, redirectToPayment, arrayPIds } = this.state
+    const { data, totalPrice, redirectToPayment, arrayPIds, showModal } = this.state
 
     return (
       <div className="cart-grid">
@@ -112,10 +117,10 @@ class Cart extends React.Component {
            <Redirect to={`/user/dashboard/payment-form`} />
         } */}
         {redirectToPayment && 
-          <PayWithCard cartSection={this.cartSection} totalPrice = {totalPrice} />
+          <PayWithCard closeModal={this.closeModal} showModal={showModal} cartSection={this.cartSection} totalPrice = {totalPrice} />
         }
       
-     {!redirectToPayment && data && data.dataList && data.dataList.length > 0 &&
+     {/* {!redirectToPayment && data && data.dataList && data.dataList.length > 0 && */}
       <div className="p-4 white-bg">
       <div className="ui top attached header cart-heading">
             <span> My Cart Items: ({data && data.dataList && data.dataList.length }) </span>
@@ -154,8 +159,8 @@ class Cart extends React.Component {
           
 </div>
 </div>
-     }
-     {!redirectToPayment && data && data.dataList && data.dataList.length > 0 &&     
+    {/* //  } */}
+     {/* {!redirectToPayment && data && data.dataList && data.dataList.length > 0 &&      */}
         <div className="order-detail">
           <div className="ui card">
             <div className="content grey-bg">
@@ -164,8 +169,8 @@ class Cart extends React.Component {
             <div className="content">
 
               <div className="pricing-grid">
-                <span className="">Product 1</span>
-                <span className="right"> ${totalPrice}</span>
+                {/* <span className="">Product 1</span> */}
+                {/* <span className="right"> ${totalPrice}</span> */}
               </div>
               
               <div className="pricing-grid total">
@@ -176,11 +181,17 @@ class Cart extends React.Component {
             </div>
 
             <div className="extra content">
-              <button onClick={() => this.placeOrder(arrayPIds)} className="ui green labeled icon  button order-btn"><i className="cart arrow down icon"></i>Place Order</button>
+              <button 
+                onClick={
+                          () => this.placeOrder(arrayPIds)} 
+                className="ui green labeled icon  button order-btn">
+                    <i className="cart arrow down icon"></i>
+                     Place Order
+              </button>
             </div>
           </div>
         </div>
-     }
+    {/* //  } */}
           {data && data.dataList && data.dataList.length < 1 &&
             <div>No Items On Cart...</div>
           }     
