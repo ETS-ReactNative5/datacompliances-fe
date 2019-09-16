@@ -53,7 +53,6 @@ export class PayWithCard extends Component {
               * Triggered when: SqPaymentForm completes a card nonce request
               */
               cardNonceResponseReceived: function (errors, nonce, cardData) {
-                  console.log(nonce)
               if (errors) {
                   // Log errors from nonce generation to the browser developer console.
                   // console.error('Encountered errors:');
@@ -94,9 +93,7 @@ export class PayWithCard extends Component {
           }
         });
         paymentForm.build();
-    
       }
-
     // saveOrderSuccessRequest = () => {
     //     console.log('gggg')
     // }  
