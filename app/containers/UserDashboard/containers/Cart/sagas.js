@@ -50,7 +50,7 @@ function* placeOrderRequest(action) {
       `order`,
       actions.placeOrderSuccess,
       actions.placeOrderFailure,
-      product_ids,
+      {product_id: product_ids},
       token,
     ),
   );
