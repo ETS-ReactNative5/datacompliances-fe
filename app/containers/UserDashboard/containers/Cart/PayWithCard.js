@@ -4,10 +4,18 @@ import './style.scss';
 
 var paymentForm
 
-
 export class PayWithCard extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            success: false
+        }
+        // this.onChange = this.onChange.bind(this);
+    }
+
     componentDidMount() {
+            const price = this.props.totalPrice
           paymentForm = new SqPaymentForm({
           //TODO: Replace with your sandbox application ID
           applicationId: "sandbox-sq0idb-uMCOPGva0o2SCGWsuBcdkA",
@@ -45,6 +53,7 @@ export class PayWithCard extends Component {
               * Triggered when: SqPaymentForm completes a card nonce request
               */
               cardNonceResponseReceived: function (errors, nonce, cardData) {
+                  console.log(nonce)
               if (errors) {
                   // Log errors from nonce generation to the browser developer console.
                   // console.error('Encountered errors:');
@@ -54,10 +63,11 @@ export class PayWithCard extends Component {
                   alert('Encountered errors, check browser developer console for more details');
                   return;
               }
-                 alert(`The generated nonce is:\n${nonce}`);
+                //  alert(`The generated nonce is:\n${nonce}`);
                  //TODO: Replace alert with code in step 2.1
                        // alert(`The generated nonce is:\n${nonce}`);
                       const token = localStorage.getItem('token'); 
+
                       fetch(`${API_BASE}payment`, {
                         method: 'POST',
                         headers: {
@@ -67,21 +77,24 @@ export class PayWithCard extends Component {
                         body: JSON.stringify({
                           nonce: nonce,
                           token: token,
-                          price: 200
+                          price: price
                         })
                       })
-                      .catch(err => {
-                        alert('Network error: ' + err);
-                      })
                       .then(response => {
+                          console.log(data,'....',data && data.message)
+                        //   this.setState({success:true}, () => {
+
+                        //   })
+                          // console.log(JSON.stringify(data));
                         if (!response.ok) {
                           return response.text().then(errorInfo => Promise.reject(errorInfo));
                         }
-                        return response.text();
-                      })
-                      .then(data => {
-                        // console.log(JSON.stringify(data));
-                        // alert('Payment complete successfully!\nCheck browser developer consolf form more details');
+                        // this.state = {
+                        //     success: true
+                        // }
+                        // console.log(this.state.success);
+                        return response;
+
                       })
                       .catch(err => {
                         // console.error(err);
@@ -93,16 +106,21 @@ export class PayWithCard extends Component {
         paymentForm.build();
     
       }
+
+    // saveOrderSuccessRequest = () => {
+    //     console.log('gggg')
+    // }  
     
     onGetCardNonce = (event) => {
         // Don't submit the form until SqPaymentForm returns with a nonce
         event.preventDefault();
         // Request a nonce from the SqPaymentForm object
-        paymentForm.requestCardNonce();
+        paymentForm.requestCardNonce()
       }
 
     render() {
         const { totalPrice, cartSection } = this.props;
+        const { success } = this.state;
         return (
                 <div className="cart-grid">
                   <div><br ></br><br /><br /><br /><br /><br /></div>
