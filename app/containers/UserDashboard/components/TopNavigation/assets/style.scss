@@ -22,7 +22,9 @@ li.nav__item.cart-icon a{
     position:relative;
     font-size: 18px;
     margin-right:10px;
-
+    &:hover{
+        text-decoration: none;
+    }
     .cart-number {
         position: absolute;
         top: -5px;
