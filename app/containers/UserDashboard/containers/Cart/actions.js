@@ -27,6 +27,19 @@ export const removeCartFailure = action(
   'error',
 );
 
+export const placeOrderRequest = action(
+  types.PLACE_ORDER_REQUEST,
+  'product_ids'
+);
+export const placeOrderSuccess = action(
+  types.PLACE_ORDER_SUCCESS,
+  'response',
+);
+export const placeOrderFailure = action(
+  types.PLACE_ORDER_FAILURE,
+  'error',
+);
+
 
 
 
