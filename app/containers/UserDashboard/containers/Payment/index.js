@@ -156,8 +156,6 @@ class Payment extends React.Component {
         data: nextProps.cartProducts && nextProps.cartProducts.toJS(),
         totalPrice: tot,
         arrayPIds: arrayProductId
-      }, () => {
-        console.log(this.state.arrayPIds,'fff',)
       });
     }
     if (this.props.response != nextProps.response) {

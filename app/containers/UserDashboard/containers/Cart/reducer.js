@@ -12,7 +12,8 @@ const initialState = fromJS({
     currentPage: 1
   },
   error: '',
-  public_url: ''
+  public_url: '',
+  paymentSuccessData: null
 });
 
 function agentSettings(state = initialState, action) {
@@ -24,6 +25,31 @@ function agentSettings(state = initialState, action) {
         cartProductList: '',
         error: '',
       });
+
+    case types.PLACE_ORDER_REQUEST:  
+    return state.merge({
+      loading: true,
+      response: '',
+      error: '',
+    });   
+
+    case types.PAY_THROUGH_CARD_REQUEST:  
+    return state.merge({
+      loading: true,
+      response: '',
+      error: '',
+      paymentSuccessData: null
+    }); 
+
+    case types.PAY_THROUGH_CARD_SUCCESS:
+      console.log(action.response.data,'ddd')
+      return state.merge({
+        loading: false,
+        // response: action.response.message,
+        paymentSuccessData: formJS(action.response.data)
+      });
+
+
 
     case types.REMOVE_CART_REQUEST:
         return state.merge({
@@ -38,6 +64,13 @@ function agentSettings(state = initialState, action) {
         response: '',
         cartProductList: fromJS(action.response.data)
       });
+
+      // case types.REMOVE_CART_SUCCESS:
+      //   return state.merge({
+      //     loading: false,
+      //     response: '',
+      //     response: action.response.message
+      //   }); 
 
       case types.REMOVE_CART_SUCCESS:
           return state
@@ -60,16 +93,18 @@ function agentSettings(state = initialState, action) {
               }),
             );
 
-      // case types.REMOVE_CART_SUCCESS:
-      //   return state
-      //     .merge({
-      //       loading: false,
-      //       response: action.response.message,
-      //       error: null,
-      //     })
+      case types.PLACE_ORDER_SUCCESS:
+        return state
+          .merge({
+            loading: false,
+            response: action.response.message,
+            error: null,
+          })
 
       case types.GET_PRODUCTS_IN_CART_FAILURE:
       case types.REMOVE_CART_FAILURE:
+      case types.PLACE_ORDER_FAILURE: 
+      case types.PAY_THROUGH_CARD_FAILURE:
       return state.merge({
         error: action.error.message,
         response: '',

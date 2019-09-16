@@ -42,7 +42,37 @@ function* removeCartRequest(action) {
   yield cancel(successWatcher);
 }
 
+function* placeOrderRequest(action) {
+  const token = getToken();
+  const { product_ids } = action;
+  yield call(
+    PCSC.post(
+      `order`,
+      actions.placeOrderSuccess,
+      actions.placeOrderFailure,
+      {product_id: product_ids},
+      token,
+    ),
+  );
+}
+
+function* payThroughCardRequest(action) {
+  const token = getToken();
+  const { nonce } = action;
+  yield call(
+    PCSC.post(
+      `payment`,
+      actions.payThroughCardSuccess,
+      actions.payThroughCardFailure,
+      {nonce: nonce},
+      token,
+    ),
+  );
+}
+
 export default function* reportsWatcher() {
   yield takeLatest(types.GET_PRODUCTS_IN_CART_REQUEST, getProductsInCartRequest);
+  yield takeLatest(types.PLACE_ORDER_REQUEST, placeOrderRequest);
   yield takeLatest(types.REMOVE_CART_REQUEST, removeCartRequest);
+  yield takeLatest(types.PAY_THROUGH_CARD_REQUEST, payThroughCardRequest);
 }

@@ -33,6 +33,11 @@ const makeSelectLoading = () =>
     getCartProducts,
     state => state.get('cartProductList'),
   );
+  const makeSelectpaymentSuccessData = () =>
+  createSelector(
+    getCartProducts,
+    state => state.get('paymentSuccessData')
+  );
 
 export {
   makeSelectResponse,
@@ -40,5 +45,6 @@ export {
   makeSelectLoading,
   makeSelectReportList,
   makeSelectPublicURL,
-  makeSelectCartProducts
+  makeSelectCartProducts,
+  makeSelectpaymentSuccessData
 };
