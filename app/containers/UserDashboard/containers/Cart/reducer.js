@@ -45,8 +45,8 @@ function agentSettings(state = initialState, action) {
       console.log(action.response.data,'ddd')
       return state.merge({
         loading: false,
-        // response: action.response.message,
-        paymentSuccessData: formJS(action.response.data)
+        response: action.response.message,
+        paymentSuccessData: action.response.data
       });
 
 

@@ -58,7 +58,8 @@ class Cart extends React.Component {
         totalPrice: null,
         arrayPIds: [],
         redirectToPayment: false,
-        showModal: false
+        showModal: false,
+        paymentSuccessPage: false
       };
   }
 
@@ -89,6 +90,11 @@ class Cart extends React.Component {
     if (this.props.paymentSuccessData != nextProps.paymentSuccessData) {
       this.setState({
         payment_data: nextProps.paymentSuccessData && nextProps.paymentSuccessData,
+      }, ()=> {
+        if(this.state.payment_data && this.state.payment_data.status == "COMPLETED") {
+          console.log(this.state.payment_data)
+            this.setState({paymentSuccessPage: true})
+        }
       });
     }
   }
@@ -123,18 +129,22 @@ class Cart extends React.Component {
 
   render() {
     const {  } = this.props;
-    const { data, totalPrice, redirectToPayment, arrayPIds, showModal, payment_data } = this.state
+    const { data, totalPrice, redirectToPayment, arrayPIds, showModal, payment_data, paymentSuccessPage } = this.state
 
     return (
       <div className="cart-grid">
-        {/* {redirectToPayment && 
-           <Redirect to={`/user/dashboard/payment-form`} />
-        } */}
+        {paymentSuccessPage && 
+           <Redirect 
+              to={
+                {pathname: `/user/dashboard/payment-form`,
+                 state: payment_data
+            
+            }} />
+        }
         {redirectToPayment && 
           <PayWithCard payFromCardRequest={this.payFromCardRequest} closeModal={this.closeModal} showModal={showModal} cartSection={this.cartSection} totalPrice = {totalPrice} />
         }
       
-     {/* {!redirectToPayment && data && data.dataList && data.dataList.length > 0 && */}
       <div className="p-4 white-bg">
       <div className="ui top attached header cart-heading">
             <span> My Cart Items: ({data && data.dataList && data.dataList.length }) </span>
