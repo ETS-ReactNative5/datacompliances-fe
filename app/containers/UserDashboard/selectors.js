@@ -7,4 +7,5 @@ const makeSelectResponse = () => createSelector(selectUserDashboard, (state) => 
 const makeSelectError = () => createSelector(selectUserDashboard, (state) => state.get('error'));
 const makeSelectRequesting = () => createSelector(selectUserDashboard, (state) => state.get('requesting'));
 const makeSelectStatus = () => createSelector(selectUserDashboard, (state) => state.get('status'));
-export { makeSelectSuccess, makeSelectResponse, makeSelectError, makeSelectRequesting, makeSelectStatus };
+const makeSelectCartTotal = () => createSelector(selectUserDashboard, (state) => state.get('cartTotal'));
+export { makeSelectSuccess, makeSelectResponse, makeSelectError, makeSelectRequesting, makeSelectStatus, makeSelectCartTotal };

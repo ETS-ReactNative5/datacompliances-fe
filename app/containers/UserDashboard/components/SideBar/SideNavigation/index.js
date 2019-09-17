@@ -32,11 +32,6 @@ const mainMenu = [
     path: '/user/dashboard/reports',
     icon: "icon-file",
   },
-  {
-    title: 'Cart',
-    path: '/user/dashboard/cart',
-    icon: "icon-shopping-cart",
-  },
 ];
 
 class SideNavigation extends React.Component {

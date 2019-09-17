@@ -61,7 +61,7 @@ export class PayWithCard extends Component {
                         errors.forEach(function (error) {
                             console.error('  ' + error.message);
                         });
-                        alert('Encountered errors, check browser developer console for more details');
+                        // alert('Encountered errors, check browser developer console for more details');
                         return;
                     }
                              //  alert(`The generated nonce is:\n${nonce}`);
@@ -145,13 +145,12 @@ export class PayWithCard extends Component {
                         errors.forEach(function (error) {
                             console.error('  ' + error.message);
                         });
-                        alert('Encountered errors, check browser developer console for more details');
+                        // alert('Encountered errors, check browser developer console for more details');
                         return;
                     }
                               //alert(`The generated nonce is:\n${nonce}`);
                              //TODO: Replace alert with code in step 2.1
                              // alert(`The generated nonce is:\n${nonce}`);
-                             console.log(temp)
                              temp.props.payFromCardRequest(nonce)
                             // const token = localStorage.getItem('token'); 
                             // fetch(`${API_BASE}payment`, {
@@ -187,7 +186,6 @@ export class PayWithCard extends Component {
     // }  
     
     onGetCardNonce = (event) => {
-        // Don't submit the form until SqPaymentForm returns with a nonce
         event.preventDefault();
         // Request a nonce from the SqPaymentForm object
         paymentForm.requestCardNonce()
@@ -200,8 +198,9 @@ export class PayWithCard extends Component {
         const { success } = this.state;
         return (
           <Modal size='fullscreen' className="multi-fac-modal" open={showModal} size="mini" style={{leftMargin :  "20%"}} 
-          onClose={closeModal} 
-          closeIcon={{ style: { top: '1.0535rem', right: '1rem' }, color: 'red', name: 'close' }}
+          onClose={closeModal}
+          closeOnDimmerClick={false} 
+          closeIcon={{ style: { top: '0.0535rem', right: '.05rem' }, color: 'red', name: 'close' }}
               >
           <Header icon='question circle' content='Enter your card Details' />
           <Modal.Content style={{minHeight :  "80px"}}>
@@ -223,17 +222,6 @@ export default PayWithCard
 
 
 
-{/* <div>
-<div><br ></br><br /><br /><br /><br /><br /></div>
- <div id="form-container">
-  <div id="sq-card-number"></div>
-  <div className="third" id="sq-expiration-date"></div>
-  <div className="third" id="sq-cvv"></div>
-  <div className="third" id="sq-postal-code"></div>
-  <button id="sq-creditcard" className="button-credit-card" onClick={() => this.onGetCardNonce(event)}>Pay With Card</button>
- </div>
- <button onClick={cartSection}>Back to Cart</button>
-</div> */}
 
 
 

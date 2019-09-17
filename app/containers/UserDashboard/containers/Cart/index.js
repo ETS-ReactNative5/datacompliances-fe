@@ -122,7 +122,7 @@ class Cart extends React.Component {
     }  
 
     payFromCardRequest = (nonce) => {
-      this.setState({showModal: false})
+      // this.setState({showModal: false})
       this.props.payThroughCardRequest(nonce)
     }  
 
@@ -142,7 +142,7 @@ class Cart extends React.Component {
         {redirectToPayment && 
           <PayWithCard payFromCardRequest={this.payFromCardRequest} closeModal={this.closeModal} showModal={showModal} cartSection={this.cartSection} totalPrice = {totalPrice} />
         }
-      
+     {data && data.dataList && data.dataList.length > 0 &&     
       <div className="p-4 white-bg">
       <div className="ui top attached header cart-heading">
             <span> My Cart Items: ({data && data.dataList && data.dataList.length }) </span>
@@ -163,8 +163,6 @@ class Cart extends React.Component {
                     <p className="header">{item.product.title}</p>
                     <div className="meta">
                     <span className="price">${item.product.price}</span>
-                    
-                      {/* <span className="tag">Profile Name </span> */}
                     </div>
                     <div className="description">
                       <p> Profile Name :{item.product.profile_name} </p>
@@ -178,11 +176,10 @@ class Cart extends React.Component {
                 </div>
             )
           })}
-          
-</div>
-</div>
-    {/* //  } */}
-     {/* {!redirectToPayment && data && data.dataList && data.dataList.length > 0 &&      */}
+       </div>
+      </div>
+     }
+     {data && data.dataList && data.dataList.length > 0 &&     
         <div className="order-detail">
           <div className="ui card">
             <div className="content grey-bg">
@@ -213,7 +210,7 @@ class Cart extends React.Component {
             </div>
           </div>
         </div>
-    {/* //  } */}
+     }
           {data && data.dataList && data.dataList.length < 1 &&
             <div>No Items On Cart...</div>
           }     
