@@ -122,7 +122,7 @@ class Cart extends React.Component {
     }  
 
     payFromCardRequest = (nonce) => {
-      this.setState({showModal: false})
+      // this.setState({showModal: false})
       this.props.payThroughCardRequest(nonce)
     }  
 

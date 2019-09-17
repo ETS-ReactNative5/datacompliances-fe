@@ -73,6 +73,7 @@ class UserDashboard extends React.Component {
     showSticky: false,
     sidebar: false,
     cartItems: 0
+    
   };
 
   componentDidMount() {

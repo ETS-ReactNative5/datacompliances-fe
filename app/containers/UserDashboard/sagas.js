@@ -28,7 +28,7 @@ function* resendConfirmationFlow() {
 function* getCartItemsRequest() {
   yield fork(
     PCSC.get(
-      'api/user/resend-confirm-email',
+      'cart',
       actions.getCartItemsNumberSuccess,
       actions.getCartItemsNumberFailure,
       getToken()

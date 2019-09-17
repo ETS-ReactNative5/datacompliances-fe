@@ -8,7 +8,11 @@ const initialState = fromJS({
   requesting: false,
   success: false,
   status: null,
-  cartTotal: null
+  cartTotal: {
+    dataList: [],
+    totalItems: 0,
+    currentPage: 1,
+  },
 });
 
 function userDashboardReducer(state = initialState, action = {}) {
@@ -40,6 +44,7 @@ function userDashboardReducer(state = initialState, action = {}) {
 
          
     case types.GET_CART_ITEMS_NUMBER_SUCCESS:
+      console.log(action.response,'pppppppppppppppppp')
         return state.merge({
           requesting: false,
           response: action.response.message,

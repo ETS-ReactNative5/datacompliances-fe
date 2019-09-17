@@ -16,7 +16,7 @@ class TopNavigation extends React.Component {
       <div className="header-wrap">
         
         <ul className="header-menu">
-          <li className="nav__item cart-icon"><Link to="/user/dashboard/cart"><i className="icon icon-shopping-cart"/> <span className="cart-number">{cartItems}</span> </Link> &nbsp;&nbsp;</li>  
+          <li className="nav__item cart-icon"><Link to="/user/dashboard/cart"><i className="icon icon-shopping-cart"/> <span className="cart-number">0</span> </Link> &nbsp;&nbsp;</li>  
           <li className="nav__item">
             <Dropdown trigger={avatar} className="nav__link" direction="left">
               <Dropdown.Menu className="basic-nav-menu">
