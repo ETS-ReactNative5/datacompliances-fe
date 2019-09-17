@@ -24,7 +24,8 @@ import {
 } from './selectors';
 
 import {
-  updateOrderRequest
+  updateOrderRequest,
+  clearCartRequest
 } from './actions'
 
 
@@ -37,7 +38,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   showDialog: dialog => dispatch(showDialog(dialog)),
-  updateOrderRequest: (payload) => dispatch(updateOrderRequest(payload))
+  updateOrderRequest: (payload) => dispatch(updateOrderRequest(payload)),
+  clearCartRequest: (payload) => dispatch(clearCartRequest(payload))
 });
 
 class Payment extends React.Component {
@@ -52,15 +54,14 @@ class Payment extends React.Component {
 
 
   componentDidMount() {
-    console.log(this.props.location)
      if(this.props.location && this.props.location.state != undefined) {
-       console.log(this.props.location.state,'llkkk')
        const payload = {
          product_id: this.props.location.state.productId,
          payment_id: this.props.location.state._id,
          order_id: this.props.location.state.OrderId
        }
         this.props.updateOrderRequest(payload)
+        this.props.clearCartRequest(payload)
      }
   }
 

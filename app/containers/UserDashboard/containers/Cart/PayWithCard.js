@@ -151,7 +151,6 @@ export class PayWithCard extends Component {
                               //alert(`The generated nonce is:\n${nonce}`);
                              //TODO: Replace alert with code in step 2.1
                              // alert(`The generated nonce is:\n${nonce}`);
-                             console.log(temp)
                              temp.props.payFromCardRequest(nonce)
                             // const token = localStorage.getItem('token'); 
                             // fetch(`${API_BASE}payment`, {

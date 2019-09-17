@@ -9,7 +9,6 @@ import { LOCATION_CHANGE, push } from 'react-router-redux';
 function* updateOrderRequest(action) {
   const token = getToken();
   const { payload } = action;
-  console.log(payload,'kkkkkkkkkkkkkk')
   yield call(
     PCSC.put(
       `order/update/${payload.order_id}/${payload.payment_id}`,
@@ -21,6 +20,21 @@ function* updateOrderRequest(action) {
   );
 }
 
+function* clearCartRequest(action) {
+  const token = getToken();
+  const { payload } = action;
+  yield call(
+    PCSC.patch(
+      `cart/remove/${payload.payment_id}`,
+      actions.clearCartSuccess,
+      actions.clearCartFailure,
+      {},
+      token,
+    ),
+  );
+}
+
 export default function* reportsWatcher() {
   yield takeLatest(types.UPDATE_ORDER_REQUEST, updateOrderRequest);
+  yield takeLatest(types.CLEAR_CART_REQUEST, clearCartRequest);
 }

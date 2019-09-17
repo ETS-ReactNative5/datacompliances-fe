@@ -24,6 +24,12 @@ function agentSettings(state = initialState, action) {
           response: '',
           error: '',
         });
+    case types.CLEAR_CART_REQUEST:
+        return state.merge({
+          loading: true,
+          response: '',
+          error: '',
+        });   
 
       case types.UPDATE_ORDER_SUCCESS:
       return state.merge({
@@ -32,7 +38,14 @@ function agentSettings(state = initialState, action) {
         cartProductList: fromJS(action.response.data)
       });
 
+      case types.CLEAR_CART_SUCCESS:
+      return state.merge({
+        loading: false,
+        response: action.response.message,
+      }); 
+
       case types.UPDATE_ORDER_FAILURE:
+      case types.CLEAR_CART_FAILURE:
       return state.merge({
         error: action.error.message,
         response: '',
