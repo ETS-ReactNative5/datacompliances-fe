@@ -17,70 +17,33 @@ const initialState = fromJS({
 
 function agentSettings(state = initialState, action) {
   switch (action.type) {
-    case types.GET_PRODUCTS_IN_CART_REQUEST:
-      return state.merge({
-        loading: true,
-        response: '',
-        cartProductList: '',
-        error: '',
-      });
 
-    case types.REMOVE_CART_REQUEST:
+    case types.UPDATE_ORDER_REQUEST:
         return state.merge({
           loading: true,
           response: '',
           error: '',
-        });  
+        });
 
-      case types.GET_PRODUCTS_IN_CART_SUCCESS:
+      case types.UPDATE_ORDER_SUCCESS:
       return state.merge({
         loading: false,
         response: '',
         cartProductList: fromJS(action.response.data)
       });
 
-      case types.REMOVE_CART_SUCCESS:
-          return state
-            .merge({
-              loading: false,
-              response: action.response.message,
-              error: null,
-            })
-            .set(
-              'cartProductList',
-              fromJS({
-                dataList: state
-                  .get('cartProductList')
-                  .get('dataList')
-                  .filter(eachRule => {
-                    return eachRule.get('_id') !== action.response.data._id;
-                  }),
-                totalItems: 10,
-                currentPage: 1,
-              }),
-            );
-
-      // case types.REMOVE_CART_SUCCESS:
-      //   return state
-      //     .merge({
-      //       loading: false,
-      //       response: action.response.message,
-      //       error: null,
-      //     })
-
-      case types.GET_PRODUCTS_IN_CART_FAILURE:
-      case types.REMOVE_CART_FAILURE:
+      case types.UPDATE_ORDER_FAILURE:
       return state.merge({
         error: action.error.message,
         response: '',
         loading: false,
       });
 
-      case types.CLEAR_MESSAGE:
-      return state.merge({
-        response: '',
-        error: '',
-      });
+      // case types.CLEAR_MESSAGE:
+      // return state.merge({
+      //   response: '',
+      //   error: '',
+      // });
     case LOGOUT_SUCCESS:
       return initialState;
     default:

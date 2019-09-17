@@ -20,11 +20,11 @@ import moment from 'moment';
 
 
 import {
-  makeSelectCartProducts,
   makeSelectResponse
 } from './selectors';
 
 import {
+  updateOrderRequest
 } from './actions'
 
 
@@ -32,13 +32,12 @@ var paymentForm
 
 const mapStateToProps = createStructuredSelector({
   // isRequesting: makeSelectLoading(),
-  cartProducts:makeSelectCartProducts(),
   response:makeSelectResponse()
 });
 
 const mapDispatchToProps = dispatch => ({
   showDialog: dialog => dispatch(showDialog(dialog)),
-
+  updateOrderRequest: (payload) => dispatch(updateOrderRequest(payload))
 });
 
 class Payment extends React.Component {
@@ -53,23 +52,20 @@ class Payment extends React.Component {
 
 
   componentDidMount() {
+    console.log(this.props.location)
+     if(this.props.location && this.props.location.state != undefined) {
+       console.log(this.props.location.state,'llkkk')
+       const payload = {
+         product_id: this.props.location.state.productId,
+         payment_id: this.props.location.state._id,
+         order_id: this.props.location.state.OrderId
+       }
+        this.props.updateOrderRequest(payload)
+     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.cartProducts != nextProps.cartProducts) {
-      var tot = 0;
-      var arrayProductId = new Array();
-      nextProps.cartProducts && nextProps.cartProducts.toJS().dataList.map((item, index) => {
-         tot = tot + item.product.price
-         arrayProductId.push(item.product._id)
-        })
-      
-      this.setState({
-        data: nextProps.cartProducts && nextProps.cartProducts.toJS(),
-        totalPrice: tot,
-        arrayPIds: arrayProductId
-      });
-    }
+    
     if (this.props.response != nextProps.response) {
       this.setState({
         response_message: nextProps.response && nextProps.response,
