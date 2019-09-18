@@ -93,3 +93,21 @@
 .order-btn{
     border-radius: 5px !important;
 }
+.hide{
+    display: none !important;
+}
+.ui.modal>.actions{
+    padding: 1rem 1.5rem; 
+}
+
+button#sq-creditcard {
+    margin: 0 auto !important;
+    background: #03A9F4;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800 !important;
+    border-radius: 5px !important;
+    &:hover{
+        background: #0088c5;
+    }
+}

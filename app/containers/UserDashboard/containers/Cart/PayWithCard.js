@@ -12,7 +12,6 @@ export class PayWithCard extends Component {
         this.state = {
             success: false,
         }
-        // this.onChange = this.onChange.bind(this);
     }
 
     componentDidMount() {
@@ -56,50 +55,22 @@ export class PayWithCard extends Component {
                     */
                     cardNonceResponseReceived: function (errors, nonce, cardData) {
                     if (errors) {
-                        // Log errors from nonce generation to the browser developer console.
-                        // console.error('Encountered errors:');
+                       
                         var errmsg = ''
                         errors.forEach(function (error) {
                             // console.error('  ' + error.message);
                             errmsg = errmsg + error.message + '<br>'
                         });
-                        var element = document.getElementById("payment-errors").innerHTML = errmsg;
-                        if(element.classList != undefined && element.classList.contains("hide")) {
+                        document.getElementById("payment-errors").innerHTML = errmsg;
+                        var element = document.getElementById("payment-errors")
                         element.classList.remove("hide");
-                        }
-                        // document.getElementById('payment-errors').innerHTML = errmsg
-                        // $('#payment-errors').removeClass('hide')
-                        // alert('Encountered errors, check browser developer console for more details');
                         return;
+                    } else if(!errors) {
+                        var element = document.getElementById("payment-errors")
+                        element.classList.add("hide");
                     }
-                             //  alert(`The generated nonce is:\n${nonce}`);
-                             //TODO: Replace alert with code in step 2.1
-                             // alert(`The generated nonce is:\n${nonce}`);
+                     
                              temp.props.payFromCardRequest(nonce)
-
-                            // const token = localStorage.getItem('token'); 
-                            // fetch(`${API_BASE}payment`, {
-                            //   method: 'POST',
-                            //   headers: {
-                            //     'Accept': 'application/json',
-                            //     'Content-Type': 'application/json'
-                            //   },
-                            //   body: JSON.stringify({
-                            //     nonce: nonce,
-                            //     token: token,
-                            //   })
-                            // })
-                            // .then(response => {
-                            //   if (!response.ok) {
-                            //     return response.text().then(errorInfo => Promise.reject(errorInfo));
-                            //   }
-                            //   return response;
-      
-                            // })
-                            // .catch(err => {
-                            //   // console.error(err);
-                            //   alert('Payment failed to complete!\nCheck browser developer consolf form more details');
-                            // });
                     }
                 }
               });
@@ -148,69 +119,35 @@ export class PayWithCard extends Component {
                     */
                     cardNonceResponseReceived: function (errors, nonce, cardData) {
                     if (errors) {
-                        // Log errors from nonce generation to the browser developer console.
-                        // console.error('Encountered errors:');
                         var errmsg = ''
                         errors.forEach(function (error) {
-                            // console.error('  ' + error.message);
                             errmsg = errmsg + error.message + '<br>'
                         });
-                        var element = document.getElementById("payment-errors").innerHTML = errmsg;
-                        if(element.classList != undefined && element.classList.contains("hide")) {
+                        document.getElementById("payment-errors").innerHTML = errmsg;
+                        var element = document.getElementById("payment-errors")
                         element.classList.remove("hide");
-                        }
-                        // document.getElementById('payment-errors').innerHTML = errmsg
-                        // $('#payment-errors').removeClass('hide')
-                        // alert('Encountered errors, check browser developer console for more details');
                         return;
+                    } else if(!errors) {
+                        var element = document.getElementById("payment-errors")
+                        element.classList.add("hide");
                     }
-                              //alert(`The generated nonce is:\n${nonce}`);
-                             //TODO: Replace alert with code in step 2.1
-                             // alert(`The generated nonce is:\n${nonce}`);
-                             temp.props.payFromCardRequest(nonce)
-                            // const token = localStorage.getItem('token'); 
-                            // fetch(`${API_BASE}payment`, {
-                            //   method: 'POST',
-                            //   headers: {
-                            //     'Accept': 'application/json',
-                            //     'Content-Type': 'application/json'
-                            //   },
-                            //   body: JSON.stringify({
-                            //     nonce: nonce,
-                            //     token: token,
-                            //   })
-                            // })
-                            // .then(response => {
-                            //   if (!response.ok) {
-                            //     return response.text().then(errorInfo => Promise.reject(errorInfo));
-                            //   }
-                            //   return response;
-      
-                            // })
-                            // .catch(err => {
-                            //   // console.error(err);
-                            //   alert('Payment failed to complete!\nCheck browser developer consolf form more details');
-                            // });
+                       temp.props.payFromCardRequest(nonce)
                     }
                 }
               });
               paymentForm.build();
             }
       }
-    // saveOrderSuccessRequest = () => {
-    //     console.log('gggg')
-    // }  
     
     onGetCardNonce = (event) => {
         event.preventDefault();
-        // Request a nonce from the SqPaymentForm object
         paymentForm.requestCardNonce()
       }
 
      
 
     render() {
-        const { totalPrice, cartSection, showModal, closeModal } = this.props;
+        const { totalPrice, cartSection, showModal, closeModal, isRequesting } = this.props;
         const { success } = this.state;
         return (
           <Modal size='fullscreen' className="multi-fac-modal" open={showModal} size="mini" style={{leftMargin :  "20%"}} 
@@ -220,14 +157,14 @@ export class PayWithCard extends Component {
               >
           <Header icon='question circle' content='Enter your card Details' />
           <Modal.Content style={{minHeight :  "80px"}}>
-          <div id="payment-errors" class="hide"></div>
+          <div id="payment-errors" className="ui negative message hide" ></div>
           <div id="sq-card-number"></div>
           <div className="third" id="sq-expiration-date"></div>
           <div className="third" id="sq-cvv"></div>
           <div className="third" id="sq-postal-code"></div>
           </Modal.Content>
           <Modal.Actions>
-          <button id="sq-creditcard" className="button-credit-card" onClick={() => this.onGetCardNonce(event)}>Pay With Card</button>
+          <Button loading={isRequesting} id="sq-creditcard" className="button-credit-card" onClick={() => this.onGetCardNonce(event)}>Pay With Card</Button>
           </Modal.Actions>
           </Modal>
                 
