@@ -25,18 +25,6 @@ function* resendConfirmationFlow() {
   yield cancel(successWatcher);
 }
 
-function* getCartItemsRequest() {
-  yield fork(
-    PCSC.get(
-      'cart',
-      actions.getCartItemsNumberSuccess,
-      actions.getCartItemsNumberFailure,
-      getToken()
-    )
-  );
-}
-
 export default function* userDashboardSaga() {
   yield takeLatest(types.RESEND_CONFIRMATION_REQUEST, resendConfirmationFlow);
-  yield takeLatest(types.GET_CART_ITEMS_NUMBER_REQUEST, getCartItemsRequest);
 }

@@ -17,7 +17,8 @@ import placeholder from './placeholder.png';
 import { DOCUMENT_URL_UPDATE, API_BASE  } from '../../../App/constants';
 import { Redirect } from 'react-router-dom'
 import moment from 'moment';
-
+import check from './assets/check.png';
+import cross from './assets/cross.png';
 
 import {
   makeSelectResponse
@@ -52,7 +53,6 @@ class Payment extends React.Component {
       };
   }
 
-
   componentDidMount() {
      if(this.props.location && this.props.location.state != undefined) {
        const payload = {
@@ -62,6 +62,7 @@ class Payment extends React.Component {
        }
         this.props.updateOrderRequest(payload)
         this.props.clearCartRequest(payload)
+        // this.props.handleCartSize(1)
      }
   }
 
@@ -80,19 +81,28 @@ class Payment extends React.Component {
     const { location } = this.props;
     const { data, totalPrice, redirectToPayment } = this.state
     return (
-      <div className="cart-grid">
-        <div><br ></br><br /><br /><br /><br /><br /></div>
+      <div className="payment-response">
         {location && location.state != undefined ?
-        <div>
-         <div>Payment status: {location.state.status}</div>   
-         <div>Amount Paid: ${location.state.total_money.amount}</div>   
-         <div>Payment source: {location.state.source_type}</div>   
-         <div>Paid Date: {moment(location.state.updated_at, 'YYYY-MM-DD').format('YYYY-MM-DD') }</div>   
-         </div>
+        <div className="payment-success">
+          <div className="icon">
+            <img src={check}/>
+          </div>
+          <p className="msg green">Payment Successfull !</p>
+          <p>Amount Paid: ${location.state.total_money.amount}</p>   
+          <p>Payment source: {location.state.source_type}</p>   
+          <p>Paid Date: {moment(location.state.updated_at, 'YYYY-MM-DD').format('YYYY-MM-DD') }</p>   
+        </div>
          :
-         <div>
-           No Information Available
-           </div>
+          <div>
+           <div className="payment-success">
+                {/* <p>Payment status: {location.state.status}</p>    */}
+                <div className="icon">
+                  <img src={cross}/>
+                </div>
+                <p className="msg red">Payment Failed !!!!!</p>
+                
+              </div>
+          </div>
         }
         </div>
     );

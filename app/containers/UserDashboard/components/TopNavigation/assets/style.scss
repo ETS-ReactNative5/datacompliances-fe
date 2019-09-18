@@ -48,7 +48,10 @@ li.nav__item.cart-icon a{
     }
 }
 .menu.transition.left.visible.basic-nav-menu{
-    margin-top:10px;
+    margin-top:-8px;
+    a{
+        text-decoration: none;
+    }
 }
 .header-wrap {
     text-align: right;

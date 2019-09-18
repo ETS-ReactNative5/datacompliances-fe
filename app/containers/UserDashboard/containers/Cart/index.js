@@ -22,7 +22,9 @@ import PayWithCard from  './PayWithCard'
 import {
   makeSelectCartProducts,
   makeSelectResponse,
-  makeSelectpaymentSuccessData
+  makeSelectpaymentSuccessData,
+  makeSelectError,
+  makeSelectLoading          
 } from './selectors';
 // import { makeSelectLocation } from '../../../App/selectors';
 
@@ -39,7 +41,9 @@ const mapStateToProps = createStructuredSelector({
   // isRequesting: makeSelectLoading(),
   cartProducts:makeSelectCartProducts(),
   response:makeSelectResponse(),
-  paymentSuccessData:makeSelectpaymentSuccessData()
+  paymentSuccessData:makeSelectpaymentSuccessData(),
+  payError:makeSelectError(),
+  loading:makeSelectLoading()
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -59,7 +63,9 @@ class Cart extends React.Component {
         arrayPIds: [],
         redirectToPayment: false,
         showModal: false,
-        paymentSuccessPage: false
+        paymentSuccessPage: false,
+        error_message: '',
+        isRequesting: false
       };
   }
 
@@ -80,11 +86,25 @@ class Cart extends React.Component {
         data: nextProps.cartProducts && nextProps.cartProducts.toJS(),
         totalPrice: tot,
         arrayPIds: arrayProductId
-      });
+      },
+       () => {
+           this.props.handleCartSize(nextProps.cartProducts && nextProps.cartProducts.toJS() && nextProps.cartProducts.toJS().dataList.length)
+       }
+       );
     }
     if (this.props.response != nextProps.response) {
       this.setState({
         response_message: nextProps.response && nextProps.response,
+      });
+    }
+    if (this.props.payError != nextProps.payError) {
+      this.setState({
+        error_message: nextProps.payError && nextProps.payError,
+      });
+    }
+    if (this.props.loading != nextProps.loading) {
+      this.setState({
+        isRequesting: nextProps.loading && nextProps.loading,
       });
     }
     if (this.props.paymentSuccessData != nextProps.paymentSuccessData) {
@@ -128,7 +148,7 @@ class Cart extends React.Component {
 
   render() {
     const {  } = this.props;
-    const { data, totalPrice, redirectToPayment, arrayPIds, showModal, payment_data, paymentSuccessPage } = this.state
+    const { data, totalPrice, redirectToPayment, arrayPIds, showModal, payment_data, paymentSuccessPage, error_message, isRequesting } = this.state
 
     return (
       <div className="cart-grid">
@@ -139,8 +159,15 @@ class Cart extends React.Component {
                  state: payment_data
             }} />
         }
+        {error_message == "Payment Failure" &&
+          <Redirect 
+          to={
+            {pathname: `/user/dashboard/payment-info`,
+             state: payment_data
+        }} />
+        }
         {redirectToPayment && 
-          <PayWithCard payFromCardRequest={this.payFromCardRequest} closeModal={this.closeModal} showModal={showModal} cartSection={this.cartSection} totalPrice = {totalPrice} />
+          <PayWithCard isRequesting={isRequesting} payFromCardRequest={this.payFromCardRequest} closeModal={this.closeModal} showModal={showModal} cartSection={this.cartSection} totalPrice = {totalPrice} />
         }
      {data && data.dataList && data.dataList.length > 0 &&     
       <div className="p-4 white-bg">
