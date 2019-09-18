@@ -21,121 +21,33 @@ import PayWithCard from  './PayWithCard'
 
 import {
   makeSelectCartProducts,
-  makeSelectResponse
+  makeSelectResponse,
+  makeSelectpaymentSuccessData
 } from './selectors';
 // import { makeSelectLocation } from '../../../App/selectors';
 
 import {
   getProductsInCartRequest,
-  removeCartRequest
+  removeCartRequest,
+  placeOrderRequest,
+  payThroughCardRequest
 } from './actions'
 
-const mockData = {
-  "status": 200,
-  "data": {
-    "dataList": [
-      {
-        "_id": "b7f9bbd0-d475-11e9-9703-878c003ca5c6",
-        "product": {
-          "_id": "691e8a20-ccca-11e9-be26-e979a8382fa2",
-          "added_by": "sareek007@gmail.com",
-          "added_on": "2019-09-01T15:08:53.058Z",
-          "deleted": false,
-          "country": "Nepal",
-          "industry": "Financial",
-          "title": "PCI DSS",
-          "description": "This products contains PCI related questionnaires.",
-          "price": 150,
-          "product_instructions": "",
-          "profile_name": "PCI_DSS_NP",
-          "category_id": [
-            "5926fff0-c750-11e9-b9fe-e1f61cc86d1e",
-            "a41791f0-c750-11e9-b9fe-e1f61cc86d1e",
-            "8308a970-c743-11e9-b9fe-e1f61cc86d1e",
-            "5febdca0-c743-11e9-b9fe-e1f61cc86d1e"
-          ],
-          "questions": [
-            "23ae56d0-ccd1-11e9-be26-e979a8382fa2",
-            "3c4d7090-ccd1-11e9-be26-e979a8382fa2",
-            "466d9a50-ccd1-11e9-be26-e979a8382fa2",
-            "5221d190-ccd1-11e9-be26-e979a8382fa2",
-            "5b8f9b40-ccd1-11e9-be26-e979a8382fa2",
-            "650d4370-ccd1-11e9-be26-e979a8382fa2",
-            "098ec980-cccf-11e9-be26-e979a8382fa2",
-            "0a5bc530-ccc9-11e9-be26-e979a8382fa2",
-            "13091650-cccf-11e9-be26-e979a8382fa2",
-            "02c9c6c0-ccd1-11e9-be26-e979a8382fa2",
-            "0dd2c9e0-ccd1-11e9-be26-e979a8382fa2",
-            "1a16e510-ccd1-11e9-be26-e979a8382fa2"
-          ],
-          "active": true,
-          "image_name": {
-            "document_name": "mcqExam-1567350532953-e11e0.png",
-            "document_original_name": "pcidss.png",
-            "document_mimetype": "image/png"
-          },
-          "questionnaire_id": "691e8a20-ccca-11e9-be26-e979a8382fa2",
-          "updated_by": "sareek007@gmail.com",
-          "updated_on": "2019-09-10T05:14:02.630Z"
-        }
-      },
-      {
-        "_id": "c324e260-d474-11e9-8293-01b9d353aff3",
-        "product": {
-          "_id": "d73fe490-ced7-11e9-a3dd-312005b9fdc3",
-          "added_by": "sareek007@gmail.com",
-          "added_on": "2019-09-04T05:50:03.609Z",
-          "deleted": false,
-          "country": "Algeria",
-          "industry": "Health Care and Biomedical",
-          "title": "Test Product",
-          "description": "test test test",
-          "price": 1200,
-          "product_instructions": "<p>this is test</p>",
-          "profile_name": "Salina",
-          "category_id": [
-            "a41791f0-c750-11e9-b9fe-e1f61cc86d1e"
-          ],
-          "questions": [
-            "098ec980-cccf-11e9-be26-e979a8382fa2",
-            "0a5bc530-ccc9-11e9-be26-e979a8382fa2",
-            "13091650-cccf-11e9-be26-e979a8382fa2",
-            "1872a490-ccc9-11e9-be26-e979a8382fa2",
-            "1b157b40-cccf-11e9-be26-e979a8382fa2",
-            "25eb8780-cccf-11e9-be26-e979a8382fa2",
-            "2cac6b90-cccd-11e9-be26-e979a8382fa2"
-          ],
-          "active": true,
-          "image_name": {
-            "document_name": "mcqExam-1567576201529-deeeb.jpeg",
-            "document_original_name": "card.jpeg",
-            "document_mimetype": "image/jpeg"
-          },
-          "questionnaire_id": "d73fe490-ced7-11e9-a3dd-312005b9fdc3",
-          "updated_by": "sareek007@gmail.com",
-          "updated_on": "2019-09-04T06:11:54.747Z"
-        }
-      }
-    ],
-    "totalItems": 2,
-    "currentPage": 1
-  }
-}
-
 var paymentForm
-
-
 
 const mapStateToProps = createStructuredSelector({
   // isRequesting: makeSelectLoading(),
   cartProducts:makeSelectCartProducts(),
-  response:makeSelectResponse()
+  response:makeSelectResponse(),
+  paymentSuccessData:makeSelectpaymentSuccessData()
 });
 
 const mapDispatchToProps = dispatch => ({
   showDialog: dialog => dispatch(showDialog(dialog)),
   getProductsInCartRequest: () => dispatch(getProductsInCartRequest()),
-  removeCartRequest: (id) => dispatch(removeCartRequest(id))
+  removeCartRequest: (id) => dispatch(removeCartRequest(id)),
+  placeOrderRequest: (ids) => dispatch(placeOrderRequest(ids)),
+  payThroughCardRequest: (data) => dispatch(payThroughCardRequest(data))
 });
 
 class Cart extends React.Component {
@@ -144,7 +56,10 @@ class Cart extends React.Component {
       this.state = { 
         data: {},
         totalPrice: null,
-        redirectToPayment: false
+        arrayPIds: [],
+        redirectToPayment: false,
+        showModal: false,
+        paymentSuccessPage: false
       };
   }
 
@@ -156,12 +71,15 @@ class Cart extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.cartProducts != nextProps.cartProducts) {
       var tot = 0
+      var arrayProductId = new Array();
       nextProps.cartProducts && nextProps.cartProducts.toJS().dataList.map((item, index) => {
-         tot = tot + item.product.price
+         tot = tot + item.product.price,
+         arrayProductId.push(item.product._id)
         })
       this.setState({
         data: nextProps.cartProducts && nextProps.cartProducts.toJS(),
-        totalPrice: tot
+        totalPrice: tot,
+        arrayPIds: arrayProductId
       });
     }
     if (this.props.response != nextProps.response) {
@@ -169,14 +87,23 @@ class Cart extends React.Component {
         response_message: nextProps.response && nextProps.response,
       });
     }
+    if (this.props.paymentSuccessData != nextProps.paymentSuccessData) {
+      this.setState({
+        payment_data: nextProps.paymentSuccessData && nextProps.paymentSuccessData,
+      }, ()=> {
+        if(this.state.payment_data && this.state.payment_data.status == "COMPLETED") {
+            this.setState({paymentSuccessPage: true})
+        }
+      });
+    }
   }
 
   removeCart = (id) => {
     this.props.removeCartRequest(id)
   }
-  placeOrder = () => {
-    this.setState({redirectToPayment: true})
-    // this.props.placeOrderRequest()
+  placeOrder = (ids) => {
+    this.setState({redirectToPayment: true, showModal: true})
+    this.props.placeOrderRequest(ids)
   }
 
   onGetCardNonce = (event) => {
@@ -189,21 +116,33 @@ class Cart extends React.Component {
   cartSection = () => {
     this.setState({redirectToPayment: false})
   }
+ 
+  closeModal = () => {
+      this.setState({ showModal: false })
+    }  
+
+    payFromCardRequest = (nonce) => {
+      // this.setState({showModal: false})
+      this.props.payThroughCardRequest(nonce)
+    }  
 
   render() {
     const {  } = this.props;
-    const { data, totalPrice, redirectToPayment } = this.state
+    const { data, totalPrice, redirectToPayment, arrayPIds, showModal, payment_data, paymentSuccessPage } = this.state
 
     return (
       <div className="cart-grid">
-        {/* {redirectToPayment && 
-           <Redirect to={`/user/dashboard/payment-form`} />
-        } */}
-        {redirectToPayment && 
-          <PayWithCard cartSection={this.cartSection} totalPrice = {totalPrice} />
+        {paymentSuccessPage && 
+           <Redirect 
+              to={
+                {pathname: `/user/dashboard/payment-info`,
+                 state: payment_data
+            }} />
         }
-      
-     {!redirectToPayment && data && data.dataList && data.dataList.length > 0 &&
+        {redirectToPayment && 
+          <PayWithCard payFromCardRequest={this.payFromCardRequest} closeModal={this.closeModal} showModal={showModal} cartSection={this.cartSection} totalPrice = {totalPrice} />
+        }
+     {data && data.dataList && data.dataList.length > 0 &&     
       <div className="p-4 white-bg">
       <div className="ui top attached header cart-heading">
             <span> My Cart Items: ({data && data.dataList && data.dataList.length }) </span>
@@ -224,8 +163,6 @@ class Cart extends React.Component {
                     <p className="header">{item.product.title}</p>
                     <div className="meta">
                     <span className="price">${item.product.price}</span>
-                    
-                      {/* <span className="tag">Profile Name </span> */}
                     </div>
                     <div className="description">
                       <p> Profile Name :{item.product.profile_name} </p>
@@ -239,11 +176,10 @@ class Cart extends React.Component {
                 </div>
             )
           })}
-          
-</div>
-</div>
+       </div>
+      </div>
      }
-     {!redirectToPayment && data && data.dataList && data.dataList.length > 0 &&     
+     {data && data.dataList && data.dataList.length > 0 &&     
         <div className="order-detail">
           <div className="ui card">
             <div className="content grey-bg">
@@ -252,8 +188,8 @@ class Cart extends React.Component {
             <div className="content">
 
               <div className="pricing-grid">
-                <span className="">Product 1</span>
-                <span className="right"> ${totalPrice}</span>
+                {/* <span className="">Product 1</span> */}
+                {/* <span className="right"> ${totalPrice}</span> */}
               </div>
               
               <div className="pricing-grid total">
@@ -264,7 +200,13 @@ class Cart extends React.Component {
             </div>
 
             <div className="extra content">
-              <button onClick={this.placeOrder} className="ui green labeled icon  button order-btn"><i className="cart arrow down icon"></i>Place Order</button>
+              <button 
+                onClick={
+                          () => this.placeOrder(arrayPIds)} 
+                className="ui green labeled icon  button order-btn">
+                    <i className="cart arrow down icon"></i>
+                     Place Order
+              </button>
             </div>
           </div>
         </div>

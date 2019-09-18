@@ -11,6 +11,7 @@ import { makeSelectLocation, makeSelectUser } from '../App/selectors';
 import { logoutRequest } from '../Login/actions';
 import {
   resendConfirmationRequest,
+  getCartItemsNumberRequest
 } from './actions';
 import { DOCUMENT_URL_UPDATE } from '../App/constants';
 import Routes from './Routes';
@@ -23,6 +24,7 @@ import {
   makeSelectRequesting,
   makeSelectSuccess,
   makeSelectStatus,
+  makeSelectCartTotal
 } from './selectors';
 
 import injectSaga from 'utils/injectSaga';
@@ -43,6 +45,7 @@ const mapStateToProps = createStructuredSelector({
   isRequesting: makeSelectRequesting(),
   resendEmailSuccess: makeSelectSuccess(),
   responseStatus: makeSelectStatus(),
+  cartTotal:makeSelectCartTotal()
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -50,6 +53,7 @@ const mapDispatchToProps = dispatch => ({
   resendConfirmation: () => dispatch(resendConfirmationRequest()),
   navigateToProfilePage: () =>
     dispatch(push('/user/dashboard/profile/basic-info')),
+    getCartItemsNumberRequest: () => dispatch(getCartItemsNumberRequest())
 });
 
 class UserDashboard extends React.Component {
@@ -68,6 +72,8 @@ class UserDashboard extends React.Component {
     messageVisible: true,
     showSticky: false,
     sidebar: false,
+    cartItems: 0
+    
   };
 
   componentDidMount() {
@@ -90,6 +96,7 @@ class UserDashboard extends React.Component {
         });
       }
     }
+    // this.props.getCartItemsNumberRequest()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -111,6 +118,11 @@ class UserDashboard extends React.Component {
         email,
         username,
         isConfirmed: userInfo.get('confirmed'),
+      });
+    }
+    if (this.props.cartTotal != nextProps.cartTotal) {
+      this.setState({
+        cartItems: nextProps.cartTotal && nextProps.cartTotal,
       });
     }
   }
@@ -146,10 +158,12 @@ class UserDashboard extends React.Component {
   };
 
   render() {
+    const { cartItems } = this.state;
     let url = window.location.href.split('/');
     return (
       <div className="dashboard-wrap">
         <TopNavigation
+            cartItems={cartItems}
             username={this.state.username}
             handleLogout={this.handleLogout}
             showSticky={this.showSticky}

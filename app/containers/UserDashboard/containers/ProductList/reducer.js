@@ -53,7 +53,6 @@ function PackageListReducer(state = initialState, action) {
     case types.ADD_TO_CART_SUCCESS:
       xresponse =
         state.get('response') != null ? state.get('response') : null;
-      console.log(action.response)
     return state.merge({
       requesting: false,
       success: true,
