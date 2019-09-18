@@ -58,9 +58,17 @@ export class PayWithCard extends Component {
                     if (errors) {
                         // Log errors from nonce generation to the browser developer console.
                         // console.error('Encountered errors:');
+                        var errmsg = ''
                         errors.forEach(function (error) {
-                            console.error('  ' + error.message);
+                            // console.error('  ' + error.message);
+                            errmsg = errmsg + error.message + '<br>'
                         });
+                        var element = document.getElementById("payment-errors").innerHTML = errmsg;
+                        if(element.classList != undefined && element.classList.contains("hide")) {
+                        element.classList.remove("hide");
+                        }
+                        // document.getElementById('payment-errors').innerHTML = errmsg
+                        // $('#payment-errors').removeClass('hide')
                         // alert('Encountered errors, check browser developer console for more details');
                         return;
                     }
@@ -142,9 +150,17 @@ export class PayWithCard extends Component {
                     if (errors) {
                         // Log errors from nonce generation to the browser developer console.
                         // console.error('Encountered errors:');
+                        var errmsg = ''
                         errors.forEach(function (error) {
-                            console.error('  ' + error.message);
+                            // console.error('  ' + error.message);
+                            errmsg = errmsg + error.message + '<br>'
                         });
+                        var element = document.getElementById("payment-errors").innerHTML = errmsg;
+                        if(element.classList != undefined && element.classList.contains("hide")) {
+                        element.classList.remove("hide");
+                        }
+                        // document.getElementById('payment-errors').innerHTML = errmsg
+                        // $('#payment-errors').removeClass('hide')
                         // alert('Encountered errors, check browser developer console for more details');
                         return;
                     }
@@ -204,6 +220,7 @@ export class PayWithCard extends Component {
               >
           <Header icon='question circle' content='Enter your card Details' />
           <Modal.Content style={{minHeight :  "80px"}}>
+          <div id="payment-errors" class="hide"></div>
           <div id="sq-card-number"></div>
           <div className="third" id="sq-expiration-date"></div>
           <div className="third" id="sq-cvv"></div>
