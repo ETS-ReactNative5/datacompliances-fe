@@ -80,7 +80,11 @@ class Cart extends React.Component {
         data: nextProps.cartProducts && nextProps.cartProducts.toJS(),
         totalPrice: tot,
         arrayPIds: arrayProductId
-      });
+      },
+       () => {
+           this.props.handleCartSize(nextProps.cartProducts && nextProps.cartProducts.toJS() && nextProps.cartProducts.toJS().dataList.length)
+       }
+       );
     }
     if (this.props.response != nextProps.response) {
       this.setState({

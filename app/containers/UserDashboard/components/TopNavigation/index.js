@@ -8,7 +8,7 @@ class TopNavigation extends React.Component {
     super(props);
   }
   render() {
-    const { cartItems } = this.props;
+    const { cartSize } = this.props;
     const avatar = <div><Image src={this.props.profilePic} avatar />
     <span>{this.props.username}</span>
   </div>;
@@ -16,8 +16,8 @@ class TopNavigation extends React.Component {
       <div className="header-wrap">
         
         <ul className="header-menu">
-          <li className="nav__item cart-icon"><Link to="/user/dashboard/cart"><i className="icon icon-shopping-cart"/> </Link> &nbsp;&nbsp;</li>  
-          {/* <span className="cart-number">0</span> */}
+          <li className="nav__item cart-icon"><Link to="/user/dashboard/cart"><i className="icon icon-shopping-cart"/> <span className="cart-number">{cartSize}</span></Link> &nbsp;&nbsp;</li>  
+         
           <li className="nav__item">
             <Dropdown trigger={avatar} className="nav__link" direction="left">
               <Dropdown.Menu className="basic-nav-menu">
