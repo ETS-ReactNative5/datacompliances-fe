@@ -53,7 +53,6 @@ class Payment extends React.Component {
       };
   }
 
-
   componentDidMount() {
      if(this.props.location && this.props.location.state != undefined) {
        const payload = {
@@ -63,6 +62,7 @@ class Payment extends React.Component {
        }
         this.props.updateOrderRequest(payload)
         this.props.clearCartRequest(payload)
+        // this.props.handleCartSize(1)
      }
   }
 
@@ -84,7 +84,6 @@ class Payment extends React.Component {
       <div className="payment-response">
         {location && location.state != undefined ?
         <div className="payment-success">
-          {/* <p>Payment status: {location.state.status}</p>    */}
           <div className="icon">
             <img src={check}/>
           </div>

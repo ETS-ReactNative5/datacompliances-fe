@@ -75,7 +75,10 @@ function UserRoutes({ location, handleCartSize, status }) {
 			   }}  
 			/>
             
-			<Route exact path="/user/dashboard/payment-info" component={Payment} />
+			<Route 
+			   exact 
+			   path="/user/dashboard/payment-info" 
+			   component={Payment} />
 
 			<Route exact path="/user/dashboard/reports" component={Report} />
 			<Route exact path="/user/dashboard/report/detail/:id" component={ReportDetails} />
