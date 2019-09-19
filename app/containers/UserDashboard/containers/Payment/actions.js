@@ -1,33 +1,34 @@
 import action from 'utils/action';
 import * as types from './constants';
 
-export const getProductsInCartRequest = action(
-  types.GET_PRODUCTS_IN_CART_REQUEST,
+export const updateOrderRequest = action(
+  types.UPDATE_ORDER_REQUEST,
+  'payload'
 );
-export const getProductsInCartSuccess = action(
-  types.GET_PRODUCTS_IN_CART_SUCCESS,
+export const updateOrderSuccess = action(
+  types.UPDATE_ORDER_SUCCESS,
   'response',
 );
-export const getProductsInCartFailure = action(
-  types.GET_PRODUCTS_IN_CART_FAILURE,
+export const updateOrderFailure = action(
+  types.UPDATE_ORDER_FAILURE,
   'error',
 );
 
 
-export const removeCartRequest = action(
-  types.REMOVE_CART_REQUEST,
-  'product_id'
+export const clearCartRequest = action(
+  types.CLEAR_CART_REQUEST,
+  'payload'
 );
-export const removeCartSuccess = action(
-  types.REMOVE_CART_SUCCESS,
+export const clearCartSuccess = action(
+  types.CLEAR_CART_SUCCESS,
   'response',
 );
-export const removeCartFailure = action(
-  types.REMOVE_CART_FAILURE,
+export const clearCartFailure = action(
+  types.CLEAR_CART_FAILURE,
   'error',
 );
 
+// updateOrderRequest
 
 
-
-export const clearMessage = action(types.CLEAR_MESSAGE);
+// export const clearMessage = action(types.CLEAR_MESSAGE);

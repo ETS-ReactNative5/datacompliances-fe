@@ -50,6 +50,7 @@ const mapDispatchToProps = dispatch => ({
   resendConfirmation: () => dispatch(resendConfirmationRequest()),
   navigateToProfilePage: () =>
     dispatch(push('/user/dashboard/profile/basic-info')),
+    getCartItemsNumberRequest: () => dispatch(getCartItemsNumberRequest())
 });
 
 class UserDashboard extends React.Component {

@@ -1,12 +1,12 @@
-.ui.basic.button.delete-button{
-    i{
-        background:rgb(222, 61, 61) !important;
-        color: #fff;
-    }
-    &:hover{
-        background: #feeeee  none!important;
-    }
-}
+// .ui.basic.button.delete-button{
+//     i{
+//         background:rgb(222, 61, 61) !important;
+//         color: #fff;
+//     }
+//     &:hover{
+//         background: #feeeee  none!important;
+//     }
+// }
 
 .description  p{
     font-size: 14px;
@@ -24,5 +24,40 @@
            height: 100%;
     
         }
+    }
+}
+
+
+.payment-response {
+    margin-right: 50px;
+    border: 1px solid #efefef;
+    padding: 40px;
+    text-align: center;
+    background: #fff;
+    border-radius: 5px;
+}
+.payment-success {
+    .icon{
+        height: 120px;
+        width:120px;
+        margin: 0 auto;
+        img{
+            height: 100%;
+            width:100%;
+            padding: 5px;
+            object-fit: contain;
+        }
+    }
+    p{
+        color: #333;
+    }
+    .msg {
+        font-size: 24px;
+    }
+    .msg.green{
+        color: #4CAF50;
+    }
+    .msg.red{
+        color: #E91E63;
     }
 }

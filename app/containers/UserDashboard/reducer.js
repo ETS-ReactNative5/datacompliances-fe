@@ -19,6 +19,8 @@ function userDashboardReducer(state = initialState, action = {}) {
         response: null,
         success: false,
       });
+    
+
     case types.RESEND_CONFIRMATION_SUCCESS:
       return state.merge({
         requesting: false,
@@ -26,7 +28,7 @@ function userDashboardReducer(state = initialState, action = {}) {
         error: null,
         success: true,
       });
-    
+
     case types.RESEND_CONFIRMATION_FAILURE:
       return state.merge({
         requesting: false,

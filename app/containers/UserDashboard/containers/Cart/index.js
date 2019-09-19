@@ -22,7 +22,9 @@ import PayWithCard from  './PayWithCard'
 import {
   makeSelectCartProducts,
   makeSelectResponse,
-  makeSelectpaymentSuccessData
+  makeSelectpaymentSuccessData,
+  makeSelectError,
+  makeSelectLoading          
 } from './selectors';
 // import { makeSelectLocation } from '../../../App/selectors';
 
@@ -39,7 +41,9 @@ const mapStateToProps = createStructuredSelector({
   // isRequesting: makeSelectLoading(),
   cartProducts:makeSelectCartProducts(),
   response:makeSelectResponse(),
-  paymentSuccessData:makeSelectpaymentSuccessData()
+  paymentSuccessData:makeSelectpaymentSuccessData(),
+  payError:makeSelectError(),
+  loading:makeSelectLoading()
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -59,7 +63,9 @@ class Cart extends React.Component {
         arrayPIds: [],
         redirectToPayment: false,
         showModal: false,
-        paymentSuccessPage: false
+        paymentSuccessPage: false,
+        error_message: '',
+        isRequesting: false
       };
   }
 
@@ -80,11 +86,25 @@ class Cart extends React.Component {
         data: nextProps.cartProducts && nextProps.cartProducts.toJS(),
         totalPrice: tot,
         arrayPIds: arrayProductId
-      });
+      },
+       () => {
+           this.props.handleCartSize(nextProps.cartProducts && nextProps.cartProducts.toJS() && nextProps.cartProducts.toJS().dataList.length)
+       }
+       );
     }
     if (this.props.response != nextProps.response) {
       this.setState({
         response_message: nextProps.response && nextProps.response,
+      });
+    }
+    if (this.props.payError != nextProps.payError) {
+      this.setState({
+        error_message: nextProps.payError && nextProps.payError,
+      });
+    }
+    if (this.props.loading != nextProps.loading) {
+      this.setState({
+        isRequesting: nextProps.loading && nextProps.loading,
       });
     }
     if (this.props.paymentSuccessData != nextProps.paymentSuccessData) {
@@ -122,13 +142,13 @@ class Cart extends React.Component {
     }  
 
     payFromCardRequest = (nonce) => {
-      this.setState({showModal: false})
+      // this.setState({showModal: false})
       this.props.payThroughCardRequest(nonce)
     }  
 
   render() {
     const {  } = this.props;
-    const { data, totalPrice, redirectToPayment, arrayPIds, showModal, payment_data, paymentSuccessPage } = this.state
+    const { data, totalPrice, redirectToPayment, arrayPIds, showModal, payment_data, paymentSuccessPage, error_message, isRequesting } = this.state
 
     return (
       <div className="cart-grid">
@@ -139,10 +159,17 @@ class Cart extends React.Component {
                  state: payment_data
             }} />
         }
-        {redirectToPayment && 
-          <PayWithCard payFromCardRequest={this.payFromCardRequest} closeModal={this.closeModal} showModal={showModal} cartSection={this.cartSection} totalPrice = {totalPrice} />
+        {error_message == "Payment Failure" &&
+          <Redirect 
+          to={
+            {pathname: `/user/dashboard/payment-info`,
+             state: payment_data
+        }} />
         }
-      
+        {redirectToPayment && 
+          <PayWithCard isRequesting={isRequesting} payFromCardRequest={this.payFromCardRequest} closeModal={this.closeModal} showModal={showModal} cartSection={this.cartSection} totalPrice = {totalPrice} />
+        }
+     {data && data.dataList && data.dataList.length > 0 &&     
       <div className="p-4 white-bg">
       <div className="ui top attached header cart-heading">
             <span> My Cart Items: ({data && data.dataList && data.dataList.length }) </span>
@@ -163,8 +190,6 @@ class Cart extends React.Component {
                     <p className="header">{item.product.title}</p>
                     <div className="meta">
                     <span className="price">${item.product.price}</span>
-                    
-                      {/* <span className="tag">Profile Name </span> */}
                     </div>
                     <div className="description">
                       <p> Profile Name :{item.product.profile_name} </p>
@@ -178,11 +203,10 @@ class Cart extends React.Component {
                 </div>
             )
           })}
-          
-</div>
-</div>
-    {/* //  } */}
-     {/* {!redirectToPayment && data && data.dataList && data.dataList.length > 0 &&      */}
+       </div>
+      </div>
+     }
+     {data && data.dataList && data.dataList.length > 0 &&     
         <div className="order-detail">
           <div className="ui card">
             <div className="content grey-bg">
@@ -213,7 +237,7 @@ class Cart extends React.Component {
             </div>
           </div>
         </div>
-    {/* //  } */}
+     }
           {data && data.dataList && data.dataList.length < 1 &&
             <div>No Items On Cart...</div>
           }     
