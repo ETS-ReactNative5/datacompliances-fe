@@ -20,7 +20,7 @@ class TopNavigation extends React.Component {
             <Dropdown trigger={avatar} className="nav__link" direction="left">
               <Dropdown.Menu className="basic-nav-menu">
                 <Link
-                  to="/user/dashboard/profile/basic-info"
+                  to="/consultant/dashboard/profile/basic-info"
                   role="option"
                   className="item"
                 >
