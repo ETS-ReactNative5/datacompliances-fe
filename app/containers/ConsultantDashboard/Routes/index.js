@@ -7,11 +7,7 @@ import { makeSelectLocation } from 'containers/App/selectors';
 import { makeSelectStatus } from '../selectors';
 import Profile from 'components/Profile';
 
-import ProductList from '../containers/ProductList/'
-import ProductDetails from '../containers/ProductList/Detail/Loadable'
-import SubscribedProducts from '../containers/ProductList/Cart/SubscribedProduct'
-
-import ProductDisplay from '../containers/ProdutDisplay/Loadable';
+import Appointment from '../containers/Appointment/Loadable'
 
 
 function check(status) {
@@ -33,18 +29,18 @@ function check(status) {
 	return value;
 }
 
-function UserRoutes({ location, status }) {
+function ConsultantRoutes({ location, status }) {
 	return (
 		<Switch location={location}>
 			<Route
-				path="/user/dashboard/profile"
+				path="/consultant/dashboard/profile"
 				render={(props) => (
 					<Profile
 						tabs={[
-							{ to: '/user/dashboard/profile/basic-info', label: 'Basic Info' },
-							{ to: '/user/dashboard/profile/password', label: 'Password' },
+							{ to: '/consultant/dashboard/profile/basic-info', label: 'Basic Info' },
+							{ to: '/consultant/dashboard/profile/password', label: 'Password' },
 							{
-								to: '/user/dashboard/profile/multi-factor-auth',
+								to: '/consultant/dashboard/profile/multi-factor-auth',
 								label: 'Two Factor Auth',
 							},
 						]}
@@ -52,11 +48,12 @@ function UserRoutes({ location, status }) {
 					/>
 				)}
 			/>
-			<Route
+			
+	<Route
         exact
-        path="/user/dashboard/product-display"
-        component={ProductDisplay}
-      />
+        path="/consultant/dashboard/set-appointment"
+        component={Appointment}
+      />			
 
       {/* <Route
         exact
@@ -73,4 +70,4 @@ const mapStateToProps = createStructuredSelector({
 	status: makeSelectStatus(),
 });
 
-export default connect(mapStateToProps)(UserRoutes);
+export default connect(mapStateToProps)(ConsultantRoutes);
