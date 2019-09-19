@@ -16,6 +16,7 @@ import {
 } from './selectors';
 import { Button, Modal, Header } from 'semantic-ui-react';
 import { makeSelectLocation } from '../../../App/selectors';
+import Calendar from 'react-calendar';
 
 import {
  
@@ -32,7 +33,9 @@ const mapDispatchToProps = dispatch => ({
 class Report extends React.Component {
   constructor(props) {
     super(props);
-      this.state = { };
+      this.state = { 
+        date: new Date(),
+      };
   }
   componentDidMount() {
   }
@@ -41,14 +44,18 @@ class Report extends React.Component {
   
   }
 
+  onChange = date => this.setState({ date })
 
   render() {
     const {  } = this.props;
-    const { allReportsList, downloadURL, showModal } = this.state
+    const {  } = this.state
     return (
       <div>
       
-                
+      <Calendar
+          onChange={this.onChange}
+          value={this.state.date}
+        />  
       </div>
     );
   }

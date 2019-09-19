@@ -5,7 +5,7 @@ import { Accordion, Menu } from 'semantic-ui-react';
 const mainMenu = [
    {
       title: 'Dashboard',
-      path: '/user/dashboard',
+      path: '/consultant/dashboard',
       icon: "icon-home",
     },
     {
