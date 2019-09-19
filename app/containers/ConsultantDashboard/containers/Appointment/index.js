@@ -11,10 +11,11 @@ import { compose } from 'redux';
 import Toaster from 'components/Toaster';
 import noreport from 'assets/images/report.png';
 import { Link } from 'react-router-dom'
+import moment from 'moment';
 import {
 
 } from './selectors';
-import { Button, Modal, Header } from 'semantic-ui-react';
+import { Input } from 'semantic-ui-react';
 import { makeSelectLocation } from '../../../App/selectors';
 import Calendar from 'react-calendar';
 
@@ -35,6 +36,9 @@ class Report extends React.Component {
     super(props);
       this.state = { 
         date: new Date(),
+        data:{
+
+        }
       };
   }
   componentDidMount() {
@@ -45,9 +49,23 @@ class Report extends React.Component {
   }
 
   onChange = date => {
+    console.log(date)
     this.setState({ date })
   }
-  
+  handleChangeTime = (e) => {
+    console.log(e.target.name, '>>',e.target.value)
+    this.setState({
+      data: {
+        ...this.state.data,
+        [e.target.name]: e.target.value,
+      },
+    });
+  }
+
+  addTimeSlot = () => {
+    // console.log(this.state.data,'gggg')
+  }
+
   render() {
     const {  } = this.props;
     const {  } = this.state
@@ -57,7 +75,42 @@ class Report extends React.Component {
       <Calendar
           onChange={this.onChange}
           value={this.state.date}
-        />  
+        /> 
+       <div>
+         <br />
+         <br />
+         <span>Set Appointment For {moment(this.state.date, 'YYYY-MM-DD').format('LL')}</span>
+         <br />
+         <br />
+         <div>Select a time: 
+           <br />
+           <br />
+          <div>To: 
+            <Input 
+              type="time" 
+              name="time_to"
+              onChange={this.handleChangeTime} 
+            >
+              
+            </Input>
+          </div>
+          <br />
+          <div>From: 
+            <Input 
+              type="time" 
+              name="time_from"
+              onChange={this.handleChangeTime}
+            >  
+          </Input>
+          </div>
+          </div>
+          <div>
+            <br />
+            <button onClick={this.addTimeSlot}>Add</button>
+          </div>
+         <br />
+         <br />
+       </div>
       </div>
     );
   }
