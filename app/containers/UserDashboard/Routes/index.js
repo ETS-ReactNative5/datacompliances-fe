@@ -46,9 +46,9 @@ function check(status) {
 	return value;
 }
 
-function UserRoutes({ location, status }) {
+function UserRoutes({ location, handleCartSize, status }) {
 	return (
-		<Switch location={location}>
+		<Switch location={location} handleCartSize={handleCartSize}>
 			{/* <Redirect from="**" to="/user/dashboard" /> */}
 			<Route
 				path="/user/dashboard/profile"
@@ -67,8 +67,18 @@ function UserRoutes({ location, status }) {
 				)}
 			/>
 
-            <Route exact path="/user/dashboard/cart" component={Cart} />
-            <Route exact path="/user/dashboard/payment-info" component={Payment} />
+			<Route 
+			   exact 
+			   path="/user/dashboard/cart" 
+			   render={props => {
+				   return <Cart handleCartSize={handleCartSize} />;
+			   }}  
+			/>
+            
+			<Route 
+			   exact 
+			   path="/user/dashboard/payment-info" 
+			   component={Payment} />
 
 			<Route exact path="/user/dashboard/reports" component={Report} />
 			<Route exact path="/user/dashboard/report/detail/:id" component={ReportDetails} />
