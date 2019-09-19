@@ -33,15 +33,15 @@ class Routes extends React.Component {
 	render() {
 		return (
 			<Switch location={this.props.location}>
-					<Route
-						exact
-						path="/"
-						render={props => (
-							<HomeLayout>
-							<HomePage {...props} />
-							</HomeLayout>
-						)}
-					/>
+				<Route
+					exact
+					path="/"
+					render={props => (
+						<HomeLayout>
+						<HomePage {...props} />
+						</HomeLayout>
+					)}
+				/>
 				{/* <Route exact path="/" render={(props) => <HomePage {...props} />} /> */}
 				<Route exact path="/login" component={Login} />
 				<Route exact path="/register" component={Register} />

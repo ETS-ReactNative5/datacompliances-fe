@@ -7,4 +7,4 @@ class UserLayout extends React.Component {
   }
 }
 
-export default Redirection(['enduser'])(UserLayout);
+export default Redirection(['consultant'])(UserLayout);
