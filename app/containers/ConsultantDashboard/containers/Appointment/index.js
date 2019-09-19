@@ -21,7 +21,9 @@ import Calendar from 'react-calendar';
 
 import {
  
-} from './actions'
+} from './actions';
+
+import '../../assets/calendar.scss';
 
 const mapStateToProps = createStructuredSelector({
 
