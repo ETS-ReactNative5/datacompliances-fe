@@ -9,28 +9,23 @@ const mainMenu = [
       icon: "icon-home",
     },
     {
-    title: 'Product',
+    title: 'Consultant',
     path: '/',
     icon: 'icon-package',
     subMenues: [
       {
-        title: 'My Product',
-        path: '/user/dashboard/my-products',
+        title: 'View Available slots',
+        path: '/consultant/dashboard',
         group_title: 'my-product',
         icon: "icon-grid",
       },
       {
-        title: 'Available Products',
-        path: '/user/dashboard/product',
+        title: 'Set Appointment',
+        path: '/consultant/dashboard/set-appointment',
         group_title: 'available-product',
         icon: "icon-shopping-cart",
       },
     ],
-  },
-  {
-    title: 'Reports',
-    path: '/user/dashboard/reports',
-    icon: "icon-file",
   },
 ];
 
