@@ -44,8 +44,10 @@ class Report extends React.Component {
   
   }
 
-  onChange = date => this.setState({ date })
-
+  onChange = date => {
+    this.setState({ date })
+  }
+  
   render() {
     const {  } = this.props;
     const {  } = this.state
