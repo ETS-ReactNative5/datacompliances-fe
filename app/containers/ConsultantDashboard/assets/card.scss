@@ -149,63 +149,7 @@ body{
         
     }
 }
-button{
-    border-radius: 5px !important;
-    font-weight: 400 !important;
-}
-.buttons-wrap{
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top:1px solid #efefef;
-    .button {
-        padding:8px 15px;
-        font-size: 16px !important;
-        border-radius: 0px;
-        border-radius: 5px;
-        box-shadow:0px 0px 0px rgba(0,0,0,0);
-        @media(min-width:768px){
-            padding:10px 20px;
-        }
-        @media(min-width:1420px){
-            padding: 12px 25px !important;
-        }
-    }
-    .buy-btn{
-        background:#068DF8;
-        border-radius: 5px !important;
-        &:hover{
-            background:#0077d6;
-            color:#fff;
-        }
-    }
-    .detail-btn{
-        background: transparent;
-        border-radius: 5px !important;
-        border: 1px solid #16C172;
-        color: #16C172 !important;
-        &:hover{
-            background:#07a25b;
-            color:#fff !important;
-        }
-    }
 
-}
-.feature-list{
-    padding:0px;
-   
-    li{
-        text-align: left;
-        margin-bottom: 10px;
-        display: grid;
-        grid-template-columns: 25px 1fr;
-        i{
-            margin-right:10px;
-            color: #07a25b;
-            font-weight: 800;
-            font-size: 20px;
-        }
-    }
-}
 .product-grid {
     .ui.segment{
         min-height: 200px;

@@ -16,7 +16,6 @@ import { DOCUMENT_URL_UPDATE } from '../App/constants';
 import Routes from './Routes';
 import TopNavigation from './components/TopNavigation';
 import './assets/style.scss';
-
 import {
   makeSelectError,
   makeSelectResponse,
