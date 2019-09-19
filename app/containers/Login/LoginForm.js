@@ -214,7 +214,7 @@ class LoginForm extends React.Component {
       url =
         userResp.user_role[0] == 'enduser'
           ? '/user/dashboard'
-          : '/admin/dashboard';
+          : '/consultant/dashboard';
     }
     return (
       <div>
