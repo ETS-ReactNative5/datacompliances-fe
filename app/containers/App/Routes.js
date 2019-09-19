@@ -8,6 +8,8 @@ import HomePage from 'containers/HomePage/Loadable';
 import Login from 'containers/Login';
 import Register from 'containers/Register';
 import NotFoundPage from 'containers/NotFoundPage';
+import ConsultantDashboard from 'containers/ConsultantDashboard/Loadable';
+import ConsultantDashboardLayout from 'containers/ConsultantDashboard/containers/ConsultantLayout';
 import UserDashboard from 'containers/UserDashboard/Loadable';
 import UserDashboardLayout from 'containers/UserDashboard/containers/UserLayout';
 import HomeLayout from 'containers/HomeLayout';
@@ -31,15 +33,15 @@ class Routes extends React.Component {
 	render() {
 		return (
 			<Switch location={this.props.location}>
-					<Route
-						exact
-						path="/"
-						render={props => (
-							<HomeLayout>
-							<HomePage {...props} />
-							</HomeLayout>
-						)}
-					/>
+				<Route
+					exact
+					path="/"
+					render={props => (
+						<HomeLayout>
+						<HomePage {...props} />
+						</HomeLayout>
+					)}
+				/>
 				{/* <Route exact path="/" render={(props) => <HomePage {...props} />} /> */}
 				<Route exact path="/login" component={Login} />
 				<Route exact path="/register" component={Register} />
@@ -61,6 +63,14 @@ class Routes extends React.Component {
 						<UserDashboardLayout>
 							<UserDashboard {...props} />
 						</UserDashboardLayout>
+					)}
+				/>
+				<Route
+					path="/consultant/dashboard"
+					render={(props) => (
+						<ConsultantDashboardLayout>
+							<ConsultantDashboard {...props} />
+						</ConsultantDashboardLayout>
 					)}
 				/>
 				<Route component={NotFoundPage} />

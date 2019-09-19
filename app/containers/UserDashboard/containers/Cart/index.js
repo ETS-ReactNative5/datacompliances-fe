@@ -17,7 +17,7 @@ import placeholder from './placeholder.png';
 import { DOCUMENT_URL_UPDATE, API_BASE  } from '../../../App/constants';
 import { Redirect } from 'react-router-dom'
 import PayWithCard from  './PayWithCard'
-
+import emptyCart from 'assets/images/empty_cart.png';
 
 import {
   makeSelectCartProducts,
@@ -239,7 +239,9 @@ class Cart extends React.Component {
         </div>
      }
           {data && data.dataList && data.dataList.length < 1 &&
-            <div>No Items On Cart...</div>
+                           <div className="no-products">
+                           <img src={emptyCart}/>
+                         </div>
           }     
 </div>
         
