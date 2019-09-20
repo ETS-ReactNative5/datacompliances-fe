@@ -39,7 +39,7 @@ const mapDispatchToProps = dispatch => ({
 
 });
 
-class Report extends React.Component {
+class SetAppointment extends React.Component {
   constructor(props) {
     super(props);
       this.state = { 
@@ -101,14 +101,6 @@ class Report extends React.Component {
      return errors
   }
 
-  // handleChange = date => {
-  //   console.log(date)
-  //   this.setState({
-  //     startDate: date
-  //   });
-  // };
-
-
   render() {
     const {  } = this.props;
     const { errors, data, startDate } = this.state
@@ -127,16 +119,7 @@ class Report extends React.Component {
          <span>Set Appointment For {moment(this.state.startDate, 'YYYY-MM-DD').format('LL')}</span>
          <br />
          <br />
-         {/* <DatePicker
-          selected={startDate || ''}
-          onChange={date => this.handleChange(date)}
-          showTimeSelect
-          showTimeSelectOnly
-          timeIntervals={15}
-          timeCaption="Time"
-          dateFormat="h:mm aa"
-          minDate={new Date()}
-      /> */}
+         
          <div>Select a time: 
            <br />
            <br />
@@ -183,8 +166,8 @@ class Report extends React.Component {
   }
 }
 
-const withReducer = injectReducer({ key: 'report', reducer });
-const withSaga = injectSaga({ key: 'report', saga });
+const withReducer = injectReducer({ key: 'setAppointment', reducer });
+const withSaga = injectSaga({ key: 'setAppointment', saga });
 const withConnect = connect(
   mapStateToProps,
   mapDispatchToProps,
@@ -194,4 +177,19 @@ export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(Report);
+)(SetAppointment);
+
+
+
+
+
+// {/* <DatePicker
+//           selected={startDate || ''}
+//           onChange={date => this.handleChange(date)}
+//           showTimeSelect
+//           showTimeSelectOnly
+//           timeIntervals={15}
+//           timeCaption="Time"
+//           dateFormat="h:mm aa"
+//           minDate={new Date()}
+//       /> */}
