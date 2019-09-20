@@ -1,8 +1,6 @@
-// export const GET_REPORT_LISTING_REQUEST = 'PCSC/Report/GET_REPORT_LISTING_REQUEST';
-// export const GET_REPORT_LISTING_SUCCESS = 'PCSC/Report/GET_REPORT_LISTING_SUCCESS';
-// export const GET_REPORT_LISTING_FAILURE = 'PCSC/Report/GET_REPORT_LISTING_FAILURE';
-
-
+export const GET_TimeSlot_REQUEST = 'PCSC/Appointment/GET_TimeSlot_REQUEST';
+export const GET_TimeSlot_SUCCESS = 'PCSC/Appointment/GET_TimeSlot_SUCCESS';
+export const GET_TimeSlot_FAILURE = 'PCSC/Appointment/GET_TimeSlot_FAILURE';
 
 
 export const CLEAR_MESSAGE = 'app/ReferShare/CLEAR_MESSAGE';

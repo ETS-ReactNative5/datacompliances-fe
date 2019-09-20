@@ -25,7 +25,7 @@ import AppointmentSetForm from './appointmentSetForm.js'
 // import "react-datepicker/dist/react-datepicker.css";
 
 import {
- 
+  postTimeSlotRequest
 } from './actions';
 
 import '../../assets/calendar.scss';
@@ -35,6 +35,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = dispatch => ({
+  postTimeSlotRequest: (data) => dispatch(postTimeSlotRequest(data))
 
 });
 
@@ -87,6 +88,7 @@ class Report extends React.Component {
         time_to: data.time_to,
         time_from: data.time_from
       }
+      this.props.postTimeSlotRequest(dataSend)
     }
   }
 
