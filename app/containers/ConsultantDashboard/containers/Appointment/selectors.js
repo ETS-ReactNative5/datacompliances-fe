@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-export const getMyReports = state => state.report;
+export const getMyReports = state => state.setAppointment;
 
 const makeSelectResponse = () =>
   createSelector(
